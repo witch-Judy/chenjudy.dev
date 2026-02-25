@@ -1,0 +1,159 @@
+---
+import { en } from "@/i18n/en";
+import { zh } from "@/i18n/zh";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+
+interface Project {
+  title: string;
+  titleZh?: string;
+  description: string;
+  descriptionZh?: string;
+  tech: string;
+  stars?: number;
+  url: string;
+  type: "github" | "creative";
+}
+
+const projects: Project[] = [
+  // Creative / Interactive Works
+  {
+    title: "Su Shi — Moon Phases of a Life",
+    titleZh: "苏轼 · 月相人生",
+    description:
+      "An interactive literary animation tracing Su Shi's life through 7 moon phases — from the crescent of youthful ambition to the full moon of transcendence. Features GSAP animations and immersive storytelling.",
+    descriptionZh:
+      "交互式文学动画，以月相为线索讲述苏轼一生——从新月少年意气到满月终极澄明，共7幕沉浸式体验",
+    tech: "React + GSAP",
+    url: "https://tgz2aaft2fllu.ok.kimi.link/",
+    type: "creative",
+  },
+  {
+    title: "Monkey King — Havoc in Heaven",
+    titleZh: "大闹天宫",
+    description:
+      "Interactive reimagining of the Monkey King's rebellion — storm the Southern Gate, shatter the Jade Palace, then choose to return to your mountain. \"I rewrote Sun Wukong's ending: go home and be a happy monkey.\"",
+    descriptionZh:
+      "重写孙悟空的故事——闯南天门、碎灵霄宝殿，最后选择回花果山当快乐猴儿。「且摘风月，且闹天宫」",
+    tech: "React + Animation",
+    url: "https://edzfn7n5wmih6.ok.kimi.link/",
+    type: "creative",
+  },
+  // GitHub Projects
+  {
+    title: "BuzzScope",
+    description:
+      "Keyword tracking across tech communities — Hacker News, Reddit, YouTube, Discord",
+    tech: "Python",
+    stars: 16,
+    url: "https://github.com/witch-Judy/BuzzScope",
+    type: "github",
+  },
+  {
+    title: "email-analysis-deepseek",
+    description: "Email analysis powered by DeepSeek AI",
+    tech: "Shell",
+    stars: 6,
+    url: "https://github.com/witch-Judy/email-analysis-deepseek",
+    type: "github",
+  },
+  {
+    title: "buzzscope-historical",
+    description: "Technology Trend Dashboard for historical analysis",
+    tech: "Python",
+    stars: 4,
+    url: "https://github.com/witch-Judy/buzzscope-historical",
+    type: "github",
+  },
+  {
+    title: "UNS Semantic Space Explorer",
+    description: "3D visualization for industrial Unified Namespace",
+    tech: "Python",
+    stars: 2,
+    url: "https://github.com/witch-Judy/UNS-Semantic-Space-Explorer",
+    type: "github",
+  },
+];
+---
+
+<section id="projects" class="pt-12 pb-6">
+  <h2
+    class="text-2xl font-semibold tracking-wide"
+    data-lang-en={en.projectsTitle}
+    data-lang-zh={zh.projectsTitle}
+  >
+    {en.projectsTitle}
+  </h2>
+
+  <div class="mt-6 grid gap-4 sm:grid-cols-2">
+    {
+      projects.map(project => (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={[
+            "group rounded-xl border p-5 transition-all hover:shadow-md",
+            project.type === "creative"
+              ? "border-accent/30 bg-accent/5 hover:border-accent/60"
+              : "border-border hover:border-accent/50",
+          ]}
+        >
+          <div class="flex items-start justify-between">
+            <h3
+              class="font-semibold text-foreground group-hover:text-accent"
+              data-lang-en={project.title}
+              data-lang-zh={project.titleZh || project.title}
+            >
+              {project.title}
+            </h3>
+            <div class="flex items-center gap-1 text-sm text-foreground/60">
+              {project.type === "creative" && (
+                <span class="rounded-full bg-accent/15 px-2 py-0.5 text-xs text-accent">
+                  Interactive
+                </span>
+              )}
+              {project.stars != null && project.stars > 0 && (
+                <>
+                  <span>⭐</span>
+                  <span>{project.stars}</span>
+                </>
+              )}
+            </div>
+          </div>
+          <p
+            class="mt-2 text-sm text-foreground/70"
+            data-lang-en={project.description}
+            data-lang-zh={project.descriptionZh || project.description}
+          >
+            {project.description}
+          </p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="rounded-md bg-muted px-2 py-0.5 text-xs font-medium">
+              {project.tech}
+            </span>
+            {project.type === "github" ? (
+              <IconGitHub class="size-4 opacity-40 transition-opacity group-hover:opacity-70" />
+            ) : (
+              <IconArrowRight class="size-4 opacity-40 transition-opacity group-hover:opacity-70" />
+            )}
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="mt-6 text-center">
+    <a
+      href="https://github.com/witch-Judy"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 text-accent underline decoration-dashed underline-offset-4 hover:decoration-solid"
+      data-lang-en={en.projectsViewAll}
+      data-lang-zh={zh.projectsViewAll}
+    >
+      {en.projectsViewAll}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>

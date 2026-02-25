@@ -1,0 +1,23 @@
+export const SITE = {
+  website: "https://chenjudy.dev/",
+  author: "Chen Judy",
+  profile: "https://github.com/witch-Judy",
+  desc: "AI Product Builder & Co-founder of ILLUCIO",
+  title: "Chen Judy | 陈小爷",
+  ogImage: "astropaper-og.jpg",
+  lightAndDarkMode: true,
+  postPerIndex: 4,
+  postPerPage: 4,
+  scheduledPostMargin: 15 * 60 * 1000,
+  showArchives: true,
+  showBackButton: true,
+  editPost: {
+    enabled: false,
+    text: "Edit page",
+    url: "",
+  },
+  dynamicOgImage: true,
+  dir: "ltr",
+  lang: "en",
+  timezone: "Asia/Shanghai",
+} as const;
