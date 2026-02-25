@@ -7,7 +7,7 @@ title: "About"
 
 I'm a **builder, influencer, and co-founder of ILLUCIO**. I live at the intersection of technology, product, and growth.
 
-![Chen Judy](/assets/self3.JPG)
+<img src="/chenjudy.dev/assets/self3.JPG" alt="Chen Judy" />
 
 ## More Than a Developer
 
