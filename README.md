@@ -1,5 +1,7 @@
 # Chen Judy's Personal Website
 
+🔗 **https://witch-judy.github.io/chenjudy.dev/**
+
 My personal website, built with [Astro](https://astro.build/) and deployed on GitHub Pages.
 
 ## About
