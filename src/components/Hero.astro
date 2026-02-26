@@ -7,54 +7,43 @@ import { SOCIALS } from "@/constants";
 
 <section
   id="hero"
-  class="flex flex-col-reverse items-center gap-8 pt-8 pb-6 sm:flex-row sm:gap-12 sm:pt-12 sm:pb-10"
+  class="pt-12 pb-8 sm:pt-16 sm:pb-12"
 >
-  <div class="flex-1">
-    <h1
-      class="my-4 text-3xl font-bold sm:my-6 sm:text-5xl"
-      data-lang-en={en.heroGreeting}
-      data-lang-zh={zh.heroGreeting}
-    >
-      {en.heroGreeting}
-    </h1>
-    <p
-      class="text-lg font-medium text-accent sm:text-xl"
-      data-lang-en={en.heroSubtitle}
-      data-lang-zh={zh.heroSubtitle}
-    >
-      {en.heroSubtitle}
-    </p>
-    <p
-      class="mt-2 text-foreground/70"
-      data-lang-en={en.heroTagline}
-      data-lang-zh={zh.heroTagline}
-    >
-      {en.heroTagline}
-    </p>
+  <h1
+    class="text-3xl font-bold sm:text-5xl"
+    data-lang-en={en.heroGreeting}
+    data-lang-zh={zh.heroGreeting}
+  >
+    {en.heroGreeting}
+  </h1>
+  <p
+    class="mt-3 text-lg font-medium text-accent sm:text-xl"
+    data-lang-en={en.heroSubtitle}
+    data-lang-zh={zh.heroSubtitle}
+  >
+    {en.heroSubtitle}
+  </p>
+  <p
+    class="mt-2 text-foreground/70"
+    data-lang-en={en.heroTagline}
+    data-lang-zh={zh.heroTagline}
+  >
+    {en.heroTagline}
+  </p>
 
-    <div class="mt-6 flex flex-wrap items-center gap-4">
-      <a
-        href="#contact"
-        class="inline-block rounded-lg bg-accent px-5 py-2.5 font-medium text-background transition-opacity hover:opacity-90"
-        data-lang-en={en.heroCta}
-        data-lang-zh={zh.heroCta}
-      >
-        {en.heroCta}
-      </a>
-      {
-        SOCIALS.length > 0 && (
-          <Socials />
-        )
-      }
-    </div>
-  </div>
-
-  <div class="shrink-0">
-    <img
-      src={`${import.meta.env.BASE_URL}/assets/self1.webp`}
-      alt="Chen Judy"
-      class="size-40 rounded-full object-cover shadow-lg ring-4 ring-accent/20 sm:size-52"
-      loading="eager"
-    />
+  <div class="mt-6 flex flex-wrap items-center gap-4">
+    <a
+      href="#contact"
+      class="inline-block rounded-lg bg-accent px-5 py-2.5 font-medium text-background transition-opacity hover:opacity-90"
+      data-lang-en={en.heroCta}
+      data-lang-zh={zh.heroCta}
+    >
+      {en.heroCta}
+    </a>
+    {
+      SOCIALS.length > 0 && (
+        <Socials />
+      )
+    }
   </div>
 </section>

@@ -18,7 +18,15 @@ import { zh } from "@/i18n/zh";
       id="about-section"
       class="border-t border-border pt-12 pb-6"
     >
-      <div class="flex flex-col gap-8 sm:flex-row sm:items-start">
+      <div class="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
+        <div class="shrink-0">
+          <img
+            src={`${import.meta.env.BASE_URL}/assets/self1.webp`}
+            alt="Chen Judy"
+            class="w-44 rounded-2xl object-cover shadow-md sm:w-52"
+            loading="lazy"
+          />
+        </div>
         <div class="flex-1">
           <h2
             class="text-2xl font-semibold tracking-wide"
@@ -34,14 +42,6 @@ import { zh } from "@/i18n/zh";
           >
             {en.aboutBio}
           </p>
-        </div>
-        <div class="shrink-0 self-center sm:self-start">
-          <img
-            src={`${import.meta.env.BASE_URL}/assets/self1.webp`}
-            alt="Chen Judy"
-            class="w-48 rounded-xl object-cover shadow-md sm:w-56"
-            loading="lazy"
-          />
         </div>
       </div>
     </section>
