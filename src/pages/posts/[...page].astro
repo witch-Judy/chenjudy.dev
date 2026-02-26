@@ -16,13 +16,47 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+
+const notesPosts = page.data.filter(p => (p.data.category || "notes") === "notes");
+const collectionsPosts = page.data.filter(p => p.data.category === "collections");
 ---
 
 <Layout title={`Posts | ${SITE.title}`}>
   <Header />
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
+    <div class="mb-6 flex gap-4 border-b border-border" id="category-tabs">
+      <button
+        class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
+        data-tab="notes"
+        data-lang-en="Notes"
+        data-lang-zh="手记"
+      >
+        Notes
+      </button>
+      <button
+        class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
+        data-tab="collections"
+        data-lang-en="Collections"
+        data-lang-zh="收藏"
+      >
+        Collections
+      </button>
+    </div>
+
+    <ul id="notes-list">
+      {notesPosts.length > 0 ? (
+        notesPosts.map(data => <Card {...data} />)
+      ) : (
+        <p class="text-foreground/50 italic" data-lang-en="No notes yet." data-lang-zh="还没有手记。">No notes yet.</p>
+      )}
+    </ul>
+
+    <ul id="collections-list" class="hidden">
+      {collectionsPosts.length > 0 ? (
+        collectionsPosts.map(data => <Card {...data} />)
+      ) : (
+        <p class="text-foreground/50 italic" data-lang-en="No collections yet." data-lang-zh="还没有收藏。">No collections yet.</p>
+      )}
     </ul>
   </Main>
 
@@ -30,3 +64,37 @@ const { page } = Astro.props;
 
   <Footer noMarginTop={page.lastPage > 1} />
 </Layout>
+
+<script>
+  function initTabs() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".category-tab");
+    const notesList = document.getElementById("notes-list");
+    const collectionsList = document.getElementById("collections-list");
+
+    if (!tabs.length || !notesList || !collectionsList) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+
+        tabs.forEach(t => {
+          t.classList.remove("active-tab", "text-accent", "border-b-2", "border-accent");
+          t.classList.add("text-foreground/50");
+        });
+        tab.classList.add("active-tab", "text-accent", "border-b-2", "border-accent");
+        tab.classList.remove("text-foreground/50");
+
+        if (target === "notes") {
+          notesList.classList.remove("hidden");
+          collectionsList.classList.add("hidden");
+        } else {
+          notesList.classList.add("hidden");
+          collectionsList.classList.remove("hidden");
+        }
+      });
+    });
+  }
+
+  initTabs();
+  document.addEventListener("astro:after-swap", initTabs);
+</script>
