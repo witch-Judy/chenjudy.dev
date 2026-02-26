@@ -9,14 +9,22 @@ import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
 const { pathname } = Astro.url;
+const base = import.meta.env.BASE_URL || "";
 
 const currentPath =
   pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
 
+// Strip base prefix for matching
+const strippedPath = currentPath.startsWith(base)
+  ? currentPath.slice(base.length)
+  : currentPath;
+
 const isActive = (path: string) => {
-  const currentPathArray = currentPath.split("/").filter(p => p.trim());
-  const pathArray = path.split("/").filter(p => p.trim());
-  return currentPath === path || currentPathArray[0] === pathArray[0];
+  const stripped = strippedPath.startsWith("/") ? strippedPath : "/" + strippedPath;
+  const cleanPath = path.startsWith("/") ? path : "/" + path;
+  const currentSegments = stripped.split("/").filter(p => p.trim());
+  const pathSegments = cleanPath.split("/").filter(p => p.trim());
+  return stripped === cleanPath || currentSegments[0] === pathSegments[0];
 };
 ---
 
