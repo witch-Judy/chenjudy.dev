@@ -17,8 +17,12 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props;
 
-const notesPosts = page.data.filter(p => (p.data.category || "notes") === "notes");
-const collectionsPosts = page.data.filter(p => p.data.category === "collections");
+// Get ALL posts for category filtering (not just current page)
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedAll = getSortedPosts(allPosts);
+
+const notesPosts = sortedAll.filter(p => (p.data.category || "notes") === "notes");
+const collectionsPosts = sortedAll.filter(p => p.data.category === "collections");
 ---
 
 <Layout title={`Posts | ${SITE.title}`}>
@@ -28,18 +32,18 @@ const collectionsPosts = page.data.filter(p => p.data.category === "collections"
       <button
         class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
         data-tab="notes"
-        data-lang-en="Notes"
-        data-lang-zh="手记"
+        data-lang-en={`Notes (${notesPosts.length})`}
+        data-lang-zh={`手记 (${notesPosts.length})`}
       >
-        Notes
+        {`Notes (${notesPosts.length})`}
       </button>
       <button
         class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
         data-tab="collections"
-        data-lang-en="Collections"
-        data-lang-zh="收藏"
+        data-lang-en={`Collections (${collectionsPosts.length})`}
+        data-lang-zh={`收藏 (${collectionsPosts.length})`}
       >
-        Collections
+        {`Collections (${collectionsPosts.length})`}
       </button>
     </div>
 
@@ -60,9 +64,7 @@ const collectionsPosts = page.data.filter(p => p.data.category === "collections"
     </ul>
   </Main>
 
-  <Pagination {page} />
-
-  <Footer noMarginTop={page.lastPage > 1} />
+  <Footer />
 </Layout>
 
 <script>
