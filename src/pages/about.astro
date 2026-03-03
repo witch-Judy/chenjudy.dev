@@ -1,0 +1,77 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { SITE } from "@/config";
+import { en } from "@/i18n/en";
+import { zh } from "@/i18n/zh";
+---
+
+<Layout title={`About | ${SITE.title}`}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout">
+    <section id="about" class="app-prose mb-28 max-w-app prose-img:border-0">
+      <h1
+        class="text-2xl tracking-wider sm:text-3xl"
+        data-lang-en={en.aboutPageTitle}
+        data-lang-zh={zh.aboutPageTitle}
+      >
+        {en.aboutPageTitle}
+      </h1>
+
+      <div data-lang-en data-lang-zh data-lang-html="true" id="about-content-en">
+        <h2>Hey, I'm Judy.</h2>
+        <p>I build what I can't stop thinking about.</p>
+        <p>A tech intelligence system that monitors 7.6M+ posts across Hacker News, Reddit and YouTube, then sends me a daily briefing before I finish my coffee. An interactive AI game where every painting is a portal to a parallel world — I shipped the demo in an afternoon, and 5000 people saved it overnight. A Su Shi animation that traces a poet's entire life through seven moon phases, because some ideas need to move to mean anything. A reimagined Monkey King story: storm heaven, then choose to go home.</p>
+        <img src="/assets/self-chenxiaoye.jpg" alt="Judy" style="max-width: 320px; border-radius: 12px;" />
+        <p>I'm the co-founder and CTO of ILLUCIO — an AI reading companion used by 6000 people. And a Technology Evangelist at an industrial automation company, translating complex AI into language that actually lands. And occasionally, a photographer who learned the craft in two weeks and ran a profitable business in one month.</p>
+        <p>I don't separate "technical" from "creative."</p>
+        <p>When tech becomes cheap as water, only the brewers survive.</p>
+      </div>
+
+      <div id="about-content-zh" class="hidden">
+        <h2>你好，我是陈小爷。</h2>
+        <p>我的构建动力源于对构想的执着。</p>
+        <p>我的作品涵盖了从追踪 760 万量级信息的技术关键词检索收集系统，到上线首日即获 5000 收藏的平行世界AI互动游戏；从探寻苏轼一生月相变化的人文动画，到反思反叛与归宿的悟空叙事。</p>
+        <img src="/assets/self-chenxiaoye.jpg" alt="Judy" style="max-width: 320px; border-radius: 12px;" />
+        <p>作为 ILLUCIO 的联合创始人兼 CTO，我正为 6000 多名用户打造 AI 阅读伙伴。同时，我也在工业领域担任技术布道者，让复杂的 AI 在工业物联网（IIoT）中真正"落地"。我曾用两周自学摄影并在一个月内实现商业闭环——这种极速学习并交付价值的能力，贯穿我所有的项目。</p>
+        <p>我不界定"技术"与"创意"的边界。</p>
+        <p>当技术廉价如水一般廉价，唯有酿造者方能生存。</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  function initAboutLang() {
+    const lang = localStorage.getItem("lang") || "en";
+    applyAboutLang(lang);
+  }
+
+  function applyAboutLang(lang: string) {
+    const enBlock = document.getElementById("about-content-en");
+    const zhBlock = document.getElementById("about-content-zh");
+    if (enBlock && zhBlock) {
+      enBlock.classList.toggle("hidden", lang === "zh");
+      zhBlock.classList.toggle("hidden", lang !== "zh");
+    }
+    // Also handle the title
+    document.querySelectorAll("[data-lang-en]").forEach(el => {
+      if (el.id === "about-content-en" || el.id === "about-content-zh") return;
+      const text = lang === "zh"
+        ? el.getAttribute("data-lang-zh")
+        : el.getAttribute("data-lang-en");
+      if (text) el.textContent = text;
+    });
+  }
+
+  window.addEventListener("lang-change", ((e: CustomEvent) => {
+    applyAboutLang(e.detail.lang);
+  }) as EventListener);
+
+  initAboutLang();
+  document.addEventListener("astro:after-swap", initAboutLang);
+</script>
