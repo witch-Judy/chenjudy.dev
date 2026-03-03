@@ -1,0 +1,97 @@
+# Session Context
+
+## User Prompts
+
+### Prompt 1
+
+我想修改一下我的主页描述：Chen Judy Co-founder & CTO of ILLUCIO
+
+I build what I can't stop thinking about. 然后About Me写：I make things at the edge of technology and meaning — AI products, interactive stories, tools I wished existed. Currently building ILLUCIO, an AI reading companion used by 6000 people. Always shipping something new.  然后about这一页内容是：Hey, I'm Judy.
+I build what I can't stop thinking about.
+A tech intelligence system that monitors 7.6M+ posts across Hacker News, Reddit and YouTube, then sends...
+
+### Prompt 2
+
+/Users/chenbihan/Desktop/self-chenxiaoye.jpg
+
+### Prompt 3
+
+推上去了吗
+
+### Prompt 4
+
+然后如果我想加新的文章，我要去哪儿加？
+
+### Prompt 5
+
+我们现在不用其他文章上传平台了吗？
+
+### Prompt 6
+
+你没推到vercel？最新的还是1h前的
+
+### Prompt 7
+
+[Image: original 2938x1660, displayed at 2000x1130. Multiply coordinates by 1.47 to map to original image.]
+
+### Prompt 8
+
+还是没触发
+
+### Prompt 9
+
+[Image: original 2940x1622, displayed at 2000x1103. Multiply coordinates by 1.47 to map to original image.]
+
+### Prompt 10
+
+redploy了还是不行，你重新commit一下？
+
+### Prompt 11
+
+好像还是没，这个git都没更新
+
+### Prompt 12
+
+[Image: original 2346x1556, displayed at 2000x1327. Multiply coordinates by 1.17 to map to original image.]
+
+[Image: original 2940x994, displayed at 2000x676. Multiply coordinates by 1.47 to map to original image.]
+
+### Prompt 13
+
+要不要选？
+
+### Prompt 14
+
+主页的照片还是之前那个，是about页面的照片替换了
+
+### Prompt 15
+
+还是没变？这儿的照片得用原本的
+
+### Prompt 16
+
+中文可以用我的这个翻译：停不下来的念头，我就把它造出来。嗨，我是 Judy。
+
+停不下来的念头，我就把它造出来。
+
+一个监控 Hacker News、Reddit、YouTube 共 760 万条内容的技术情报系统，每天早上按时把简报送到我手里。一个每幅画都是一个平行世界入口的 AI 互动游戏——一晚上做完demo，第二天就获得5000 人收藏。一个用七个月相串联起来的苏轼的一生交互动画网页。一个孙悟空大闹天宫的新的结局：孙悟空打赢了一众天兵天将后坐到玉帝的位置发现也不过如此，回花果山做一只快乐的小猴儿。
+
+我是 ILLUCIO 的联合创始人兼 CTO。我偶尔也是摄影师——一个月就赚回本了自己的设备。
+
+我从不把"技术"和"创造"分开看。
+
+当技术像水一样廉价，只有酿酒的人才能留下来。
+
+### Prompt 17
+
+需要修改中文文案：关于我 在技术与意义的交汇处，我致力于将那些挥之不去的灵感具象化。
+我是 ILLUCIO 的开发者（一个正陪伴 6000+ 读者的 AI 阅读伙伴），也是互动叙事与实验性工具的构建者。
+持续探索 AI 的人文边界，持续 Shipping。 然后about page的中文文案改成：你好，我是陈小爷。我的构建动力源于对构想的执着。
+
+我的作品涵盖了从追踪 760 万量级信息的技术关键词检索收集系统，到上线首日即获 5000 收藏的平行世界AI互动游戏；从探寻苏轼一生月相变化的人文动画，到反思反叛与归宿的悟空叙事。
+
+作为 ILLUCIO 的联合创始人兼 CTO，我正为 6000 多名用户打造 AI 阅读伙伴。同时，我也在工业领域担任技术布道者，让复杂的 AI 在工业物联网（IIoT）中真正“落地”。我曾用两周自学摄影并在一个月内实现商业闭环——这种极速学习并交付价值的能力，贯穿我所有的项目。
+
+我不界定“技术”与“创意”的边界。
+当技术廉价如水一般廉价，唯有酿造者方能生存。
+
