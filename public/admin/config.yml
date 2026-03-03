@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: witch-Judy/chenjudy.dev
+  branch: main
+  base_url: https://chenjudy.vercel.app
+  auth_endpoint: /api/auth
+
+media_folder: public/assets/blog
+public_folder: /assets/blog
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/data/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Author, name: author, widget: string, default: "Chen Judy" }
+      - {
+          label: Publish Date,
+          name: pubDatetime,
+          widget: datetime,
+          format: "YYYY-MM-DDTHH:mm:ss.SSSZ",
+        }
+      - {
+          label: Modified Date,
+          name: modDatetime,
+          widget: datetime,
+          format: "YYYY-MM-DDTHH:mm:ss.SSSZ",
+          required: false,
+        }
+      - {
+          label: Category,
+          name: category,
+          widget: select,
+          options: ["notes", "collections"],
+          default: "notes",
+        }
+      - { label: Tags, name: tags, widget: list, default: ["others"] }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+      - { label: OG Image, name: ogImage, widget: string, required: false }
+      - { label: External URL, name: externalUrl, widget: string, required: false }
+      - { label: Body, name: body, widget: markdown }

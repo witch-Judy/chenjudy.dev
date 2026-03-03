@@ -1,5 +1,5 @@
 export const SITE = {
-  website: "https://witch-judy.github.io/chenjudy.dev/",
+  website: "https://chenjudy.vercel.app/",
   author: "Chen Judy",
   profile: "https://github.com/witch-Judy",
   desc: "AI Product Builder & Co-founder of ILLUCIO",

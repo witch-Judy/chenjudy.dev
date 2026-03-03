@@ -1,6 +1,6 @@
 ---
 author: Chen Judy
-pubDatetime: 2026-02-27T12:00:00.000Z
+pubDatetime: 2026-02-27T00:00:00.000Z
 title: "多Agent系统设计的五条第一性原理"
 category: notes
 tags:
