@@ -1,13 +1,13 @@
 export const zh = {
   // Hero
-  heroGreeting: "Chen Judy",
+  heroGreeting: "嗨，我是 Judy。",
   heroSubtitle: "ILLUCIO 联合创始人 & CTO",
-  heroTagline: "脑子里停不下来的东西，我就把它做出来。",
+  heroTagline: "停不下来的念头，我就把它造出来。",
   heroCta: "找我聊聊",
 
   // About
   aboutTitle: "关于我",
-  aboutBio: `我在技术和意义的边界做东西——AI 产品、互动故事、那些我希望存在的工具。目前在做 ILLUCIO，一个被 6000 人使用的 AI 阅读伙伴。一直在发布新东西。`,
+  aboutBio: `一个监控 Hacker News、Reddit、YouTube 共 760 万条内容的技术情报系统。一个每幅画都是平行世界入口的 AI 互动游戏。ILLUCIO 联合创始人兼 CTO。我从不把"技术"和"创造"分开看。`,
 
   // Projects
   projectsTitle: "精选项目",
@@ -28,12 +28,13 @@ export const zh = {
 
   // About page
   aboutPageTitle: "关于我",
-  aboutPageBio: `我是陈小爷——Builder、博主、ILLUCIO 联合创始人。我活跃在技术、产品和增长的交汇点上。
+  aboutPageBio: `停不下来的念头，我就把它造出来。
 
-我不只会写代码——我做产品设计、端到端开发、也做增长和推广。从 AI 工具到社区内容，我相信最好的 Builder 需要理解完整的链路：技术、产品和用户。
+一个监控 Hacker News、Reddit、YouTube 共 760 万条内容的技术情报系统，每天早上按时把简报送到我手里。一个每幅画都是一个平行世界入口的 AI 互动游戏——一晚上做完demo，第二天就获得5000 人收藏。一个用七个月相串联起来的苏轼的一生交互动画网页。一个孙悟空大闹天宫的新的结局：孙悟空打赢了一众天兵天将后坐到玉帝的位置发现也不过如此，回花果山做一只快乐的小猴儿。
 
-我也在知乎、小红书等平台持续输出内容，分享 AI、产品构建和创业路上的思考。Build in public，边做边学，是我一直在践行的理念。`,
-  aboutSkillsTitle: "技术栈",
-  aboutInterestsTitle: "兴趣与愿景",
-  aboutInterests: "AI 产品、内容创作、开源社区、社区运营、增长与营销",
+我是 ILLUCIO 的联合创始人兼 CTO。我偶尔也是摄影师——一个月就赚回本了自己的设备。
+
+我从不把"技术"和"创造"分开看。
+
+当技术像水一样廉价，只有酿酒的人才能留下来。`,
 } as const;
