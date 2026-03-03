@@ -14,8 +14,8 @@ export const zh = {
   projectsViewAll: "去 GitHub 看全部项目",
 
   // Contact
-  contactTitle: "找我聊聊",
-  contactSubtitle: "一起搞点有意思的事情！",
+  contactTitle: "咖啡管够，来找我聊聊。",
+  contactSubtitle: "当技术廉价如水，我们一起酿点不一样的。",
 
   // Nav
   navHome: "首页",
