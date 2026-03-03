@@ -2,7 +2,7 @@ export const zh = {
   // Hero
   heroGreeting: "嗨，我是 Judy。",
   heroSubtitle: "ILLUCIO 联合创始人 & CTO",
-  heroTagline: "停不下来的念头，我就把它造出来。",
+  heroTagline: "凡是无法停歇的念头，我都将其构建为现实。",
   heroCta: "找我聊聊",
 
   // About
