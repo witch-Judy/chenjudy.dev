@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.9",
+  "checkpoint_id": "0b2dec75c3fe",
+  "session_id": "078238aa-6852-4362-9a2a-321efb13a332",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-03T12:24:07.036229Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "public/assets/self-chenxiaoye.jpg",
+    "src/config.ts",
+    "src/i18n/en.ts",
+    "src/i18n/zh.ts",
+    "src/pages/about.md",
+    "src/pages/index.astro"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "625b73a190f0",
+  "token_usage": {
+    "input_tokens": 289,
+    "cache_creation_tokens": 61901,
+    "cache_read_tokens": 423364,
+    "output_tokens": 5647,
+    "api_call_count": 16
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-03T12:24:06.983533Z",
+    "agent_lines": 17,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 17,
+    "agent_percentage": 100
+  }
+}
