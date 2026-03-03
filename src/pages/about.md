@@ -3,38 +3,16 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-## Hey, I'm Chen Judy 👋
+## Hey, I'm Judy.
 
-I'm a **builder, influencer, and co-founder of ILLUCIO**. I live at the intersection of technology, product, and growth.
+I build what I can't stop thinking about.
 
-<img src="/assets/self1.webp" alt="Chen Judy" style="max-width: 320px; border-radius: 12px;" />
+A tech intelligence system that monitors 7.6M+ posts across Hacker News, Reddit and YouTube, then sends me a daily briefing before I finish my coffee. An interactive AI game where every painting is a portal to a parallel world — I shipped the demo in an afternoon, and 5000 people saved it overnight. A Su Shi animation that traces a poet's entire life through seven moon phases, because some ideas need to move to mean anything. A reimagined Monkey King story: storm heaven, then choose to go home.
 
-## More Than a Developer
+<img src="/assets/self-chenxiaoye.jpg" alt="Judy" style="max-width: 320px; border-radius: 12px;" />
 
-I don't just write code — I design products, build them end-to-end, and bring them to market. From AI-powered tools to interactive creative experiences, I believe the best builders understand the full stack: **tech, product, and people**.
+I'm the co-founder and CTO of ILLUCIO — an AI reading companion used by 6000 people. And a Technology Evangelist at an industrial automation company, translating complex AI into language that actually lands. And occasionally, a photographer who learned the craft in two weeks and ran a profitable business in one month.
 
-I create content across platforms — [知乎](https://www.zhihu.com/people/chen-bi-han-45), [小红书](https://www.xiaohongshu.com/user/profile/5f980fc10000000001008ab6) — sharing insights on AI, product building, and the startup journey. Building in public is one of the best ways to learn and grow.
+I don't separate "technical" from "creative."
 
-## Creative Works
-
-Beyond technical projects, I build interactive storytelling experiences that blend technology with art and literature:
-
-- **[苏轼 · 月相人生](https://tgz2aaft2fllu.ok.kimi.link/)** — An interactive animation tracing Su Shi's life through 7 moon phases
-- **[大闹天宫](https://edzfn7n5wmih6.ok.kimi.link/)** — A reimagined Monkey King story: storm heaven, then choose to go home
-
-## What I Work With
-
-- **Languages**: Python, TypeScript, Shell
-- **AI/ML**: LLMs, DeepSeek, NLP, Data Analysis
-- **Product**: Product Design, User Research, Go-to-Market
-- **Web**: React, Astro, Tailwind CSS, GSAP
-- **Growth**: Content Strategy, Community Building, Social Platforms
-- **Tools**: Git, Docker, CI/CD
-
-## Interests & Vision
-
-AI Products, Content Creation, Open Source, Community Building, Growth & Marketing, Interactive Storytelling.
-
-I believe the future belongs to people who can both build and communicate. When tech becomes cheap as water, only the brewers survive.
-
-Find me on [GitHub](https://github.com/witch-Judy), [LinkedIn](https://www.linkedin.com/in/bihan-chen-bb2ab428a), [知乎](https://www.zhihu.com/people/chen-bi-han-45), or [小红书](https://www.xiaohongshu.com/user/profile/5f980fc10000000001008ab6).
+When tech becomes cheap as water, only the brewers survive.

@@ -1,13 +1,13 @@
 export const zh = {
   // Hero
-  heroGreeting: "Hey，我是陈小爷 ✨",
-  heroSubtitle: "Builder & 博主 | ILLUCIO 联合创始人",
-  heroTagline: "技术 × 产品 × 增长——能写代码，也能做内容，还能把产品推出去",
+  heroGreeting: "Chen Judy",
+  heroSubtitle: "ILLUCIO 联合创始人 & CTO",
+  heroTagline: "脑子里停不下来的东西，我就把它做出来。",
   heroCta: "找我聊聊",
 
   // About
   aboutTitle: "关于我",
-  aboutBio: `我不只是一个开发者——我是一个横跨技术、产品和市场的 Builder。作为 ILLUCIO 的联合创始人，我做的事情是把想法从 0 到 1 落地：设计产品、写代码、做增长。同时我也是一个内容创作者，在知乎、小红书等平台分享 AI、开源和产品构建的经验，让更多人看到技术的可能性。`,
+  aboutBio: `我在技术和意义的边界做东西——AI 产品、互动故事、那些我希望存在的工具。目前在做 ILLUCIO，一个被 6000 人使用的 AI 阅读伙伴。一直在发布新东西。`,
 
   // Projects
   projectsTitle: "精选项目",

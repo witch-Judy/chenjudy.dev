@@ -1,14 +1,13 @@
 export const en = {
   // Hero
-  heroGreeting: "Hi, I'm Chen Judy 👋",
-  heroSubtitle: "Builder & Influencer | Co-founder of ILLUCIO",
-  heroTagline:
-    "Where tech meets product meets growth — I build, I share, I ship.",
+  heroGreeting: "Chen Judy",
+  heroSubtitle: "Co-founder & CTO of ILLUCIO",
+  heroTagline: "I build what I can't stop thinking about.",
   heroCta: "Get in touch",
 
   // About
   aboutTitle: "About Me",
-  aboutBio: `I'm not just a developer — I'm a builder and influencer who bridges tech, product, and go-to-market. As co-founder of ILLUCIO, I take ideas from zero to one: designing the product, writing the code, and getting it in front of the right people. I share my journey through content creation across platforms, helping others navigate AI, open source, and product building.`,
+  aboutBio: `I make things at the edge of technology and meaning — AI products, interactive stories, tools I wished existed. Currently building ILLUCIO, an AI reading companion used by 6000 people. Always shipping something new.`,
 
   // Projects
   projectsTitle: "Featured Projects",
