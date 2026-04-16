@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.9",
+  "checkpoint_id": "ed1b8284271e",
+  "session_id": "7c45d1db-18f3-4d36-8270-1929c04abee0",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-16T14:58:01.859613Z",
+  "branch": "main",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "public/assets/blog/illucio-v2-demo.mp4",
+    "src/data/blog/illucio-v2-demo.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "1e8634df0673",
+  "token_usage": {
+    "input_tokens": 26,
+    "cache_creation_tokens": 12362,
+    "cache_read_tokens": 285472,
+    "output_tokens": 2374,
+    "api_call_count": 14
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-16T14:58:01.836661Z",
+    "agent_lines": 15,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 15,
+    "agent_percentage": 100
+  }
+}
