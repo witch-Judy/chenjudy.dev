@@ -2,7 +2,7 @@ export const en = {
   // Hero
   heroGreeting: "Chen Judy",
   heroSubtitle: "Founder of ILLUCIO",
-  heroEducation: "BEng, Harbin Institute of Technology · MSc in Computer Science, National University of Singapore",
+  heroEducation: "Harbin Institute of Technology (BEng) · National University of Singapore (MSc) · Computer Science",
   heroTagline: "Exploring AI, technology, art and the humanities — always shipping.",
   heroCta: "Get in touch",
 

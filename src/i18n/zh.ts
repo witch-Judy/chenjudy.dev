@@ -2,7 +2,7 @@ export const zh = {
   // Hero
   heroGreeting: "嗨，我是 Judy。",
   heroSubtitle: "ILLUCIO 创始人",
-  heroEducation: "哈尔滨工业大学本科 · 新加坡国立大学硕士（计算机）",
+  heroEducation: "哈尔滨工业大学本科 · 新加坡国立大学硕士 · 计算机",
   heroTagline: "持续探索 AI、技术、艺术与人文，持续 shipping。",
   heroCta: "找我聊聊",
 
