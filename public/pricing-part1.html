@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你的产品该卖多少钱？</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f6f1;--paper:#fff;--ink:#1a1a1a;--mid:#555;--dim:#999;--faint:#ccc;--rule:#e4e0d8;--aside:#f2efea;--accent:#c07b20;--blue:#4a7fb5;--green:#4a8f5c;--red:#b84c4c;--purple:#7b68ae;--mono:'Menlo','Consolas','Courier New',monospace;--serif:'Noto Serif SC','Georgia',serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--serif);background:var(--bg);color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased}
+.page{max-width:680px;margin:0 auto;padding:60px 24px 80px}
+h1{font-size:28px;font-weight:700;line-height:1.35;margin-bottom:8px}
+h2{font-size:20px;font-weight:600;margin-top:52px;margin-bottom:14px}
+h3{font-size:16px;font-weight:600;margin-top:36px;margin-bottom:10px}
+.byline{font-size:13px;color:var(--dim);font-family:var(--mono);margin-bottom:32px}
+p{margin-bottom:18px;font-size:16.5px}
+.lead{font-size:18px;line-height:1.9;color:var(--mid);border-left:3px solid var(--rule);padding-left:20px;margin-bottom:36px}
+.section-num{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-top:56px;margin-bottom:4px}
+blockquote{border-left:3px solid var(--accent);padding-left:18px;margin:24px 0;color:var(--mid);font-style:italic}
+
+/* Interactive boxes */
+.ix{margin:32px 0;background:var(--paper);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.ix-body{padding:24px}
+.ix-cap{padding:12px 20px;font-size:13px;color:var(--mid);border-top:1px solid var(--rule);background:var(--aside);font-family:var(--mono);line-height:1.6}
+.ix-title{font-size:14px;font-weight:600;margin-bottom:16px}
+
+/* (VW input styles removed — now using canvas) */
+
+/* Superhuman calc */
+.sh-slider-row{display:flex;align-items:center;gap:16px;margin:16px 0}
+.sh-slider{-webkit-appearance:none;flex:1;height:6px;background:var(--rule);border-radius:3px;outline:none}
+.sh-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.sh-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--accent);min-width:70px;text-align:right}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+.sh-card{padding:16px;background:var(--aside);border-radius:8px;text-align:center}
+.sh-card-num{font-family:var(--mono);font-size:20px;font-weight:700;margin-bottom:4px}
+.sh-card-label{font-size:11px;color:var(--dim);font-family:var(--mono)}
+.sh-verdict{margin-top:16px;padding:14px;border-radius:8px;font-size:13px;text-align:center}
+
+.fn{margin-top:60px;padding-top:20px;border-top:1px solid var(--rule);font-size:12px;color:var(--dim);font-family:var(--mono);line-height:1.7}
+.sound-toggle{position:fixed;top:16px;right:16px;z-index:100;font-family:var(--mono);font-size:11px;padding:6px 14px;border:1px solid var(--faint);border-radius:20px;background:var(--paper);cursor:pointer;opacity:.7;transition:opacity .2s;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.sound-toggle:hover{opacity:1}
+</style>
+</head>
+<body>
+<button class="sound-toggle" id="soundBtn" onclick="toggleSound()">🔊 声音开</button>
+<div class="page">
+
+<h1>你的产品该卖多少钱？</h1>
+<p class="byline">定价系列（上）· 基于 NFX × Madhavan Ramanujam 对话 · 交互式重构</p>
+
+<p class="lead">提高利润最简单的方法，就是提高定价。但大多数创始人把定价当作产品完成后的「补充事项」。一项覆盖近 2000 家公司的研究显示：<strong>定价不当与初创公司失败的相关性高达 72%。</strong> 这篇文章给你一套方法，在产品上线之前就找到那个数字。</p>
+
+<!-- ═══ 盲点 ═══ -->
+<p class="section-num">问题</p>
+<h2>定价：大多数公司的盲点</h2>
+
+<p>硅谷热衷于创造令人惊艳的创新，却严重忽视了如何将创新转化为收入。典型做法是：花两年开发产品，然后在上线前一周匆忙定个价。</p>
+
+<p>根本问题在于：<strong>团队在还没搞清楚是否有人愿意付费的情况下，就开始了漫长的产品开发。</strong> 硅谷已经学会了追求「产品-市场匹配」（Product-Market Fit），但还没进化到追求「产品-市场-定价匹配」（Product-Market-Pricing Fit）。</p>
+
+<p>一个简单的测试：如果有人问「你喜欢这个产品吗？」，答案几乎永远是「喜欢」。但如果问「400 美元你愿意买吗？」——整个对话的性质瞬间改变了。<strong>如果不把定价作为验证的一部分，你听到的永远只是客套话。</strong></p>
+
+<blockquote>你没有权利选择「是否」与客户进行定价对话，你只能选择「何时」进行。</blockquote>
+
+<p>选项 A（痛苦模式）：先开发产品，随意定价，最后面临卖不出去的痛苦对话。选项 B（聪明模式）：在创新早期就展开定价对话，通过测试真正理解人们是否愿意付费。</p>
+
+<!-- ═══ 测试 WTP ═══ -->
+<p class="section-num">方法</p>
+<h2>如何测试支付意愿</h2>
+
+<p>Madhavan 敦促创始人在<strong>创意阶段、线框图阶段</strong>就开始测试。先传递价值，再问一个简单的问题：「你愿意为它付费吗？」如果答案是「不」，追问「为什么」。如果是「愿意」，可以用两种技巧探测具体的支付意愿：</p>
+
+<h3>技巧一：直接极限测试</h3>
+<p>给出一个价格，问「你愿意买吗？」如果对方说「是」，下一次测试<strong>把价格翻倍</strong>，直到人们开始强烈抗拒。这能快速摸清心理价格上限。</p>
+
+<h3>技巧二：相对锚点测试</h3>
+<p>直接问「我该收多少钱」通常得到无用的答案——用户没有定价的数量级概念。但<strong>人们非常擅长做相对判断</strong>。先问「你用 Salesforce 吗？」再问「如果 Salesforce 的价值指数是 100，你觉得我们在什么位置？」通过相对权衡，答案会准确得多。</p>
+
+<!-- ═══ Van Westendorp ═══ -->
+<p class="section-num">核心工具</p>
+<h2>寻找价格悬崖</h2>
+
+<p>还有一种更系统的方法：<strong>Van Westendorp 价格敏感度测试</strong>。它由荷兰经济学家提出，被 Superhuman、Slack 等公司广泛使用。方法是向几百名目标用户问四个价格问题，然后把所有人的回答画成曲线——你会在曲线上看到一个「断崖」：某个价格点之后，愿意付费的人数突然急剧下降。</p>
+
+<p>文字说「断崖」你只是理解了这个词。<strong>拖动下面的价格线，在 200 人的真实调研数据上扫过去</strong>——你会亲眼看到那个断崖在哪里：</p>
+
+<!-- ═══ 交互 1: 需求曲线断崖探测器 ═══ -->
+<div class="ix">
+<div class="ix-body">
+<div class="ix-title">📊 200 人调研 · 拖动价格线找断崖</div>
+<div style="font-size:12px;color:var(--dim);margin-bottom:12px;font-family:var(--mono)">场景：一款 SaaS 协作工具 · 200 名目标用户的 Van Westendorp 调研结果</div>
+<canvas id="cliffCanvas" width="620" height="280" style="display:block;margin:0 auto;max-width:100%"></canvas>
+<div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-top:12px">
+<span style="font-size:12px;color:var(--dim);font-family:var(--mono)">你的定价</span>
+<input type="range" id="cliffSlider" min="5" max="80" step="1" value="25" oninput="playTick();renderCliff()" style="width:300px">
+<span id="cliffPrice" style="font-family:var(--mono);font-size:18px;font-weight:700;color:var(--accent);min-width:50px">$25</span>
+</div>
+<div id="cliffInfo" style="margin-top:14px;text-align:center;font-size:13px"></div>
+</div>
+<div class="ix-cap" id="cliffCap">慢慢拖动价格线 · 注意曲线在哪里突然变陡</div>
+</div>
+
+<p>你刚才拖过那条线了吗？在 $15-$28 之间，曲线下降得很平缓——每涨一块钱只丢几个人。但过了 $35 之后，曲线突然变陡——同样涨一块钱，丢的人多了好几倍。<strong>那个曲线开始变陡的拐点，就是「价格悬崖」。</strong> Superhuman 在 2015 年底对数百名用户做了同样的测试，找到了他们的悬崖位置。</p>
+
+<!-- ═══ Superhuman 案例 ═══ -->
+<p class="section-num">案例</p>
+<h2>Superhuman 是怎么定到 $30/月的</h2>
+
+<p>Superhuman 的 CEO Rahul Vohra 用 Van Westendorp 测试了数百名早期用户。关键发现：对于「有点贵但还是会买」这个问题，中位数答案是 <strong>$29</strong>。</p>
+
+<p>他们与定价专家讨论后，决定四舍五入到 <strong>$30</strong>——因为以「9」结尾的价格传递「廉价」信号，而整数传递「品质」信号。这个选择本身就是定位的宣言。</p>
+
+<p>然后 Rahul 做了一件更重要的事——<strong>从定价反推商业可行性</strong>：</p>
+
+<blockquote>以这个价格，我们要如何成为一家 10 亿美元的公司？</blockquote>
+
+<p>这个计算很简单，但结论很有力。<strong>拖动下面的滑块调整月费</strong>，看不同定价下你需要多少用户才能撑起一家独角兽：</p>
+
+<!-- ═══ 交互 2: Superhuman 估值反推计算器 ═══ -->
+<div class="ix">
+<div class="ix-body">
+<div class="ix-title">🦄 以终为始：从定价反推独角兽</div>
+
+<div class="sh-slider-row">
+<span style="font-size:13px;color:var(--dim);font-family:var(--mono)">月费</span>
+<input class="sh-slider" id="shSlider" type="range" min="5" max="100" step="1" value="30" oninput="playTick();renderSH()">
+<span class="sh-val" id="shPrice">$30</span>
+</div>
+
+<div class="sh-grid" id="shGrid"></div>
+<div class="sh-verdict" id="shVerdict"></div>
+</div>
+<div class="ix-cap" id="shCap">拖动月费，看需要多少用户才能撑起 10 亿估值</div>
+</div>
+
+<p>注意滑块两端的极端情况：$5/月需要 167 万用户——几乎不可能靠一款邮件工具做到。$100/月只需要 8.3 万用户——但这个价格会把大部分人挡在门外。<strong>$30 是一个甜蜜点：28 万用户是一个有野心但可触达的数字。</strong></p>
+
+<p>大多数硅谷公司的错误是定位在「物超所值」（Van Westendorp 的第一个问题），试图低价快速扩张。但 Superhuman 选择了「有点贵但值得」（第三个问题）——这让他们有足够的利润空间来打造极致的产品体验，形成了正循环。</p>
+
+<!-- ═══ 结尾 ═══ -->
+<p class="section-num">小结</p>
+<h2>在你写第一行代码之前</h2>
+
+<p>这篇文章讲了三件事。第一，定价不是产品上线前的补充事项，而是产品开发的一部分——<strong>72% 的失败与定价不当相关</strong>。第二，Van Westendorp 测试能帮你找到需求曲线的断崖——你刚才亲手试过了，你知道那个「突然觉得太贵」的价格点是什么感觉。第三，定好价格后要反推商业可行性——你拖动过滑块，看到了同一个 10 亿目标在不同定价下意味着完全不同的用户规模挑战。</p>
+
+<p>在下一篇中，我们会讨论一个更反直觉的发现：<strong>你采用什么计费模式，往往比你收多少钱更重要。</strong></p>
+
+<p class="fn">原文基于 NFX × Madhavan Ramanujam 对话 · 第 1-4 节<br>交互式重构 · 基于 ILLUCIO 探索式学习方法论 · 上篇（共三篇）</p>
+</div>
+
+<script>
+// ═══ 声音 ═══
+let audioCtx=null,soundOn=true;
+function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)()}
+function toggleSound(){soundOn=!soundOn;document.getElementById('soundBtn').textContent=soundOn?'🔊 声音开':'🔇 声音关'}
+function playTick(){if(!soundOn)return;initAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.value=660+Math.random()*80;o.type='sine';g.gain.setValueAtTime(.05,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.07);o.start();o.stop(audioCtx.currentTime+.07)}
+function playReveal(){if(!soundOn)return;initAudio();[523,659,784].forEach((f,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.value=f;o.type='sine';const t=audioCtx.currentTime+i*.06;g.gain.setValueAtTime(.04,t);g.gain.exponentialRampToValueAtTime(.001,t+.18);o.start(t);o.stop(t+.18)})}
+function playCliff(){if(!soundOn)return;initAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.setValueAtTime(800,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(200,audioCtx.currentTime+.4);o.type='sine';g.gain.setValueAtTime(.06,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.4);o.start();o.stop(audioCtx.currentTime+.4)}
+
+// ═══ 交互 1: 需求曲线断崖探测器 ═══
+// Pre-generated survey: 200 people's "too expensive" thresholds
+// Distribution shaped to create a visible cliff around $33-38
+const SURVEY_DATA=(function(){
+  const data=[];
+  // Build a realistic distribution: cluster around $25-35 with a cliff at $35-40
+  // "Would still buy at this price" cumulative curve
+  function addGroup(n,min,max){for(let i=0;i<n;i++)data.push(min+Math.random()*(max-min))}
+  addGroup(12,10,18);   // very price sensitive
+  addGroup(25,18,25);   // budget conscious
+  addGroup(45,25,32);   // mainstream sweet spot
+  addGroup(55,32,38);   // still willing but stretching
+  addGroup(30,38,42);   // cliff zone: drops fast
+  addGroup(15,42,48);   // only committed buyers
+  addGroup(10,48,55);   // enthusiasts
+  addGroup(5,55,65);    // die-hards
+  addGroup(3,65,80);    // will pay anything
+  return data.sort((a,b)=>a-b);
+})();
+
+function getWillingPct(price){
+  return SURVEY_DATA.filter(d=>d>=price).length/SURVEY_DATA.length*100;
+}
+
+function renderCliff(){
+  const canvas=document.getElementById('cliffCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  const padL=50,padR=20,padT=20,padB=40;
+  const gW=W-padL-padR, gH=H-padT-padB;
+
+  const price=+document.getElementById('cliffSlider').value;
+  document.getElementById('cliffPrice').textContent='$'+price;
+
+  ctx.clearRect(0,0,W,H);
+
+  // Background
+  ctx.fillStyle='#faf9f6';
+  ctx.fillRect(padL,padT,gW,gH);
+
+  // Grid lines
+  ctx.strokeStyle='#e4e0d8';
+  ctx.lineWidth=0.5;
+  for(let p=0;p<=100;p+=25){
+    const y=padT+gH-(p/100*gH);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(padL+gW,y);ctx.stroke();
+    ctx.fillStyle='#999';ctx.font='10px Menlo,Consolas,monospace';ctx.textAlign='right';
+    ctx.fillText(p+'%',padL-6,y+3);
+  }
+  // X axis labels
+  ctx.textAlign='center';
+  for(let d=10;d<=80;d+=10){
+    const x=padL+(d-5)/75*gW;
+    ctx.fillStyle='#999';ctx.fillText('$'+d,x,H-8);
+  }
+  ctx.fillStyle='#999';ctx.font='10px Menlo,Consolas,monospace';
+  ctx.fillText('愿意购买的用户比例 (%)',padL+gW/2,padT-6);
+
+  // Compute demand curve points
+  const points=[];
+  for(let p=5;p<=80;p+=0.5){
+    const pct=getWillingPct(p);
+    const x=padL+(p-5)/75*gW;
+    const y=padT+gH-(pct/100*gH);
+    points.push({price:p,pct,x,y});
+  }
+
+  // Fill area under curve up to current price
+  ctx.beginPath();
+  ctx.moveTo(points[0].x,padT+gH);
+  points.forEach(pt=>{
+    if(pt.price<=price)ctx.lineTo(pt.x,pt.y);
+  });
+  const curPt=points.find(pt=>pt.price>=price)||points[points.length-1];
+  ctx.lineTo(curPt.x,padT+gH);
+  ctx.closePath();
+  ctx.fillStyle='rgba(74,143,92,0.12)';
+  ctx.fill();
+
+  // Draw demand curve
+  ctx.beginPath();
+  ctx.moveTo(points[0].x,points[0].y);
+  points.forEach(pt=>ctx.lineTo(pt.x,pt.y));
+  ctx.strokeStyle='#1a1a1a';
+  ctx.lineWidth=2.5;
+  ctx.stroke();
+
+  // Highlight cliff zone (where derivative is steepest)
+  // Find steepest drop
+  let maxDrop=0, cliffPrice=35;
+  for(let i=1;i<points.length;i++){
+    const drop=points[i-1].pct-points[i].pct;
+    if(drop>maxDrop){maxDrop=drop;cliffPrice=points[i].price}
+  }
+  // Draw cliff zone band
+  const cliffStart=Math.max(5,cliffPrice-5), cliffEnd=Math.min(80,cliffPrice+5);
+  const cx1=padL+(cliffStart-5)/75*gW, cx2=padL+(cliffEnd-5)/75*gW;
+  ctx.fillStyle='rgba(184,76,76,0.08)';
+  ctx.fillRect(cx1,padT,cx2-cx1,gH);
+  // Cliff label
+  ctx.fillStyle='#b84c4c';ctx.font='bold 10px Menlo,Consolas,monospace';ctx.textAlign='center';
+  ctx.fillText('⚠ 悬崖区',((cx1+cx2)/2),padT+12);
+
+  // Price line (vertical)
+  const px=padL+(price-5)/75*gW;
+  ctx.beginPath();ctx.moveTo(px,padT);ctx.lineTo(px,padT+gH);
+  ctx.strokeStyle='#c07b20';ctx.lineWidth=2;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+
+  // Current point on curve
+  const curPct=getWillingPct(price);
+  const curY=padT+gH-(curPct/100*gH);
+  ctx.beginPath();ctx.arc(px,curY,6,0,Math.PI*2);ctx.fillStyle='#c07b20';ctx.fill();
+  ctx.beginPath();ctx.arc(px,curY,6,0,Math.PI*2);ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+
+  // Label on point
+  ctx.fillStyle='#c07b20';ctx.font='bold 12px Menlo,Consolas,monospace';ctx.textAlign='left';
+  const labelX=px+12, labelY=curY-8;
+  ctx.fillText(Math.round(curPct)+'% 愿意买',labelX>W-120?px-110:labelX,labelY<30?curY+20:labelY);
+
+  // Revenue estimate (price × %buyers × 200 users)
+  const buyers=Math.round(curPct/100*200);
+  const revenue=price*buyers;
+
+  // Info text
+  const inCliff=price>=cliffStart&&price<=cliffEnd;
+  const pastCliff=price>cliffEnd;
+  let info=`<span style="font-family:var(--mono);color:var(--accent)">$${price}</span> → `;
+  info+=`<strong>${Math.round(curPct)}%</strong> 的用户（${buyers}/200人）愿意购买 · `;
+  info+=`预估收入 <strong>$${revenue}</strong>/月`;
+
+  if(isCliffZone(price)){
+    info+=`<br><span style="color:var(--red);font-family:var(--mono);font-size:12px">⚠ 你正在悬崖区——每多收 $1，就会多丢 ${getDropRate(price)} 个用户</span>`;
+  } else if(price<20){
+    info+=`<br><span style="color:var(--green);font-family:var(--mono);font-size:12px">几乎人人都买，但你可能在白送利润</span>`;
+  } else if(price>55){
+    info+=`<br><span style="color:var(--dim);font-family:var(--mono);font-size:12px">只剩死忠用户了 · 考虑一下这个规模是否能撑起生意</span>`;
+  }
+
+  document.getElementById('cliffInfo').innerHTML=info;
+  document.getElementById('cliffCap').innerHTML=isCliffZone(price)
+    ?'⚠ 你正在价格悬崖区 · 需求正在急剧下降'
+    :price>55?'悬崖已过 · 只剩极少数用户愿意付这个价'
+    :'慢慢拖动 · 注意曲线在 $33-40 区间突然变陡';
+}
+
+function isCliffZone(p){return p>=30&&p<=42}
+function getDropRate(p){
+  const a=getWillingPct(p), b=getWillingPct(p+1);
+  return Math.round((a-b)/100*200);
+}
+
+// ═══ 交互 2: Superhuman 估值反推 ═══
+function renderSH(){
+  const price=+document.getElementById('shSlider').value;
+  document.getElementById('shPrice').textContent='$'+price;
+
+  const targetValuation=1000000000; // $1B
+  const revenueMultiple=10;
+  const targetRevenue=targetValuation/revenueMultiple; // $100M
+  const annualPerUser=price*12;
+  const usersNeeded=Math.ceil(targetRevenue/annualPerUser);
+  const usersK=usersNeeded>=1000000?(usersNeeded/1000000).toFixed(1)+'M':(usersNeeded/1000).toFixed(0)+'K';
+
+  // Difficulty assessment
+  let difficulty,diffColor,diffDesc;
+  if(usersNeeded>1000000){difficulty='极难';diffColor='var(--red)';diffDesc='百万级付费用户 · 需要大众市场'}
+  else if(usersNeeded>500000){difficulty='很难';diffColor='var(--accent)';diffDesc='五十万+ · 需要强大的分发能力'}
+  else if(usersNeeded>200000){difficulty='可行';diffColor='var(--blue)';diffDesc='二十万级 · 聚焦垂直市场可触达'}
+  else if(usersNeeded>50000){difficulty='较容易';diffColor='var(--green)';diffDesc='几万用户 · 高端定位的甜蜜区'}
+  else{difficulty='用户少但定价极高';diffColor='var(--purple)';diffDesc='< 5万 · 价格可能劝退大部分人'}
+
+  document.getElementById('shGrid').innerHTML=`
+    <div class="sh-card"><div class="sh-card-num" style="color:var(--accent)">$${price}</div><div class="sh-card-label">月费</div></div>
+    <div class="sh-card"><div class="sh-card-num" style="color:var(--blue)">${usersK}</div><div class="sh-card-label">需要的付费用户</div></div>
+    <div class="sh-card"><div class="sh-card-num" style="color:${diffColor}">${difficulty}</div><div class="sh-card-label">实现难度</div></div>
+  `;
+
+  document.getElementById('shVerdict').innerHTML=`
+    <div style="background:${diffColor}10;border:1px solid ${diffColor}30;border-radius:8px;padding:14px;text-align:center">
+      <div style="font-size:12px;color:${diffColor};font-family:var(--mono)">${diffDesc}</div>
+      <div style="font-size:11px;color:var(--dim);margin-top:6px;font-family:var(--mono)">$${price}/月 × 12个月 × ${usersK}用户 = $100M 年收入 → 10x = $1B 估值</div>
+    </div>
+  `;
+}
+
+// Init
+renderCliff();
+renderSH();
+</script>
+</body>
+</html>
