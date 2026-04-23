@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>七个音的秘密</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Source+Han+Mono:wght@400&display=swap');
+
+  :root {
+    --bg: #f8f6f1;
+    --paper: #fff;
+    --ink: #1a1a1a;
+    --mid: #555;
+    --dim: #999;
+    --faint: #ccc;
+    --rule: #e4e0d8;
+    --aside-bg: #f2efea;
+    --green: #4a8f5c;
+    --green-bg: #e6f2e8;
+    --green-dim: #8fc09a;
+    --red: #b84c4c;
+    --red-bg: #f5e6e6;
+    --orange: #c07b20;
+    --blue: #4a7ab8;
+    --mono: 'Menlo', 'Consolas', 'Source Han Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif SC', 'Georgia', serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.9;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
+  }
+
+  /* ── Typography ── */
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .byline {
+    font-size: 13px;
+    color: var(--dim);
+    margin-bottom: 48px;
+    font-family: var(--mono);
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 56px 0 16px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  p { margin-bottom: 18px; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  .lead {
+    font-size: 18px;
+    color: var(--mid);
+    line-height: 2;
+    margin-bottom: 36px;
+  }
+
+  /* ── Inline interactive figures ── */
+  .fig {
+    margin: 28px 0 32px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .fig-body { padding: 20px; }
+  .fig-caption {
+    padding: 10px 20px;
+    background: var(--aside-bg);
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .fig-caption strong { color: var(--ink); }
+
+  .fig svg { width: 100%; display: block; }
+
+  /* ── Aside / key insight ── */
+  .insight {
+    margin: 28px 0;
+    padding: 14px 18px;
+    background: var(--green-bg);
+    border-left: 3px solid var(--green);
+    border-radius: 0 4px 4px 0;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .insight strong { color: var(--green); }
+
+  .warn {
+    margin: 28px 0;
+    padding: 14px 18px;
+    background: var(--red-bg);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── Controls inside figures ── */
+  .ctrl-row {
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap; margin-top: 14px;
+  }
+  .btn {
+    padding: 6px 16px; border-radius: 4px;
+    border: 1px solid var(--rule); background: var(--paper);
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink); cursor: pointer; transition: all 0.15s;
+    user-select: none;
+  }
+  .btn:hover { background: var(--aside-bg); }
+  .btn:active { transform: scale(0.97); }
+  .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn.primary:hover { background: #333; }
+  .btn:disabled { opacity: 0.3; cursor: default; }
+
+  .key-row {
+    display: flex; gap: 3px; flex-wrap: wrap;
+  }
+  .key-btn {
+    width: 38px; height: 30px; border-radius: 3px;
+    border: 1px solid var(--rule); background: var(--paper);
+    font-family: var(--mono); font-size: 11px;
+    color: var(--dim); cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .key-btn:hover { border-color: var(--dim); color: var(--ink); }
+  .key-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .key-btn.bk { background: var(--aside-bg); }
+  .key-btn.bk.active { background: var(--ink); color: #fff; }
+
+  .slider-wrap {
+    display: flex; align-items: center; gap: 8px; flex: 1;
+  }
+  .slider-wrap input[type="range"] {
+    flex: 1; accent-color: var(--ink);
+  }
+  .slider-label {
+    font-family: var(--mono); font-size: 11px; color: var(--dim);
+    min-width: 28px; text-align: right;
+  }
+
+  .dots {
+    display: flex; gap: 4px; margin-left: auto;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    border: 1px solid var(--faint); transition: all 0.2s;
+  }
+  .dot.on { background: var(--ink); border-color: var(--ink); }
+  .dot.cur { border-color: var(--ink); box-shadow: 0 0 0 2px rgba(26,26,26,0.12); }
+
+  /* ── Comparison layout ── */
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+  .compare-label {
+    font-family: var(--mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--dim); margin-bottom: 6px;
+  }
+
+  /* ── Note indicator for text ── */
+  .note-tag {
+    display: inline-block; padding: 1px 6px;
+    font-family: var(--mono); font-size: 12px;
+    background: var(--aside-bg); border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .note-tag.g { background: var(--green-bg); border-color: var(--green-dim); color: var(--green); }
+  .note-tag.r { background: var(--red-bg); border-color: #d4a0a0; color: var(--red); }
+
+  /* footnote */
+  .fn { font-size: 13px; color: var(--dim); line-height: 1.7; margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>七个音的秘密</h1>
+<p class="byline">一篇可以听的交互文章</p>
+
+<p class="lead">
+你可能从小就会唱 do re mi fa sol la si。七个音，一个音阶。但你有没有注意过——这七个音之间的距离并不相等？这个不相等不是随意的，它藏着整个音乐系统的核心逻辑。
+</p>
+
+<p>
+这篇文章会从一个错误的直觉开始，用你的耳朵打碎它，然后在碎片上重建一个正确的模型。文章中所有的图都可以交互——你可以点击、拖动、听到声音。先玩，再读解释。
+</p>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>错误的直觉</h2>
+
+<p>
+在大多数人的想象中，do re mi fa sol la si 是<strong>等距排列</strong>的——像尺子上的刻度一样，均匀地把一个八度切成七份。
+</p>
+
+<p>
+下面这个圆环就是这个直觉的样子。七个音均匀分布在圆上，形成一个正七边形。<strong>点击任意音符听听看。</strong>
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="wrongCircle" viewBox="0 0 400 300"></svg>
+    <div class="ctrl-row">
+      <button class="btn primary" onclick="playWrongScale()">♪ 听这个「均匀」音阶</button>
+      <button class="btn" onclick="playRightScale()">♪ 听真实的大调音阶</button>
+    </div>
+  </div>
+  <div class="fig-caption">
+    先点左边的按钮，再点右边的。听出区别了吗？「均匀」版本听起来<strong>不对劲</strong>——因为它不是任何一种真实的音阶。
+  </div>
+</div>
+
+<p>
+如果你点了两个按钮，你会发现：均匀版听起来怪异、没有着落感，而真实版才是你熟悉的 do re mi。七个音之间的距离<em>不是均匀的</em>。
+</p>
+
+<div class="warn">
+<strong>错误直觉</strong>：do re mi fa sol la si 是等距的。<br>
+事实是：其中有两个间隔特别窄。这两个窄间隔的位置，决定了一切。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>十二格棋盘</h2>
+
+<p>
+在打碎错误之前，我们需要一块「地面」站稳。这块地面是<strong>半音</strong>——音乐中最小的间隔单位。一个八度被切成 12 个等距的半音。这不是人为规定的，而是物理和数学的结果（有兴趣可以追溯到毕达哥拉斯和十二平均律）。
+</p>
+
+<p>
+把 12 个半音排成一个圆。钢琴上的白键和黑键——全部 12 个音——就在这个圆上。<strong>点击圆上的音听听看。</strong>相邻两个音之间的距离完全相等。
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="chromaticCircle" viewBox="0 0 400 300"></svg>
+  </div>
+  <div class="fig-caption">
+    12 个半音形成一个完美的正十二边形。这是所有音阶的「棋盘」。大调音阶只是从中<strong>选取 7 个</strong>。
+  </div>
+</div>
+
+<p>
+接下来的问题是：<strong>选哪 7 个？</strong>
+</p>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>生长，而不是摆放</h2>
+
+<p>
+大调音阶的 7 个音不是随便选的。它们遵循一个固定的间隔模式从根音「生长」出来。下面的交互会让你一步步看到这个生长过程。
+</p>
+
+<p><strong>点击「下一步」，一个音一个音地构建音阶。</strong>注意每一步走了多远——有的跨两格（全音），有的只跨一格（半音）。</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="buildCircle" viewBox="0 0 400 340"></svg>
+    <div class="ctrl-row">
+      <button class="btn primary" id="buildStep" onclick="doBuildStep()">下一步</button>
+      <button class="btn" id="buildAuto" onclick="toggleBuildAuto()">▶ 自动</button>
+      <button class="btn" onclick="resetBuild()">重置</button>
+      <div class="dots" id="buildDots"></div>
+    </div>
+  </div>
+  <div class="fig-caption" id="buildCaption">
+    从根音 C 出发。
+  </div>
+</div>
+
+<p>
+你看到了：<span class="note-tag g">全 全</span> <span class="note-tag r">半</span> <span class="note-tag g">全 全 全</span> <span class="note-tag r">半</span>。七步走完，回到高一个八度的根音。两个<span class="note-tag r">半</span>出现在第 3→4 步（E→F）和第 7→8 步（B→C）。
+</p>
+
+<div class="insight">
+<strong>核心模式</strong>：全-全-半-全-全-全-半。这七个间隔就是大调音阶的 DNA。它对所有调都一样——无论你从哪个音开始。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>换个起点试试</h2>
+
+<p>
+如果这个模式真的是通用的，那换一个根音，应该能得到一个不同的大调音阶——但形状完全相同，只是旋转了。
+</p>
+
+<p><strong>选择不同的根音</strong>，看多边形在圆上旋转。形状变了吗？</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="rotateCircle" viewBox="0 0 400 340"></svg>
+    <div class="ctrl-row">
+      <div class="key-row" id="rootKeys"></div>
+    </div>
+    <div class="ctrl-row" style="margin-top:8px;">
+      <button class="btn" onclick="playRotateScale()">♪ 听这个调</button>
+      <button class="btn" onclick="playRotateArp()">♪ 逐音听</button>
+    </div>
+  </div>
+  <div class="fig-caption" id="rotateCaption">
+    C 大调。
+  </div>
+</div>
+
+<p>
+每个调的多边形形状一模一样——同一个不规则七边形，只是在圆上转了一个角度。这就是「移调」的本质：<strong>模式不变，位置平移</strong>。
+</p>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>从上空俯瞰</h2>
+
+<p>
+到目前为止，我们每次只看一个调。但如果把 12 个调的多边形<strong>全部叠在一起</strong>会怎样？
+</p>
+
+<p>
+Bret Victor 说过：理解一个系统最有力的方式是<em>在抽象和具体之间反复跳跃</em>。下面这张图是一个抽象——它同时展示了所有 12 个大调音阶。<strong>把鼠标悬停在某个多边形上</strong>，就能下降到具体，看清那个调的音阶。
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="allCircle" viewBox="0 0 400 340"></svg>
+  </div>
+  <div class="fig-caption" id="allCaption">
+    12 个大调音阶叠加。所有多边形形状相同、均匀分布。悬停查看单个调。
+  </div>
+</div>
+
+<p>
+从高处看，12 个完全相同的七边形均匀覆盖了圆环。这是一个对称的结构——一个模式旋转 12 次，填满了整个色度空间。
+</p>
+
+<div class="insight">
+<strong>抽象的力量</strong>：一个调是一个具体的七边形。12 个调叠加后，你看到的不再是「某个调长什么样」，而是「大调音阶这个概念本身的形状」——一个可以放在任何位置的模板。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>从旋律到和弦</h2>
+
+<p>
+一个音阶是七个音排成一条线。如果从中同时取三个音呢？
+</p>
+
+<p>
+在圆环上，从音阶的某个音出发，隔一个取一个：1-3-5。三个音连成一个<strong>三角形</strong>。这就是三和弦。
+</p>
+
+<p>
+<strong>点击下方的七个和弦按钮</strong>，看三角形如何变化。注意：有些三角形「胖」，有些「瘦」——这不是随意的，它决定了和弦听起来是明亮还是暗沉。
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="chordCircle" viewBox="0 0 400 340"></svg>
+    <div class="ctrl-row" id="chordBtns"></div>
+    <div class="ctrl-row" style="margin-top:8px;">
+      <button class="btn" onclick="playChordSim()">♪ 同时听</button>
+      <button class="btn" onclick="playChordArp()">♪ 分解听</button>
+    </div>
+  </div>
+  <div class="fig-caption" id="chordCaption">
+    C 大调 Ⅰ 级三和弦：C E G —— 大三和弦，明亮稳定。
+  </div>
+</div>
+
+<p>
+你发现了规律：<strong>三角形的形状由音阶结构自动决定</strong>。Ⅰ、Ⅳ、Ⅴ 的三角形较宽（大三和弦，明亮），ⅱ、ⅲ、ⅵ 的三角形较窄（小三和弦，柔和），ⅶ° 的三角形最扭曲（减三和弦，紧张）。
+</p>
+
+<p>
+这些和弦不是人为规定的——它们是 <span class="note-tag g">全全</span><span class="note-tag r">半</span><span class="note-tag g">全全全</span><span class="note-tag r">半</span> 这个模式的<em>必然结果</em>。
+</p>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2>回到地面</h2>
+
+<p>
+我们从一个错误的直觉开始（七个音是等距的），用耳朵打碎了它，然后在 12 半音的棋盘上重建了正确模型。我们看到一个简单的间隔模式——全全半全全全半——如何生成音阶、如何通过旋转产生所有的调、如何自动决定每个和弦的性格。
+</p>
+
+<p>
+这就是一个好的可视化应该做的事：不是展示一个现成的结论，而是让你<strong>看着结论在眼前生长出来</strong>。
+</p>
+
+<p>
+任何时候，如果你觉得抽象的图形让你迷失了，回到最具体的层面——点一个音，听它响。声音是这篇文章的地面。你永远可以踩上去。
+</p>
+
+<p class="fn">
+本文的交互设计受到 <a href="https://worrydream.com/LadderOfAbstraction/" style="color:var(--blue)">Bret Victor 的抽象阶梯</a> 和 <a href="https://www.3blue1brown.com/" style="color:var(--blue)">3Blue1Brown</a> 的叙事方法启发。Victor 教会我们在具体与抽象之间反复跳跃；Grant Sanderson 教会我们用动画本身做论证，而不是用动画配合论证。
+</p>
+
+</div>
+
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SHARED
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const NM = ['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
+const BK = [0,1,0,1,0,0,1,0,1,0,1,0];
+const PAT = [2,2,1,2,2,2,1];
+const DG = ['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ','Ⅵ','Ⅶ','Ⅰ′'];
+const GRN = '#4a8f5c', RED = '#b84c4c', ORG = '#c07b20', BLU = '#4a7ab8';
+const INK = '#1a1a1a', DIM = '#999', RULE = '#e4e0d8', FAINT = '#ccc';
+
+function majorScale(root) {
+  const s = [root]; let c = root;
+  PAT.forEach(i => { c = (c+i)%12; s.push(c); });
+  return s;
+}
+function asc(deg) { let s=0; for(let i=0;i<deg;i++) s+=PAT[i]; return s; }
+
+// Audio
+let _ac = null;
+function ac() { if(!_ac) _ac = new (window.AudioContext||window.webkitAudioContext)(); return _ac; }
+function tone(semi, delay, dur, vol) {
+  try {
+    const c=ac(), t=c.currentTime+(delay||0), d=dur||0.55;
+    const o=c.createOscillator(), g=c.createGain();
+    o.type='triangle';
+    o.frequency.setValueAtTime(261.63*Math.pow(2,semi/12), t);
+    g.gain.setValueAtTime(vol||0.14, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t+d);
+    o.connect(g); g.connect(c.destination);
+    o.start(t); o.stop(t+d);
+  } catch(e){}
+}
+
+function nPos(i, cx, cy, R) {
+  const a = i/12*Math.PI*2 - Math.PI/2;
+  return [cx+R*Math.cos(a), cy+R*Math.sin(a)];
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FIG 1: Wrong circle (equal spacing)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function drawWrong() {
+  const cx=200,cy=150,R=115;
+  const labels = ['C','D','E','F','G','A','B'];
+  const wrongSemis = [0, 12/7, 24/7, 36/7, 48/7, 60/7, 72/7]; // equal spacing
+  const rightSemis = [0,2,4,5,7,9,11];
+  let o = '';
+  o += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${RULE}"/>`;
+
+  // polygon
+  let pts = wrongSemis.map(s => {
+    const a = s/12*Math.PI*2 - Math.PI/2;
+    return `${cx+R*Math.cos(a)},${cy+R*Math.sin(a)}`;
+  }).join(' ');
+  o += `<polygon points="${pts}" fill="${RED}08" stroke="${RED}40" stroke-width="1"/>`;
+
+  // notes
+  wrongSemis.forEach((s,i) => {
+    const a = s/12*Math.PI*2 - Math.PI/2;
+    const nx=cx+R*Math.cos(a), ny=cy+R*Math.sin(a);
+    o += `<circle cx="${nx}" cy="${ny}" r="16" fill="#fff" stroke="${RED}" stroke-width="1.2"
+      style="cursor:pointer" onclick="tone(${rightSemis[i]},0,0.5)"/>`;
+    o += `<text x="${nx}" y="${ny+1}" text-anchor="middle" dominant-baseline="middle"
+      font-size="11" fill="${INK}" font-family="Menlo,monospace" style="pointer-events:none">${labels[i]}</text>`;
+  });
+
+  // "equal?" labels
+  for(let i=0;i<7;i++) {
+    const s1=wrongSemis[i], s2=wrongSemis[(i+1)%7]||12;
+    const a1=s1/12*Math.PI*2-Math.PI/2;
+    let a2=((i<6?wrongSemis[i+1]:12)/12)*Math.PI*2-Math.PI/2;
+    if(a2<=a1) a2+=Math.PI*2;
+    const am=(a1+a2)/2;
+    const lx=cx+(R+16)*Math.cos(am), ly=cy+(R+16)*Math.sin(am);
+    o += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
+      font-size="8" fill="${DIM}">等距?</text>`;
+  }
+
+  document.getElementById('wrongCircle').innerHTML = o;
+}
+
+function playWrongScale() {
+  const wrong = [0, 12/7, 24/7, 36/7, 48/7, 60/7, 72/7, 12];
+  wrong.forEach((s,i) => tone(s, i*0.28, 0.4));
+}
+function playRightScale() {
+  [0,2,4,5,7,9,11,12].forEach((s,i) => tone(s, i*0.28, 0.4));
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FIG 2: Chromatic circle
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function drawChromatic() {
+  const cx=200,cy=150,R=115;
+  let o = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${RULE}"/>`;
+  NM.forEach((n,i) => {
+    const [nx,ny] = nPos(i,cx,cy,R);
+    const bk = BK[i];
+    o += `<circle cx="${nx}" cy="${ny}" r="15" fill="${bk?'#f2efea':'#fff'}"
+      stroke="${FAINT}" stroke-width="1" style="cursor:pointer" onclick="tone(${i},0,0.5)"/>`;
+    o += `<text x="${nx}" y="${ny+1}" text-anchor="middle" dominant-baseline="middle"
+      font-size="${bk?9:10}" fill="${bk?DIM:INK}" font-family="Menlo,monospace"
+      style="pointer-events:none">${n}</text>`;
+  });
+  document.getElementById('chromaticCircle').innerHTML = o;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FIG 3: Build scale step by step
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let bStep = 0, bTimer = null;
+const BSTEPS = 8;
+const B_CAPTIONS = [
+  '从根音 C 出发。这是「家」，音阶的起点和终点。',
+  '向上走 <strong>2 个半音</strong>（全音）到达 D。',
+  '再走 <strong>2 个半音</strong>（全音）到达 E。目前为止都是均匀的。',
+  '这次只走 <strong>1 个半音</strong>！到达 F。注意弧线明显短了——这是第一个半音间隔。',
+  '恢复全音，<strong>2 个半音</strong>到达 G。',
+  '全音，<strong>2 个半音</strong>到达 A。',
+  '全音，<strong>2 个半音</strong>到达 B。',
+  '最后 <strong>1 个半音</strong>回到 C′。第二个窄间隔。八度完成。',
+];
+
+function drawBuild() {
+  const sc = majorScale(0);
+  const cx=200, cy=160, R=120;
+  const shown = sc.slice(0, bStep+1);
+  const shownSet = new Set(shown.slice(0,7));
+  let o = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${RULE}"/>`;
+
+  // polygon
+  if(shownSet.size >= 3) {
+    const pts = [...shownSet].map(n => nPos(n,cx,cy,R-6).join(',')).join(' ');
+    o += `<polygon points="${pts}" fill="${GRN}0a" stroke="${GRN}30" stroke-width="1"/>`;
+  }
+
+  // interval arcs
+  for(let i=0; i<Math.min(bStep,7); i++) {
+    const n1=sc[i], n2=sc[i+1];
+    const a1=n1/12*Math.PI*2-Math.PI/2;
+    let a2=n2/12*Math.PI*2-Math.PI/2;
+    if(a2<=a1) a2+=Math.PI*2;
+    const am=(a1+a2)/2;
+    const half = PAT[i]===1;
+    const lr = R+18;
+    o += `<text x="${cx+lr*Math.cos(am)}" y="${cy+lr*Math.sin(am)}"
+      text-anchor="middle" dominant-baseline="middle" font-size="10"
+      fill="${half?RED:GRN}" font-weight="600" font-family="Helvetica Neue,sans-serif">
+      ${half?'半':'全'}</text>`;
+  }
+
+  // 12 background notes
+  NM.forEach((n,i) => {
+    const [nx,ny] = nPos(i,cx,cy,R);
+    const inSc = sc.slice(0,7).includes(i);
+    const vis = shownSet.has(i);
+    const isRoot = i===0;
+    const isLatest = bStep>0 && sc[bStep]===i;
+    const r = isRoot?20 : vis?17 : (inSc?13:10);
+
+    let fi='#fff', st=FAINT, sw=0.8, co=FAINT, fs=8, fw=400;
+    if(isRoot && vis) { fi='#e6f2e8'; st=GRN; sw=2; co=GRN; fs=13; fw=700; }
+    else if(vis && isLatest) { st=INK; sw=1.5; co=INK; fs=11; fw=600; }
+    else if(vis) { st='#aaa'; sw=1; co='#555'; fs=10; }
+    else if(inSc) { st='#ddd'; co='#ccc'; }
+
+    o += `<circle cx="${nx}" cy="${ny}" r="${r}" fill="${fi}" stroke="${st}" stroke-width="${sw}"
+      style="cursor:${vis?'pointer':'default'}" onclick="${vis?`tone(${i+(isRoot&&bStep>=7?0:0)},0,0.5)`:''}" />`;
+    o += `<text x="${nx}" y="${ny+1}" text-anchor="middle" dominant-baseline="middle"
+      font-size="${fs}" fill="${co}" font-family="Menlo,monospace" font-weight="${fw}"
+      style="pointer-events:none">${n}</text>`;
+  });
+
+  // dots
+  const dotsEl = document.getElementById('buildDots');
+  dotsEl.innerHTML = '';
+  for(let i=0;i<BSTEPS;i++) {
+    const d=document.createElement('div');
+    d.className='dot'+(i<bStep?' on':'')+(i===bStep?' cur':'');
+    dotsEl.appendChild(d);
+  }
+
+  document.getElementById('buildCircle').innerHTML = o;
+  document.getElementById('buildCaption').innerHTML = B_CAPTIONS[bStep];
+  document.getElementById('buildStep').disabled = bStep>=BSTEPS-1;
+}
+
+function doBuildStep() {
+  if(bStep>=BSTEPS-1) return;
+  bStep++;
+  tone(asc(bStep), 0, 0.5);
+  drawBuild();
+  if(bStep>=BSTEPS-1) stopBuildAuto();
+}
+function toggleBuildAuto() {
+  if(bTimer) { stopBuildAuto(); return; }
+  document.getElementById('buildAuto').textContent='⏸ 暂停';
+  bTimer=setInterval(()=>{ if(bStep>=BSTEPS-1){stopBuildAuto();return;} doBuildStep(); },700);
+}
+function stopBuildAuto() { clearInterval(bTimer);bTimer=null; document.getElementById('buildAuto').textContent='▶ 自动'; }
+function resetBuild() { stopBuildAuto(); bStep=0; drawBuild(); }
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FIG 4: Rotate root
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let rRoot = 0;
+
+function buildRootKeys() {
+  const el = document.getElementById('rootKeys');
+  el.innerHTML='';
+  NM.forEach((n,i) => {
+    const b=document.createElement('button');
+    b.className='key-btn'+(BK[i]?' bk':'')+(i===rRoot?' active':'');
+    b.textContent=n;
+    b.onclick=()=>{ rRoot=i; drawRotate(); };
+    el.appendChild(b);
+  });
+}
+
+function drawRotate() {
+  // update keys
+  document.querySelectorAll('#rootKeys .key-btn').forEach((b,i)=>b.classList.toggle('active',i===rRoot));
+
+  const sc = majorScale(rRoot);
+  const cx=200, cy=160, R=120;
+  let o = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${RULE}"/>`;
+
+  // polygon
+  const scUniq = sc.slice(0,7);
+  const pts = scUniq.map(n=>nPos(n,cx,cy,R-6).join(',')).join(' ');
+  o += `<polygon points="${pts}" fill="${GRN}0c" stroke="${GRN}" stroke-width="1.5"/>`;
+
+  // interval labels
+  for(let i=0;i<7;i++) {
+    const n1=sc[i], n2=sc[i+1];
+    const a1=n1/12*Math.PI*2-Math.PI/2;
+    let a2=n2/12*Math.PI*2-Math.PI/2;
+    if(a2<=a1) a2+=Math.PI*2;
+    const am=(a1+a2)/2, lr=R+18;
+    const half=PAT[i]===1;
+    o += `<text x="${cx+lr*Math.cos(am)}" y="${cy+lr*Math.sin(am)}"
+      text-anchor="middle" dominant-baseline="middle" font-size="9"
+      fill="${half?RED:GRN}" font-weight="600" font-family="Helvetica Neue,sans-serif">${half?'半':'全'}</text>`;
+  }
+
+  // notes
+  NM.forEach((n,i) => {
+    const [nx,ny] = nPos(i,cx,cy,R);
+    const inSc = scUniq.includes(i);
+    const isRoot = i===rRoot;
+    const r = isRoot?20 : inSc?16 : 10;
+    let fi='#fff', st=FAINT, sw=0.8, co=FAINT, fs=8;
+    if(isRoot) { fi='#e6f2e8'; st=GRN; sw=2; co=GRN; fs=13; }
+    else if(inSc) { fi='#fff'; st='#aaa'; sw=1; co=INK; fs=10; }
+
+    o += `<circle cx="${nx}" cy="${ny}" r="${r}" fill="${fi}" stroke="${st}" stroke-width="${sw}"
+      style="cursor:${inSc?'pointer':'default'}" onclick="${inSc?`tone(${rRoot+asc(scUniq.indexOf(i))},0,0.5)`:''}"/>`;
+    o += `<text x="${nx}" y="${ny+1}" text-anchor="middle" dominant-baseline="middle"
+      font-size="${fs}" fill="${co}" font-family="Menlo,monospace" font-weight="${isRoot?700:400}"
+      style="pointer-events:none">${n}</text>`;
+  });
+
+  document.getElementById('rotateCircle').innerHTML = o;
+  document.getElementById('rotateCaption').innerHTML =
+    `<strong>${NM[rRoot]} 大调</strong>：${scUniq.map(n=>NM[n]).join(' – ')}。多边形形状不变，只是旋转了。`;
+}
+
+function playRotateScale() {
+  for(let i=0;i<8;i++) tone(rRoot+asc(i), i*0.28, 0.4);
+}
+function playRotateArp() {
+  for(let i=0;i<8;i++) tone(rRoot+asc(i), i*0.35, 0.6);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FIG 5: All 12 scales overlaid (abstraction)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let hoverRoot = -1;
+
+function drawAll() {
+  const cx=200, cy=160, R=120;
+  let o = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${RULE}"/>`;
+
+  // 12 polygons
+  for(let root=0; root<12; root++) {
+    const sc = majorScale(root).slice(0,7);
+    const pts = sc.map(n=>nPos(n,cx,cy,R-6).join(',')).join(' ');
+    const isHover = hoverRoot===root;
+    const opacity = hoverRoot<0 ? 0.18 : (isHover ? 0.9 : 0.05);
+    const sw = isHover ? 1.8 : 0.8;
+    const hue = root/12*360;
+    const color = hoverRoot<0 ? `hsl(${hue},40%,50%)` : (isHover ? GRN : FAINT);
+    o += `<polygon points="${pts}" fill="${color}${isHover?'12':'08'}" stroke="${color}"
+      stroke-width="${sw}" opacity="${opacity}" data-root="${root}"
+      style="cursor:pointer" />`;
+  }
+
+  // invisible hover targets (larger)
+  for(let root=0; root<12; root++) {
+    const sc = majorScale(root).slice(0,7);
+    const pts = sc.map(n=>nPos(n,cx,cy,R-6).join(',')).join(' ');
+    o += `<polygon points="${pts}" fill="transparent" stroke="transparent" stroke-width="12"
+      data-root="${root}" style="cursor:pointer"
+      onmouseenter="hoverRoot=${root};drawAll()"
+      onmouseleave="hoverRoot=-1;drawAll()"/>`;
+  }
+
+  // note labels
+  NM.forEach((n,i) => {
+    const [nx,ny] = nPos(i,cx,cy,R);
+    const r = 12;
+    const inHover = hoverRoot>=0 && majorScale(hoverRoot).slice(0,7).includes(i);
+    const isHoverRoot = hoverRoot===i;
+    let fi='#fff', st=FAINT, co=DIM, fs=9, fw=400;
+    if(isHoverRoot) { fi='#e6f2e8'; st=GRN; co=GRN; fs=12; fw=700; }
+    else if(inHover) { st='#aaa'; co=INK; fs=10; fw=500; }
+
+    o += `<circle cx="${nx}" cy="${ny}" r="${r}" fill="${fi}" stroke="${st}" stroke-width="0.8"/>`;
+    o += `<text x="${nx}" y="${ny+1}" text-anchor="middle" dominant-baseline="middle"
+      font-size="${fs}" fill="${co}" font-family="Menlo,monospace" font-weight="${fw}"
+      style="pointer-events:none">${n}</text>`;
+  });
+
+  document.getElementById('allCircle').innerHTML = o;
+  if(hoverRoot>=0) {
+    const sc = majorScale(hoverRoot).slice(0,7);
+    document.getElementById('allCaption').innerHTML =
+      `<strong>${NM[hoverRoot]} 大调</strong>：${sc.map(n=>NM[n]).join(' – ')}`;
+  } else {
+    document.getElementById('allCaption').innerHTML =
+      '12 个大调音阶叠加。所有多边形形状相同、均匀分布。悬停查看单个调。';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FIG 6: Chords
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let chDeg = 0;
+const TRIAD = {maj:[0,4,7], min:[0,3,7], dim:[0,3,6]};
+const QUAL = ['maj','min','min','maj','maj','min','dim'];
+const QUAL_CN = ['大三和弦','小三和弦','小三和弦','大三和弦','大三和弦','小三和弦','减三和弦'];
+const QUAL_FEEL = ['明亮稳定','柔和暗沉','柔和暗沉','明亮开阔','明亮有力','柔和忧郁','紧张不稳定'];
+const QUAL_COLOR = {maj:GRN, min:BLU, dim:RED};
+
+function chordNotes(deg, root) {
+  const sc = majorScale(root||0);
+  const r = sc[deg];
+  return TRIAD[QUAL[deg]].map(s=>(r+s)%12);
+}
+function chordAbs(deg, root) {
+  const base = (root||0) + asc(deg);
+  return TRIAD[QUAL[deg]].map(s=>base+s);
+}
+
+function drawChordBtns() {
+  const el = document.getElementById('chordBtns');
+  const sc = majorScale(0);
+  el.innerHTML='';
+  for(let d=0;d<7;d++) {
+    const n=sc[d];
+    const q=QUAL[d];
+    const suf = q==='min'?'m':(q==='dim'?'°':'');
+    const b=document.createElement('button');
+    b.className='btn'+(d===chDeg?' primary':'');
+    b.innerHTML=`${NM[n]}${suf}`;
+    b.style.fontFamily='Menlo,monospace';
+    b.style.fontSize='12px';
+    b.onclick=()=>{ chDeg=d; drawChord(); };
+    el.appendChild(b);
+  }
+}
+
+function drawChord() {
+  // update buttons
+  document.querySelectorAll('#chordBtns .btn').forEach((b,i)=>{
+    b.className='btn'+(i===chDeg?' primary':'');
+  });
+
+  const sc = majorScale(0).slice(0,7);
+  const cn = chordNotes(chDeg);
+  const cnSet = new Set(cn);
+  const q = QUAL[chDeg];
+  const color = QUAL_COLOR[q];
+  const cx=200, cy=160, R=120;
+
+  let o = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${RULE}"/>`;
+
+  // triangle
+  if(cn.length>=3) {
+    const pts=cn.map(n=>nPos(n,cx,cy,R-6).join(',')).join(' ');
+    o += `<polygon points="${pts}" fill="${color}15" stroke="${color}" stroke-width="1.8"/>`;
+  }
+
+  // notes
+  NM.forEach((n,i) => {
+    const [nx,ny]=nPos(i,cx,cy,R);
+    const inSc=sc.includes(i), inCh=cnSet.has(i);
+    const isChRoot=cn[0]===i;
+    const r = isChRoot?20 : inCh?17 : inSc?13 : 10;
+    let fi='#fff', st=FAINT, sw=0.8, co=FAINT, fs=8, fw=400;
+    if(isChRoot) { fi=color+'18'; st=color; sw=2; co=color; fs=13; fw=700; }
+    else if(inCh) { st=color; sw=1.5; co=INK; fs=11; fw=600; }
+    else if(inSc) { st='#ccc'; co='#aaa'; fs=9; }
+
+    o += `<circle cx="${nx}" cy="${ny}" r="${r}" fill="${fi}" stroke="${st}" stroke-width="${sw}"
+      style="cursor:${inCh?'pointer':'default'}" onclick="${inCh?`tone(${i},0,0.5)`:''}" />`;
+    o += `<text x="${nx}" y="${ny+1}" text-anchor="middle" dominant-baseline="middle"
+      font-size="${fs}" fill="${co}" font-family="Menlo,monospace" font-weight="${fw}"
+      style="pointer-events:none">${n}</text>`;
+  });
+
+  document.getElementById('chordCircle').innerHTML = o;
+  const suf = q==='min'?'m':(q==='dim'?'dim':'');
+  document.getElementById('chordCaption').innerHTML =
+    `${NM[0]} 大调 ${DG[chDeg]} 级三和弦：<strong>${NM[cn[0]]}${suf}</strong>（${cn.map(n=>NM[n]).join(' ')}）—— ${QUAL_CN[chDeg]}，${QUAL_FEEL[chDeg]}。`;
+}
+
+function playChordSim() {
+  chordAbs(chDeg).forEach(n=>tone(n,0,1.0));
+}
+function playChordArp() {
+  chordAbs(chDeg).forEach((n,i)=>tone(n,i*0.25,0.7));
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INIT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+drawWrong();
+drawChromatic();
+drawBuild();
+buildRootKeys();
+drawRotate();
+drawAll();
+drawChordBtns();
+drawChord();
+</script>
+</body>
+</html>

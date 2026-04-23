@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人生发财靠康波：普通人的时代红利指南</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f6f1;
+  --paper:#fff;
+  --ink:#1a1a1a;
+  --mid:#555;
+  --dim:#999;
+  --faint:#ccc;
+  --rule:#e4e0d8;
+  --aside:#f2efea;
+  --old:#b84c4c;
+  --new:#4a8f5c;
+  --mono:'Menlo','Consolas',monospace;
+  --spring:#4a8f5c;
+  --summer:#c89a28;
+  --autumn:#b5621e;
+  --winter:#3d6e99;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Noto Serif SC',Georgia,serif}
+.page{max-width:720px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;line-height:1.3;margin-bottom:.5rem;letter-spacing:-.02em}
+h2{font-size:1.28rem;font-weight:600;line-height:1.45;margin:2.5rem 0 .9rem}
+p{font-size:1rem;line-height:1.88;color:var(--mid);margin-bottom:.9rem}
+p strong{color:var(--ink)}
+.byline{font-family:var(--mono);font-size:.7rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;border-bottom:1px solid var(--rule);padding-bottom:.75rem}
+.lead{font-size:1.05rem;line-height:1.85;color:var(--ink);margin-bottom:2.5rem;padding:1.1rem 1.4rem;border-left:3px solid var(--autumn);background:var(--aside);font-style:normal}
+.section-num{font-family:var(--mono);font-size:.66rem;color:var(--dim);letter-spacing:.22em;text-transform:uppercase;margin-top:3rem;margin-bottom:-.2rem}
+.fig{background:var(--paper);border:1px solid var(--rule);border-radius:5px;margin:1.8rem 0;overflow:hidden}
+.fig-body{padding:18px 18px 10px}
+.fig-cap{padding:9px 18px 13px;font-family:var(--mono);font-size:.7rem;color:var(--mid);background:var(--aside);border-top:1px solid var(--rule);line-height:1.65}
+.mini{margin:1.8rem 0}
+.mini svg{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:4px;background:var(--paper)}
+.mini-cap{font-family:var(--mono);font-size:.7rem;color:var(--mid);margin-top:.5rem;line-height:1.5;padding:0 1px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tab{font-family:var(--mono);font-size:.7rem;padding:5px 11px;border:1px solid var(--faint);border-radius:3px;background:transparent;cursor:pointer;color:var(--dim);transition:all .15s;outline:none}
+.tab:hover{border-color:var(--ink);color:var(--ink)}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn{font-family:var(--mono);font-size:.7rem;padding:5px 11px;border:1px solid var(--faint);border-radius:3px;background:transparent;cursor:pointer;color:var(--mid);transition:all .15s;outline:none}
+.btn:hover:not(.dim){border-color:var(--ink);color:var(--ink)}
+.btn.dim{opacity:.28;cursor:default}
+.ctrl{display:flex;align-items:center;gap:8px;justify-content:center;padding:8px 0 2px}
+.fn{font-size:.76rem;color:var(--dim);line-height:1.75;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.aside-box{background:var(--aside);border-left:3px solid var(--summer);padding:.9rem 1.15rem;margin:1.4rem 0;font-size:.95rem;line-height:1.75;color:var(--ink)}
+input[type=range]{-webkit-appearance:none;width:100%;height:3px;background:var(--rule);border-radius:2px;outline:none;margin:10px 0 5px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer}
+@keyframes flowDash{to{stroke-dashoffset:-18}}
+.flow-anim{animation:flowDash 1.4s linear infinite}
+
+/* ── Age Slider ── */
+.life-bar{height:14px;border-radius:7px;display:flex;overflow:hidden;margin:14px 0 4px}
+.life-seg{height:100%;transition:width .4s}
+.life-marker-wrap{position:relative;height:28px}
+.life-marker{position:absolute;top:0;width:2px;height:28px;background:var(--ink);transition:left .3s;border-radius:1px}
+.life-marker::after{content:'你';position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:9px;font-family:var(--mono);color:var(--ink);white-space:nowrap}
+.life-insight{padding:.85rem 1.1rem;background:var(--aside);border-left:3px solid var(--ink);font-size:.88rem;line-height:1.82;margin-top:.6rem;color:var(--mid)}
+.life-insight strong{color:var(--ink)}
+
+/* ── Accordion ── */
+.acc-item{border:1px solid var(--rule);border-radius:4px;margin-bottom:.5rem;overflow:hidden}
+.acc-hdr{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;cursor:pointer;background:var(--paper);font-family:var(--mono);font-size:.78rem;color:var(--ink);user-select:none;transition:background .15s}
+.acc-hdr:hover{background:var(--aside)}
+.acc-icon{font-size:1rem;color:var(--dim);transition:transform .3s;flex-shrink:0;margin-left:.5rem}
+.acc-item.open .acc-icon{transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-body.open{max-height:400px}
+.acc-body-inner{padding:.85rem 1rem 1rem;font-size:.9rem;line-height:1.85;color:var(--mid);border-top:1px solid var(--rule)}
+.acc-body-inner p{margin-bottom:.5rem;color:var(--mid)}
+
+/* ── HTML Flowchart ── */
+.flow-wrap{background:var(--paper);border:1px solid var(--rule);border-radius:5px;padding:1.5rem 1.6rem;margin:1.8rem 0}
+.flow-step-html{display:none}
+.flow-step-html.active{display:block;animation:fadeInUp .3s ease}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.flow-q{font-family:'Noto Serif SC',serif;font-size:1rem;color:var(--ink);margin-bottom:1.1rem;line-height:1.75}
+.flow-opts-html{display:flex;flex-direction:column;gap:.5rem}
+.flow-opt-btn{background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:.82rem 1rem;cursor:pointer;text-align:left;font-size:.88rem;color:var(--mid);font-family:'Noto Serif SC',serif;line-height:1.55;transition:all .15s;outline:none}
+.flow-opt-btn:hover{border-color:var(--ink);color:var(--ink);background:var(--paper)}
+.flow-result-html{padding:1.2rem 1.3rem;background:var(--aside);border-left:3px solid var(--autumn);font-size:.9rem;line-height:1.85;color:var(--mid)}
+.flow-result-html h4{font-family:var(--mono);font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:.6rem;letter-spacing:.02em}
+.flow-result-html p{margin-bottom:0;color:var(--mid)}
+.flow-back-btn{background:none;border:1px solid var(--rule);border-radius:3px;padding:4px 11px;font-family:var(--mono);font-size:.68rem;color:var(--dim);cursor:pointer;margin-top:.9rem;transition:all .15s;outline:none}
+.flow-back-btn:hover{border-color:var(--ink);color:var(--ink)}
+.flow-prog{display:flex;gap:.35rem;margin-bottom:1.1rem;align-items:center}
+.flow-dot-s{width:5px;height:5px;border-radius:50%;background:var(--rule)}
+.flow-dot-s.on{background:var(--ink)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="section-num" style="margin-top:0">2025 · 交互式阅读</p>
+<h1>人生发财靠康波</h1>
+<p class="byline">康德拉季耶夫长波理论 · 周金涛《涛动周期论》· 普通人行动框架</p>
+
+<p class="lead">我们相信：勤奋决定财富。<br>
+经济学家的数据说：不一定。财富积累与你的出生时机、你所处的历史节点的关系，远比大多数人愿意承认的要深。<br>
+<strong>这篇文章不会告诉你买什么股票。它会帮你看见一个大多数人从未看见过的浪。</strong></p>
+
+<!-- ════════════════════════════════ SECTION 1 ════════════════════════════════ -->
+<p class="section-num">第一部分 · 感知</p>
+<h2>你看到的经济，取决于你的时间尺度</h2>
+
+<p>想象你站在海边，盯着脚下的浪花。浪来了，浪走了，你在数每一次起伏。你觉得你在"看大海"。</p>
+<p>但海面下，有一个慢得多的波——潮汐。它以6小时为周期，悄悄改变着整片水域的走向。因为你只盯着眼前的浪花，你完全感知不到它的存在。</p>
+<p>经济也是这样。大多数人盯着每天的涨跌、每季度的GDP数字。但在这些日常噪声背后，有一个更慢、更大的波——<strong>50~60年的康德拉季耶夫长波</strong>——一直在那里，决定着大方向，等待有人看见它。</p>
+
+<p><strong>把下方滑块从左拉到右</strong>，逐步放大你的时间视角，看看不同尺度下你能看到哪些不同的信号：</p>
+
+<div class="mini">
+  <svg id="horizonSvg" viewBox="0 0 600 290"></svg>
+  <input type="range" id="horizonSlider" min="0" max="3" step="1" value="0" oninput="renderHorizon()">
+  <div class="mini-cap" id="horizonCap"></div>
+</div>
+
+<p>注意到了吗？在<strong>1年视角</strong>下你只看到一团混乱——大多数财经新闻就停留在这一层。一路拉到<strong>60年视角</strong>，一条平缓的大波终于现形了。</p>
+<p><strong>绝大多数人的经济焦虑，是被最短尺度的信息驱动的</strong>——而这层信息里几乎没有可操作的信号。真正的结构机会，藏在更长的时间尺度里。</p>
+
+<!-- ════════════════════════════════ SECTION 2 ════════════════════════════════ -->
+<p class="section-num">第二部分 · 四季</p>
+<h2>康波的四个季节</h2>
+
+<p>康波不是一条简单的正弦波，而是一个生态系统：春夏秋冬，各有特征，各有机会，也各有陷阱。每个阶段持续10~15年，合起来构成完整的一轮。</p>
+<p>用错了季节的策略，就像在冬天穿短袖——你的问题不在于不努力，而在于没读对天气。</p>
+
+<p><strong>点击 ← → 按钮，逐步走过四个季节</strong>，观察每个阶段的经济人物在做什么，以及右侧的关键特征标注：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="seasonSvg" viewBox="0 0 680 310"></svg>
+    <div class="ctrl">
+      <button class="btn dim" id="sPrev" onclick="seasonNav(-1)">←</button>
+      <span id="sStep" style="font-family:var(--mono);font-size:11px;color:var(--dim)">1/4 · 春·回升</span>
+      <button class="btn" id="sNext" onclick="seasonNav(1)">下一个季节 →</button>
+    </div>
+  </div>
+  <div class="fig-cap" id="seasonCap"></div>
+</div>
+
+<p>注意四个季节里人物姿态的变化：春天的人在<strong>建造</strong>（低成本起步），夏天的人在<strong>狂欢</strong>（资产腾飞），秋天的人在<strong>困惑</strong>（繁荣幻觉与裂缝并存），冬天大多数人<strong>蜷缩</strong>——但总有少数人站着等春天。</p>
+<p class="aside-box">对时机的认知，是最昂贵的认知。同样的行动，在春天和冬天会产生截然不同的结果——差距可以是10倍。</p>
+
+<!-- ════════════════════════════════ SECTION 3 ════════════════════════════════ -->
+<p class="section-num">第三部分 · 历史</p>
+<h2>五次技术革命，五次大浪</h2>
+
+<p>还记得第一部分那条平缓的大波吗？它不是随机产生的——每一轮康波都由一场<strong>技术革命</strong>驱动。没有蒸汽机就没有第一次康波，没有铁路就没有第二次，没有电气化就没有第三次。</p>
+<p>技术革命是大浪的引擎：它在前一个冬天悄悄孕育，在下一个春天爆发，在夏天被所有人追捧，然后在秋冬被下一场革命取代。</p>
+
+<p><strong>点击下方五张卡片</strong>，展开每次康波的驱动技术与关键事件，再次点击可收起：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="wavesSvg" viewBox="0 0 680 430"></svg>
+  </div>
+  <div class="fig-cap" id="wavesCap">点击任意一次康波，展开详细信息</div>
+</div>
+
+<p>注意到了吗？<strong>每一轮萧条期，都对应着下一场技术革命的种子悄悄萌芽</strong>：互联网在第四次萧条期（1970年代）开始研发，第五次萧条期的候选引擎是AI和新能源，正在各地的实验室和车库里被测试。</p>
+
+<p>但在你把上面的年份当作"精确历史事实"之前，有件事值得正视：<strong>这些年份本身就是有争议的</strong>。接受长波理论的经济学家之间，对各次波的起止时间从来没有达成共识。差异有多大？</p>
+<p><strong>切换下方三位学者的视角</strong>，看同一段历史在不同分期方案下长什么样——以及争议最大的地方在哪里：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <div class="tabs" id="disputeTabs"></div>
+    <svg id="disputeSvg" viewBox="0 0 680 270"></svg>
+  </div>
+  <div class="fig-cap" id="disputeCap"></div>
+</div>
+
+<p>这个对比揭示了两件事：第一，<strong>"大约50~60年一个周期"是各方共识</strong>，这个节律框架有参考价值。第二，<strong>具体的年份边界从来不是精确的</strong>——任何人拿着精确年份说"这一年就是拐点"，都在过度解读。把它当导航仪，而不是望远镜。</p>
+
+<!-- ════════════════════════════════ SECTION 4 ════════════════════════════════ -->
+<p class="section-num">第四部分 · 叠浪</p>
+<h2>为什么有些时机特别关键</h2>
+
+<p>康波不是独奏，它是四重奏：60年的康波、20年的房地产周期（库兹涅茨）、9年的设备投资周期（朱格拉）、3年的库存周期（基钦），同时演奏，相互叠加。</p>
+<p>大多数时候，这四个节律各自运行。但偶尔，它们会同时到达低点——这就是周金涛所说的"多周期共振底"，也是历史上财富格局发生最剧烈重组的时刻。</p>
+
+<p>下方是四个周期在同一时间轴上的叠加示意。<strong>找到所有波同时低落的位置</strong>，注意右侧的年份标注：</p>
+
+<div class="mini">
+  <svg id="nestedSvg" viewBox="0 0 600 270"></svg>
+  <div class="mini-cap" id="nestedCap">2008年：朱格拉+基钦+房地产三周期共振低点 → 所有优质资产被极度低估。2019年：康波衰退→萧条转折+朱格拉低点 → 周金涛预言的"人生第二次机会"。下一个预测共振点：2030年前后。</div>
+</div>
+
+<p>2008年是这样的时刻：三重叠加的低点把所有优质资产压到了历史极端低估值。回头看，<strong>那不是最坏的时候，那是最好的买点</strong>——不是因为那年特别好，而是因为叠加的周期低点压出了极端低估。</p>
+
+<!-- ════════════════════════════════ SECTION 5 ════════════════════════════════ -->
+<p class="section-num">第五部分 · 人生</p>
+<h2>普通人的三次机会</h2>
+
+<p>周金涛的核心洞见：一个人在60年人生中有30年参与经济生活，这30年里康波给你的财富机会只有三次，<strong>不以你的主观意志为转移</strong>。</p>
+<p>不信？让我们比较两个1975年出生的人——同样聪明，同样勤奋。唯一的区别是：一个理解康波，一个不理解。</p>
+
+<p><strong>点击下方两个视角的标签</strong>，对比他们在同一段历史里做出的不同选择，注意1999、2008、2019这三个关键节点：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <div class="tabs" id="lifeTabs"></div>
+    <svg id="lifeSvg" viewBox="0 0 680 290"></svg>
+  </div>
+  <div class="fig-cap" id="lifeCap"></div>
+</div>
+
+<p>懂周期的人不是天才。他们只是在所有人最恐慌的时刻（低点），保留了足够的<strong>现金流和行动力</strong>去做一件逆人群而动的事。</p>
+<p>巴菲特为什么成功？周金涛的答案很直接：他1930年出生，黄金投资期完整覆盖了第五康波的春夏秋三个阶段。<strong>他的伟大，有一部分是时代给的</strong>。</p>
+
+<!-- ════════════════════════════════ SECTION 6: 个人校准 ════════════════════════════════ -->
+<p class="section-num">第六部分 · 校准</p>
+<h2>你的人生，与大浪如何重叠？</h2>
+
+<p>还记得巴菲特的例子吗？理解了康波节律，还有一个更私人的问题：<strong>你的黄金奋斗期</strong>（通常是35~55岁），与这轮浪的哪个阶段相遇？</p>
+<p><strong>拖动滑块</strong>输入你的年龄，看看你在第五、第六康波这张时间地图上的位置：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <div style="display:flex;align-items:center;gap:12px;padding:4px 0 2px">
+      <span style="font-family:var(--mono);font-size:.7rem;color:var(--dim);white-space:nowrap">你的年龄</span>
+      <input type="range" id="ageSlider" min="18" max="65" value="30" oninput="updateAge(this.value)" style="flex:1">
+      <span id="ageVal" style="font-family:var(--mono);font-size:1.05rem;color:var(--ink);min-width:2.2rem;text-align:right">30</span>
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--dim)">岁</span>
+    </div>
+    <div class="life-bar" id="lifeBar"></div>
+    <div class="life-marker-wrap"><div class="life-marker" id="ageMarker" style="left:24%"></div></div>
+    <div class="life-insight" id="lifeInsight">正在计算…</div>
+  </div>
+  <div class="fig-cap">彩色段为第五康波各季节（春绿·夏黄·秋橙·冬蓝），淡绿段为第六康波预测春天 · 竖线 = 你当前年龄位置</div>
+</div>
+
+<p>这不是宿命论——理解自己在历史中的位置，恰恰是主动决策的前提。两个同龄人，一个知道自己站在哪里，一个不知道，十年后他们的选择会完全不同。</p>
+
+<!-- ════════════════════════════════ SECTION 7: 行动原则 ════════════════════════════════ -->
+<p class="section-num">第七部分 · 原则</p>
+<h2>普通人在冬天能做什么</h2>
+
+<p>康波周期不能被改变，但你的应对策略可以。以下四条核心原则，<strong>点击展开</strong>：</p>
+
+<div style="margin:1.5rem 0 2rem">
+  <div class="acc-item" id="a1">
+    <div class="acc-hdr" onclick="toggleAcc('a1')">
+      <span>01 &nbsp;·&nbsp; 认清季节，调整期望值</span>
+      <span class="acc-icon">+</span>
+    </div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>冬天不是打仗的季节——是蛰伏与积累的季节。如果你在冬天用同样的力气追求夏天才有的回报，结果只有一个：精疲力竭、满腹委屈。</p>
+        <p>减少杠杆、积累现金流、投资自身技能——这不是悲观，是与大势共舞。停止和"别人家的成功案例"比较：那个案例发生在夏天。<strong>冬天的英雄，是活下去的人。</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="acc-item" id="a2">
+    <div class="acc-hdr" onclick="toggleAcc('a2')">
+      <span>02 &nbsp;·&nbsp; 在冬天学习，在春天出手</span>
+      <span class="acc-icon">+</span>
+    </div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>每一个冬天的尽头，都有一次技术革命的引爆。AI、量子计算、生物技术——某一个会成为下一轮康波的蒸汽机。</p>
+        <p>冬天是学习成本最低的时候：优秀的人才被迫重新学习，课程爆炸式增多，社群活跃度高。在未来的技术方向上，<strong>每周投入10小时坚持三年</strong>——当春天来临时，你将是少数真正做好准备的人之一。</p>
+      </div>
+    </div>
+  </div>
+  <div class="acc-item" id="a3">
+    <div class="acc-hdr" onclick="toggleAcc('a3')">
+      <span>03 &nbsp;·&nbsp; 向阳生长——关注地理红利</span>
+      <span class="acc-icon">+</span>
+    </div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>康波在不同国家的相位并不完全一致。当美国在冬天时，东南亚或许正在经历春天；当中国一线城市饱和，某些新兴市场正处于起点。</p>
+        <p>地理套利是普通人最被低估的战略：<strong>用发达国家的技能，在发展中市场获取早期红利。</strong>有意识地观察周边市场的周期差异，保持对地理移动的开放性。</p>
+      </div>
+    </div>
+  </div>
+  <div class="acc-item" id="a4">
+    <div class="acc-hdr" onclick="toggleAcc('a4')">
+      <span>04 &nbsp;·&nbsp; 不要孤军奋战——连接同频的人</span>
+      <span class="acc-icon">+</span>
+    </div>
+    <div class="acc-body">
+      <div class="acc-body-inner">
+        <p>冬天最危险的敌人不是外部环境，而是信息茧房。当大多数人陷入集体恐慌时，少数理解宏观周期的人往往做出截然不同的判断。</p>
+        <p>和那些真正在思考"十年后"的人交朋友。<strong>主动筛选信息来源</strong>，远离只谈"今天涨跌"的人，靠近那些在讨论"底层驱动力"的人。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ SECTION 8 ════════════════════════════════ -->
+<p class="section-num">第八部分 · 行动</p>
+<h2>你的行动框架</h2>
+
+<p>理解康波不是为了预测涨跌，而是为了做出更清醒的人生决策。不同年龄、不同处境的人，在这个冬天的最优策略是完全不同的。</p>
+<p><strong>回答下方两个问题</strong>，找到专属于你此刻的行动框架：</p>
+
+<div class="flow-wrap">
+
+  <!-- Step 0: asset type -->
+  <div id="fs0" class="flow-step-html active">
+    <div class="flow-prog">
+      <div class="flow-dot-s on"></div><div class="flow-dot-s"></div><div class="flow-dot-s"></div><div class="flow-dot-s"></div>
+    </div>
+    <div class="flow-q">你目前的主要资产类型是什么？</div>
+    <div class="flow-opts-html">
+      <button class="flow-opt-btn" onclick="flowGo(1,'a')">💼 &nbsp;主要靠劳动收入（工资 / 自由职业）</button>
+      <button class="flow-opt-btn" onclick="flowGo(1,'b')">📈 &nbsp;有一定投资资产（股票 / 房产 / 基金）</button>
+      <button class="flow-opt-btn" onclick="flowGo(1,'c')">🏗️ &nbsp;正在创业或运营一个项目</button>
+    </div>
+  </div>
+
+  <!-- Step 1: branch question -->
+  <div id="fs1" class="flow-step-html">
+    <div class="flow-prog">
+      <div class="flow-dot-s on"></div><div class="flow-dot-s on"></div><div class="flow-dot-s"></div><div class="flow-dot-s"></div>
+    </div>
+    <div class="flow-q" id="fq2"></div>
+    <div class="flow-opts-html" id="fo2"></div>
+    <button class="flow-back-btn" onclick="flowGo(0)">← 返回</button>
+  </div>
+
+  <!-- Result -->
+  <div id="fs2" class="flow-step-html">
+    <div class="flow-prog">
+      <div class="flow-dot-s on"></div><div class="flow-dot-s on"></div><div class="flow-dot-s on"></div><div class="flow-dot-s on"></div>
+    </div>
+    <div class="flow-result-html" id="fres"></div>
+    <button class="flow-back-btn" onclick="flowGo(0)">↺ 重新开始</button>
+  </div>
+
+</div>
+
+<p>你已经完成了这篇文章描述的核心动作：你拖动了时间尺度，你走过了四季，你看见了五次大浪，你比较了两种人生。你已经站在了那个大浪旁边。</p>
+<p><strong>接下来的问题只有一个：你想随波漂流，还是借力而行？</strong></p>
+
+<p class="fn">
+  本文基于：康德拉季耶夫《经济生活中的长波》（1925）；熊彼特《商业周期》（1939）；周金涛《人生财富靠康波·涛动周期论》（中信出版社，2017）。康波理论在学界仍存在争议，本文作为认知框架参考，不构成任何投资建议。
+</p>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// 全局常量
+// ══════════════════════════════════════════════════════
+const INK='#1a1a1a',MID='#555',DIM='#999',FAINT='#ccc',RULE='#e4e0d8';
+const OLD='#b84c4c',NEW='#4a8f5c';
+const SPRING='#4a8f5c',SUMMER='#c89a28',AUTUMN='#b5621e',WINTER='#3d6e99';
+
+// ── 棍子人：x,y=锚点, a=朝向角度(度), c=颜色, op=透明度, sc=缩放 ──
+function P(x,y,a,c=INK,op=1,sc=1){
+  let g=`<g transform="translate(${x},${y}) rotate(${a-90})" opacity="${op}">`;
+  g+=`<line x1="0" y1="0" x2="${14*sc}" y2="0" stroke="${c}" stroke-width="${2.5*sc}" stroke-linecap="round"/>`;
+  g+=`<circle cx="${16*sc}" cy="0" r="${5.5*sc}" fill="${c}"/>`;
+  g+=`<line x1="${4*sc}" y1="${-7*sc}" x2="${4*sc}" y2="${7*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${-6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  return g+`</g>`;
+}
+
+// ── 模糊椭圆 ──
+function fog(x,y,rx,ry,c,op){
+  return `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${c}" opacity="${op}" filter="url(#blur)"/>`;
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 1: 时间尺度滑块
+// ══════════════════════════════════════════════════════
+function renderHorizon(){
+  const lv=+document.getElementById('horizonSlider').value;
+  let o=`<defs><filter id="blur"><feGaussianBlur stdDeviation="5"/></filter></defs>`;
+  o+=`<rect x="0" y="0" width="600" height="290" fill="#faf9f6"/>`;
+  const L=50,R=565,T=18,B=245,mid=Math.round((T+B)/2)+15;
+  const W=R-L;
+  const yrs=[1,5,20,60];
+  const cols=[SPRING,SUMMER,AUTUMN,WINTER];
+  const wY=yrs[lv], wX=L+(wY/60)*W;
+  // shaded zone
+  o+=`<rect x="${L}" y="${T}" width="${wX-L}" height="${B-T}" fill="${cols[lv]}" opacity=".06"/>`;
+  // always draw 康波
+  if(lv>=3){
+    let d=''; for(let px=L;px<=R;px++){const t=(px-L)/W;const y=mid-Math.sin(t*Math.PI*2)*72;d+=(px===L?'M':'L')+px+','+y;} o+=`<path d="${d}" fill="none" stroke="${WINTER}" stroke-width="2.5" opacity=".7"/>`;
+    o+=`<text x="${L+8}" y="${T+14}" font-size="7" fill="${WINTER}" font-family="var(--mono)" font-weight="bold">康波周期 · 60年</text>`;
+  }
+  // 房地产 20yr
+  if(lv>=2){
+    let d=''; for(let px=L;px<=R;px++){const t=(px-L)/W;const y=mid-Math.sin(t*Math.PI*6)*40;d+=(px===L?'M':'L')+px+','+y;} o+=`<path d="${d}" fill="none" stroke="${AUTUMN}" stroke-width="1.5" opacity=".6"/>`;
+    o+=`<text x="${L+8}" y="${T+26}" font-size="7" fill="${AUTUMN}" font-family="var(--mono)">库兹涅茨 · 房地产 · 20年</text>`;
+  }
+  // 朱格拉 9yr
+  if(lv>=1){
+    let d=''; for(let px=L;px<=R;px++){const t=(px-L)/W;const y=mid-Math.sin(t*Math.PI*13.3)*22;d+=(px===L?'M':'L')+px+','+y;} o+=`<path d="${d}" fill="none" stroke="${SUMMER}" stroke-width="1.5" opacity=".55"/>`;
+    o+=`<text x="${L+8}" y="${T+38}" font-size="7" fill="${SUMMER}" font-family="var(--mono)">朱格拉 · 设备投资 · 9年</text>`;
+  }
+  // 噪声
+  const noiseEnd=Math.min(wX,R);
+  let nd='';
+  for(let px=L;px<=noiseEnd;px++){
+    const y=mid+Math.sin(px*.82)*13+Math.sin(px*1.47+1.6)*9+Math.sin(px*2.3+.7)*6+Math.sin(px*3.9+2.1)*4;
+    nd+=(px===L?'M':'L')+px+','+y;
+  }
+  o+=`<path d="${nd}" fill="none" stroke="${INK}" stroke-width="${lv===0?1.3:.75}" opacity="${lv===0?.72:.38}"/>`;
+  if(lv===0) o+=`<text x="${L+8}" y="${T+50}" font-size="7" fill="${DIM}" font-family="var(--mono)">日常噪声 · 1年</text>`;
+  // hidden zone
+  if(lv<3){
+    o+=`<rect x="${wX}" y="${T}" width="${R-wX}" height="${B-T}" fill="#f8f6f1" opacity=".9"/>`;
+    o+=`<text x="${wX+(R-wX)/2}" y="${mid-8}" text-anchor="middle" font-size="8" fill="${FAINT}" font-family="var(--mono)">你的视角之外</text>`;
+    o+=`<text x="${wX+(R-wX)/2}" y="${mid+8}" text-anchor="middle" font-size="7" fill="${FAINT}" font-family="var(--mono)">看不见，但不代表不存在</text>`;
+  }
+  // window edge
+  o+=`<line x1="${wX}" y1="${T}" x2="${wX}" y2="${B}" stroke="${cols[lv]}" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+  // X axis
+  o+=`<line x1="${L}" y1="${B}" x2="${R}" y2="${B}" stroke="${FAINT}" stroke-width="1"/>`;
+  [0,10,20,30,40,50,60].forEach(yr=>{
+    const x=L+(yr/60)*W;
+    o+=`<line x1="${x}" y1="${B}" x2="${x}" y2="${B+4}" stroke="${DIM}" stroke-width="1"/>`;
+    o+=`<text x="${x}" y="${B+14}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${yr}yr</text>`;
+  });
+  o+=`<text x="${(L+R)/2}" y="${B+26}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">时间轴 (工业革命后 60年)</text>`;
+  // current window label
+  o+=`<text x="${wX-4}" y="${T+12}" text-anchor="end" font-size="7" fill="${cols[lv]}" font-family="var(--mono)">← ${wY}年视角</text>`;
+  document.getElementById('horizonSvg').innerHTML=o;
+  const caps=[
+    '视角 <strong>1年</strong>：只有噪声——日常K线、季度GDP，几乎没有预测价值。大多数财经新闻就停留在这一层。',
+    '视角 <strong>5年</strong>：朱格拉周期（9年）浮现——设备投资节律决定企业盈利和股市中期趋势。',
+    '视角 <strong>20年</strong>：库兹涅茨周期（20年房地产）出现——解释了"为什么两代人对房价的感受完全不同"。',
+    '视角 <strong>60年</strong>：康波大浪现形。它驱动了蒸汽机时代、铁路时代、电气化和信息革命的兴衰。一直都在。'
+  ];
+  document.getElementById('horizonCap').innerHTML=caps[lv];
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 2: 四季步骤导览
+// ══════════════════════════════════════════════════════
+let seasonStep=0;
+const SEASONS=[
+  {name:'春·回升',era:'1982~1991',c:SPRING,
+   feats:['新技术萌芽·PC普及','创业成本历史最低','资产估值在底部','人才充裕','资金仍在观望'],
+   event:'1984·Apple Macintosh发布',note:'技术主题：个人电脑',action:'播种·建造',
+   cap:'春·回升期（1982~1991）：债务清算结束，新技术开始从车库走向大众。个人电脑开始普及，互联网基础设施悄悄搭建。在春天播下的种子，夏天百倍回报。'},
+  {name:'夏·繁荣',era:'1991~2004',c:SUMMER,
+   feats:['互联网爆发·全球化','资产价格全面上涨','就业旺盛·乐观极值','杠杆泛滥','"新经济永不结束"'],
+   event:'1995·网景上市·互联网元年',note:'技术主题：互联网',action:'狂欢·收割',
+   cap:'夏·繁荣期（1991~2004）：互联网将全球连成一个市场，纳斯达克指数1994~2000年上涨500%。"这次不一样"成为市场主旋律——直到泡沫破灭。'},
+  {name:'秋·衰退',era:'2004~2015',c:AUTUMN,
+   feats:['增长放缓·波动加剧','次贷危机2008','央行QE无限注水','债务持续累积','估值高位分化'],
+   event:'2008·雷曼兄弟倒塌',note:'杠杆人为延续繁荣',action:'犹豫·分化',
+   cap:'秋·衰退期（2004~2015）：金融危机后量化宽松人为拉长了繁荣的尾巴，但增长质量持续下滑。资产价格涨幅越来越依赖流动性而非实体经济，裂缝在扩大。'},
+  {name:'冬·萧条',era:'2015~今',c:WINTER,
+   feats:['全面去杠杆','通缩/滞胀并存','地缘政治断裂全球化','AI/新能源悄悄孕育','强者出清弱者'],
+   event:'2025·AI基础设施大规模投入',note:'下一轮春天的种子',action:'蛰伏·布局',
+   cap:'冬·萧条期（2015~今）：高利率、去杠杆、地缘冲突——历史上每次康波冬天的标准配置。但同时，AI、新能源正在以极低成本快速迭代。熬过冬天的人，将以极低成本布局下一轮春天。'},
+];
+
+function renderSeason(){
+  const s=SEASONS[seasonStep], c=s.c;
+  let o=`<defs><filter id="blur"><feGaussianBlur stdDeviation="6"/></filter></defs>`;
+  o+=`<rect x="0" y="0" width="680" height="310" fill="#faf9f6"/>`;
+  o+=`<rect x="8" y="8" width="664" height="294" rx="5" fill="${c}" opacity=".06"/>`;
+  // Season title (top left)
+  o+=`<text x="20" y="30" font-size="22" fill="${c}" opacity=".15" font-family="var(--mono)" font-weight="bold">${s.name.split('·')[1]}</text>`;
+  o+=`<text x="20" y="50" font-size="9" fill="${c}" font-family="var(--mono)">${s.name} · ${s.era}</text>`;
+  // Ground line
+  const GY=225;
+  o+=`<line x1="22" y1="${GY}" x2="322" y2="${GY}" stroke="${RULE}" stroke-width="1.5"/>`;
+
+  // ── Upright standing person helper: head on top, feet at (x, gy) ──
+  // Uses P() correctly: a=0 → rotate(-90) → body goes UP, head at top
+  function stand(x,gy,col,op=1,sc=1){ return P(x,gy,0,col,op,sc); }
+  // Leaning forward (walking/running): a=-40 → body tilts forward
+  function walk(x,gy,col,op=1,sc=1){ return P(x,gy,-40,col,op,sc); }
+  // Bent over / crouching: a=60 → body tilts down-forward (head low)
+  function crouch(x,gy,col,op=1,sc=1){ return P(x,gy,60,col,op,sc); }
+
+  // ══ SPRING: 一个人在安静的车库里建东西 ══
+  // 故事：冷清·便宜·无人问津·悄悄种下种子
+  if(seasonStep===0){
+    // Garage outline (dashed = unfinished)
+    o+=`<rect x="52" y="118" width="90" height="107" rx="2" fill="${c}" opacity=".08" stroke="${c}" stroke-width="1.2" stroke-dasharray="5,3"/>`;
+    o+=`<text x="97" y="113" text-anchor="middle" font-size="7" fill="${c}" font-family="var(--mono)">车库工作室</text>`;
+    // Workbench inside garage
+    o+=`<rect x="60" y="178" width="72" height="8" rx="1" fill="${c}" opacity=".25"/>`;
+    // PC on bench
+    o+=`<rect x="88" y="160" width="26" height="18" rx="1" fill="${c}" opacity=".2" stroke="${c}" stroke-width="1"/>`;
+    o+=`<text x="101" y="172" text-anchor="middle" font-size="5.5" fill="${c}" font-family="var(--mono)">PC</text>`;
+    o+=`<text x="101" y="159" text-anchor="middle" font-size="5.5" fill="${c}" font-family="var(--mono)">$2,495</text>`;
+    // ONE person leaning over the bench (working) — head facing the bench
+    o+=P(82,178,30,c,1,0.9);
+    o+=`<text x="82" y="${GY+14}" text-anchor="middle" font-size="7" fill="${c}" font-family="var(--mono)">创业者</text>`;
+    o+=`<text x="82" y="${GY+24}" text-anchor="middle" font-size="6" fill="${DIM}" font-family="var(--mono)">独自摸索</text>`;
+    // Seedling growing outside garage
+    o+=`<line x1="175" y1="${GY}" x2="175" y2="${GY-24}" stroke="${c}" stroke-width="2" stroke-linecap="round"/>`;
+    o+=`<path d="M175,${GY-24} Q168,${GY-38} 160,${GY-32}" fill="none" stroke="${c}" stroke-width="1.5"/>`;
+    o+=`<path d="M175,${GY-18} Q184,${GY-32} 190,${GY-26}" fill="none" stroke="${c}" stroke-width="1.5"/>`;
+    o+=`<text x="175" y="${GY-40}" text-anchor="middle" font-size="6.5" fill="${c}" font-family="var(--mono)">种子萌芽</text>`;
+    // Three people walking AWAY (nobody paying attention)
+    o+=walk(220,GY,DIM,.35,.75);
+    o+=walk(248,GY,DIM,.28,.75);
+    o+=walk(272,GY,DIM,.22,.75);
+    o+=`<text x="248" y="${GY+14}" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">市场冷清·无人问津</text>`;
+    // Price chart (tiny, bottom)
+    o+=`<polyline points="30,270 60,268 90,266 120,263 145,259 160,255" fill="none" stroke="${c}" stroke-width="1.5" stroke-linecap="round"/>`;
+    o+=`<text x="30" y="280" font-size="6.5" fill="${c}" font-family="var(--mono)">资产价格：触底·缓慢回升</text>`;
+
+  // ══ SUMMER: 所有人涌向上涨的箭头 ══
+  // 故事：全民狂欢·追涨·高点买入·泡沫在顶部积累
+  } else if(seasonStep===1){
+    // Big rising arrow (the market)
+    o+=`<polyline points="30,260 60,248 100,230 145,210 190,188 230,170 260,152 285,138" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`;
+    o+=`<polygon points="285,130 295,145 278,148" fill="${c}"/>`;
+    o+=`<text x="292" y="128" font-size="8" fill="${c}" font-family="var(--mono)">+500%</text>`;
+    o+=`<text x="155" y="220" font-size="7" fill="${c}" font-family="var(--mono)">纳斯达克 1994~2000</text>`;
+    // IPO board at the top-right of chart area
+    o+=`<rect x="210" y="60" width="95" height="52" rx="3" fill="${c}" opacity=".12" stroke="${c}" stroke-width="1"/>`;
+    o+=`<text x="257" y="74" text-anchor="middle" font-size="6.5" fill="${c}" font-family="var(--mono)">IPO 板</text>`;
+    o+=`<text x="220" y="88" font-size="6" fill="${c}" font-family="var(--mono)">Netscape ↑88%</text>`;
+    o+=`<text x="220" y="101" font-size="6" fill="${c}" font-family="var(--mono)">Amazon  ↑2,300%</text>`;
+    // People all running toward the arrow/chart
+    o+=walk(55,GY,c,1,.9);
+    o+=`<text x="55" y="${GY+14}" text-anchor="middle" font-size="6.5" fill="${c}" font-family="var(--mono)">全民入场</text>`;
+    o+=walk(100,GY,c,.95,.9);
+    o+=walk(148,GY,c,.9,.9);
+    o+=walk(196,GY,c,.85,.85);
+    o+=`<text x="148" y="${GY+14}" text-anchor="middle" font-size="6.5" fill="${c}" font-family="var(--mono)">追涨·加杠杆</text>`;
+    // Bubble at top: warning label
+    o+=`<ellipse cx="268" cy="108" rx="28" ry="18" fill="${c}" opacity=".1" stroke="${c}" stroke-width="1" stroke-dasharray="3,2"/>`;
+    o+=`<text x="268" y="104" text-anchor="middle" font-size="6" fill="${c}" font-family="var(--mono)">泡沫</text>`;
+    o+=`<text x="268" y="116" text-anchor="middle" font-size="6" fill="${c}" font-family="var(--mono)">积累中</text>`;
+    o+=`<text x="30" y="280" font-size="6.5" fill="${c}" font-family="var(--mono)">这次不一样·买在山顶·2000年泡沫破灭</text>`;
+
+  // ══ AUTUMN: 建筑出现裂缝 + QE注水修补 ══
+  // 故事：繁荣外壳·内部裂缝·印钞机掩盖问题
+  } else if(seasonStep===2){
+    // Cracked building
+    o+=`<rect x="40" y="100" width="110" height="125" rx="2" fill="${AUTUMN}" opacity=".1" stroke="${AUTUMN}" stroke-width="1.5"/>`;
+    o+=`<text x="95" y="92" text-anchor="middle" font-size="7" fill="${AUTUMN}" font-family="var(--mono)">繁荣外壳</text>`;
+    // Crack lines on the building
+    o+=`<path d="M95,120 L102,140 L88,158 L98,180 L90,200" fill="none" stroke="${OLD}" stroke-width="2.5" stroke-linecap="round"/>`;
+    o+=`<text x="132" y="162" font-size="7" fill="${OLD}" font-family="var(--mono)">裂缝</text>`;
+    o+=`<text x="132" y="174" font-size="6.5" fill="${OLD}" font-family="var(--mono)">2008·雷曼</text>`;
+    // Person A: confused, looking at zigzag chart
+    o+=stand(60,GY,AUTUMN,.9,.85);
+    o+=`<text x="60" y="${GY+14}" text-anchor="middle" font-size="7" fill="${AUTUMN}" font-family="var(--mono)">? 困惑</text>`;
+    // Zigzag chart (volatile)
+    o+=`<polyline points="185,200 200,185 215,210 230,178 245,208 262,172 278,205 295,168" fill="none" stroke="${AUTUMN}" stroke-width="1.5" stroke-dasharray="4,2"/>`;
+    o+=`<text x="240" y="165" text-anchor="middle" font-size="7" fill="${AUTUMN}" font-family="var(--mono)">高度波动</text>`;
+    // QE Money printer
+    o+=`<rect x="188" y="${GY-65}" width="80" height="48" rx="3" fill="${AUTUMN}" opacity=".1" stroke="${AUTUMN}" stroke-width="1"/>`;
+    o+=`<text x="228" y="${GY-50}" text-anchor="middle" font-size="7" fill="${AUTUMN}" font-family="var(--mono)" font-weight="bold">央行 QE</text>`;
+    o+=`<text x="228" y="${GY-37}" text-anchor="middle" font-size="6.5" fill="${AUTUMN}" font-family="var(--mono)">无限注水</text>`;
+    // Arrow from printer to crack (masking)
+    o+=`<path d="M228,${GY-17} L228,${GY-10} L120,${GY-10} L120,160" fill="none" stroke="${AUTUMN}" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>`;
+    o+=`<text x="30" y="280" font-size="6.5" fill="${AUTUMN}" font-family="var(--mono)">QE掩盖裂缝·债务累积·2015年再掩盖不住</text>`;
+
+  // ══ WINTER: 大多数人躲在屋里 + 一人站着看新技术 ══
+  // 故事：冷清·多数人蜷缩·少数人站着等春天
+  } else {
+    // Shelter / roof for the crowd
+    o+=`<polygon points="30,148 165,88 300,148" fill="${WINTER}" opacity=".1" stroke="${WINTER}" stroke-width="1.2"/>`;
+    o+=`<rect x="30" y="148" width="270" height="77" fill="${WINTER}" opacity=".07"/>`;
+    o+=`<text x="165" y="82" text-anchor="middle" font-size="7" fill="${WINTER}" font-family="var(--mono)">避风港·大多数人躲在里面</text>`;
+    // 4 crouching people inside shelter
+    o+=crouch(68,GY,WINTER,.55,.8);
+    o+=crouch(108,GY,WINTER,.5,.75);
+    o+=crouch(150,GY,WINTER,.48,.75);
+    o+=crouch(192,GY,WINTER,.45,.75);
+    o+=`<text x="130" y="${GY+16}" text-anchor="middle" font-size="7" fill="${WINTER}" font-family="var(--mono)">高利率·去杠杆·等待结束</text>`;
+    // Dividing line (outside the shelter)
+    o+=`<line x1="305" y1="${GY-80}" x2="305" y2="${GY}" stroke="${RULE}" stroke-width="1" stroke-dasharray="3,3"/>`;
+    // ONE person STANDING outside, looking at glowing seedling
+    o+=stand(255,GY,SPRING,1,1.05);
+    o+=`<text x="255" y="${GY+14}" text-anchor="middle" font-size="7" fill="${SPRING}" font-family="var(--mono)">少数人</text>`;
+    o+=`<text x="255" y="${GY+25}" text-anchor="middle" font-size="6.5" fill="${SPRING}" font-family="var(--mono)">站着布局</text>`;
+    // Glowing seedling (next wave tech)
+    o+=`<ellipse cx="255" cy="${GY-62}" rx="22" ry="22" fill="${SPRING}" opacity=".1"/>`;
+    o+=`<ellipse cx="255" cy="${GY-62}" rx="14" ry="14" fill="${SPRING}" opacity=".12"/>`;
+    o+=`<line x1="255" y1="${GY-40}" x2="255" y2="${GY-54}" stroke="${SPRING}" stroke-width="2"/>`;
+    o+=`<path d="M255,${GY-54} Q247,${GY-66} 241,${GY-62}" fill="none" stroke="${SPRING}" stroke-width="1.5"/>`;
+    o+=`<path d="M255,${GY-50} Q264,${GY-62} 269,${GY-57}" fill="none" stroke="${SPRING}" stroke-width="1.5"/>`;
+    o+=`<text x="255" y="${GY-84}" text-anchor="middle" font-size="7" fill="${SPRING}" font-family="var(--mono)">AI·新能源</text>`;
+    o+=`<text x="255" y="${GY-74}" text-anchor="middle" font-size="6.5" fill="${SPRING}" font-family="var(--mono)">种子孕育中</text>`;
+    o+=`<text x="30" y="280" font-size="6.5" fill="${WINTER}" font-family="var(--mono)">冬天≠终点·下一轮春天的种子，正在这里</text>`;
+  }
+  // Right panel: features
+  const rx=355, ry=12;
+  o+=`<text x="${rx}" y="${ry+15}" font-size="8" fill="${c}" font-weight="bold" font-family="var(--mono)">阶段特征</text>`;
+  s.feats.forEach((f,i)=>{
+    o+=`<rect x="${rx}" y="${ry+24+i*26}" width="4" height="4" rx="1" fill="${c}" opacity=".7"/>`;
+    o+=`<text x="${rx+10}" y="${ry+33+i*26}" font-size="8.5" fill="${MID}" font-family="'Noto Serif SC',serif">${f}</text>`;
+  });
+  // Event box
+  o+=`<rect x="${rx}" y="190" width="298" height="46" rx="3" fill="${c}" opacity=".1" stroke="${c}" stroke-width=".8"/>`;
+  o+=`<text x="${rx+8}" y="204" font-size="6.5" fill="${c}" font-family="var(--mono)">标志事件</text>`;
+  o+=`<text x="${rx+8}" y="218" font-size="8" fill="${INK}" font-family="var(--mono)" font-weight="bold">${s.event}</text>`;
+  o+=`<text x="${rx+8}" y="230" font-size="6.5" fill="${DIM}" font-family="var(--mono)">${s.note}</text>`;
+  o+=`<text x="${rx}" y="252" font-size="7.5" fill="${c}" font-family="var(--mono)">策略关键词：<tspan font-weight="bold">${s.action}</tspan></text>`;
+  // Step dots
+  SEASONS.forEach((_,i)=>{
+    const cx=290+i*28,cy=298;
+    o+=`<circle cx="${cx}" cy="${cy}" r="${i===seasonStep?5:3}" fill="${i===seasonStep?SEASONS[i].c:'#ddd'}"/>`;
+  });
+  document.getElementById('seasonSvg').innerHTML=o;
+  document.getElementById('seasonCap').innerHTML=s.cap;
+  document.getElementById('sStep').textContent=`${seasonStep+1}/4 · ${s.name}`;
+  document.getElementById('sPrev').classList.toggle('dim',seasonStep<=0);
+  document.getElementById('sNext').classList.toggle('dim',seasonStep>=3);
+}
+function seasonNav(d){const n=seasonStep+d;if(n>=0&&n<4){seasonStep=n;renderSeason();}}
+
+// ══════════════════════════════════════════════════════
+// SECTION 3b: 年份争议对比图
+// ══════════════════════════════════════════════════════
+let disputeMode=0;
+
+// 三位学者的分期方案（每波：[起, 止]）
+// 来源：康德拉季耶夫原著、熊彼特Business Cycles(1939)、Nefiodow(2000)
+const DISPUTE_SCHOLARS=[
+  {
+    name:'康德拉季耶夫', year:'1925',
+    src:'《经济生活中的长波》—— 原始统计研究，基于英法美德价格/利率/贸易数据',
+    c:'#7a6248',
+    waves:[
+      {n:'第一波',s:1789,e:1849,note:'25年升·35年降'},
+      {n:'第二波',s:1849,e:1896,note:'24年升·23年降'},
+      {n:'第三波',s:1896,e:null,note:'1920年后下降中（未完成）'},
+    ],
+    comment:'康德拉季耶夫只研究到1920年，仅识别了两个半完整长波。后续各波都是他人推算延伸，并非原著内容。',
+  },
+  {
+    name:'熊彼特', year:'1939',
+    src:'《商业周期》—— 用技术创新（"创造性破坏"）解释长波成因',
+    c:'#5e507e',
+    waves:[
+      {n:'第一波',s:1787,e:1842,note:'工业革命·蒸汽机'},
+      {n:'第二波',s:1842,e:1897,note:'铁路·钢铁'},
+      {n:'第三波',s:1897,e:1950,note:'电气化·汽车·化学'},
+      {n:'第四波',s:1950,e:null,note:'（推断）电子·信息技术'},
+    ],
+    comment:'熊彼特将长波起源归结为技术革命，每波对应一次主导创新的传播周期。他的分期与康德拉季耶夫接近，但成因解释完全不同。',
+  },
+  {
+    name:'Nefiodow', year:'2000',
+    src:'《第六次康德拉季耶夫》—— 认为第五波在2000年已结束，第六波已开始',
+    c:'#3d7a5e',
+    waves:[
+      {n:'第一波',s:1800,e:1850,note:'纺织·蒸汽'},
+      {n:'第二波',s:1850,e:1900,note:'铁路·钢铁'},
+      {n:'第三波',s:1900,e:1950,note:'电气·化工'},
+      {n:'第四波',s:1950,e:1990,note:'石化·汽车·大众消费'},
+      {n:'第五波',s:1990,e:2003,note:'信息技术'},
+      {n:'第六波',s:2003,e:null,note:'（推断）生物技术·心理健康'},
+    ],
+    comment:'Nefiodow认为第五康波已于2000~2003年结束，我们实际上正处于第六康波初期，下一轮驱动力是生物技术与"心理健康经济"。这与周金涛的框架差异极大。',
+  },
+];
+
+function buildDisputeTabs(){
+  const el=document.getElementById('disputeTabs');
+  if(!el||el.children.length) return;
+  DISPUTE_SCHOLARS.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.className='tab'+(i===0?' active':'');
+    b.style.cssText=`color:${s.c};border-color:${s.c}`;
+    b.textContent=`${s.name}（${s.year}）`;
+    b.onclick=()=>{
+      disputeMode=i;
+      document.querySelectorAll('#disputeTabs .tab').forEach((tb,j)=>{
+        tb.classList.toggle('active',j===i);
+      });
+      renderDispute();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderDispute(){
+  const sc=DISPUTE_SCHOLARS[disputeMode], c=sc.c;
+  const L=22, R=658, T=18, B=210, W=R-L;
+  const x0=1780, x1=2050;
+  const xOf=yr=>L+(yr-x0)/(x1-x0)*W;
+
+  let o='';
+  o+=`<rect x="0" y="0" width="680" height="270" fill="#faf9f6"/>`;
+
+  // ── 时间轴底线 ──
+  o+=`<line x1="${L}" y1="${B}" x2="${R}" y2="${B}" stroke="${FAINT}" stroke-width="1"/>`;
+  [1800,1850,1900,1950,2000,2050].forEach(yr=>{
+    const x=xOf(yr);
+    o+=`<line x1="${x}" y1="${B}" x2="${x}" y2="${B+5}" stroke="${DIM}" stroke-width="1"/>`;
+    o+=`<text x="${x}" y="${B+16}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${yr}</text>`;
+  });
+
+  // ── 灰色对比底（显示其他两个学者的分期，半透明） ──
+  DISPUTE_SCHOLARS.forEach((other,oi)=>{
+    if(oi===disputeMode) return;
+    other.waves.forEach((w,wi)=>{
+      const xs=xOf(w.s);
+      const xe=w.e ? xOf(w.e) : xOf(2040);
+      const rowY=T+wi*32;
+      o+=`<rect x="${xs}" y="${rowY}" width="${xe-xs}" height="18" rx="2" fill="${other.c}" opacity=".07"/>`;
+    });
+  });
+
+  // ── 主学者的波段 (当前选中) ──
+  sc.waves.forEach((w,wi)=>{
+    const xs=xOf(w.s);
+    const xe=w.e ? xOf(w.e) : xOf(2038);
+    const isDash=!w.e;
+    const rowY=T+wi*32;
+    const midX=(xs+xe)/2;
+
+    // 色块
+    o+=`<rect x="${xs}" y="${rowY}" width="${xe-xs}" height="20" rx="2" fill="${c}" opacity=".18" stroke="${c}" stroke-width="${isDash?.6:1}" stroke-dasharray="${isDash?'4,3':'none'}"/>`;
+
+    // 波名（左端）
+    o+=`<text x="${xs+5}" y="${rowY+13}" font-size="7.5" fill="${c}" font-family="var(--mono)" font-weight="bold">${w.n}</text>`;
+
+    // 起止年（端点）
+    o+=`<text x="${xs}" y="${rowY-3}" text-anchor="middle" font-size="6.5" fill="${c}" font-family="var(--mono)">${w.s}</text>`;
+    if(w.e) o+=`<text x="${xe}" y="${rowY-3}" text-anchor="middle" font-size="6.5" fill="${c}" font-family="var(--mono)">${w.e}</text>`;
+    else o+=`<text x="${xe+6}" y="${rowY+13}" font-size="6.5" fill="${c}" font-family="var(--mono)" opacity=".6">?</text>`;
+
+    // 注释（右端 or 中段）
+    const noteX=Math.min(xe-5, xOf(2045));
+    o+=`<text x="${noteX}" y="${rowY+13}" text-anchor="end" font-size="6.5" fill="${DIM}" font-family="var(--mono)">${w.note}</text>`;
+  });
+
+  // ── 争议区（高亮两个学者差异最大的地方）──
+  // 第三~五波的起点差异是最显著的，用一个竖向的"争议带"标注
+  if(disputeMode>0){
+    // 第三波起点：熊彼特1897 vs Nefiodow1900 vs 康1896 → 约±10年
+    const disputeZones=[
+      {s:1890,e:1910,lbl:'分期争议区\n±10~15年'},
+      {s:1940,e:1960,lbl:'分期争议区\n±10年'},
+    ];
+    disputeZones.forEach(z=>{
+      o+=`<rect x="${xOf(z.s)}" y="${T}" width="${xOf(z.e)-xOf(z.s)}" height="${B-T}" fill="${OLD}" opacity=".04"/>`;
+      o+=`<line x1="${xOf(z.s)}" y1="${T}" x2="${xOf(z.s)}" y2="${B}" stroke="${OLD}" stroke-width=".8" stroke-dasharray="2,3" opacity=".4"/>`;
+      o+=`<line x1="${xOf(z.e)}" y1="${T}" x2="${xOf(z.e)}" y2="${B}" stroke="${OLD}" stroke-width=".8" stroke-dasharray="2,3" opacity=".4"/>`;
+      const lblX=(xOf(z.s)+xOf(z.e))/2;
+      o+=`<text x="${lblX}" y="${B-8}" text-anchor="middle" font-size="6" fill="${OLD}" font-family="var(--mono)" opacity=".7">争议带</text>`;
+    });
+  }
+
+  // ── "现在"标记 ──
+  const nowX=xOf(2025);
+  o+=`<line x1="${nowX}" y1="${T}" x2="${nowX}" y2="${B}" stroke="${OLD}" stroke-width="1.2" stroke-dasharray="3,3"/>`;
+  o+=`<text x="${nowX+3}" y="${T+10}" font-size="7" fill="${OLD}" font-family="var(--mono)">▲ 现在</text>`;
+
+  // ── 来源 ──
+  o+=`<text x="${L}" y="${B+30}" font-size="6.5" fill="${DIM}" font-family="var(--mono)">来源：${sc.src}</text>`;
+
+  document.getElementById('disputeSvg').innerHTML=o;
+  document.getElementById('disputeCap').innerHTML=
+    `<strong style="color:${c}">${sc.name}（${sc.year}）</strong>：${sc.comment}`;
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 3: 五次康波 (展开式卡片)
+// ══════════════════════════════════════════════════════
+let wavesSel=-1;
+const WAVES=[
+  {n:'第一康波',era:'1780~1840',c:'#7a6248',tech:'蒸汽机·纺织业',country:'英国主导',event:'1769·瓦特蒸汽机改良',seed:'铁路·钢铁',detail:'纺织工厂取代手工作坊，蒸汽动力船横渡大西洋。英国成为世界第一工业国，制造业产能在一代人内翻了5倍。萧条期内，铁路技术悄悄成熟，等待下一轮爆发。'},
+  {n:'第二康波',era:'1840~1895',c:'#5e507e',tech:'铁路·钢铁',country:'英/美/德',event:'1869·太平洋铁路竣工',seed:'电气化·汽车',detail:'铁路把整个大陆连成一个市场，钢铁产量成为国力的度量尺。美国在这轮康波中完成工业化，并在萧条期内让爱迪生建成了电网。'},
+  {n:'第三康波',era:'1895~1945',c:'#3d7a5e',tech:'电气化·汽车',country:'美国主导',event:'1913·福特T型车流水线',seed:'石化·航空·核能',detail:'电力、电话、汽车彻底改变城市生活方式。福特T型车年产100万辆，中产阶级首次大规模出现。两次世界大战加速了第四波技术的成熟。'},
+  {n:'第四康波',era:'1945~1980',c:'#7a5040',tech:'石化·航空·核能',country:'美国主导',event:'1973·石油危机',seed:'信息技术·互联网',detail:'战后重建带来20年黄金增长，美国GDP一度占全球50%。1973年石油危机是这轮康波萧条的序章——同期，ARPANET（互联网前身）在实验室里悄悄运行。'},
+  {n:'第五康波',era:'1980~约2040',c:WINTER,tech:'信息技术·互联网',country:'美国/中国',event:'2025·AI基础设施投资潮',seed:'AI·新能源·生物技术',detail:'我们正在这里。互联网重塑了一切，中国制造接入全球供应链，创造了人类史上最快的减贫奇迹。第五康波的候选接班人：AI、新能源或生物技术，正在这个冬天被测试。'},
+];
+
+function drawWIcon(x,y,tech,c,big){
+  let s='';
+  const k=tech.split('·')[0];
+  const r=big?16:10;
+  if(k==='蒸汽机'){
+    s+=`<rect x="${x-r}" y="${y-r*.6}" width="${r*2}" height="${r*1.2}" rx="2" fill="${c}" opacity=".2" stroke="${c}" stroke-width="${big?1.5:.8}"/>`;
+    s+=`<rect x="${x+r*.4}" y="${y-r*1.4}" width="${r*.5}" height="${r*.9}" rx="1" fill="${c}" opacity=".25"/>`;
+    s+=`<circle cx="${x-r*.6}" cy="${y+r*.6}" r="${r*.35}" fill="${c}" opacity=".3" stroke="${c}" stroke-width="${big?1:.6}"/>`;
+    s+=`<circle cx="${x+r*.6}" cy="${y+r*.6}" r="${r*.35}" fill="${c}" opacity=".3" stroke="${c}" stroke-width="${big?1:.6}"/>`;
+  } else if(k==='铁路'){
+    const len=r*1.4;
+    s+=`<line x1="${x-len}" y1="${y}" x2="${x+len}" y2="${y}" stroke="${c}" stroke-width="${big?2:1.2}" opacity=".6"/>`;
+    s+=`<line x1="${x-len}" y1="${y-r*.7}" x2="${x+len}" y2="${y-r*.7}" stroke="${c}" stroke-width="${big?2:1.2}" opacity=".6"/>`;
+    [-len*.7,-len*.2,len*.2,len*.7].forEach(d=>{s+=`<line x1="${x+d}" y1="${y-r*.7}" x2="${x+d}" y2="${y}" stroke="${c}" stroke-width="1" opacity=".4"/>`;});
+  } else if(k==='电气化'){
+    s+=`<path d="M${x},${y-r*1.2} L${x-r*.5},${y+r*.1} L${x+r*.2},${y+r*.1} L${x-r*.2},${y+r*1.2} L${x+r*.6},${y-r*.3} L${x-r*.1},${y-r*.3} Z" fill="${c}" opacity=".25" stroke="${c}" stroke-width="${big?1.5:.8}"/>`;
+  } else if(k==='石化'){
+    s+=`<rect x="${x-r*.3}" y="${y-r*1.3}" width="${r*.6}" height="${r*1.3}" rx="1" fill="${c}" opacity=".2" stroke="${c}" stroke-width="${big?1.5:.8}"/>`;
+    s+=`<path d="M${x-r},${y} L${x-r*.3},${y} L${x-r*.3},${y+r*.8} L${x+r*.3},${y+r*.8} L${x+r*.3},${y} L${x+r},${y}" fill="none" stroke="${c}" stroke-width="${big?1.5:1}" opacity=".5"/>`;
+  } else {
+    // 信息技术
+    s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" opacity=".12" stroke="${c}" stroke-width="${big?1.5:.8}"/>`;
+    s+=`<circle cx="${x}" cy="${y}" r="${r*.4}" fill="${c}" opacity=".2"/>`;
+    if(big)[0,60,120,180,240,300].forEach(a=>{
+      const rx2=x+r*Math.cos(a*Math.PI/180), ry=y+r*Math.sin(a*Math.PI/180);
+      s+=`<line x1="${x}" y1="${y}" x2="${rx2}" y2="${ry}" stroke="${c}" stroke-width=".8" opacity=".35"/>`;
+      s+=`<circle cx="${rx2}" cy="${ry}" r="2" fill="${c}" opacity=".4"/>`;
+    });
+  }
+  if(big) s+=`<text x="${x}" y="${y+r*1.8}" text-anchor="middle" font-size="7" fill="${c}" font-family="var(--mono)">${tech}</text>`;
+  return s;
+}
+
+function renderWaves(){
+  const sel=wavesSel;
+  let o='';
+  o+=`<rect x="0" y="0" width="680" height="430" fill="#faf9f6"/>`;
+  if(sel<0){
+    // Overview
+    const cw=118,gap=9,sx=15;
+    WAVES.forEach((w,i)=>{
+      const cx=sx+i*(cw+gap);
+      o+=`<g style="cursor:pointer" onclick="wavesSel=${i};renderWaves()">`;
+      o+=`<rect x="${cx}" y="25" width="${cw}" height="185" rx="5" fill="${w.c}" opacity=".09" stroke="${w.c}" stroke-width="1"/>`;
+      o+=`<text x="${cx+cw/2}" y="46" text-anchor="middle" font-size="8.5" fill="${w.c}" font-weight="bold" font-family="var(--mono)">${w.n}</text>`;
+      o+=`<text x="${cx+cw/2}" y="58" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">${w.era}</text>`;
+      o+=drawWIcon(cx+cw/2,118,w.tech,w.c,false);
+      o+=`<text x="${cx+cw/2}" y="162" text-anchor="middle" font-size="7" fill="${w.c}" font-family="var(--mono)">${w.tech.split('·')[0]}</text>`;
+      o+=`<text x="${cx+cw/2}" y="174" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">${w.country}</text>`;
+      o+=`<text x="${cx+cw/2}" y="202" text-anchor="middle" font-size="6.5" fill="${w.c}" opacity=".5" font-family="var(--mono)">展开 →</text>`;
+      o+=`</g>`;
+    });
+    // Bottom wave
+    o+=`<text x="340" y="258" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">五次康波 · 工业革命以来的历史节律</text>`;
+    let wp='';
+    for(let px=20;px<=660;px++){
+      const t=(px-20)/640;
+      const y=360-Math.sin(t*Math.PI*5)*55+Math.sin(t*Math.PI*10)*18;
+      wp+=(px===20?'M':'L')+px+','+y;
+    }
+    o+=`<path d="${wp}" fill="none" stroke="${FAINT}" stroke-width="1.5"/>`;
+    WAVES.forEach((w,i)=>{
+      const px=20+i*128+64;
+      const t=(px-20)/640;
+      const py=360-Math.sin(t*Math.PI*5)*55+Math.sin(t*Math.PI*10)*18;
+      o+=`<circle cx="${px}" cy="${py}" r="4" fill="${w.c}" opacity=".6"/>`;
+      o+=`<text x="${px}" y="${py-10}" text-anchor="middle" font-size="6.5" fill="${w.c}" font-family="var(--mono)">${w.era.split('~')[0]}</text>`;
+    });
+    // Now marker
+    const nowPx=20+4.7*128;
+    const nowT=(nowPx-20)/640;
+    const nowY=360-Math.sin(nowT*Math.PI*5)*55+Math.sin(nowT*Math.PI*10)*18;
+    o+=`<line x1="${nowPx}" y1="${nowY-40}" x2="${nowPx}" y2="${nowY}" stroke="${OLD}" stroke-width="1.5" stroke-dasharray="3,3"/>`;
+    o+=`<text x="${nowPx+4}" y="${nowY-30}" font-size="7" fill="${OLD}" font-family="var(--mono)">▲现在</text>`;
+    document.getElementById('wavesCap').innerHTML='点击任意一次康波，展开详细信息';
+  } else {
+    const w=WAVES[sel],c=w.c;
+    o+=`<rect x="15" y="10" width="650" height="370" rx="6" fill="${c}" opacity=".07" stroke="${c}" stroke-width="1.5"/>`;
+    o+=`<text x="45" y="38" font-size="12" fill="${c}" font-weight="bold" font-family="var(--mono)">${w.n}</text>`;
+    o+=`<text x="45" y="52" font-size="7.5" fill="${DIM}" font-family="var(--mono)">${w.era} · ${w.country}</text>`;
+    o+=drawWIcon(155,125,w.tech,c,true);
+    o+=`<rect x="45" y="72" width="215" height="38" rx="3" fill="${c}" opacity=".12"/>`;
+    o+=`<text x="55" y="86" font-size="6.5" fill="${c}" font-family="var(--mono)">标志事件</text>`;
+    o+=`<text x="55" y="102" font-size="8.5" fill="${INK}" font-family="var(--mono)" font-weight="bold">${w.event}</text>`;
+    // Detail text (split into ~22 char lines)
+    const dt=w.detail;
+    for(let i=0;i*22<dt.length;i++){
+      o+=`<text x="45" y="${200+i*20}" font-size="8.5" fill="${MID}" font-family="'Noto Serif SC',serif">${dt.substring(i*22,(i+1)*22)}</text>`;
+    }
+    // Seed box
+    o+=`<rect x="330" y="72" width="300" height="80" rx="3" fill="${c}" opacity=".1"/>`;
+    o+=`<text x="340" y="87" font-size="6.5" fill="${c}" font-family="var(--mono)">萧条期孕育的下一轮引擎</text>`;
+    o+=`<text x="340" y="104" font-size="9.5" fill="${INK}" font-family="var(--mono)" font-weight="bold">${w.seed}</text>`;
+    o+=`<text x="340" y="120" font-size="7" fill="${DIM}" font-family="var(--mono)">→ 在冬天悄悄成熟</text>`;
+    o+=`<text x="340" y="138" font-size="7" fill="${DIM}" font-family="var(--mono)">→ 在下一轮春天爆发</text>`;
+    // Position on timeline
+    o+=`<text x="330" y="200" font-size="7" fill="${DIM}" font-family="var(--mono)">在五次康波中的位置</text>`;
+    o+=`<line x1="330" y1="210" x2="628" y2="210" stroke="${FAINT}" stroke-width="1"/>`;
+    WAVES.forEach((ww,i)=>{const px=330+i*60+15;o+=`<circle cx="${px}" cy="210" r="${i===sel?6:3}" fill="${i===sel?c:FAINT}"/>`;o+=`<text x="${px}" y="225" text-anchor="middle" font-size="6" fill="${i===sel?c:FAINT}" font-family="var(--mono)">${ww.era.split('~')[0]}</text>`;});
+    // Mini cards for others
+    let oi=0;
+    WAVES.forEach((ww,i)=>{
+      if(i===sel)return;
+      const mx=330+(oi%2)*155,my=235+(Math.floor(oi/2))*38;
+      o+=`<g style="cursor:pointer;opacity:.32" onclick="wavesSel=${i};renderWaves()">`;
+      o+=`<rect x="${mx}" y="${my}" width="140" height="28" rx="3" stroke="${ww.c}" stroke-width=".8" fill="none"/>`;
+      o+=`<text x="${mx+7}" y="${my+12}" font-size="7" fill="${ww.c}" font-family="var(--mono)">${ww.n}</text>`;
+      o+=`<text x="${mx+7}" y="${my+23}" font-size="6" fill="${DIM}" font-family="var(--mono)">${ww.era}</text>`;
+      o+=`</g>`; oi++;
+    });
+    // Back
+    o+=`<g style="cursor:pointer" onclick="wavesSel=-1;renderWaves()">`;
+    o+=`<rect x="25" y="358" width="90" height="22" rx="3" fill="none" stroke="${FAINT}" stroke-width="1"/>`;
+    o+=`<text x="70" y="373" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">← 返回总览</text>`;
+    o+=`</g>`;
+    document.getElementById('wavesCap').innerHTML=`<strong style="color:${c}">${w.n}（${w.era}）</strong>：${w.detail.substring(0,60)}...`;
+  }
+  document.getElementById('wavesSvg').innerHTML=o;
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 4: 嵌套周期图示
+// ══════════════════════════════════════════════════════
+function renderNested(){
+  let o='';
+  o+=`<rect x="0" y="0" width="600" height="270" fill="#faf9f6"/>`;
+  const L=55,R=555,T=15,B=235,mid=Math.round((T+B)/2)+12,W=R-L;
+  // X axis
+  o+=`<line x1="${L}" y1="${B}" x2="${R}" y2="${B}" stroke="${FAINT}" stroke-width="1"/>`;
+  [0,10,20,30,40,50,60].forEach(yr=>{
+    const x=L+(yr/60)*W;
+    o+=`<line x1="${x}" y1="${B}" x2="${x}" y2="${B+4}" stroke="${DIM}" stroke-width="1"/>`;
+    o+=`<text x="${x}" y="${B+14}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${yr}yr</text>`;
+  });
+  const cycles=[
+    {p:3,amp:12,c:SPRING,lbl:'基钦 · 3年（库存）'},
+    {p:9,amp:26,c:SUMMER,lbl:'朱格拉 · 9年（设备投资）'},
+    {p:20,amp:46,c:AUTUMN,lbl:'库兹涅茨 · 20年（房地产）'},
+    {p:60,amp:72,c:WINTER,lbl:'康波 · 60年（技术革命）'},
+  ];
+  cycles.forEach((cy,i)=>{
+    let d='';
+    for(let px=L;px<=R;px++){
+      const t=(px-L)/W*60;
+      const y=mid-Math.sin(t/cy.p*Math.PI*2)*cy.amp;
+      d+=(px===L?'M':'L')+px+','+y;
+    }
+    o+=`<path d="${d}" fill="none" stroke="${cy.c}" stroke-width="${cy.p<5?1:cy.p<15?1.5:cy.p<30?2:2.5}" opacity="${cy.p<5?.5:.68}"/>`;
+    o+=`<text x="${L+4}" y="${T+14+i*12}" font-size="7" fill="${cy.c}" font-family="var(--mono)">${cy.lbl}</text>`;
+  });
+  // Resonance markers
+  const mark=(yr,label,label2,c)=>{
+    const x=L+(yr/60)*W;
+    o+=`<line x1="${x}" y1="${T+60}" x2="${x}" y2="${B}" stroke="${c}" stroke-width="1.5" stroke-dasharray="3,3"/>`;
+    o+=`<text x="${x+3}" y="${T+68}" font-size="6.5" fill="${c}" font-family="var(--mono)">${label}</text>`;
+    if(label2) o+=`<text x="${x+3}" y="${T+80}" font-size="6.5" fill="${c}" font-family="var(--mono)">${label2}</text>`;
+  };
+  mark(28,'2008·三周期低点','金融危机·买点',OLD);
+  mark(39,'2019·三周期共振','周金涛·第二次机会',AUTUMN);
+  mark(50,'~2030·预测','第三次机会窗口',NEW);
+  document.getElementById('nestedSvg').innerHTML=o;
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 5: 两种人生对比 (透镜切换)
+// ══════════════════════════════════════════════════════
+let lifeMode=0;
+function buildLifeTabs(){
+  const el=document.getElementById('lifeTabs');
+  [{l:'不懂康波：随波漂流',c:OLD},{l:'懂康波：借力而行',c:NEW}].forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='tab'+(i===0?' active':'');
+    b.style.cssText=`color:${t.c};border-color:${t.c}`;
+    b.textContent=t.l;
+    b.onclick=()=>{
+      lifeMode=i;
+      document.querySelectorAll('#lifeTabs .tab').forEach((tb,j)=>{
+        tb.classList.toggle('active',j===i);
+        if(j!==i) tb.style.cssText=`color:${j===0?OLD:NEW};border-color:${j===0?OLD:NEW}`;
+        else tb.style.cssText='';
+      });
+      renderLife();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderLife(){
+  const aware=lifeMode===1, c=aware?NEW:OLD;
+  let o='';
+  o+=`<rect x="0" y="0" width="680" height="290" fill="#faf9f6"/>`;
+  o+=`<text x="20" y="22" font-size="8" fill="${c}" font-family="var(--mono)">${aware?'1975年出生 · 懂康波的人 · 经济生活30年':'1975年出生 · 不懂康波的人 · 经济生活30年'}</text>`;
+  // Timeline setup
+  const L=28,R=650,TY=45,B=135;
+  const xOf=yr=>L+(yr-1975)/65*(R-L);
+  // Background Kondratiev wave (visual context)
+  let kp='';
+  for(let yr=1975;yr<=2040;yr++){
+    const t=(yr-1975)/65;
+    const y=90+Math.sin((t-.15)*Math.PI*1.8)*38;
+    kp+=(yr===1975?'M':'L')+xOf(yr)+','+y;
+  }
+  o+=`<path d="${kp}" fill="none" stroke="${WINTER}" stroke-width="1" opacity=".18"/>`;
+  // Axis
+  o+=`<line x1="${L}" y1="${B+10}" x2="${R}" y2="${B+10}" stroke="${FAINT}" stroke-width="1"/>`;
+  [1975,1985,1995,2005,2015,2025,2035].forEach(yr=>{
+    const x=xOf(yr);
+    o+=`<line x1="${x}" y1="${B+8}" x2="${x}" y2="${B+14}" stroke="${DIM}" stroke-width="1"/>`;
+    o+=`<text x="${x}" y="${B+24}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${yr}</text>`;
+  });
+  // Opportunity markers (always shown)
+  [{yr:2008,lbl:'2008·买点'},{yr:2019,lbl:'2019·机会'},{yr:2030,lbl:'~2030·预测'}].forEach(op=>{
+    const x=xOf(op.yr);
+    const isdash=op.yr>2025;
+    o+=`<circle cx="${x}" cy="${B+10}" r="5" fill="${NEW}" opacity="${isdash?.3:.5}"/>`;
+    o+=`<text x="${x}" y="${B+35}" text-anchor="middle" font-size="6.5" fill="${NEW}" font-family="var(--mono)" opacity="${isdash?.5:1}">${op.lbl}</text>`;
+  });
+  // Person path
+  const pY=B-22;
+  if(!aware){
+    // Unaware: work hard, buy at peak, miss lows
+    o+=`<line x1="${xOf(1995)}" y1="${pY}" x2="${xOf(2006)}" y2="${pY}" stroke="${OLD}" stroke-width="1" opacity=".5"/>`;
+    o+=P(xOf(1996),pY,90,OLD,.6,.75);
+    o+=`<text x="${xOf(1996)}" y="${pY-14}" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">努力工作</text>`;
+    // Buy at 2007 peak
+    o+=P(xOf(2007),pY-5,90,OLD,1,.85);
+    o+=`<rect x="${xOf(2007)-20}" y="${pY-28}" width="40" height="18" rx="2" fill="${OLD}" opacity=".12" stroke="${OLD}" stroke-width=".8"/>`;
+    o+=`<text x="${xOf(2007)}" y="${pY-15}" text-anchor="middle" font-size="6" fill="${OLD}" font-family="var(--mono)">2007高位买房</text>`;
+    // 2008 loss
+    o+=P(xOf(2009),pY+15,60,OLD,.85,.8);
+    o+=`<text x="${xOf(2009)}" y="${pY+35}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">2008亏损</text>`;
+    // Miss 2019
+    o+=P(xOf(2019),pY,90,DIM,.45,.7);
+    o+=`<text x="${xOf(2019)}" y="${pY-14}" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">错过2019</text>`;
+    // Still working 2030
+    o+=P(xOf(2030),pY,90,OLD,.4,.7);
+    o+=`<text x="${xOf(2030)}" y="${pY-14}" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">仍在奋斗</text>`;
+    o+=`<text x="340" y="${pY+75}" text-anchor="middle" font-size="9" fill="${OLD}" font-family="var(--mono)" font-weight="bold">∎ 同样努力30年 → 财富仅跑赢通胀</text>`;
+  } else {
+    // Aware: accumulate at lows
+    o+=`<line x1="${xOf(1995)}" y1="${pY}" x2="${xOf(2007)}" y2="${pY}" stroke="${NEW}" stroke-width="1" opacity=".45"/>`;
+    o+=P(xOf(1997),pY,90,NEW,.65,.75);
+    o+=`<text x="${xOf(1997)}" y="${pY-14}" text-anchor="middle" font-size="6.5" fill="${DIM}" font-family="var(--mono)">积累现金</text>`;
+    // Buy 2008 low
+    o+=P(xOf(2008),pY-5,90,NEW,1,.9);
+    o+=`<rect x="${xOf(2008)-22}" y="${pY-30}" width="44" height="18" rx="2" fill="${NEW}" opacity=".12" stroke="${NEW}" stroke-width=".8"/>`;
+    o+=`<text x="${xOf(2008)}" y="${pY-17}" text-anchor="middle" font-size="6" fill="${NEW}" font-family="var(--mono)">2008低点买入</text>`;
+    // Growth
+    o+=`<path d="M${xOf(2009)},${pY-8} C${xOf(2012)},${pY-22} ${xOf(2015)},${pY-18} ${xOf(2018)},${pY-14}" fill="none" stroke="${NEW}" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>`;
+    o+=`<text x="${xOf(2013)}" y="${pY-28}" text-anchor="middle" font-size="6.5" fill="${NEW}" font-family="var(--mono)">资产增值 3~5×</text>`;
+    // 2019 opportunity
+    o+=P(xOf(2019),pY-10,90,NEW,1,.9);
+    o+=`<rect x="${xOf(2019)-22}" y="${pY-34}" width="44" height="18" rx="2" fill="${NEW}" opacity=".12" stroke="${NEW}" stroke-width=".8"/>`;
+    o+=`<text x="${xOf(2019)}" y="${pY-21}" text-anchor="middle" font-size="6" fill="${NEW}" font-family="var(--mono)">2019黄金+权益</text>`;
+    // Ready for 2030
+    o+=P(xOf(2028),pY-15,45,NEW,.9,.85);
+    o+=`<text x="${xOf(2028)}" y="${pY-30}" text-anchor="middle" font-size="6.5" fill="${NEW}" font-family="var(--mono)">2030准备就绪</text>`;
+    o+=`<text x="340" y="${pY+75}" text-anchor="middle" font-size="9" fill="${NEW}" font-family="var(--mono)" font-weight="bold">✦ 把握两次低点 → 财富差距10倍以上</text>`;
+  }
+  document.getElementById('lifeSvg').innerHTML=o;
+  document.getElementById('lifeCap').innerHTML=aware
+    ?`<strong style="color:${NEW}">懂康波</strong>：在2008年和2019年的周期低点买入优质资产。关键不是天才，是在所有人恐慌时保留了现金流和行动力，做了逆人群的事。`
+    :`<strong style="color:${OLD}">不懂康波</strong>：在2007年高峰买入，2008年亏损，2019年机会来临时却因流动性紧张无法行动。同样努力，不同位置。`;
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 6: 个人校准 滑块
+// ══════════════════════════════════════════════════════
+function updateAge(v){
+  v=+v;
+  document.getElementById('ageVal').textContent=v;
+  const CY=2025, born=CY-v;
+  const pS=born+25, pE=born+55;
+  const L=80; // 寿命跨度（0~80岁）
+  const lifeEnd=born+L;
+
+  // 计算某一康波阶段 [a, b] 与此人生命 [born, lifeEnd] 的重叠年数 → 占寿命的 %
+  const ovlp=(a,b)=>Math.max(0,(Math.min(b,lifeEnd)-Math.max(a,born))/L*100).toFixed(2)+'%';
+
+  // 各阶段：[起始年, 结束年, 颜色, 透明度, 标题]
+  const phases=[
+    [0,       1991, '#e4e0d8', 1,   '出生前历史'],
+    [1991,    2004, SPRING,   .55, '春·回升 1991-2004'],
+    [2004,    2008, SUMMER,   .55, '夏·繁荣 2004-2008'],
+    [2008,    2021, AUTUMN,   .55, '秋·衰退 2008-2021'],
+    [2021,    2045, WINTER,   .55, '冬·萧条 2021-2045'],
+    [2045,    2060, SPRING,   .3,  '春·第六康波（预测）'],
+    [2060,    lifeEnd, '#e4e0d8', .5, '未来'],
+  ];
+
+  document.getElementById('lifeBar').innerHTML=phases
+    .map(([a,b,color,op,title])=>{
+      const w=ovlp(a,b);
+      if(parseFloat(w)===0) return '';
+      return `<div class="life-seg" style="width:${w};background:${color};opacity:${op};" title="${title}"></div>`;
+    }).join('');
+
+  document.getElementById('ageMarker').style.left=(v/L*100).toFixed(2)+'%';
+
+  // 判断当前所处的康波阶段
+  const nowPhase=CY<2004?'春':CY<2008?'夏':CY<2021?'秋':'冬';
+
+  let txt='';
+  if(v<=25){
+    const inSpring=pS>=2045; // 黄金期开始时是否在第六康波春天
+    txt=`你出生于 <strong>${born} 年</strong>，黄金奋斗期约从 <strong>${pS}</strong> 延伸至 <strong>${pE} 年</strong>。<br>`
+      +(pS>=2045
+        ?`你的黄金期完整落在<strong>第六康波春夏</strong>——历史上最有利的入场时间窗口。现在最重要的投资是<strong>技能与认知</strong>。`
+        :`你的黄金期横跨当前冬天与第六康波春天。<strong>在冬天积累，在春天出击</strong>——现在最重要的投资是技能与认知。`);
+  } else if(v<=35){
+    txt=`你出生于 <strong>${born} 年</strong>，黄金期从现在延伸到约 <strong>${pE} 年</strong>。<br>`
+      +`你的职业生涯足够长，有望完整经历当前冬天转型与下一轮春天爆发。策略：<strong>冬天蛰伏保现金，春天出击卡赛道</strong>。`;
+  } else if(v<=50){
+    const yl=Math.max(0,pE-CY);
+    txt=`你出生于 <strong>${born} 年</strong>，黄金期还有约 <strong>${yl} 年</strong>。<br>`
+      +`需要快速识别下一轮技术浪潮的入口，并在它爆发前完成卡位。时间窗口比年轻人窄，<strong>执行速度比研究深度更关键</strong>。`;
+  } else {
+    txt=`你出生于 <strong>${born} 年</strong>，经历过完整的繁荣与衰退——这是任何课程教不出来的认知资产。<br>`
+      +`最聪明的做法：<strong>保持资产防御性配置</strong>，等待下一轮春天的重估机会，并把经验传递给年轻人。`;
+  }
+  document.getElementById('lifeInsight').innerHTML=txt;
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 7: 行动原则手风琴
+// ══════════════════════════════════════════════════════
+function toggleAcc(id){
+  const item=document.getElementById(id);
+  const body=item.querySelector('.acc-body');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(el=>{
+    el.classList.remove('open');
+    el.querySelector('.acc-body').classList.remove('open');
+  });
+  if(!isOpen){item.classList.add('open');body.classList.add('open');}
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 8: HTML 多步决策流程
+// ══════════════════════════════════════════════════════
+const FT={
+  a:{q:'你目前的工作，是否与AI、能源、生物技术等未来技术高度相关？',opts:[
+    {l:'是，我已在相关领域',k:'a-yes'},
+    {l:'不太相关，但我想转型',k:'a-maybe'},
+    {l:'不相关，想稳稳当当',k:'a-no'}]},
+  b:{q:'你的资产配置中，杠杆比例如何？',opts:[
+    {l:'无杠杆，主要是现金和防御性资产',k:'b-safe'},
+    {l:'有部分杠杆（如房贷）',k:'b-mid'},
+    {l:'高杠杆，有一定风险敞口',k:'b-risk'}]},
+  c:{q:'你的项目目前处于哪个阶段？',opts:[
+    {l:'早期摸索，还未找到商业模式',k:'c-early'},
+    {l:'有一定用户/收入，正在扩张',k:'c-mid'},
+    {l:'已盈利，在寻找下一步',k:'c-mature'}]},
+};
+const FR2={
+  'a-yes':{t:'你在对的赛道——现在要做的是加速',txt:'你已进入下一轮康波最可能的主战场。冬天是积累人脉、打磨技能、深耕专业的最佳时机。不要急于变现，而是成为这个领域最深的那个人——当春天来临时，深度胜过广度。'},
+  'a-maybe':{t:'转型窗口正在打开——但别急跑',txt:'冬天是转型成本最低的时期：课程便宜、竞争者少、雇主愿意接受跨界人才。制定一个18~36个月的技能迁移计划，在副业中建立新领域的信用记录，等春天来临时你已有了积累。'},
+  'a-no':{t:'稳定优先——但别停止进化',txt:'稳定是合理的需求，但完全停止进化是高风险的。每周投入3~5小时学习，保持对新技术的感知能力。同时确保应急储蓄能覆盖12个月开支——冬天最大的风险是流动性危机。'},
+  'b-safe':{t:'防御姿态正确——保持耐心，等待机会',txt:'你的配置在冬天非常健康。接下来要识别在下一轮春天可能爆发的资产类别（早期科技股、新兴市场、某些大宗商品），逐步建立研究仓。不要急于出手，但保持研究的持续性。'},
+  'b-mid':{t:'适度注意杠杆风险',txt:'你的房贷在当前高利率环境下会侵蚀现金流。重点检查月度现金流是否健康，避免新增杠杆。等待利率拐点——那时可能也是置换或再融资的好时机。'},
+  'b-risk':{t:'高杠杆在冬天是系统性风险',txt:'强烈建议在市场还有流动性时主动降低杠杆，哪怕需要承受损失。历史上每次康波冬天最大的伤亡不是来自市场下跌，而是被迫在最低点平仓。保护本金，是赢得下一轮游戏的前提。'},
+  'c-early':{t:'冬天是验证商业模式的好时期',txt:'冬天的用户更挑剔，但也更真实。如果你能在冬天找到愿意付费的核心用户，你的商业模式将非常健壮。压缩烧钱速度，专注寻找那10个真正爱你产品的用户，而不是追求虚假增长。'},
+  'c-mid':{t:'保持增长，警惕过度扩张',txt:'你已度过了最危险的早期阶段。保持健康的现金流，不要为了增长而过度招人或烧钱。找到你的核心差异化，在小市场做深做透，等待宏观环境改善后再规模化扩张。'},
+  'c-mature':{t:'布局你的下一条曲线',txt:'一个成熟业务在冬天会感受到压力。聪明的做法是：用现有业务的现金流，小规模投注可能在下一轮春天爆发的新方向。这不是分散精力，而是为你的下一个十年播种。'},
+};
+let _flowChoice=null;
+function flowGo(step,choice){
+  document.querySelectorAll('.flow-step-html').forEach(s=>s.classList.remove('active'));
+  if(step===0){
+    document.getElementById('fs0').classList.add('active');
+    _flowChoice=null;
+  } else if(step===1){
+    _flowChoice=choice;
+    const br=FT[choice];
+    document.getElementById('fq2').textContent=br.q;
+    document.getElementById('fo2').innerHTML=br.opts.map(o=>`<button class="flow-opt-btn" onclick="flowGo(2,'${o.k}')">${o.l}</button>`).join('');
+    document.getElementById('fs1').classList.add('active');
+  } else {
+    const r=FR2[choice]||{t:'',txt:''};
+    document.getElementById('fres').innerHTML=`<h4>${r.t}</h4><p>${r.txt}</p>`;
+    document.getElementById('fs2').classList.add('active');
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// 初始化
+// ══════════════════════════════════════════════════════
+renderHorizon();
+renderSeason();
+renderWaves();
+buildDisputeTabs();
+renderDispute();
+renderNested();
+buildLifeTabs();
+renderLife();
+updateAge(30);
+</script>
+</body>
+</html>

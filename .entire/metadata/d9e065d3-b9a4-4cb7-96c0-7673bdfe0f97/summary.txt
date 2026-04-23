@@ -1,0 +1,8 @@
+目前没有专门做**作品集 / portfolio** 的 skill。不过可以用现有的几个组合出来：
+
+- **shape** — 先规划 portfolio 的 UX/UI 方向和结构
+- **impeccable** — 构建高质量、不俗套的前端页面（`craft` 模式最适合 portfolio）
+- **huashu-design** — 做高保真原型、设计变体探索、风格方向顾问
+- **document-skills:frontend-design** — 生成有设计感的前端界面
+
+如果你想要一个更专一的 portfolio skill（比如预设了案例展示、项目卡片、个人介绍、联系方式等模块），可以用 `document-skills:skill-creator` 创建一个新的。需要我帮你搭一个吗？
