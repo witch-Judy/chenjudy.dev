@@ -1,0 +1,56 @@
+---
+import { en } from "@/i18n/en";
+import { zh } from "@/i18n/zh";
+import Socials from "./Socials.astro";
+import { SOCIALS } from "@/constants";
+---
+
+<section
+  id="hero"
+  class="pt-12 pb-8 sm:pt-16 sm:pb-12"
+>
+  <h1
+    class="text-3xl font-bold sm:text-5xl"
+    data-lang-en={en.heroGreeting}
+    data-lang-zh={zh.heroGreeting}
+  >
+    {en.heroGreeting}
+  </h1>
+  <p
+    class="mt-3 text-lg font-medium text-accent sm:text-xl"
+    data-lang-en={en.heroSubtitle}
+    data-lang-zh={zh.heroSubtitle}
+  >
+    {en.heroSubtitle}
+  </p>
+  <p
+    class="mt-1 text-sm text-foreground/60"
+    data-lang-en={en.heroEducation}
+    data-lang-zh={zh.heroEducation}
+  >
+    {en.heroEducation}
+  </p>
+  <p
+    class="mt-2 text-foreground/70"
+    data-lang-en={en.heroTagline}
+    data-lang-zh={zh.heroTagline}
+  >
+    {en.heroTagline}
+  </p>
+
+  <div class="mt-6 flex flex-wrap items-center gap-4">
+    <a
+      href="#contact"
+      class="inline-block rounded-lg bg-accent px-5 py-2.5 font-medium text-background transition-opacity hover:opacity-90"
+      data-lang-en={en.heroCta}
+      data-lang-zh={zh.heroCta}
+    >
+      {en.heroCta}
+    </a>
+    {
+      SOCIALS.length > 0 && (
+        <Socials />
+      )
+    }
+  </div>
+</section>
