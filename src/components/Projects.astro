@@ -1,0 +1,248 @@
+---
+import { en } from "@/i18n/en";
+import { zh } from "@/i18n/zh";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+
+const base = "/";
+
+interface Project {
+  title: string;
+  titleZh?: string;
+  description: string;
+  descriptionZh?: string;
+  tech: string;
+  stars?: number;
+  url: string;
+  image: string;
+  type: "github" | "creative";
+  credentials?: {
+    email: string;
+    password: string;
+  };
+}
+
+const projects: Project[] = [
+  {
+    title: "SIGINT — Global AI Intelligence System",
+    titleZh: "SIGINT · 全球 AI 情报系统",
+    description:
+      "A God-view fog map of the AI industry. Real-time global signals are distilled into a game-like HUD — lines between companies reveal collaborations, rivalries and palace-intrigue; executive reshuffles surface early; market sentiment shifts sync live with stock moves, so the intel arrives before the price does.",
+    descriptionZh:
+      "把 AI 行业当作一场联机生存进化游戏的「上帝视角」迷雾地图。全球动态被实时脱水、提纯，呈现为游戏大屏：公司之间的连线揭示合作、竞争或一出宫斗大戏，高管人事变动先人一步被捕获；市场情绪一跳，相关股价同步联动——情报，领先于市场。",
+    tech: "Next.js + Real-time Intel",
+    url: "https://sigint-system.vercel.app/",
+    image: `${base}assets/projects/sigint-system.png`,
+    type: "creative",
+    credentials: {
+      email: "ai@demo.com",
+      password: "ai123456",
+    },
+  },
+  {
+    title: "ILLUCIO — Make Knowledge Something You Can Play With",
+    titleZh: "ILLUCIO · 让知识变成可以玩的东西",
+    description:
+      "A custom reader that turns complex text into interactive, dimensional articles. You read a paper three times and think you get it — until you drag the vector yourself, watch the weights shift in real time, and realize you never really did. Not animation for show, but a full methodology built on cognitive interaction and cognitive-science research. Sign up and experience an interactive article.",
+    descriptionZh:
+      "一个用有趣的方式阅读文本的定制化阅读器。读一篇论文，读三遍，觉得自己懂了——直到你亲手拖动那个向量、看权重实时变化，才发现之前根本没懂。ILLUCIO 用 AI 把复杂文本变成交互式的立体文章——不是加动画，而是一套完整的认知交互方法论与认知科学研究。注册登录即可体验一篇交互文章。",
+    tech: "AI + Interactive Reader",
+    url: "https://illucio2.vercel.app/",
+    image: `${base}assets/projects/illucio.png`,
+    type: "creative",
+  },
+  {
+    title: "Su Shi — Moon Phases of a Life",
+    titleZh: "苏轼 · 月相人生",
+    description:
+      "An interactive literary animation tracing Su Shi's life through 7 moon phases — from the crescent of youthful ambition to the full moon of transcendence. Features GSAP animations and immersive storytelling.",
+    descriptionZh:
+      "交互式文学动画，以月相为线索讲述苏轼一生——从新月少年意气到满月终极澄明，共7幕沉浸式体验",
+    tech: "React + GSAP",
+    url: "https://tgz2aaft2fllu.ok.kimi.link/",
+    image: `${base}assets/projects/sushi-moon.webp`,
+    type: "creative",
+  },
+  {
+    title: "Monkey King — Havoc in Heaven",
+    titleZh: "大闹天宫",
+    description:
+      "Interactive reimagining of the Monkey King's rebellion — storm the Southern Gate, shatter the Jade Palace, then choose to return to your mountain.",
+    descriptionZh:
+      "重写孙悟空的故事——闯南天门、碎灵霄宝殿，最后选择回花果山当快乐猴儿。「且摘风月，且闹天宫」",
+    tech: "React + Animation",
+    url: "https://edzfn7n5wmih6.ok.kimi.link/",
+    image: `${base}assets/projects/monkey-king.webp`,
+    type: "creative",
+  },
+  {
+    title: "BuzzScope",
+    titleZh: "BuzzScope · 众声捕捉",
+    description:
+      "Keyword tracking across tech communities — Hacker News, Reddit, YouTube, Discord",
+    descriptionZh:
+      "跨技术社区的关键词追踪系统 —— 实时监测 Hacker News, Reddit, YouTube 与 Discord。",
+    tech: "Python",
+    stars: 16,
+    url: "https://github.com/witch-Judy/BuzzScope",
+    image: `${base}assets/projects/buzzscope.webp`,
+    type: "github",
+  },
+  {
+    title: "email-analysis-deepseek",
+    titleZh: "DeepSeek 智邮分析",
+    description: "Email analysis powered by DeepSeek AI",
+    descriptionZh: "由 DeepSeek AI 驱动的邮件深度解析工具。",
+    tech: "Shell",
+    stars: 6,
+    url: "https://github.com/witch-Judy/email-analysis-deepseek",
+    image: `${base}assets/projects/email-deepseek.webp`,
+    type: "github",
+  },
+  {
+    title: "buzzscope-historical",
+    titleZh: "BuzzScope · 历史透视",
+    description: "Technology Trend Dashboard for historical analysis",
+    descriptionZh: "技术趋势历史分析看板。",
+    tech: "Python",
+    stars: 4,
+    url: "https://github.com/witch-Judy/buzzscope-historical",
+    image: `${base}assets/projects/buzzscope-historical.webp`,
+    type: "github",
+  },
+  {
+    title: "UNS Semantic Space Explorer",
+    titleZh: "UNS 语义空间探索器",
+    description: "3D visualization for industrial Unified Namespace",
+    descriptionZh: "面向工业统一命名空间（UNS）的 3D 可视化系统。",
+    tech: "Python",
+    stars: 2,
+    url: "https://github.com/witch-Judy/UNS-Semantic-Space-Explorer",
+    image: `${base}assets/projects/uns-explorer.webp`,
+    type: "github",
+  },
+];
+---
+
+<section id="projects" class="pt-12 pb-6">
+  <h2
+    class="text-2xl font-semibold tracking-wide"
+    data-lang-en={en.projectsTitle}
+    data-lang-zh={zh.projectsTitle}
+  >
+    {en.projectsTitle}
+  </h2>
+
+  <div class="mt-6 grid gap-4 sm:grid-cols-2">
+    {
+      projects.map(project => (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={[
+            "group overflow-hidden rounded-xl border transition-all hover:shadow-md",
+            project.type === "creative"
+              ? "border-accent/30 hover:border-accent/60"
+              : "border-border hover:border-accent/50",
+          ]}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            class="h-40 w-full object-cover transition-transform group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="p-4">
+            <div class="flex items-start justify-between">
+              <h3
+                class="font-semibold text-foreground group-hover:text-accent"
+                data-lang-en={project.title}
+                data-lang-zh={project.titleZh || project.title}
+              >
+                {project.title}
+              </h3>
+              <div class="flex items-center gap-1 text-sm text-foreground/60">
+                {project.type === "creative" && (
+                  <span class="rounded-full bg-accent/15 px-2 py-0.5 text-xs text-accent">
+                    Interactive
+                  </span>
+                )}
+                {project.stars != null && project.stars > 0 && (
+                  <>
+                    <span>⭐</span>
+                    <span>{project.stars}</span>
+                  </>
+                )}
+              </div>
+            </div>
+            <p
+              class="mt-2 text-sm text-foreground/70"
+              data-lang-en={project.description}
+              data-lang-zh={project.descriptionZh || project.description}
+            >
+              {project.description}
+            </p>
+            {project.credentials && (
+              <div class="mt-3 rounded-md border border-accent/30 bg-accent/5 px-3 py-2 text-xs text-foreground/75">
+                <div
+                  class="mb-1 font-medium text-accent"
+                  data-lang-en="Demo Login"
+                  data-lang-zh="Demo 登录"
+                >
+                  Demo Login
+                </div>
+                <div class="flex flex-col gap-0.5 font-mono">
+                  <span>
+                    <span
+                      class="text-foreground/50"
+                      data-lang-en="email:"
+                      data-lang-zh="邮箱："
+                    >
+                      email:
+                    </span>{" "}
+                    {project.credentials.email}
+                  </span>
+                  <span>
+                    <span
+                      class="text-foreground/50"
+                      data-lang-en="password:"
+                      data-lang-zh="密码："
+                    >
+                      password:
+                    </span>{" "}
+                    {project.credentials.password}
+                  </span>
+                </div>
+              </div>
+            )}
+            <div class="mt-3 flex items-center justify-between">
+              <span class="rounded-md bg-muted px-2 py-0.5 text-xs font-medium">
+                {project.tech}
+              </span>
+              {project.type === "github" ? (
+                <IconGitHub class="size-4 opacity-40 transition-opacity group-hover:opacity-70" />
+              ) : (
+                <IconArrowRight class="size-4 opacity-40 transition-opacity group-hover:opacity-70" />
+              )}
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="mt-6 text-center">
+    <a
+      href="https://github.com/witch-Judy"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 text-accent underline decoration-dashed underline-offset-4 hover:decoration-solid"
+      data-lang-en={en.projectsViewAll}
+      data-lang-zh={zh.projectsViewAll}
+    >
+      {en.projectsViewAll}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>
