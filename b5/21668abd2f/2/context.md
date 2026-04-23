@@ -1,0 +1,41 @@
+# Session Context
+
+## User Prompts
+
+### Prompt 1
+
+https://sigint-system.vercel.app/ 这个是我做的一个全球AI情报系统，也给我放进我的个人项目里。如果把AI行业看作一场大型联机生存进化游戏，那我可太想做出一个拥有“上帝视角”的迷雾地图了。全球AI信息情报系统，系统会实时的把全球AI动态脱水、提纯，展示为游戏界面一样的信息大屏给我。
+图上的线条代表着不同的公司出现在了同一条信号里，或许是合作、或许是竞争、或许是一出宫斗大戏，先人一步吃到瓜。（因为会抓到所有高管的人事变动）
+还有市场联动，某一信号出现比如市场情绪急剧变化时，相关的股价也会对应变化，情报会领先于市场。
+这可能就是2026年AI编程最有趣的地方：
+世界从此只是一场无限游戏，而你将重拾起少年遗梦，在这场地球online游戏里尽情探索，尽情表达，尽情创造。 因为是私有项目，所以我们放的是这个网页链接，然后给你一个封面图：/Users/chenbihan/Desktop/截屏2026-04-23 下午5.30.11  然后需要在页面上标注，这个系统需要用户名和密码进去，  - 邮箱：ai@demo.com                    ...
+
+### Prompt 2
+
+已经放进去了吗
+
+### Prompt 3
+
+你给我推上去，我直接在生产环境看
+
+### Prompt 4
+
+[Image #1] 这里我们替换成ILLUCIO，一个用有趣的方式阅读文本的定制化阅读器，https://illucio2.vercel.app/ 这个是进去登录注册就可以使用的 /Users/chenbihan/Desktop/截屏2026-04-23 下午6.11.57 封面用这个ILLUCIO — 让知识变成可以玩的东西
+读一篇论文，读三遍，觉得自己懂了——直到你亲手拖动那个向量，看权重实时变化，才发现之前根本没懂。
+ILLUCIO 用 AI 把复杂文本变成交互式的立体文章。不是加动画，而是一套完整的认知交互方法论和认知科学研究 → 体验一篇交互文章
+
+### Prompt 5
+
+[Image: source: /Users/chenbihan/.claude/image-cache/86027eca-e884-4928-85ae-3cb8eacc72f3/1.png]
+
+### Prompt 6
+
+[Image #2]有两处建议：
+
+1. “Welcome to my blog”可以删掉了
+2. “How much to charge”和“你的产品该卖多少钱”这两个内容重合了吧
+
+### Prompt 7
+
+[Image: source: /Users/chenbihan/.claude/image-cache/86027eca-e884-4928-85ae-3cb8eacc72f3/2.png]
+
