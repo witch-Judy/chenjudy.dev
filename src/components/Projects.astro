@@ -16,9 +16,41 @@ interface Project {
   url: string;
   image: string;
   type: "github" | "creative";
+  credentials?: {
+    email: string;
+    password: string;
+  };
 }
 
 const projects: Project[] = [
+  {
+    title: "SIGINT — Global AI Intelligence System",
+    titleZh: "SIGINT · 全球 AI 情报系统",
+    description:
+      "A God-view fog map of the AI industry. Real-time global signals are distilled into a game-like HUD — lines between companies reveal collaborations, rivalries and palace-intrigue; executive reshuffles surface early; market sentiment shifts sync live with stock moves, so the intel arrives before the price does.",
+    descriptionZh:
+      "把 AI 行业当作一场联机生存进化游戏的「上帝视角」迷雾地图。全球动态被实时脱水、提纯，呈现为游戏大屏：公司之间的连线揭示合作、竞争或一出宫斗大戏，高管人事变动先人一步被捕获；市场情绪一跳，相关股价同步联动——情报，领先于市场。",
+    tech: "Next.js + Real-time Intel",
+    url: "https://sigint-system.vercel.app/",
+    image: `${base}assets/projects/sigint-system.png`,
+    type: "creative",
+    credentials: {
+      email: "ai@demo.com",
+      password: "ai123456",
+    },
+  },
+  {
+    title: "ILLUCIO Onboarding — Interactive First Experience",
+    titleZh: "ILLUCIO Onboarding · 交互式首次体验",
+    description:
+      "Interactive onboarding prototype for ILLUCIO — experience the journey from 'dead text' to illuminated understanding through brain profiling and text awakening.",
+    descriptionZh:
+      "为 ILLUCIO 设计的交互式 Onboarding 原型——从「死文本」到被点亮的理解，亲手体验一次从读不懂到读懂的过程。",
+    tech: "HTML + SVG + JS",
+    url: "/illucio-onboarding.html",
+    image: `${base}assets/projects/illucio-onboarding.png`,
+    type: "creative",
+  },
   {
     title: "Su Shi — Moon Phases of a Life",
     titleZh: "苏轼 · 月相人生",
@@ -151,6 +183,39 @@ const projects: Project[] = [
             >
               {project.description}
             </p>
+            {project.credentials && (
+              <div class="mt-3 rounded-md border border-accent/30 bg-accent/5 px-3 py-2 text-xs text-foreground/75">
+                <div
+                  class="mb-1 font-medium text-accent"
+                  data-lang-en="Demo Login"
+                  data-lang-zh="Demo 登录"
+                >
+                  Demo Login
+                </div>
+                <div class="flex flex-col gap-0.5 font-mono">
+                  <span>
+                    <span
+                      class="text-foreground/50"
+                      data-lang-en="email:"
+                      data-lang-zh="邮箱："
+                    >
+                      email:
+                    </span>{" "}
+                    {project.credentials.email}
+                  </span>
+                  <span>
+                    <span
+                      class="text-foreground/50"
+                      data-lang-en="password:"
+                      data-lang-zh="密码："
+                    >
+                      password:
+                    </span>{" "}
+                    {project.credentials.password}
+                  </span>
+                </div>
+              </div>
+            )}
             <div class="mt-3 flex items-center justify-between">
               <span class="rounded-md bg-muted px-2 py-0.5 text-xs font-medium">
                 {project.tech}
