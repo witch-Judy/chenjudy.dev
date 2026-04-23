@@ -3,8 +3,9 @@
   "checkpoint_id": "58d8b3e36931",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 7,
+  "checkpoints_count": 9,
   "files_touched": [
+    "public/assets/projects/sigint-system.png",
     "src/components/Projects.astro"
   ],
   "sessions": [
@@ -21,13 +22,20 @@
       "context": "/58/d8b3e36931/1/context.md",
       "content_hash": "/58/d8b3e36931/1/content_hash.txt",
       "prompt": "/58/d8b3e36931/1/prompt.txt"
+    },
+    {
+      "metadata": "/58/d8b3e36931/2/metadata.json",
+      "transcript": "/58/d8b3e36931/2/full.jsonl",
+      "context": "/58/d8b3e36931/2/context.md",
+      "content_hash": "/58/d8b3e36931/2/content_hash.txt",
+      "prompt": "/58/d8b3e36931/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 89,
-    "cache_creation_tokens": 82301,
-    "cache_read_tokens": 1348274,
-    "output_tokens": 11135,
-    "api_call_count": 43
+    "input_tokens": 118,
+    "cache_creation_tokens": 113047,
+    "cache_read_tokens": 1838592,
+    "output_tokens": 17385,
+    "api_call_count": 57
   }
 }

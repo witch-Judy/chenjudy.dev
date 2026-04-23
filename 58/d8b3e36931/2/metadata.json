@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.4.9",
+  "checkpoint_id": "58d8b3e36931",
+  "session_id": "86027eca-e884-4928-85ae-3cb8eacc72f3",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-23T10:04:32.421057Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "public/assets/projects/sigint-system.png",
+    "src/components/Projects.astro"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "50d3c8828ece",
+  "token_usage": {
+    "input_tokens": 29,
+    "cache_creation_tokens": 30746,
+    "cache_read_tokens": 490318,
+    "output_tokens": 6250,
+    "api_call_count": 14
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-23T10:04:32.33691Z",
+    "agent_lines": 65,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 65,
+    "agent_percentage": 100
+  }
+}
