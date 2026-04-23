@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.4.9",
+  "checkpoint_id": "58d8b3e36931",
+  "session_id": "76526fb4-b453-48e9-9f6b-649f7e9363db",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-23T10:04:29.198924Z",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "src/components/Projects.astro"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "21e963fa6b3c",
+  "token_usage": {
+    "input_tokens": 52,
+    "cache_creation_tokens": 64668,
+    "cache_read_tokens": 885319,
+    "output_tokens": 7755,
+    "api_call_count": 22
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-23T10:04:29.110273Z",
+    "agent_lines": 65,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 65,
+    "agent_percentage": 100
+  }
+}
