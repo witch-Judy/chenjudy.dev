@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你的大脑里住着一个指挥官 · 前额叶探索之旅 第一期</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f6f1;--paper:#fff;--ink:#1a1a1a;--mid:#555;--dim:#999;
+  --faint:#ccc;--rule:#e4e0d8;--aside:#f2efea;
+  --old:#b84c4c;--new:#4a8f5c;
+  --mono:'Menlo','Consolas',monospace;
+  --dlpfc:#4a7fb5;--vmpfc:#c06040;--ofc:#b8860b;--acc:#7b68ae;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:18px/1.8 'Noto Serif SC',Georgia,serif;-webkit-font-smoothing:antialiased}
+.page{max-width:720px;margin:0 auto;padding:60px 24px 120px}
+h1{font-size:32px;line-height:1.3;font-weight:700;margin-bottom:6px;letter-spacing:-.5px}
+h2{font-size:22px;font-weight:600;margin:48px 0 12px;color:var(--ink);line-height:1.4}
+.byline{font-size:13px;color:var(--dim);margin-bottom:32px;font-family:var(--mono)}
+.lead{font-size:19px;line-height:1.9;color:var(--mid);margin-bottom:36px;border-left:3px solid var(--rule);padding-left:16px}
+p{margin-bottom:18px}
+strong{font-weight:600}
+.section-num{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:4px;margin-top:56px;letter-spacing:1px;text-transform:uppercase}
+.fig{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 16px 12px;margin:24px 0}
+.fig-body{position:relative}
+.fig-cap{font-size:13px;color:var(--mid);margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);line-height:1.6}
+.mini{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:14px 14px 10px;margin:20px 0}
+.mini-cap{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5}
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tab{background:none;border:1.5px solid var(--faint);border-radius:20px;padding:5px 14px;font-size:12px;font-family:var(--mono);cursor:pointer;transition:all .2s;color:var(--dim)}
+.tab.active{border-color:currentColor;background:currentColor;color:#fff !important;font-weight:600}
+.tab:hover:not(.active){border-color:var(--dim)}
+.btn{background:none;border:1.5px solid var(--faint);border-radius:6px;padding:4px 12px;font-size:12px;font-family:var(--mono);cursor:pointer;color:var(--ink);transition:all .15s}
+.btn:hover{border-color:var(--ink)}
+.btn.dim{opacity:.3;pointer-events:none}
+.ctrl{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px}
+input[type=range]{width:100%;accent-color:var(--ink);margin:8px 0}
+.fn{font-size:12px;color:var(--dim);margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);line-height:1.7}
+svg{display:block;width:100%;height:auto}
+@keyframes flowRight{0%{stroke-dashoffset:16}100%{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>你的大脑里住着一个指挥官</h1>
+<p class="byline">前额叶探索之旅 · 第一期 · 2025</p>
+
+<p class="lead">
+我们以为自己在用"整个大脑"思考。这个直觉很自然——毕竟思考的时候不会觉得只用了脑子的某个角落。但神经科学告诉我们一个更奇妙的故事：你的大脑前端有一小片区域，它几乎不直接处理任何感觉信息，也不直接控制任何肌肉，却是你能够计划未来、抵抗诱惑、理解他人的全部原因。它就是前额叶皮层——你大脑里的指挥官。
+</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 1: Phineas Gage Before/After -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第一部分</p>
+<h2>一根铁棒改变的人生</h2>
+
+<p>1848 年的一个下午，25 岁的铁路工头 Phineas Gage 正在用铁棒夯实炸药。接下来发生的事，将永远改变人类对大脑的理解。</p>
+
+<p><strong>点击"下一步"按钮</strong>，走过这个神经科学史上最著名的案例——特别注意第二步铁棒穿过的是哪些区域，以及第三步中什么没变、什么变了：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="gageSvg" viewBox="0 0 680 380"></svg>
+    <div class="ctrl">
+      <button class="btn" id="gagePrev" onclick="gageNav(-1)">←</button>
+      <span id="gageStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);">1/4</span>
+      <button class="btn" id="gageNext" onclick="gageNav(1)">下一步 →</button>
+    </div>
+  </div>
+  <div class="fig-cap" id="gageCap"></div>
+</div>
+
+<p>走完四步你会理解为什么这个案例如此重要：铁棒精准地摧毁了 vmPFC 和 OFC，却没碰运动皮层、语言区和感觉皮层。结果是——Gage 能走、能说、能算数，但不再能<strong>规划、自控、得体地社交</strong>。这让 19 世纪的医生们第一次意识到：<strong>大脑前部这片区域管的不是"能力"，而是"你是谁"。</strong></p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 2: Brain Geography -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第二部分</p>
+<h2>大脑的地理</h2>
+
+<p>把你的手掌放在额头上——你的手掌正下方就是前额叶皮层（Prefrontal Cortex, PFC）。但要理解它的特殊性，我们需要先看看整个大脑的"地形图"。想象大脑是一间公司：后面的部门处理原始信息（看到什么、听到什么），中间的部门做分析和行动，而最前面——前额叶——是总指挥办公室。</p>
+
+<p><strong>点击下面大脑图的不同区域</strong>，看看每个区域负责什么。注意前额叶占据了大脑前端多大的面积：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="brainSvg" viewBox="0 0 680 420"></svg>
+  </div>
+  <div class="fig-cap" id="brainCap">点击大脑的不同区域，了解它们的功能分工。</div>
+</div>
+
+<p>注意到了吗？从后往前，大脑的功能越来越"抽象"：枕叶处理像素级的视觉信号，颞叶识别"那是一张脸"，顶叶整合空间信息，而前额叶做的事情最不像"计算"——它在问"我应该怎么做"。<strong>前额叶是大脑中唯一一个功能无法用简单动词描述的区域。</strong></p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 3: PFC Subregions (Cards) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第三部分</p>
+<h2>指挥部的四个部门</h2>
+
+<p>说"前额叶管思考"就像说"政府管国家"——太笼统了。前额叶内部其实有明确的分工，至少可以分为四个主要子区域，每个都有自己的专长。这就像一个公司的管理层：有人管战略，有人管财务，有人管人事，有人管风控。</p>
+
+<p><strong>点击下面四张卡片中的任何一张</strong>，展开查看该区域的详细功能和经典案例：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="cardsSvg" viewBox="0 0 680 400"></svg>
+  </div>
+  <div class="fig-cap" id="cardsCap">四个子区域各司其职，但时刻协同工作。点击任意卡片查看详情。</div>
+</div>
+
+<p>还记得 Gage 吗？铁棒主要摧毁了他的腹内侧前额叶（vmPFC）和眶额叶（OFC）。这就解释了为什么他的智力和语言都没受影响（dlPFC 基本完好），但性格和社交行为彻底改变了——<strong>掌管"评估后果"和"社交得体"的两个部门被摧毁了</strong>。</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 4: Evolution Slider -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第四部分</p>
+<h2>进化的杰作</h2>
+
+<p>所有脊椎动物都有某种形式的"前脑"，但只有灵长类——尤其是人类——把前额叶发展到了惊人的比例。如果说大脑是一台电脑，那么从鱼到人的进化过程就像是：硬件配置基本没变，但不断地在加装更大的"管理芯片"。</p>
+
+<p><strong>拖动下面的滑块，从左到右</strong>，看看从鱼类到人类，前额叶在整个大脑中的占比是如何变化的：</p>
+
+<div class="mini">
+  <svg id="evoSvg" viewBox="0 0 660 280"></svg>
+  <input type="range" id="evoSlider" min="0" max="4" step="1" value="0" oninput="renderEvo()">
+  <div class="mini-cap" id="evoCap">拖动滑块，观察前额叶占比的变化。</div>
+</div>
+
+<p>当你把滑块拉到最右边，人类的前额叶比例达到了大约 29%——几乎是大脑皮层的三分之一。<strong>这不是线性增长，而是指数级的跳跃。</strong>正是这额外的"管理层面积"，让我们能做到其他动物做不到的事情：压制即时冲动去规划明天、站在别人的角度思考问题、为一个十年后的目标坚持努力。</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 5: The Conductor (Step Nav) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第五部分</p>
+<h2>指挥家，而不是演奏者</h2>
+
+<p>现在我们知道了前额叶在哪里、有哪些分区、进化上有多特殊。但一个关键问题还没回答：<strong>它到底怎么工作？</strong>一个不直接处理感觉、不直接控制肌肉的区域，凭什么"指挥"整个大脑？</p>
+
+<p>2001 年，MIT 的 Earl Miller 和 Princeton 的 Jonathan Cohen 提出了一个影响深远的理论：前额叶就像交响乐团的指挥——它不演奏任何乐器，但它维持着"乐谱"（当前目标），并向每个乐手（其他脑区）发送"偏置信号"，让整个乐团朝同一个方向演奏。</p>
+
+<p><strong>点击下面的"下一步"按钮</strong>，一步步走过前额叶指挥一个日常决策的全过程——比如，你在减肥期间路过一家蛋糕店：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="condSvg" viewBox="0 0 680 340"></svg>
+    <div class="ctrl" style="justify-content:center;margin-top:8px;">
+      <button class="btn" id="condPrev" onclick="condNav(-1)">←</button>
+      <span id="condStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);">1/5</span>
+      <button class="btn" id="condNext" onclick="condNav(1)">下一步 →</button>
+    </div>
+  </div>
+  <div class="fig-cap" id="condCap">前额叶不直接处理蛋糕的视觉或香味——它通过发送偏置信号来调节其他脑区的反应强度。</div>
+</div>
+
+<p>走完这五步你会发现，前额叶的力量不在于它"更聪明"，而在于它能<strong>改变其他脑区的工作方式</strong>。它让视觉皮层更关注健身房的方向而不是蛋糕橱窗，让奖赏系统更看重长期目标而不是即时满足。Miller 和 Cohen 把这叫做"认知控制"——用内在目标的表征来引导全脑信息流的方向。</p>
+
+<p><strong>这就是为什么前额叶损伤如此毁灭性——不是某个功能消失了，而是整个乐团失去了指挥。</strong></p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- CLOSING -->
+<!-- ════════════════════════════════════════ -->
+<h2 style="margin-top:56px;">下一站</h2>
+
+<p>现在你有了一张前额叶的地图。你知道它在哪里（大脑最前端），分为哪几个部门（dlPFC、vmPFC、OFC、ACC），在进化上有多特殊（占人类大脑皮层的 29%），以及它的工作原理（偏置信号，而非直接执行）。</p>
+
+<p>但这张地图还有很多空白。比如——当你一边听人说话，一边在脑子里盘算回应的时候，前额叶是怎么同时"hold 住"这么多信息的？它的工作记忆系统是如何运转的？Gamma 和 Beta 脑波在其中扮演什么角色？</p>
+
+<p><strong>这将是我们下一期的故事：「心智白板——工作记忆的秘密」。</strong></p>
+
+<p class="fn">
+参考文献：Damasio, A.R. (1994). Descartes' Error. Putnam · 
+Miller, E.K. & Cohen, J.D. (2001). An integrative theory of prefrontal cortex function. <em>Annual Review of Neuroscience</em>, 24, 167–202 · 
+Harlow, J.M. (1868). Recovery from the passage of an iron bar through the head. <em>Publications of the Massachusetts Medical Society</em>, 2, 327–347 · 
+Fuster, J.M. (2008). The Prefrontal Cortex (4th ed.). Academic Press · 
+Semendeferi, K. et al. (2002). Humans and great apes share a large frontal cortex. <em>Nature Neuroscience</em>, 5, 272–276
+</p>
+
+</div><!-- .page -->
+
+<script>
+// ── 颜色常量 ──
+const INK='#1a1a1a',DIM='#999',FAINT='#ccc',RULE='#e4e0d8';
+const OLD='#b84c4c',NEW='#4a8f5c';
+const DLPFC='#4a7fb5',VMPFC='#c06040',OFC='#b8860b',ACC='#7b68ae';
+const BRAIN_BG='#e8ddd0';
+
+// ── 绘图基元 ──
+function P(x,y,a,c=INK,op=1,sc=1){
+  let g=`<g transform="translate(${x},${y}) rotate(${a-90})" opacity="${op}">`;
+  g+=`<line x1="0" y1="0" x2="${14*sc}" y2="0" stroke="${c}" stroke-width="${2.5*sc}" stroke-linecap="round"/>`;
+  g+=`<circle cx="${16*sc}" cy="0" r="${5.5*sc}" fill="${c}"/>`;
+  g+=`<line x1="${4*sc}" y1="${-7*sc}" x2="${4*sc}" y2="${7*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${-6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  return g+`</g>`;
+}
+function fog(x,y,rx,ry,c,op){
+  return `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${c}" opacity="${op}" filter="url(#blur)"/>`;
+}
+
+// ── 简化大脑轮廓（侧面图）──
+function brainOutline(cx,cy,sc){
+  // 简化的侧面大脑轮廓
+  const s=sc;
+  return `<path d="M${cx-90*s},${cy+20*s} C${cx-95*s},${cy-30*s} ${cx-80*s},${cy-80*s} ${cx-30*s},${cy-85*s} C${cx+10*s},${cy-88*s} ${cx+60*s},${cy-80*s} ${cx+85*s},${cy-50*s} C${cx+95*s},${cy-30*s} ${cx+90*s},${cy+10*s} ${cx+70*s},${cy+30*s} C${cx+50*s},${cy+45*s} ${cx+20*s},${cy+50*s} ${cx-10*s},${cy+45*s} C${cx-40*s},${cy+40*s} ${cx-70*s},${cy+35*s} ${cx-90*s},${cy+20*s}Z"`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 1: Gage Story (Step Navigator)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const GAGE_STEPS=[
+{t:'事故前',
+ cap:'1848 年，Gage 是铁路公司最高效的工头——擅长规划、受人尊敬、情绪稳定。他的大脑前额叶完好无损。',
+ draw(o){
+  o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#f4faf6" stroke="${NEW}30"/>`;
+  o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="600">Phineas Gage · 1848 · 事故前</text>`;
+  // Person
+  o+=P(120,190,90,NEW,.9,1.5);
+  // Brain with intact PFC
+  o+=`<ellipse cx="300" cy="180" rx="110" ry="80" fill="#ece8e0" stroke="#ddd" opacity=".4"/>`;
+  o+=`<rect x="200" y="130" width="65" height="80" rx="14" fill="${NEW}25" stroke="${NEW}" stroke-width="2"/>`;
+  o+=`<text x="232" y="165" text-anchor="middle" font-size="8" fill="${NEW}" font-weight="600" font-family="var(--mono)">前额叶</text>`;
+  o+=`<text x="232" y="180" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">完好 ✓</text>`;
+  o+=`<rect x="270" y="120" width="40" height="50" rx="8" fill="#6a995518" stroke="#6a9955" stroke-width="1"/>`;
+  o+=`<text x="290" y="148" text-anchor="middle" font-size="6" fill="#6a9955" font-family="var(--mono)">运动区</text>`;
+  o+=`<rect x="315" y="120" width="50" height="50" rx="8" fill="#8b6fb018" stroke="#8b6fb0" stroke-width="1"/>`;
+  o+=`<text x="340" y="148" text-anchor="middle" font-size="6" fill="#8b6fb0" font-family="var(--mono)">顶叶</text>`;
+  o+=`<rect x="270" y="190" width="80" height="40" rx="8" fill="#c25a7a18" stroke="#c25a7a" stroke-width="1"/>`;
+  o+=`<text x="310" y="214" text-anchor="middle" font-size="6" fill="#c25a7a" font-family="var(--mono)">颞叶 · 语言</text>`;
+  // Right: attributes
+  o+=`<rect x="440" y="100" width="190" height="200" rx="6" fill="${NEW}08" stroke="${NEW}30"/>`;
+  o+=`<text x="535" y="122" text-anchor="middle" font-size="10" fill="${NEW}" font-weight="600">同事和雇主的评价</text>`;
+  const attrs=['擅长制定爆破计划','做事高效且有条理','情绪稳定，受人尊敬','对工人严格但公平','公司最器重的工头'];
+  attrs.forEach((a,i)=>{
+    o+=`<text x="455" y="${148+i*30}" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ ${a}</text>`;
+  });
+  o+=`<text x="340" y="330" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">25 岁 · 佛蒙特州 · 铁路工头</text>`;
+  return o;}},
+{t:'事故发生',
+ cap:'爆炸将一根 3.7 英尺、13 磅重的铁棒从左脸颊射入，穿过大脑前部，从头顶飞出。注意铁棒的路径——它精准地穿过了前额叶的 vmPFC 和 OFC 区域。',
+ draw(o){
+  o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#fdf6f4" stroke="${OLD}30"/>`;
+  o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${OLD}" font-weight="600">💥 1848 年 9 月 13 日 · 爆炸事故</text>`;
+  // Brain - large view showing iron bar path
+  o+=`<ellipse cx="280" cy="200" rx="140" ry="100" fill="#ece8e0" stroke="#ddd" opacity=".5"/>`;
+  // PFC regions being destroyed
+  o+=`<rect x="155" y="140" width="45" height="55" rx="10" fill="${OLD}40" stroke="${OLD}" stroke-width="2.5"/>`;
+  o+=`<text x="177" y="165" text-anchor="middle" font-size="7" fill="${OLD}" font-weight="700" font-family="var(--mono)">vmPFC</text>`;
+  o+=`<text x="177" y="178" text-anchor="middle" font-size="6" fill="${OLD}" font-family="var(--mono)">摧毁 ✕</text>`;
+  o+=`<rect x="155" y="198" width="45" height="45" rx="10" fill="${OLD}40" stroke="${OLD}" stroke-width="2.5"/>`;
+  o+=`<text x="177" y="218" text-anchor="middle" font-size="7" fill="${OLD}" font-weight="700" font-family="var(--mono)">OFC</text>`;
+  o+=`<text x="177" y="231" text-anchor="middle" font-size="6" fill="${OLD}" font-family="var(--mono)">摧毁 ✕</text>`;
+  // Intact regions
+  o+=`<rect x="210" y="130" width="40" height="45" rx="8" fill="#6a995518" stroke="#6a9955" stroke-width="1.5"/>`;
+  o+=`<text x="230" y="156" text-anchor="middle" font-size="6" fill="#6a9955" font-family="var(--mono)">运动区 ✓</text>`;
+  o+=`<rect x="260" y="125" width="60" height="50" rx="8" fill="#8b6fb018" stroke="#8b6fb0" stroke-width="1.5"/>`;
+  o+=`<text x="290" y="154" text-anchor="middle" font-size="6" fill="#8b6fb0" font-family="var(--mono)">顶叶 ✓</text>`;
+  o+=`<rect x="220" y="210" width="90" height="40" rx="8" fill="#c25a7a18" stroke="#c25a7a" stroke-width="1.5"/>`;
+  o+=`<text x="265" y="234" text-anchor="middle" font-size="6" fill="#c25a7a" font-family="var(--mono)">颞叶·语言 ✓</text>`;
+  o+=`<ellipse cx="360" cy="200" rx="35" ry="30" fill="#c47a2a18" stroke="#c47a2a" stroke-width="1.5"/>`;
+  o+=`<text x="360" y="204" text-anchor="middle" font-size="6" fill="#c47a2a" font-family="var(--mono)">枕叶·视觉 ✓</text>`;
+  // IRON BAR - dramatic diagonal
+  o+=`<line x1="130" y1="280" x2="195" y2="110" stroke="${OLD}" stroke-width="5" stroke-linecap="round"/>`;
+  o+=`<polygon points="192,115 198,100 200,118" fill="${OLD}"/>`;
+  o+=`<text x="115" y="295" font-size="8" fill="${OLD}" font-weight="600" font-family="var(--mono)">铁棒 · 3.7英尺 · 13磅</text>`;
+  o+=`<text x="205" y="105" font-size="7" fill="${OLD}" font-family="var(--mono)">↑ 从头顶飞出</text>`;
+  o+=`<text x="110" y="270" font-size="7" fill="${OLD}" font-family="var(--mono)">从左脸颊射入 ↗</text>`;
+  // Right panel: what the bar hit
+  o+=`<rect x="440" y="100" width="190" height="200" rx="6" fill="${OLD}08" stroke="${OLD}30"/>`;
+  o+=`<text x="535" y="122" text-anchor="middle" font-size="10" fill="${OLD}" font-weight="600">铁棒穿过了什么？</text>`;
+  o+=`<text x="455" y="150" font-size="10" fill="${OLD}" font-family="var(--mono)">✕ vmPFC（决策评估）</text>`;
+  o+=`<text x="455" y="175" font-size="10" fill="${OLD}" font-family="var(--mono)">✕ OFC（社交/奖赏）</text>`;
+  o+=`<line x1="455" y1="195" x2="615" y2="195" stroke="${FAINT}"/>`;
+  o+=`<text x="535" y="215" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">没碰到：</text>`;
+  o+=`<text x="455" y="238" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ 运动皮层</text>`;
+  o+=`<text x="455" y="260" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ 语言区（Broca）</text>`;
+  o+=`<text x="455" y="282" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ 感觉皮层</text>`;
+  return o;}},
+{t:'存活 · 什么没变',
+ cap:'Gage 奇迹般地活了下来。几分钟后就能说话走路。智力测试正常。语言流利。运动能力完好。这些"没变"的部分，正是因为对应的脑区没被铁棒碰到。',
+ draw(o){
+  o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#f4faf6" stroke="${NEW}30"/>`;
+  o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="600">奇迹存活 · 什么没变？</text>`;
+  o+=`<text x="340" y="96" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">几分钟后就能说话走路——因为这些脑区都完好</text>`;
+  // Grid of preserved abilities
+  const preserved=[
+    {icon:'🗣️',ability:'语言能力',region:'Broca 区 + Wernicke 区',detail:'说话流利，理解无碍'},
+    {icon:'🦵',ability:'运动能力',region:'运动皮层',detail:'能走路、能使用工具'},
+    {icon:'🧮',ability:'基本智力',region:'顶叶 + 颞叶',detail:'算术、记忆力正常'},
+    {icon:'👁️',ability:'感觉能力',region:'感觉皮层 + 枕叶',detail:'视觉、听觉、触觉正常'},
+    {icon:'📝',ability:'长期记忆',region:'海马体',detail:'记得事故前的所有事情'}
+  ];
+  preserved.forEach((p,i)=>{
+    const col=i%2,row=Math.floor(i/2);
+    const px=50+col*310,py=115+row*70;
+    o+=`<rect x="${px}" y="${py}" width="280" height="55" rx="6" fill="${NEW}08" stroke="${NEW}30"/>`;
+    o+=`<text x="${px+15}" y="${py+22}" font-size="16">${p.icon}</text>`;
+    o+=`<text x="${px+40}" y="${py+20}" font-size="11" fill="${NEW}" font-weight="600">${p.ability}</text>`;
+    o+=`<text x="${px+40}" y="${py+37}" font-size="8" fill="${NEW}aa" font-family="var(--mono)">${p.region}</text>`;
+    o+=`<text x="${px+40}" y="${py+49}" font-size="8" fill="${DIM}" font-family="var(--mono)">${p.detail}</text>`;
+  });
+  o+=`<text x="340" y="330" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">如果只看这些，你会觉得 Gage 完全康复了。但是……</text>`;
+  return o;}},
+{t:'什么变了',
+ cap:'「Gage 不再是 Gage 了。」——他的医生 Harlow 写道。铁棒摧毁的 vmPFC 和 OFC 负责的是规划、自控和社交行为。Gage 失去的不是能力，而是"他自己"。',
+ draw(o){
+  o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#fdf6f4" stroke="${OLD}30"/>`;
+  o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${OLD}" font-weight="600">「Gage 不再是 Gage 了」—— 什么变了？</text>`;
+  // Lost abilities linked to destroyed regions
+  const lost=[
+    {before:'做事有条理、善于规划',after:'反复无常，无法坚持任何计划',region:'vmPFC 摧毁',icon:'📋→🔀'},
+    {before:'说话得体、受人尊敬',after:'粗鲁、亵渎、不尊重任何人',region:'OFC 摧毁',icon:'🤝→🤬'},
+    {before:'情绪稳定、有耐心',after:'冲动暴躁、不考虑后果',region:'vmPFC 摧毁',icon:'😌→😡'},
+    {before:'可靠的工头，公司器重',after:'无法维持任何工作',region:'OFC + vmPFC',icon:'💼→❌'},
+  ];
+  lost.forEach((l,i)=>{
+    const ly=100+i*55;
+    o+=`<rect x="50" y="${ly}" width="580" height="45" rx="6" fill="${OLD}06" stroke="${OLD}20"/>`;
+    o+=`<text x="65" y="${ly+18}" font-size="12">${l.icon}</text>`;
+    // Before
+    o+=`<text x="110" y="${ly+15}" font-size="9" fill="${NEW}" font-family="var(--mono)">${l.before}</text>`;
+    o+=`<text x="340" y="${ly+15}" text-anchor="middle" font-size="10" fill="${DIM}">→</text>`;
+    // After
+    o+=`<text x="365" y="${ly+15}" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">${l.after}</text>`;
+    // Region tag
+    o+=`<rect x="110" y="${ly+24}" width="80" height="15" rx="3" fill="${OLD}15" stroke="${OLD}30"/>`;
+    o+=`<text x="150" y="${ly+35}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">${l.region}</text>`;
+  });
+  // Bottom quote
+  o+=`<rect x="80" y="315" width="520" height="22" rx="4" fill="${OLD}10" stroke="${OLD}25"/>`;
+  o+=`<text x="340" y="331" text-anchor="middle" font-size="10" fill="${OLD}" font-weight="600">失去的不是"能力"——而是"人格"。前额叶管的是「你是谁」。</text>`;
+  return o;}}
+];
+let curGage=0;
+function renderGage(){
+  const s=GAGE_STEPS[curGage];let o='';
+  GAGE_STEPS.forEach((_,i)=>{const cx=200+(i-1.5)*80;o+=`<circle cx="${cx}" cy="18" r="${i===curGage?6:3.5}" fill="${i<=curGage?INK:'#ddd'}"/>`;o+=`<text x="${cx}" y="38" text-anchor="middle" font-size="7" fill="${i===curGage?INK:DIM}" font-family="var(--mono)">${_.t}</text>`;});
+  o=s.draw(o);
+  document.getElementById('gageSvg').innerHTML=o;
+  document.getElementById('gageStep').textContent=`${curGage+1}/${GAGE_STEPS.length}`;
+  document.getElementById('gageCap').innerHTML=s.cap;
+  document.getElementById('gagePrev').classList.toggle('dim',curGage<=0);
+  document.getElementById('gageNext').classList.toggle('dim',curGage>=GAGE_STEPS.length-1);
+}
+function gageNav(d){const n=curGage+d;if(n>=0&&n<GAGE_STEPS.length){curGage=n;renderGage();}}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 2: Brain Geography (Annotated)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let brainSel=-1;
+const REGIONS=[
+  {id:'pfc',label:'前额叶皮层',en:'Prefrontal Cortex',color:DLPFC,
+   desc:'计划、决策、自控、工作记忆、社会行为。大脑的"总指挥"。',
+   x:42,y:80,w:80,h:120,rx:18,abs:0.0,absLabel:'最抽象 · 目标/计划/自控'},
+  {id:'motor',label:'运动皮层',en:'Motor Cortex',color:'#6a9955',
+   desc:'直接控制肌肉运动。给身体发出"动"的指令。',
+   x:127,y:55,w:50,h:80,rx:14,abs:0.28,absLabel:'执行层 · 把决策变成动作'},
+  {id:'parietal',label:'顶叶',en:'Parietal Lobe',color:'#8b6fb0',
+   desc:'空间感知、触觉整合、注意力分配。告诉你"东西在哪里"。',
+   x:182,y:50,w:90,h:85,rx:16,abs:0.55,absLabel:'整合层 · 空间与注意力'},
+  {id:'occipital',label:'枕叶',en:'Occipital Lobe',color:'#c47a2a',
+   desc:'视觉处理。把眼睛接收的光信号转化为你"看到"的画面。',
+   x:277,y:70,w:60,h:80,rx:20,abs:0.95,absLabel:'最具体 · 原始视觉信号'},
+  {id:'temporal',label:'颞叶',en:'Temporal Lobe',color:'#c25a7a',
+   desc:'听觉处理、语言理解、面孔识别、长期记忆。告诉你"那是什么"。',
+   x:130,y:165,w:160,h:60,rx:16,abs:0.65,absLabel:'识别层 · 这是什么?'},
+];
+
+function renderBrain(){
+  let o='';
+  o+=`<rect x="10" y="5" width="660" height="410" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+
+  // Left area: brain diagram (within x: 30–380)
+  // Right area: info panel (within x: 400–660)
+  // Divider
+  o+=`<line x1="390" y1="20" x2="390" y2="395" stroke="${FAINT}" stroke-width="1" stroke-dasharray="4 3"/>`;
+
+  // Direction labels
+  o+=`<text x="60" y="30" font-size="8" fill="${DIM}" font-family="var(--mono)">← 前 (前额)</text>`;
+  o+=`<text x="290" y="30" font-size="8" fill="${DIM}" font-family="var(--mono)">后 (后脑) →</text>`;
+
+  // Brain outline (light silhouette behind the regions)
+  o+=`<ellipse cx="200" cy="140" rx="170" ry="110" fill="#ece8e0" stroke="#ddd8d0" stroke-width="1.5" opacity=".4"/>`;
+
+  // Draw each region as a rounded rect
+  REGIONS.forEach((r,i)=>{
+    const isSel=brainSel===i;
+    const isOther=brainSel>=0&&brainSel!==i;
+    const op=isOther?.15:1;
+    const sw=isSel?2.5:1.2;
+    const fill=isSel?r.color+'35':r.color+'18';
+    const cx=r.x+r.w/2, cy=r.y+r.h/2;
+
+    o+=`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${r.rx}" fill="${fill}" stroke="${r.color}" stroke-width="${sw}" opacity="${op}" style="cursor:pointer" onclick="brainSel=brainSel===${i}?-1:${i};renderBrain()"/>`;
+
+    if(!isOther){
+      o+=`<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="${isSel?10:9}" fill="${r.color}" font-family="var(--mono)" font-weight="${isSel?'700':'400'}" style="cursor:pointer;pointer-events:none">${r.label}</text>`;
+      o+=`<text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="7" fill="${r.color}90" font-family="var(--mono)" style="pointer-events:none">${r.en.split(' ')[0]}</text>`;
+    }
+  });
+
+  // Connection arrows between adjacent regions (subtle)
+  const conns=[[0,1],[1,2],[2,3],[2,4],[0,4]];
+  conns.forEach(([a,b])=>{
+    const ra=REGIONS[a],rb=REGIONS[b];
+    const x1=ra.x+ra.w/2,y1=ra.y+ra.h/2;
+    const x2=rb.x+rb.w/2,y2=rb.y+rb.h/2;
+    const dimmed=brainSel>=0&&brainSel!==a&&brainSel!==b;
+    o+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${dimmed?'#eee':'#ccc'}" stroke-width=".8" stroke-dasharray="3 3"/>`;
+  });
+
+  // Spinal cord
+  o+=`<path d="M200,250 C210,265 215,280 210,295" fill="none" stroke="${FAINT}" stroke-width="2.5" stroke-linecap="round"/>`;
+  o+=`<text x="225" y="290" font-size="7" fill="${DIM}" font-family="var(--mono)">脑干 → 脊髓</text>`;
+
+  // ── Dynamic functional gradient axis ──
+  const gY=318, gX=42, gW=295;
+  o+=`<defs><linearGradient id="funcGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="${DLPFC}" stop-opacity=".55"/>
+    <stop offset="100%" stop-color="#c47a2a" stop-opacity=".55"/>
+  </linearGradient></defs>`;
+  // Track background
+  o+=`<rect x="${gX}" y="${gY}" width="${gW}" height="5" rx="2.5" fill="#e8e4dc"/>`;
+  // Filled track
+  o+=`<rect x="${gX}" y="${gY}" width="${gW}" height="5" rx="2.5" fill="url(#funcGrad)" opacity=".4"/>`;
+  // Tick marks for each region (always visible)
+  REGIONS.forEach((r,i)=>{
+    const tx=gX+r.abs*gW;
+    const isSel=brainSel===i;
+    o+=`<line x1="${tx}" y1="${gY-2}" x2="${tx}" y2="${gY+7}" stroke="${isSel?r.color:r.color+'50'}" stroke-width="${isSel?2:1}"/>`;
+  });
+  // Endpoint labels
+  o+=`<text x="${gX}" y="${gY-10}" font-size="8" fill="${DLPFC}" font-family="var(--mono)" font-weight="600">抽象</text>`;
+  o+=`<text x="${gX+gW}" y="${gY-10}" text-anchor="end" font-size="8" fill="#c47a2a" font-family="var(--mono)" font-weight="600">具体</text>`;
+  o+=`<text x="${gX+gW/2}" y="${gY-10}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">功能抽象度</text>`;
+
+  // Dynamic marker when a region is selected
+  if(brainSel>=0){
+    const r=REGIONS[brainSel];
+    const mx=gX+r.abs*gW;
+    // Vertical connection line from region to axis
+    const regionCy=r.y+r.h/2;
+    o+=`<line x1="${r.x+r.w/2}" y1="${r.y+r.h}" x2="${mx}" y2="${gY-4}" stroke="${r.color}" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>`;
+    // Marker diamond
+    o+=`<polygon points="${mx},${gY-6} ${mx+6},${gY+2.5} ${mx},${gY+11} ${mx-6},${gY+2.5}" fill="${r.color}" stroke="#fff" stroke-width="1.5"/>`;
+    // Label below marker
+    o+=`<text x="${mx}" y="${gY+24}" text-anchor="middle" font-size="8" fill="${r.color}" font-weight="600" font-family="var(--mono)">${r.label}</text>`;
+    o+=`<text x="${mx}" y="${gY+36}" text-anchor="middle" font-size="7" fill="${r.color}bb" font-family="var(--mono)">${r.absLabel}</text>`;
+  } else {
+    o+=`<text x="${gX+gW/2}" y="${gY+24}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">← 点击上方脑区，看它在光谱上的位置 →</text>`;
+  }
+  // PFC proportion note (always)
+  o+=`<text x="${gX}" y="${gY+50}" font-size="7" fill="${DLPFC}99" font-family="var(--mono)">前额叶 ≈ 人类皮层面积的 29%</text>`;
+
+  // ── Right panel ──
+  if(brainSel>=0){
+    const r=REGIONS[brainSel];
+    const px=405,py=35,pw=245,ph=350;
+    o+=`<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="8" fill="${r.color}06" stroke="${r.color}30"/>`;
+    // Header
+    o+=`<text x="${px+pw/2}" y="${py+30}" text-anchor="middle" font-size="16" fill="${r.color}" font-weight="700">${r.label}</text>`;
+    o+=`<text x="${px+pw/2}" y="${py+48}" text-anchor="middle" font-size="10" fill="${DIM}" font-family="var(--mono)">${REGIONS[brainSel].en}</text>`;
+    o+=`<line x1="${px+20}" y1="${py+58}" x2="${px+pw-20}" y2="${py+58}" stroke="${r.color}25" stroke-width="1"/>`;
+    // Description with proper word wrap
+    const desc=r.desc;
+    const maxChars=16;
+    const dLines=[];
+    for(let j=0;j<desc.length;j+=maxChars){
+      dLines.push(desc.slice(j,j+maxChars));
+    }
+    dLines.forEach((l,li)=>{
+      o+=`<text x="${px+20}" y="${py+82+li*22}" font-size="13" fill="${r.color}dd">${l}</text>`;
+    });
+    // Decorative icon
+    const iconY=py+82+dLines.length*22+20;
+    o+=`<circle cx="${px+pw/2}" cy="${iconY+20}" r="25" fill="${r.color}10" stroke="${r.color}30" stroke-width="1"/>`;
+    o+=`<circle cx="${px+pw/2}" cy="${iconY+20}" r="10" fill="${r.color}30" stroke="${r.color}" stroke-width="1.5"/>`;
+    o+=`<text x="${px+pw/2}" y="${iconY+24}" text-anchor="middle" font-size="8" fill="${r.color}" font-family="var(--mono)" font-weight="600">核心</text>`;
+    // Click hint
+    o+=`<text x="${px+pw/2}" y="${py+ph-12}" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">再次点击区域可取消选择</text>`;
+  } else {
+    // Default right panel
+    o+=`<rect x="405" y="35" width="245" height="350" rx="8" fill="#f4f2ed" stroke="${FAINT}"/>`;
+    o+=`<text x="527" y="170" text-anchor="middle" font-size="12" fill="${DIM}">← 点击左侧大脑区域</text>`;
+    o+=`<text x="527" y="192" text-anchor="middle" font-size="12" fill="${DIM}">查看详细功能</text>`;
+    o+=`<text x="527" y="220" text-anchor="middle" font-size="9" fill="${FAINT}" font-family="var(--mono)">5 个区域可探索</text>`;
+  }
+
+  document.getElementById('brainSvg').innerHTML=o;
+  if(brainSel>=0){
+    document.getElementById('brainCap').innerHTML=`<strong style="color:${REGIONS[brainSel].color}">${REGIONS[brainSel].label}</strong>：${REGIONS[brainSel].desc}`;
+  } else {
+    document.getElementById('brainCap').innerHTML='点击大脑的不同区域，了解它们的功能分工。前额叶是最前端的蓝色区域。';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 3: PFC Subregions (Expandable Cards)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let cardSel=-1;
+const CARDS=[
+  {label:'dlPFC',full:'背外侧前额叶',color:DLPFC,
+   brief:'工作记忆 · 计划 · 注意力',
+   icon:'🧩',
+   detail:'就像办公桌上的白板——临时存放正在处理的信息，让你能一边听讲一边做笔记。损伤后表现：无法同时处理多项任务，注意力涣散，计划能力下降。',
+   example:'经典测试：Wisconsin 卡片分类任务。dlPFC 损伤的患者无法根据规则变化灵活切换策略。'},
+  {label:'vmPFC',full:'腹内侧前额叶',color:VMPFC,
+   brief:'决策 · 风险评估 · 情绪-理性整合',
+   icon:'⚖️',
+   detail:'Damasio 的"躯体标记"就存储在这里——把过去经验的情绪标签和当前选择联系起来，帮你快速判断"这个决定靠不靠谱"。',
+   example:'Iowa 赌博任务：vmPFC 损伤的患者反复选择高风险牌堆，即使已经输了很多钱——他们"知道"哪堆牌不好，但"感觉不到"。'},
+  {label:'OFC',full:'眶额叶皮层',color:OFC,
+   brief:'奖赏评价 · 社交行为 · 冲动抑制',
+   icon:'🎯',
+   detail:'评估每件事的"值不值"——这块巧克力值 5 分快乐，但减肥目标值 8 分。OFC 帮你算这笔账。也管社交中的"什么话该说什么话不该说"。',
+   example:'Phineas Gage 的 OFC 被铁棒摧毁后，他变得粗鲁、不守信用、对社交规范毫无概念——奖赏评估和社会行为同时崩溃。'},
+  {label:'ACC',full:'前扣带皮层',color:ACC,
+   brief:'冲突监测 · 错误检测 · 动机调节',
+   icon:'🚨',
+   detail:'大脑的"警报系统"——当你做的事和目标冲突时，ACC 会发出信号说"等等，不对"。它也参与疼痛感知和动机驱动。',
+   example:'Stroop 任务（说出字体颜色而非文字内容）：ACC 在你回答正确但犹豫的试次中激活最强——它在检测冲突。'}
+];
+
+function drawCardIcon(x,y,w,h,c,detail){
+  let s='';
+  // Simplified brain subregion visualization
+  const mx=x+w/2,my=y+h*0.5;
+  // Base brain shape
+  s+=`<ellipse cx="${mx}" cy="${my}" rx="${w*0.35}" ry="${h*0.35}" fill="${c}10" stroke="${c}40" stroke-width="1"/>`;
+  // Highlighted subregion
+  const r=detail?w*0.15:w*0.12;
+  s+=`<circle cx="${mx}" cy="${my}" r="${r}" fill="${c}30" stroke="${c}" stroke-width="${detail?1.5:1}"/>`;
+  if(detail){
+    // Connection lines to other regions
+    for(let a=0;a<360;a+=45){
+      const rad=a*Math.PI/180;
+      const x2=mx+Math.cos(rad)*w*0.3;
+      const y2=my+Math.sin(rad)*h*0.3;
+      s+=`<line x1="${mx+Math.cos(rad)*r}" y1="${my+Math.sin(rad)*r}" x2="${x2}" y2="${y2}" stroke="${c}40" stroke-width=".8" stroke-dasharray="3 2"/>`;
+    }
+    s+=`<text x="${mx}" y="${my+4}" text-anchor="middle" font-size="10" fill="${c}" font-weight="600">活跃区</text>`;
+  }
+  return s;
+}
+
+function renderCards(){
+  const sel=cardSel;
+  let o='';
+
+  if(sel<0){
+    // Overview: 4 cards side by side
+    const cw=155,gap=10,startX=12;
+    CARDS.forEach((cd,i)=>{
+      const cx=startX+i*(cw+gap);
+      o+=`<g style="cursor:pointer" onclick="cardSel=${i};renderCards()">`;
+      o+=`<rect x="${cx}" y="8" width="${cw}" height="380" rx="8" fill="#faf9f6" stroke="${cd.color}40" stroke-width="1.5"/>`;
+      // Icon area
+      o+=`<text x="${cx+cw/2}" y="52" text-anchor="middle" font-size="28">${cd.icon}</text>`;
+      // Label
+      o+=`<text x="${cx+cw/2}" y="80" text-anchor="middle" font-size="14" fill="${cd.color}" font-weight="700" font-family="var(--mono)">${cd.label}</text>`;
+      o+=`<text x="${cx+cw/2}" y="98" text-anchor="middle" font-size="9" fill="${DIM}">${cd.full}</text>`;
+      // Divider
+      o+=`<line x1="${cx+15}" y1="110" x2="${cx+cw-15}" y2="110" stroke="${cd.color}30" stroke-width="1"/>`;
+      // Brief
+      const blines=cd.brief.split(' · ');
+      blines.forEach((bl,bi)=>{
+        o+=`<text x="${cx+cw/2}" y="${128+bi*20}" text-anchor="middle" font-size="10" fill="${cd.color}aa" font-family="var(--mono)">${bl}</text>`;
+      });
+      // Mini brain icon
+      o+=drawCardIcon(cx+20,200,cw-40,100,cd.color,false);
+      // CTA
+      o+=`<text x="${cx+cw/2}" y="370" text-anchor="middle" font-size="9" fill="${cd.color}" opacity=".5" font-family="var(--mono)">点击展开 →</text>`;
+      o+=`</g>`;
+    });
+  } else {
+    // Expanded view
+    const cd=CARDS[sel];
+    // Main expanded card
+    o+=`<rect x="10" y="8" width="660" height="310" rx="8" fill="#faf9f6" stroke="${cd.color}60" stroke-width="1.5"/>`;
+    // Back button
+    o+=`<g style="cursor:pointer" onclick="cardSel=-1;renderCards()">`;
+    o+=`<text x="30" y="30" font-size="11" fill="${DIM}" font-family="var(--mono)">← 返回总览</text>`;
+    o+=`</g>`;
+    // Header
+    o+=`<text x="340" y="35" text-anchor="middle" font-size="20">${cd.icon}</text>`;
+    o+=`<text x="340" y="60" text-anchor="middle" font-size="16" fill="${cd.color}" font-weight="700" font-family="var(--mono)">${cd.label} · ${cd.full}</text>`;
+    o+=`<line x1="60" y1="72" x2="620" y2="72" stroke="${cd.color}30" stroke-width="1"/>`;
+
+    // Left: icon visualization
+    o+=drawCardIcon(20,80,240,200,cd.color,true);
+
+    // Right: detail text (word-wrapped manually)
+    const detailLines=[];
+    let tmp='';
+    const chars=cd.detail.split('');
+    chars.forEach(ch=>{
+      tmp+=ch;
+      if(tmp.length>=24||(ch==='。'||ch==='，'||ch==='；'||ch==='：')&&tmp.length>10){
+        detailLines.push(tmp);tmp='';
+      }
+    });
+    if(tmp) detailLines.push(tmp);
+
+    detailLines.forEach((l,li)=>{
+      o+=`<text x="280" y="${95+li*20}" font-size="11" fill="var(--ink)">${l}</text>`;
+    });
+
+    // Example
+    o+=`<rect x="270" y="230" width="390" height="80" rx="4" fill="${cd.color}08" stroke="${cd.color}20"/>`;
+    o+=`<text x="280" y="248" font-size="9" fill="${cd.color}" font-weight="600" font-family="var(--mono)">经典实验证据</text>`;
+    const exLines=[];
+    let etmp='';
+    cd.example.split('').forEach(ch=>{
+      etmp+=ch;
+      if(etmp.length>=30||(ch==='。'||ch==='，')&&etmp.length>15){
+        exLines.push(etmp);etmp='';
+      }
+    });
+    if(etmp) exLines.push(etmp);
+    exLines.forEach((l,li)=>{
+      o+=`<text x="280" y="${266+li*17}" font-size="10" fill="${cd.color}bb">${l}</text>`;
+    });
+
+    // Bottom bar: other cards dimmed
+    const bw=150,by=330;
+    CARDS.forEach((ocd,i)=>{
+      if(i===sel) return;
+      const bx=10+(i>sel?i-1:i)*220+10;
+      o+=`<g style="cursor:pointer" opacity=".25" onclick="cardSel=${i};renderCards()">`;
+      o+=`<rect x="${bx}" y="${by}" width="${bw}" height="60" rx="6" fill="#faf9f6" stroke="${ocd.color}40"/>`;
+      o+=`<text x="${bx+bw/2}" y="${by+25}" text-anchor="middle" font-size="14">${ocd.icon}</text>`;
+      o+=`<text x="${bx+bw/2}" y="${by+45}" text-anchor="middle" font-size="10" fill="${ocd.color}" font-family="var(--mono)">${ocd.label}</text>`;
+      o+=`</g>`;
+    });
+  }
+
+  document.getElementById('cardsSvg').innerHTML=o;
+  if(sel>=0){
+    document.getElementById('cardsCap').innerHTML=`<strong style="color:${CARDS[sel].color}">${CARDS[sel].full}</strong>——${CARDS[sel].brief}`;
+  } else {
+    document.getElementById('cardsCap').innerHTML='四个子区域各司其职，但时刻协同工作。点击任意卡片查看详情。';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 4: Evolution Slider
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const EVO=[
+  {name:'鱼类',en:'Fish',pfc:2,total:100,brain_w:25,brain_h:12,age:'4.5亿年前',note:'几乎没有前额叶结构'},
+  {name:'爬行动物',en:'Reptile',pfc:5,total:100,brain_w:35,brain_h:20,age:'3亿年前',note:'原始的前脑皮层出现'},
+  {name:'哺乳动物',en:'Mammal',pfc:10,total:100,brain_w:50,brain_h:35,age:'2亿年前',note:'前额叶开始分化'},
+  {name:'灵长类',en:'Primate',pfc:17,total:100,brain_w:65,brain_h:50,age:'6000万年前',note:'前额叶显著扩大'},
+  {name:'人类',en:'Human',pfc:29,total:100,brain_w:85,brain_h:65,age:'30万年前',note:'前额叶占皮层近1/3'}
+];
+
+function renderEvo(){
+  const lv=+document.getElementById('evoSlider').value;
+  let o='';
+  o+=`<rect x="10" y="5" width="640" height="265" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+
+  // Draw all 5 brain outlines, highlight current
+  const baseY=140,spacing=125;
+  EVO.forEach((e,i)=>{
+    const cx=55+i*spacing;
+    const isActive=i<=lv;
+    const isCurrent=i===lv;
+    const op=isActive?1:.2;
+    const bw=e.brain_w,bh=e.brain_h;
+
+    // Brain ellipse
+    o+=`<ellipse cx="${cx}" cy="${baseY}" rx="${bw/2}" ry="${bh/2}" fill="${isCurrent?DLPFC+'20':'#eee'}" stroke="${isCurrent?DLPFC:FAINT}" stroke-width="${isCurrent?2:1}" opacity="${op}"/>`;
+
+    // PFC portion (front part of ellipse)
+    if(isActive){
+      const pfcW=bw*e.pfc/100;
+      o+=`<ellipse cx="${cx-bw/2+pfcW/1.5}" cy="${baseY}" rx="${pfcW/1.8}" ry="${bh/2-2}" fill="${DLPFC}${isCurrent?'50':'20'}" stroke="none" opacity="${op}"/>`;
+    }
+
+    // Labels
+    o+=`<text x="${cx}" y="${baseY+bh/2+18}" text-anchor="middle" font-size="${isCurrent?11:9}" fill="${isCurrent?INK:DIM}" font-weight="${isCurrent?'600':'400'}">${e.name}</text>`;
+    o+=`<text x="${cx}" y="${baseY+bh/2+32}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${e.age}</text>`;
+
+    if(isCurrent){
+      // PFC percentage
+      o+=`<text x="${cx}" y="${baseY-bh/2-12}" text-anchor="middle" font-size="18" fill="${DLPFC}" font-weight="700">${e.pfc}%</text>`;
+      o+=`<text x="${cx}" y="${baseY-bh/2-26}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">前额叶占比</text>`;
+    }
+
+    // Connection line between brains
+    if(i<4){
+      o+=`<line x1="${cx+bw/2+5}" y1="${baseY}" x2="${cx+spacing-EVO[i+1].brain_w/2-5}" y2="${baseY}" stroke="${i<lv?DLPFC+'60':FAINT}" stroke-width="1" stroke-dasharray="4 3"/>`;
+    }
+  });
+
+  // Bottom bar chart
+  const barY=210,barH=40;
+  o+=`<text x="30" y="${barY}" font-size="7" fill="${DIM}" font-family="var(--mono)">占比对比</text>`;
+  EVO.forEach((e,i)=>{
+    const cx=55+i*spacing;
+    const isActive=i<=lv;
+    const barW=e.pfc*2.5;
+    o+=`<rect x="${cx-barW/2}" y="${barY+5}" width="${barW}" height="12" rx="3" fill="${isActive?DLPFC:'#ddd'}" opacity="${isActive?.7:.2}"/>`;
+    if(isActive){
+      o+=`<text x="${cx}" y="${barY+32}" text-anchor="middle" font-size="7" fill="${DLPFC}" font-family="var(--mono)">${e.pfc}%</text>`;
+    }
+  });
+
+  document.getElementById('evoSvg').innerHTML=o;
+  const cur=EVO[lv];
+  document.getElementById('evoCap').innerHTML=`<strong style="color:${DLPFC}">${cur.name}</strong>（${cur.en}）· ${cur.age} · 前额叶占比 ${cur.pfc}% · ${cur.note}`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 5: Conductor (Step Navigator)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const COND_STEPS=[
+  {t:'感觉输入',
+   cap:'你路过蛋糕店——视觉皮层识别蛋糕，嗅觉皮层捕获香味。信息同时涌入大脑。',
+   draw:function(o){
+     // Cake shop scene
+     o+=`<rect x="40" y="50" width="200" height="220" rx="6" fill="#fdf8f4" stroke="${FAINT}"/>`;
+     o+=`<text x="140" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">外部世界</text>`;
+     // Cake
+     o+=`<rect x="100" y="100" width="80" height="50" rx="8" fill="#f0d0b0" stroke="#d4a574"/>`;
+     o+=`<text x="140" y="130" text-anchor="middle" font-size="10" fill="#b07040">🎂</text>`;
+     o+=`<text x="140" y="165" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">蛋糕 · 视觉+嗅觉</text>`;
+     // Person
+     o+=P(140,230,90,INK,.8,1.1);
+     // Brain area - visual cortex lights up
+     o+=`<rect x="350" y="50" width="280" height="220" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+     o+=`<text x="490" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">大脑内部</text>`;
+     // Visual cortex
+     o+=`<circle cx="540" cy="160" r="30" fill="#c47a2a20" stroke="#c47a2a" stroke-width="2"/>`;
+     o+=`<text x="540" y="157" text-anchor="middle" font-size="8" fill="#c47a2a" font-family="var(--mono)">枕叶</text>`;
+     o+=`<text x="540" y="170" text-anchor="middle" font-size="7" fill="#c47a2a" font-family="var(--mono)">视觉处理 ✦</text>`;
+     // Olfactory
+     o+=`<circle cx="440" cy="220" r="22" fill="#c25a7a20" stroke="#c25a7a" stroke-width="2"/>`;
+     o+=`<text x="440" y="218" text-anchor="middle" font-size="7" fill="#c25a7a" font-family="var(--mono)">嗅觉</text>`;
+     o+=`<text x="440" y="230" text-anchor="middle" font-size="6" fill="#c25a7a" font-family="var(--mono)">识别香味 ✦</text>`;
+     // PFC dim
+     o+=`<circle cx="400" cy="110" r="35" fill="${DLPFC}08" stroke="${DLPFC}30" stroke-width="1" stroke-dasharray="4 3"/>`;
+     o+=`<text x="400" y="108" text-anchor="middle" font-size="8" fill="${DLPFC}50" font-family="var(--mono)">前额叶</text>`;
+     o+=`<text x="400" y="120" text-anchor="middle" font-size="7" fill="${DLPFC}40" font-family="var(--mono)">待命中…</text>`;
+     // Arrow from world to brain
+     o+=`<line x1="250" y1="160" x2="340" y2="160" stroke="${DIM}" stroke-width="1.5" stroke-dasharray="5 3"/>`;
+     o+=`<polygon points="340,156 348,160 340,164" fill="${DIM}"/>`;
+     return o;
+   }},
+  {t:'奖赏系统激活',
+   cap:'腹侧纹状体（奖赏中枢）对蛋糕产生强烈反应——"好吃！想要！"',
+   draw:function(o){
+     o+=`<rect x="40" y="50" width="200" height="220" rx="6" fill="#fdf8f4" stroke="${FAINT}"/>`;
+     o+=`<text x="140" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">外部世界</text>`;
+     o+=`<rect x="100" y="100" width="80" height="50" rx="8" fill="#f0d0b0" stroke="#d4a574"/>`;
+     o+=`<text x="140" y="130" text-anchor="middle" font-size="10" fill="#b07040">🎂</text>`;
+     o+=P(140,230,90,INK,.8,1.1);
+     o+=`<rect x="350" y="50" width="280" height="220" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+     o+=`<text x="490" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">大脑内部</text>`;
+     // Reward center lights up bright
+     o+=`<circle cx="490" cy="190" r="28" fill="${OLD}30" stroke="${OLD}" stroke-width="2.5"/>`;
+     o+=`<text x="490" y="186" text-anchor="middle" font-size="8" fill="${OLD}" font-weight="600" font-family="var(--mono)">纹状体</text>`;
+     o+=`<text x="490" y="199" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">想要！🔥</text>`;
+     // Dopamine burst
+     o+=`<text x="490" y="225" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">多巴胺 ↑↑↑</text>`;
+     // Visual cortex still active but dimmer
+     o+=`<circle cx="540" cy="120" r="22" fill="#c47a2a10" stroke="#c47a2a50" stroke-width="1"/>`;
+     o+=`<text x="540" y="122" text-anchor="middle" font-size="7" fill="#c47a2a80" font-family="var(--mono)">枕叶 ✓</text>`;
+     // PFC still waiting
+     o+=`<circle cx="400" cy="110" r="35" fill="${DLPFC}08" stroke="${DLPFC}30" stroke-width="1" stroke-dasharray="4 3"/>`;
+     o+=`<text x="400" y="108" text-anchor="middle" font-size="8" fill="${DLPFC}50" font-family="var(--mono)">前额叶</text>`;
+     o+=`<text x="400" y="120" text-anchor="middle" font-size="7" fill="${DLPFC}40" font-family="var(--mono)">收到信号…</text>`;
+     o+=`<line x1="250" y1="160" x2="340" y2="160" stroke="${DIM}" stroke-width="1.5" stroke-dasharray="5 3"/>`;
+     o+=`<polygon points="340,156 348,160 340,164" fill="${DIM}"/>`;
+     return o;
+   }},
+  {t:'前额叶介入',
+   cap:'前额叶激活——调取你的减肥目标（工作记忆），准备发送偏置信号。',
+   draw:function(o){
+     o+=`<rect x="40" y="50" width="200" height="220" rx="6" fill="#fdf8f4" stroke="${FAINT}"/>`;
+     o+=`<text x="140" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">外部世界</text>`;
+     o+=`<rect x="100" y="100" width="80" height="50" rx="8" fill="#f0d0b0" stroke="#d4a574"/>`;
+     o+=`<text x="140" y="130" text-anchor="middle" font-size="10" fill="#b07040">🎂</text>`;
+     o+=P(140,230,90,INK,.8,1.1);
+     o+=`<rect x="350" y="50" width="280" height="220" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+     o+=`<text x="490" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">大脑内部</text>`;
+     // PFC now active!
+     o+=`<circle cx="400" cy="110" r="38" fill="${DLPFC}25" stroke="${DLPFC}" stroke-width="2.5"/>`;
+     o+=`<text x="400" y="104" text-anchor="middle" font-size="9" fill="${DLPFC}" font-weight="600" font-family="var(--mono)">前额叶 ✦</text>`;
+     o+=`<text x="400" y="118" text-anchor="middle" font-size="7" fill="${DLPFC}" font-family="var(--mono)">目标：减肥 -5kg</text>`;
+     o+=`<text x="400" y="130" text-anchor="middle" font-size="7" fill="${DLPFC}" font-family="var(--mono)">发送偏置信号…</text>`;
+     // Reward still wants
+     o+=`<circle cx="490" cy="190" r="28" fill="${OLD}20" stroke="${OLD}80" stroke-width="1.5"/>`;
+     o+=`<text x="490" y="188" text-anchor="middle" font-size="8" fill="${OLD}90" font-family="var(--mono)">纹状体</text>`;
+     o+=`<text x="490" y="200" text-anchor="middle" font-size="7" fill="${OLD}80" font-family="var(--mono)">想要…</text>`;
+     // Bias signal arrows from PFC
+     o+=`<line x1="430" y1="130" x2="470" y2="175" stroke="${DLPFC}" stroke-width="1.5" stroke-dasharray="4 2"/>`;
+     o+=`<polygon points="470,172 475,180 467,178" fill="${DLPFC}"/>`;
+     o+=`<text x="460" y="150" font-size="6" fill="${DLPFC}" font-family="var(--mono)">偏置↓</text>`;
+     o+=`<line x1="250" y1="160" x2="340" y2="160" stroke="${DIM}" stroke-width="1.5" stroke-dasharray="5 3"/>`;
+     o+=`<polygon points="340,156 348,160 340,164" fill="${DIM}"/>`;
+     return o;
+   }},
+  {t:'信号竞争',
+   cap:'偏置信号降低奖赏系统的反应强度，同时增强对长期目标的注意力。两股力量在拉锯。',
+   draw:function(o){
+     o+=`<rect x="40" y="50" width="200" height="220" rx="6" fill="#fdf8f4" stroke="${FAINT}"/>`;
+     o+=`<text x="140" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">外部世界</text>`;
+     o+=`<rect x="100" y="100" width="80" height="50" rx="8" fill="#f0d0b080" stroke="#d4a57480"/>`;
+     o+=`<text x="140" y="130" text-anchor="middle" font-size="10" fill="#b0704080">🎂</text>`;
+     o+=P(140,230,90,INK,.8,1.1);
+     // Thought bubble: gym
+     o+=`<ellipse cx="80" cy="180" rx="35" ry="20" fill="${NEW}15" stroke="${NEW}40" stroke-width="1"/>`;
+     o+=`<text x="80" y="183" text-anchor="middle" font-size="8" fill="${NEW}" font-family="var(--mono)">健身房 💪</text>`;
+     o+=`<rect x="350" y="50" width="280" height="220" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+     o+=`<text x="490" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">大脑内部</text>`;
+     // PFC strong
+     o+=`<circle cx="400" cy="110" r="38" fill="${DLPFC}30" stroke="${DLPFC}" stroke-width="3"/>`;
+     o+=`<text x="400" y="104" text-anchor="middle" font-size="9" fill="${DLPFC}" font-weight="600" font-family="var(--mono)">前额叶 ✦✦</text>`;
+     o+=`<text x="400" y="118" text-anchor="middle" font-size="7" fill="${DLPFC}" font-family="var(--mono)">坚持目标!</text>`;
+     // Reward weakening
+     o+=`<circle cx="490" cy="190" r="22" fill="${OLD}10" stroke="${OLD}40" stroke-width="1"/>`;
+     o+=`<text x="490" y="188" text-anchor="middle" font-size="7" fill="${OLD}60" font-family="var(--mono)">纹状体</text>`;
+     o+=`<text x="490" y="200" text-anchor="middle" font-size="7" fill="${OLD}40" font-family="var(--mono)">减弱…</text>`;
+     // Bias signals
+     o+=`<line x1="430" y1="128" x2="472" y2="175" stroke="${DLPFC}" stroke-width="2"/>`;
+     o+=`<polygon points="472,172 478,180 468,177" fill="${DLPFC}"/>`;
+     o+=`<text x="455" y="148" font-size="7" fill="${DLPFC}" font-weight="600" font-family="var(--mono)">抑制 ↓</text>`;
+     // Motor prep area
+     o+=`<circle cx="560" cy="130" r="22" fill="${NEW}20" stroke="${NEW}" stroke-width="1.5"/>`;
+     o+=`<text x="560" y="128" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">运动规划</text>`;
+     o+=`<text x="560" y="140" text-anchor="middle" font-size="6" fill="${NEW}" font-family="var(--mono)">准备走开…</text>`;
+     o+=`<line x1="430" y1="100" x2="540" y2="118" stroke="${DLPFC}" stroke-width="1.5" stroke-dasharray="4 2"/>`;
+     o+=`<polygon points="538,115 545,120 537,121" fill="${DLPFC}"/>`;
+     o+=`<text x="480" y="100" font-size="6" fill="${DLPFC}" font-family="var(--mono)">激活 ↑</text>`;
+     return o;
+   }},
+  {t:'行为输出',
+   cap:'前额叶赢了这一轮。你走过蛋糕店，走向健身房。但如果前额叶疲劳或受损呢？结果可能完全不同。',
+   draw:function(o){
+     o+=`<rect x="40" y="50" width="200" height="220" rx="6" fill="#f4faf4" stroke="${NEW}30"/>`;
+     o+=`<text x="140" y="70" text-anchor="middle" font-size="9" fill="${NEW}" font-family="var(--mono)">外部世界 · 结果</text>`;
+     // Person walking away from cake
+     o+=`<rect x="160" y="120" width="60" height="40" rx="6" fill="#f0d0b030" stroke="#d4a57430"/>`;
+     o+=`<text x="190" y="145" text-anchor="middle" font-size="8" fill="#d4a57450">🎂</text>`;
+     o+=P(80,200,180,NEW,.9,1.2);
+     o+=`<text x="80" y="170" text-anchor="middle" font-size="8" fill="${NEW}" font-family="var(--mono)">→ 走向健身房</text>`;
+     o+=`<text x="140" y="255" text-anchor="middle" font-size="8" fill="${NEW}" font-weight="600" font-family="var(--mono)">✓ 长期目标 > 即时诱惑</text>`;
+
+     o+=`<rect x="350" y="50" width="280" height="220" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+     o+=`<text x="490" y="70" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">大脑内部 · 任务完成</text>`;
+     // PFC satisfied
+     o+=`<circle cx="400" cy="120" r="38" fill="${DLPFC}20" stroke="${DLPFC}" stroke-width="2"/>`;
+     o+=`<text x="400" y="116" text-anchor="middle" font-size="9" fill="${DLPFC}" font-weight="600" font-family="var(--mono)">前额叶 ✓</text>`;
+     o+=`<text x="400" y="130" text-anchor="middle" font-size="7" fill="${DLPFC}" font-family="var(--mono)">目标维持成功</text>`;
+     // Reward at baseline
+     o+=`<circle cx="490" cy="190" r="18" fill="${DIM}10" stroke="${DIM}40" stroke-width="1"/>`;
+     o+=`<text x="490" y="192" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">纹状体 · 基线</text>`;
+     // Motor executed
+     o+=`<circle cx="560" cy="120" r="22" fill="${NEW}20" stroke="${NEW}" stroke-width="1.5"/>`;
+     o+=`<text x="560" y="118" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">运动输出</text>`;
+     o+=`<text x="560" y="130" text-anchor="middle" font-size="6" fill="${NEW}" font-family="var(--mono)">已执行 ✓</text>`;
+     // Summary
+     o+=`<text x="490" y="250" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">偏置信号 → 改变全脑信息流</text>`;
+     return o;
+   }}
+];
+
+let curCond=0;
+function renderCond(){
+  const step=COND_STEPS[curCond];
+  let o=`<defs><filter id="blur"><feGaussianBlur stdDeviation="6"/></filter></defs>`;
+
+  // Progress dots
+  COND_STEPS.forEach((_,i)=>{
+    const cx=240+(i-2)*50;
+    o+=`<circle cx="${cx}" cy="15" r="${i===curCond?6:3.5}" fill="${i<=curCond?INK:'#ddd'}"/>`;
+    o+=`<text x="${cx}" y="32" text-anchor="middle" font-size="7" fill="${i===curCond?INK:DIM}" font-family="var(--mono)">${_.t}</text>`;
+  });
+
+  // Draw the scene
+  o=step.draw(o);
+
+  document.getElementById('condSvg').innerHTML=o;
+  document.getElementById('condStep').textContent=`${curCond+1}/${COND_STEPS.length}`;
+  document.getElementById('condCap').innerHTML=step.cap;
+  document.getElementById('condPrev').classList.toggle('dim',curCond<=0);
+  document.getElementById('condNext').classList.toggle('dim',curCond>=COND_STEPS.length-1);
+}
+function condNav(d){const n=curCond+d;if(n>=0&&n<COND_STEPS.length){curCond=n;renderCond();}}
+
+// ── 初始化 ──
+renderGage();
+renderBrain();
+renderCards();
+renderEvo();
+renderCond();
+</script>
+</body>
+</html>
