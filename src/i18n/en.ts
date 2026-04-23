@@ -8,7 +8,7 @@ export const en = {
 
   // About
   aboutTitle: "About Me",
-  aboutBio: `I make things at the edge of technology and meaning — AI products, interactive stories, tools I wished existed. Currently founding ILLUCIO, an AI reading companion used by 6000 people. Always shipping something new.`,
+  aboutBio: `I'm the founder of ILLUCIO — using AI to turn complex text into interactive, dimensional articles you don't just read, but play. CS undergrad at Harbin Institute of Technology, MSc at National University of Singapore. I write code, build products, practice the sword, and believe in "playfulness".`,
 
   // Projects
   projectsTitle: "Featured Projects",
