@@ -3,7 +3,7 @@
   "checkpoint_id": "58d8b3e36931",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 4,
+  "checkpoints_count": 7,
   "files_touched": [
     "src/components/Projects.astro"
   ],
@@ -14,13 +14,20 @@
       "context": "/58/d8b3e36931/0/context.md",
       "content_hash": "/58/d8b3e36931/0/content_hash.txt",
       "prompt": "/58/d8b3e36931/0/prompt.txt"
+    },
+    {
+      "metadata": "/58/d8b3e36931/1/metadata.json",
+      "transcript": "/58/d8b3e36931/1/full.jsonl",
+      "context": "/58/d8b3e36931/1/context.md",
+      "content_hash": "/58/d8b3e36931/1/content_hash.txt",
+      "prompt": "/58/d8b3e36931/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 52,
-    "cache_creation_tokens": 64668,
-    "cache_read_tokens": 885319,
-    "output_tokens": 7755,
-    "api_call_count": 22
+    "input_tokens": 89,
+    "cache_creation_tokens": 82301,
+    "cache_read_tokens": 1348274,
+    "output_tokens": 11135,
+    "api_call_count": 43
   }
 }
