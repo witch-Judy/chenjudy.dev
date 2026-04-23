@@ -1,13 +1,14 @@
 export const en = {
   // Hero
   heroGreeting: "Chen Judy",
-  heroSubtitle: "Co-founder & CTO of ILLUCIO",
-  heroTagline: "I build what I can't stop thinking about.",
+  heroSubtitle: "Founder of ILLUCIO",
+  heroEducation: "BEng, Harbin Institute of Technology · MSc in Computer Science, National University of Singapore",
+  heroTagline: "Exploring AI, technology, art and the humanities — always shipping.",
   heroCta: "Get in touch",
 
   // About
   aboutTitle: "About Me",
-  aboutBio: `I make things at the edge of technology and meaning — AI products, interactive stories, tools I wished existed. Currently building ILLUCIO, an AI reading companion used by 6000 people. Always shipping something new.`,
+  aboutBio: `I make things at the edge of technology and meaning — AI products, interactive stories, tools I wished existed. Currently founding ILLUCIO, an AI reading companion used by 6000 people. Always shipping something new.`,
 
   // Projects
   projectsTitle: "Featured Projects",

@@ -37,10 +37,15 @@ import { zh } from "@/i18n/zh";
           </h2>
           <p
             class="mt-4 leading-relaxed text-foreground/80"
-            data-lang-en={en.aboutBio}
-            data-lang-zh={zh.aboutBio}
+            id="about-bio-en"
           >
             {en.aboutBio}
+          </p>
+          <p
+            class="mt-4 leading-relaxed text-foreground/80 hidden"
+            id="about-bio-zh"
+          >
+            在技术与意义的交汇处，我致力于将那些挥之不去的灵感具象化。作为 <a href="https://www.illucio.co/" target="_blank" rel="noopener noreferrer" class="text-accent underline decoration-dashed underline-offset-4 hover:decoration-solid">ILLUCIO</a> 的创始人，我正带领这款陪伴了 6,000+ 读者的 AI 阅读伙伴走向下一个形态。同时，我亦是互动叙事与实验性工具的构建者，在 AI 的人文边界持续探索，持续 Shipping。
           </p>
         </div>
       </div>
@@ -70,6 +75,13 @@ import { zh } from "@/i18n/zh";
         : el.getAttribute("data-lang-en");
       if (text) el.textContent = text;
     });
+
+    const bioEn = document.getElementById("about-bio-en");
+    const bioZh = document.getElementById("about-bio-zh");
+    if (bioEn && bioZh) {
+      bioEn.classList.toggle("hidden", lang === "zh");
+      bioZh.classList.toggle("hidden", lang !== "zh");
+    }
   }
 
   // Listen for custom language change events
