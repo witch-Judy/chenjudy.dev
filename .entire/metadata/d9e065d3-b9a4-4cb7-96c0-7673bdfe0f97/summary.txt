@@ -1,68 +1,10 @@
-进入花叔Design模式。先给方向再动手——你站点的 design context 已经明确（brand color #006cac、mono+sans 混排），但「艺术作品集感」有很多完全不同的走法，我给你 3 个跨流派的方向，你选一个我再下手做。每个都能打，但气质完全不同。
+截图上展示的版式从上往下：
+1. **Masthead** — "Judy Chen 陈小爷" 大 serif + 右上角 Issue No. 01 / MMXXVI / Singapore metadata
+2. **Tagline** — italic serif + 品牌蓝 accent "tech, AI, and the humanities"
+3. **§ Current Obsessions** — 3 列（黄底 TBD 占位，等你填）
+4. **§ Portfolio** — SIGINT (img 左) + ILLUCIO v2 (img 右，flip) 两个 hero feature，下面 Su Shi / Monkey King / BuzzScope / UNS 四个 thumb grid
+5. **§ Experience** — ILLUCIO / Univers / IHPC 三段，左边 mono 日期列
+6. **§ Formation + § Studio** — 两栏：教育 + 技术栈 tag
+7. **Colophon** 页脚 — "Set in Newsreader · Inter · JetBrains Mono"
 
----
-
-## A 方向 · Editorial Magazine（信息建筑派 · Pentagram × 《Apartamento》气质）
-
-**为什么适合你**：你的项目本身就是「跨学科思考的产物」（ILLUCIO 阅读认知、PFC 神经科学、Seven Notes 数学美学）。Editorial 排版说「这些东西值得被好好读」——让简历读起来像杂志特稿，不是 LinkedIn 的 bullet 列表。
-
-**视觉签名**：
-- Display serif（类似 GT Super / Editorial New / Source Serif Pro）做名字 + 项目大标题
-- 正文用克制的 grotesque sans，section label 用 mono（继承你站点气质）
-- 不对称双栏 / 单栏 with 精准 margin；hairline 细线做分隔，不用 card + shadow
-- 项目图"嵌进文字流"里（magazine 风），不是独立卡片
-- Accent：一个墨色 + 一个低饱和 accent（深墨 `#1A1A1A` + 你的 `#006cac`，或换成 burnt orange `#C04A1A` 更有文气）
-
-**情绪**：有想法、克制、沉得住气、intellectual，读起来像 *The Gentlewoman*
-
----
-
-## B 方向 · Studio Case Study（运动诗学派 · Field.io × Linear × Awwwards Studio 气质）
-
-**为什么适合你**：你要打动黑客松评审"能 ship"——studio portfolio 的视觉语言直接传递"专业 builder"。大图、强版式、项目编号 01/02/03，像科技设计工作室的 case study 集。
-
-**视觉签名**：
-- Off-white / 近黑底（`#FAFAF8` 或 `#0E0E0E`）
-- Bold sans display（Inter Tight / GT Alpina）做 hero + 项目名
-- 项目图是**主角**——大尺寸、edge-to-edge 或四分之一页，不是缩略图
-- Monospace 做 meta：`01 / SIGINT / Next.js / 2025`
-- 一个 accent 色用得克制（`#006cac` 或换成更有张力的电蓝/朱砂）
-- 严格 typographic scale，视觉干净到"有点冷"
-- 项目编号序列感强，读起来有 cinematic 节奏
-
-**情绪**：confident、crafted、现代、shipping-focused、"这人在做严肃的东西"
-
----
-
-## C 方向 · Literary Paper（东方哲学派 · Kenya Hara × MUJI × 日本独立文艺杂志气质）
-
-**为什么适合你**：最能打"技术×AI×人文交界"的牌。你 ILLUCIO 做阅读、做认知，本质关心"让人好好读、好好想"——这个方向视觉上就体现这种 ethos。暖纸底色、serif 为主、敢留白。在一堆 tech bro 简历里，这份最**不一样**。
-
-**视觉签名**：
-- 暖奶油纸色底（`#F6F1E7` 或 `#FBF7EF`）
-- Serif display + serif body（EB Garamond / Newsreader）
-- 几乎只用黑墨 + 一个 rust / burgundy accent（`#8B3A2C`）
-- 极大量留白——不怕空
-- 图片是"稀有的标点"，只有 2-3 张战略性出现，不是每个项目都配图
-- Tagline / Now Exploring 做成 pull-quote 样式（大字斜体 + 引号）
-- Hairline 墨线，无 box，无 shadow
-- Accent 墨水色做项目链接下划线 hover
-
-**情绪**：quiet、诗意、thoughtful、"我不需要喊"、grounded
-
----
-
-## 我的建议 + 风险提示
-
-| 方向 | 30秒评审扫读 | 记忆点 | 和你人设匹配度 | AI slop 风险 |
-|------|------------|--------|-------------|------------|
-| A Editorial | ★★★★ | ★★★★ | ★★★★（全栈+人文） | 低 |
-| **B Studio** | ★★★★★ | ★★★ | ★★★★（ship感） | **中**（容易做成通用 studio 模板） |
-| **C Literary** | ★★★ | ★★★★★ | ★★★★★（人文交界满分） | 低 |
-
-**我个人倾向 A 或 C**，不是 B——B 看起来最"专业" 但在黑客松堆里很容易撞衫；A 和 C 是你真正能**被记住**的方向。
-
-- 如果黑客松偏工程/AI 硬核，选 **A**（editorial 的智识感 + 有现代感）
-- 如果黑客松偏 creative / 跨学科 / 设计类，选 **C**（literary 的独特气质直接爆杀）
-
-**你说一个字母（A / B / C），或者说"混 A+C"也行**（editorial grid + 暖纸底色 + serif display 完全可以），我就开始 Junior pass——先出骨架 + 占位让你看对不对路，再填细节。
+想听你的感觉——是方向对路继续打磨细节，还是有地方想调（整体气质 / 信息密度 / 颜色 / 具体某块）？也可以告诉我要不要我直接导 PDF 给你。
