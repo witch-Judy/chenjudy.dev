@@ -1,57 +1,40 @@
 # Session Context
 
 Session ID: d9e065d3-b9a4-4cb7-96c0-7673bdfe0f97
-Commit Message: 需要的，然后https://github.com/witch-Judy 这是我的github，看能不能也帮到你
+Commit Message: 组合里去掉6， 然后这种黑客松偏找到有独特想法的，我给我自己立的人设就是好玩儿主义，全栈开发，在技术、aI与人文的交界地带。illucio是pr
 
 ## Prompts
 
 ### Prompt 1
 
-需要的，然后https://github.com/witch-Judy 这是我的github，看能不能也帮到你
+组合里去掉6， 然后这种黑客松偏找到有独特想法的，我给我自己立的人设就是好玩儿主义，全栈开发，在技术、aI与人文的交界地带。illucio是private项目但我的所有项目要么开源的要么就是有链接他们可以进去体验的
 
 ## Summary
 
-两边都看完了，给你一个候选清单 + 我的初步建议，你勾选 / 增删：
+存好了。这是根据人设重新锚定的 6 个入选项目：
 
-## A 类：交互式 web 作品（最能打，黑客松评审最爱）
-这些是"我做了能跑的东西"的铁证——前端 + 设计 + 讲故事能力都有。
-- [ ] **ILLUCIO Onboarding v1** — 产品原型，文字从模糊→清晰的交互
-- [ ] **The Communal Science Lab** — Bret Victor 论文的交互式阅读指南（SVG + 动画）
-- [ ] **Riding the Kondratieff Wave** — 康波周期可视化 / 交互图表
-- [ ] **The Secret of Seven Notes** — 音律数学的交互可视化
-- [ ] **Prefrontal Cortex 系列 (EP1/2/3/6)** — 神经科学可交互科普，四集成系列
-- [ ] **No Suffering Required** — 哲学向交互体验
+## 精选列表 v2
 
-## B 类：GitHub 代码项目（工程 / 数据 / 后端信号）
-补上"不止会前端"的证据。
-- [ ] **BuzzScope** — 跨社区（HN/Reddit/YouTube/Discord）关键词追踪，Python
-- [ ] **buzzscope-historical** — 科技趋势历史分析 dashboard
-- [ ] **uns-semantic-space-explorer** — Unified Namespace 的语义建模 + 3D 可视化
-- [ ] **Job-Role-Recommendation-App** — 基于简历的岗位推荐 web app
+| # | 项目 | 交界定位 | 公开链接 |
+|---|------|--------|--------|
+| 1 | **ILLUCIO Onboarding** | AI × 认知 / 阅读体验 | 托管页（产品私有，但 onboarding 页公开） |
+| 2 | **The Communal Science Lab** | 科学 × Bret Victor 交互论文（最"交界"） | `/public` 页面 |
+| 3 | **Seven Notes** | 数学 × 音乐（最"好玩儿"） | `/public` 页面 |
+| 4 | **Prefrontal Cortex 系列** | 神经科学 × 交互科普（打包一张卡，显示系列深度） | `/public` 四集 |
+| 5 | **BuzzScope** | 全栈 × 数据 × 社区趋势追踪 | GitHub |
+| 6 | **uns-semantic-space-explorer** | 工业语义建模 × 3D 可视化 | GitHub |
 
-## C 类：思考 / 研究类写作（加分项，不是主角）
-除非评审明确看重 AI / research 背景，否则折叠或放次要位置。
-- [ ] **ILLUCIO as a Verb** — AI 创业的科研本质论
-- [ ] **Five First Principles for Multi-Agent System Design** — Google 论文的原则提炼
-- [ ] **Towards a Science of Scaling Agent Systems** — 论文 curation
-- [ ] **Nature Beyond Technology** — 外站 curation（最弱，建议删）
+这个组合的配比是：
+- **3 个交界地带 + 人文**（Communal / Seven Notes / PFC）承接"好玩儿主义"
+- **2 个工程全栈**（BuzzScope / UNS）承接"全栈开发"
+- **1 个产品 + AI**（ILLUCIO）作为 anchor
 
 ---
 
-## 我的初步建议
+在开始搭页面前，还要定 3 件小事：
 
-**精选 6 个左右，别贪多**。黑客松评审 30 秒，超过 6 个开始失焦。
+1. **顶部自我介绍要不要写一句 hero 文案？** 比如"I build at the intersection of tech, AI, and the humanities — 好玩儿主义践行者" 之类的？中英文 / 只中文 / 只英文？
+2. **联系方式放哪些？** Email / GitHub / 个人站 / Twitter / LinkedIn？
+3. **视觉风格倾向？** 想接着你现有站点的极简感，还是单独做一个更有个性 / 更"好玩儿"的 portfolio 页（比如 huashu-design / impeccable skill 可以生成的那种高设计感页）？
 
-推荐组合（你可以改）：
-1. **ILLUCIO Onboarding** — 产品代表作
-2. **Communal Science Lab** 或 **Seven Notes** 选一个 — 交互讲故事能力
-3. **PFC 系列** 打包成 1 个卡片 — 体现持续产出
-4. **BuzzScope** — 工程能力
-5. **uns-semantic-space-explorer** — 展示数据 / 可视化 / 跨学科
-6. **Multi-Agent First Principles** — AI 领域 thought leadership（如果黑客松偏 AI 方向）
-
-**两个还需要你确认的问题：**
-1. 这些黑客松偏什么方向？AI / 工具 / 设计 / 全栈？这决定 B 类 vs C 类的权重。
-2. 有没有团队项目 / 已经拿过名次的比赛作品想放进去？GitHub 上 12 个 repo 只看到 6 个，另外 6 个里有没有该露脸的？
-
-你先勾一下，或者告诉我方向，我就开始搭结构。
+定完这 3 个我就可以开搭了。
