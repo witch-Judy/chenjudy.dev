@@ -1,40 +1,38 @@
 # Session Context
 
 Session ID: d9e065d3-b9a4-4cb7-96c0-7673bdfe0f97
-Commit Message: 组合里去掉6， 然后这种黑客松偏找到有独特想法的，我给我自己立的人设就是好玩儿主义，全栈开发，在技术、aI与人文的交界地带。illucio是pr
+Commit Message: Illucio是一个完整的产品了已经，不只是onboarding，illuciov2和sigint 是工程上最完善的两个项目了，这些我也写在我的
 
 ## Prompts
 
 ### Prompt 1
 
-组合里去掉6， 然后这种黑客松偏找到有独特想法的，我给我自己立的人设就是好玩儿主义，全栈开发，在技术、aI与人文的交界地带。illucio是private项目但我的所有项目要么开源的要么就是有链接他们可以进去体验的
+illucio是一个完整的产品了已经，不只是onboarding，illuciov2和sigint 是工程上最完善的两个项目了，这些我也写在我的个人博客里了
 
 ## Summary
 
-存好了。这是根据人设重新锚定的 6 个入选项目：
+更新好了。现在重新看你最开始的问题「Page 和我的个人网页有什么差别？」——答案其实是：**差别很小**。你站上已经有：
 
-## 精选列表 v2
+### 你已经有的（约等于作品集）
+- **`/about`** — 强人设 bio（"I build what I can't stop thinking about"、ILLUCIO co-founder & CTO / 6000 users、技术布道者、两周学摄影…）
+- **`Projects.astro`** 8 个项目，live 链接 + 登录凭证都齐了：
+  - SIGINT（Next.js，含 demo login）
+  - ILLUCIO v2（6000 users，live）
+  - Su Shi Moon Phases（React + GSAP）
+  - Monkey King Havoc in Heaven
+  - BuzzScope ⭐16 / buzzscope-historical ⭐4
+  - UNS Semantic Space Explorer ⭐2
+  - email-analysis-deepseek ⭐6
+- **`/blog`** 里还有 PFC 系列、Seven Notes、Communal Science Lab 等作为"深度支撑"
 
-| # | 项目 | 交界定位 | 公开链接 |
-|---|------|--------|--------|
-| 1 | **ILLUCIO Onboarding** | AI × 认知 / 阅读体验 | 托管页（产品私有，但 onboarding 页公开） |
-| 2 | **The Communal Science Lab** | 科学 × Bret Victor 交互论文（最"交界"） | `/public` 页面 |
-| 3 | **Seven Notes** | 数学 × 音乐（最"好玩儿"） | `/public` 页面 |
-| 4 | **Prefrontal Cortex 系列** | 神经科学 × 交互科普（打包一张卡，显示系列深度） | `/public` 四集 |
-| 5 | **BuzzScope** | 全栈 × 数据 × 社区趋势追踪 | GitHub |
-| 6 | **uns-semantic-space-explorer** | 工业语义建模 × 3D 可视化 | GitHub |
+所以策略上其实是三选一：
 
-这个组合的配比是：
-- **3 个交界地带 + 人文**（Communal / Seven Notes / PFC）承接"好玩儿主义"
-- **2 个工程全栈**（BuzzScope / UNS）承接"全栈开发"
-- **1 个产品 + AI**（ILLUCIO）作为 anchor
+| 方案 | 适合什么情况 | 工作量 |
+|------|----------|------|
+| **A. 直接提交个人站 URL** | 黑客松只要求填"portfolio link"——你现在就可以投 | 0 |
+| **B. 加一个 `/resume` 或 `/hackathon` 路由**，单页紧凑版，SIGINT + ILLUCIO 置顶，3-5 项精选，带联系方式 | 想要更"简历感"、更聚焦、一屏看完 | 中 |
+| **C. 生成一份 PDF 简历** | 黑客松明确要求 PDF / resume 文件 | 中 |
 
----
+**我的建议是 B**——因为你现有的 Projects.astro 是 8 个并列，黑客松 30 秒视角下反而松散。做一个 `/resume` 做"强排序版"：SIGINT + ILLUCIO v2 两个大卡置顶讲故事，下面接 3-4 个小卡，最后联系方式。复用现有数据，不重复造轮子。
 
-在开始搭页面前，还要定 3 件小事：
-
-1. **顶部自我介绍要不要写一句 hero 文案？** 比如"I build at the intersection of tech, AI, and the humanities — 好玩儿主义践行者" 之类的？中英文 / 只中文 / 只英文？
-2. **联系方式放哪些？** Email / GitHub / 个人站 / Twitter / LinkedIn？
-3. **视觉风格倾向？** 想接着你现有站点的极简感，还是单独做一个更有个性 / 更"好玩儿"的 portfolio 页（比如 huashu-design / impeccable skill 可以生成的那种高设计感页）？
-
-定完这 3 个我就可以开搭了。
+想走哪个方案？如果是 B，我可以先出一个页面结构草图给你过。
