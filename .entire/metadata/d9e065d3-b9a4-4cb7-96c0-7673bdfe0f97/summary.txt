@@ -1,27 +1,68 @@
-好了，第一稿在 `public/resume.html`。
+进入花叔Design模式。先给方向再动手——你站点的 design context 已经明确（brand color #006cac、mono+sans 混排），但「艺术作品集感」有很多完全不同的走法，我给你 3 个跨流派的方向，你选一个我再下手做。每个都能打，但气质完全不同。
 
-### 打开看效果
-两种方式都行：
-- 直接双击 `public/resume.html`（浏览器打开）
-- 或者跑 `npm run dev` 后访问 `http://localhost:<port>/resume.html`
+---
 
-### 导出 PDF
-Chrome / Safari 里 **Cmd+P** → Destination 选 **Save as PDF** → Paper Size **A4** → Margins **None** → Save。我已经把 `@page` 设好了内部 padding，不需要浏览器再加边距。
+## A 方向 · Editorial Magazine（信息建筑派 · Pentagram × 《Apartamento》气质）
 
-### 还剩 4 个 `[TBD]` 需要你填（用黄色底高亮着）
-1. **AI × Play** — 一句具体在做什么。可以是项目名、工具、正在读的论文
-2. **AI × Games** — 同上
-3. **Cognitive Science** — 同上
-4. **ILLUCIO Co-founder** 起始年月
+**为什么适合你**：你的项目本身就是「跨学科思考的产物」（ILLUCIO 阅读认知、PFC 神经科学、Seven Notes 数学美学）。Editorial 排版说「这些东西值得被好好读」——让简历读起来像杂志特稿，不是 LinkedIn 的 bullet 列表。
 
-我在 TBD 里写了例子，你可以直接改那三行，或者告诉我你想写什么我来改。
+**视觉签名**：
+- Display serif（类似 GT Super / Editorial New / Source Serif Pro）做名字 + 项目大标题
+- 正文用克制的 grotesque sans，section label 用 mono（继承你站点气质）
+- 不对称双栏 / 单栏 with 精准 margin；hairline 细线做分隔，不用 card + shadow
+- 项目图"嵌进文字流"里（magazine 风），不是独立卡片
+- Accent：一个墨色 + 一个低饱和 accent（深墨 `#1A1A1A` + 你的 `#006cac`，或换成 burnt orange `#C04A1A` 更有文气）
 
-### 设计决策说明（快速扫一下看接不接受）
-- 英文单页 A4；Accent 色用了你站的 #006cac（品牌一致）
-- 字体：body 用 system sans，section 标签 / 技术栈 / 联系方式用等宽字体（呼应你站的 Google Sans Code）
-- **NOW EXPLORING 放在项目上面** —— 这是和普通简历最大的区别，黑客松看这个先
-- Su Shi + Monkey King 两个独立项目卡保留了，因为它们视觉上最"好玩儿+人文"，删了可惜；如果一页超了我们再合并
-- 教育去掉了年份（按你要求）
-- 没放 GPA / 语言 / 奖项，你如果有想加的告诉我
+**情绪**：有想法、克制、沉得住气、intellectual，读起来像 *The Gentlewoman*
 
-先看效果、提感觉，我们再改。
+---
+
+## B 方向 · Studio Case Study（运动诗学派 · Field.io × Linear × Awwwards Studio 气质）
+
+**为什么适合你**：你要打动黑客松评审"能 ship"——studio portfolio 的视觉语言直接传递"专业 builder"。大图、强版式、项目编号 01/02/03，像科技设计工作室的 case study 集。
+
+**视觉签名**：
+- Off-white / 近黑底（`#FAFAF8` 或 `#0E0E0E`）
+- Bold sans display（Inter Tight / GT Alpina）做 hero + 项目名
+- 项目图是**主角**——大尺寸、edge-to-edge 或四分之一页，不是缩略图
+- Monospace 做 meta：`01 / SIGINT / Next.js / 2025`
+- 一个 accent 色用得克制（`#006cac` 或换成更有张力的电蓝/朱砂）
+- 严格 typographic scale，视觉干净到"有点冷"
+- 项目编号序列感强，读起来有 cinematic 节奏
+
+**情绪**：confident、crafted、现代、shipping-focused、"这人在做严肃的东西"
+
+---
+
+## C 方向 · Literary Paper（东方哲学派 · Kenya Hara × MUJI × 日本独立文艺杂志气质）
+
+**为什么适合你**：最能打"技术×AI×人文交界"的牌。你 ILLUCIO 做阅读、做认知，本质关心"让人好好读、好好想"——这个方向视觉上就体现这种 ethos。暖纸底色、serif 为主、敢留白。在一堆 tech bro 简历里，这份最**不一样**。
+
+**视觉签名**：
+- 暖奶油纸色底（`#F6F1E7` 或 `#FBF7EF`）
+- Serif display + serif body（EB Garamond / Newsreader）
+- 几乎只用黑墨 + 一个 rust / burgundy accent（`#8B3A2C`）
+- 极大量留白——不怕空
+- 图片是"稀有的标点"，只有 2-3 张战略性出现，不是每个项目都配图
+- Tagline / Now Exploring 做成 pull-quote 样式（大字斜体 + 引号）
+- Hairline 墨线，无 box，无 shadow
+- Accent 墨水色做项目链接下划线 hover
+
+**情绪**：quiet、诗意、thoughtful、"我不需要喊"、grounded
+
+---
+
+## 我的建议 + 风险提示
+
+| 方向 | 30秒评审扫读 | 记忆点 | 和你人设匹配度 | AI slop 风险 |
+|------|------------|--------|-------------|------------|
+| A Editorial | ★★★★ | ★★★★ | ★★★★（全栈+人文） | 低 |
+| **B Studio** | ★★★★★ | ★★★ | ★★★★（ship感） | **中**（容易做成通用 studio 模板） |
+| **C Literary** | ★★★ | ★★★★★ | ★★★★★（人文交界满分） | 低 |
+
+**我个人倾向 A 或 C**，不是 B——B 看起来最"专业" 但在黑客松堆里很容易撞衫；A 和 C 是你真正能**被记住**的方向。
+
+- 如果黑客松偏工程/AI 硬核，选 **A**（editorial 的智识感 + 有现代感）
+- 如果黑客松偏 creative / 跨学科 / 设计类，选 **C**（literary 的独特气质直接爆杀）
+
+**你说一个字母（A / B / C），或者说"混 A+C"也行**（editorial grid + 暖纸底色 + serif display 完全可以），我就开始 Junior pass——先出骨架 + 占位让你看对不对路，再填细节。
