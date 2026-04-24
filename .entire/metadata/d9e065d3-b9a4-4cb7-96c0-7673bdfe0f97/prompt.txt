@@ -1,1 +1,42 @@
-https://www.linkedin.com/in/bihan-chen-bb2ab428a/ 这是我的个人linkedin，你可以从里面找我的个人信息。但我觉得作为黑客松的简历，这些信息只讲简单重点就好，大部分还是应该要讲自己做过什么，正在研究什么：研究aI的更多玩法儿还有ai做游戏的一些技能，还有认知学
+Education
+National University of Singapore logo
+National University of Singapore
+
+Master's degree, i4:Computing and Data Science Track
+
+Aug 2023 – Jan 2025
+
+Harbin Institute of Technology logo
+Harbin Institute of Technology
+
+Bachelor's degree, computer science 
+
+Aug 2017 – Jun 2021 但你不需要写我的教育经历的年份，Software Developer and product manager intern
+
+Institute of High Performance Computing (IHPC) · Internship
+
+Jan 2024 - Jul 2024 · 7 mos
+
+Singapore · Hybrid
+
+* Led the development of a task scheduling simulation system, enhancing scheduling efficiency. Developed a priority-based task scheduling and node management simulation system, successfully integrating it into A*STAR’s National Quantum Computing platform, improving task scheduling efficiency by 95%.
+* Managed a team of 3 interns, holding weekly meetings with hardware scientists to gather requirements and translate into executable solutions. Designed the project architecture. Adopted Agile development practices and leveraged GitHub’s Kanban tool for task allocation, ensuring the delivery of functional code on a weekly basis.
+
+ springboot, InfluxDB and +3 skills
+
+ AI Innovation Research Intern (Centre of Excellence)
+
+Univers · Internship
+
+Jul 2024 - Dec 2024 · 6 mos
+
+Singapore · On-site
+
+Proposed and implemented a novel multi-agent architecture to automate IoT data onboarding — a challenge the team had attempted through conventional approaches over multiple iterations without success. Pioneered the adoption of agentic AI workflows within the organization as early as 2024, before the approach gained mainstream traction
+Introduced LLM-driven orchestration combined with custom data modeling layers, reducing manual processing time and error rates by 75%+
+Collaborated cross-functionally with algorithm, software, frontend, and domain expert teams to validate and deploy the solution
+Created a comprehensive suite of internal AI-powered tools for delivery teams, covering data cleaning, visualization, report generation, and automated PPT creation (python-pptx) — replacing fragmented manual workflows with a unified, reusable toolchain
+Designed a novel LLM-based preing approach to transform unstructured user-submitted spreadsheets into standardized analytical formats — a previously unsolved bottleneck in the delivery pipeline
+Tools were adopted across multiple project teams, saving 1+ day per project in delivery cycles
+
+ Large Language Models (LLM), Python and +1 skill

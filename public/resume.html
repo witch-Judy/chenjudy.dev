@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Judy Chen — Resume</title>
+<style>
+  :root {
+    --bg: #fdfdfd;
+    --fg: #282728;
+    --muted: #6a6869;
+    --accent: #006cac;
+    --border: #e5e3e3;
+    --tag-bg: #f2f0f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.45;
+    color: var(--fg);
+    background: #e8e8e8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 16px auto;
+    padding: 13mm 15mm;
+    background: var(--bg);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero { margin-bottom: 7mm; }
+
+  h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  h1 .zh {
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 6px;
+    font-size: 16pt;
+  }
+
+  .tagline {
+    margin-top: 2.5mm;
+    font-size: 10.5pt;
+    max-width: 165mm;
+  }
+  .tagline .accent { color: var(--accent); font-weight: 600; }
+
+  .contact {
+    font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+    font-size: 8.8pt;
+    color: var(--muted);
+    margin-top: 3.5mm;
+    display: flex;
+    gap: 3mm;
+    flex-wrap: wrap;
+  }
+  .contact a { color: var(--muted); text-decoration: none; }
+  .contact a:hover { color: var(--accent); }
+  .contact .dot { opacity: 0.4; }
+
+  /* ── Section chrome ────────────────────────────────── */
+  section { margin-bottom: 6mm; page-break-inside: avoid; }
+
+  .section-label {
+    font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+    font-size: 8.2pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3mm;
+    padding-bottom: 1.8mm;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Now Exploring ─────────────────────────────────── */
+  .exploring { display: flex; flex-direction: column; gap: 2mm; }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 38mm 1fr;
+    gap: 4mm;
+    align-items: baseline;
+  }
+  .exp-row .label {
+    font-weight: 600;
+    color: var(--accent);
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 9pt;
+  }
+  .exp-row .body { font-size: 10pt; }
+
+  /* ── Projects ──────────────────────────────────────── */
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5mm 6mm;
+  }
+  .project h3 {
+    font-size: 10.2pt;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 1mm;
+  }
+  .project h3 a { color: var(--fg); text-decoration: none; }
+  .project h3 a:hover { color: var(--accent); }
+  .project .desc { font-size: 9.2pt; line-height: 1.4; }
+  .project .meta {
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 7.8pt;
+    color: var(--muted);
+    margin-top: 1.2mm;
+  }
+  .project .meta .stack { color: var(--accent); }
+
+  /* ── Experience ────────────────────────────────────── */
+  .job { margin-bottom: 3.5mm; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 3mm;
+    flex-wrap: wrap;
+  }
+  .job-title { font-weight: 600; }
+  .job-company { color: var(--accent); }
+  .job-meta {
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 8.3pt;
+    color: var(--muted);
+  }
+  .job ul { margin-top: 1mm; padding-left: 4mm; }
+  .job li { font-size: 9.4pt; line-height: 1.42; margin-bottom: 0.5mm; }
+  .job li::marker { color: var(--muted); }
+  .job strong { color: var(--accent); font-weight: 600; }
+
+  /* ── Education ─────────────────────────────────────── */
+  .edu {
+    display: flex;
+    justify-content: space-between;
+    gap: 4mm;
+    font-size: 9.8pt;
+    margin-bottom: 1.5mm;
+  }
+  .edu-school { font-weight: 600; }
+  .edu-degree { color: var(--muted); }
+
+  /* ── Tools ─────────────────────────────────────────── */
+  .tools { display: flex; flex-wrap: wrap; gap: 1.5mm; }
+  .tool {
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 8.2pt;
+    padding: 0.8mm 2.5mm;
+    background: var(--tag-bg);
+    border-radius: 3px;
+    color: var(--fg);
+  }
+
+  /* ── TBD placeholder style ─────────────────────────── */
+  .tbd {
+    background: #fff3cd;
+    padding: 0 3px;
+    border-radius: 2px;
+    color: #856404;
+    font-style: italic;
+  }
+
+  /* ── Print ─────────────────────────────────────────── */
+  @page { size: A4; margin: 0; }
+
+  @media print {
+    html, body { background: white; }
+    .page { box-shadow: none; margin: 0; width: 210mm; }
+    .tbd { background: transparent; color: inherit; font-style: normal; }
+    a { color: inherit !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HERO ═══ -->
+  <header class="hero">
+    <h1>Judy Chen <span class="zh">陈小爷</span></h1>
+    <p class="tagline">
+      Full-stack builder at the intersection of <span class="accent">tech, AI, and the humanities</span>.
+      Playfulness-first — I build what I can't stop thinking about.
+    </p>
+    <div class="contact">
+      <a href="mailto:e1124242@u.nus.edu">e1124242@u.nus.edu</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/witch-Judy">github.com/witch-Judy</a>
+      <span class="dot">·</span>
+      <a href="https://chenjudy.vercel.app/">chenjudy.vercel.app</a>
+      <span class="dot">·</span>
+      <a href="https://www.linkedin.com/in/bihan-chen-bb2ab428a/">LinkedIn</a>
+    </div>
+  </header>
+
+  <!-- ═══ NOW BUILDING & EXPLORING ═══ -->
+  <section>
+    <div class="section-label">Now Building &amp; Exploring</div>
+    <div class="exploring">
+      <div class="exp-row">
+        <span class="label">AI × Play</span>
+        <span class="body"><span class="tbd">[one concrete sentence — e.g. "prototyping readers where AI characters improvise alongside the reader in real time"]</span></span>
+      </div>
+      <div class="exp-row">
+        <span class="label">AI × Games</span>
+        <span class="body"><span class="tbd">[one concrete sentence — e.g. "building narrative games where dialogue is generated live via LLM tool-use; learning Godot + agent orchestration"]</span></span>
+      </div>
+      <div class="exp-row">
+        <span class="label">Cognitive Science</span>
+        <span class="body"><span class="tbd">[one concrete sentence — e.g. "turning working-memory + attention research into interactive primitives inside ILLUCIO"]</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SELECTED PROJECTS ═══ -->
+  <section>
+    <div class="section-label">Selected Projects</div>
+    <div class="projects">
+
+      <div class="project">
+        <h3><a href="https://sigint-system.vercel.app/">SIGINT · Global AI Intelligence System</a></h3>
+        <p class="desc">A god-view fog map of the AI industry. Real-time global signals distilled into a game-like HUD — company links reveal collaborations, rivalries, palace-intrigue; executive reshuffles surface early; market sentiment syncs live with stock moves.</p>
+        <p class="meta"><span class="stack">Next.js · Real-time Intel</span> · demo login on site</p>
+      </div>
+
+      <div class="project">
+        <h3><a href="https://illucio2.vercel.app/">ILLUCIO v2 · AI Reading Companion</a></h3>
+        <p class="desc">A custom reader that turns complex text into interactive, dimensional articles — drag a vector, watch weights shift, realize you didn't actually understand the paper. Grounded in a cognitive-interaction methodology. 6,000+ users.</p>
+        <p class="meta"><span class="stack">AI · Interactive Reader</span> · co-founder &amp; CTO</p>
+      </div>
+
+      <div class="project">
+        <h3><a href="https://tgz2aaft2fllu.ok.kimi.link/">Su Shi · Moon Phases of a Life</a></h3>
+        <p class="desc">Interactive literary animation tracing Su Shi's life through 7 moon phases — from the crescent of youthful ambition to the full moon of transcendence. Some ideas need to <em>move</em> to mean anything.</p>
+        <p class="meta"><span class="stack">React · GSAP</span></p>
+      </div>
+
+      <div class="project">
+        <h3><a href="https://edzfn7n5wmih6.ok.kimi.link/">Monkey King · Havoc in Heaven</a></h3>
+        <p class="desc">Interactive reimagining of Sun Wukong's rebellion — storm the Southern Gate, shatter the Jade Palace, then choose to go home. 5,000 saves overnight.</p>
+        <p class="meta"><span class="stack">React · Animation</span></p>
+      </div>
+
+      <div class="project">
+        <h3><a href="https://github.com/witch-Judy/BuzzScope">BuzzScope</a></h3>
+        <p class="desc">Keyword tracking across Hacker News, Reddit, YouTube, Discord — daily briefings distilled from 7.6M+ posts before the coffee gets cold.</p>
+        <p class="meta"><span class="stack">Python</span> · ⭐16 open source</p>
+      </div>
+
+      <div class="project">
+        <h3><a href="https://github.com/witch-Judy/UNS-Semantic-Space-Explorer">UNS Semantic Space Explorer</a></h3>
+        <p class="desc">3D visualization for the industrial Unified Namespace — semantic metadata modeling that makes IIoT topologies legible at a glance.</p>
+        <p class="meta"><span class="stack">Python · 3D Viz</span> · open source</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ EXPERIENCE ═══ -->
+  <section>
+    <div class="section-label">Experience</div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">Co-founder &amp; CTO</span> · <span class="job-company">ILLUCIO</span></div>
+        <div class="job-meta"><span class="tbd">[start date]</span> – Present</div>
+      </div>
+      <ul>
+        <li>Shipped an AI reading companion to <strong>6,000+</strong> users. Built a full interaction methodology that treats reading as cognitive play — not just summarization, but drag-the-vector, feel-the-weights comprehension.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">AI Innovation Research Intern</span> · <span class="job-company">Univers (Centre of Excellence)</span></div>
+        <div class="job-meta">Jul 2024 – Dec 2024 · Singapore</div>
+      </div>
+      <ul>
+        <li>Proposed and shipped a novel multi-agent architecture automating IoT data onboarding — cracking a problem the team had iterated on without success. <strong>Pioneered agentic AI workflows in the org in early 2024</strong>, before the approach went mainstream.</li>
+        <li>LLM-driven orchestration + custom data-modeling layers → <strong>75%+</strong> reduction in manual processing time and error rates. Internal AI toolkit (cleaning, viz, report gen, auto-PPT via python-pptx) adopted across teams, saving 1+ day per delivery cycle.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">Software Developer &amp; PM Intern</span> · <span class="job-company">IHPC (A*STAR)</span></div>
+        <div class="job-meta">Jan 2024 – Jul 2024 · Singapore</div>
+      </div>
+      <ul>
+        <li>Led a priority-based task-scheduling + node-management simulator, integrated into A*STAR's National Quantum Computing platform — <strong>95%</strong> improvement in scheduling efficiency.</li>
+        <li>Managed 3 interns, designed the project architecture, ran weekly requirements sessions with hardware scientists, shipped functional code weekly via Agile + GitHub Kanban.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION ═══ -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu">
+      <span class="edu-school">National University of Singapore</span>
+      <span class="edu-degree">M.S. · i4: Computing and Data Science Track</span>
+    </div>
+    <div class="edu">
+      <span class="edu-school">Harbin Institute of Technology</span>
+      <span class="edu-degree">B.S. · Computer Science</span>
+    </div>
+  </section>
+
+  <!-- ═══ TOOLS ═══ -->
+  <section>
+    <div class="section-label">Tools</div>
+    <div class="tools">
+      <span class="tool">Next.js</span>
+      <span class="tool">React</span>
+      <span class="tool">Astro</span>
+      <span class="tool">GSAP</span>
+      <span class="tool">Python</span>
+      <span class="tool">Spring Boot</span>
+      <span class="tool">InfluxDB</span>
+      <span class="tool">LLMs &amp; Multi-agent</span>
+      <span class="tool">python-pptx</span>
+      <span class="tool">3D / WebGL Viz</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
