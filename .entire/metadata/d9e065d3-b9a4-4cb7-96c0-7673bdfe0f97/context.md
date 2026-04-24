@@ -1,18 +1,57 @@
 # Session Context
 
 Session ID: d9e065d3-b9a4-4cb7-96c0-7673bdfe0f97
-Commit Message: Portfolio服务于我想申请一些黑客松选手报名，需要做自己的简历
+Commit Message: 需要的，然后https://github.com/witch-Judy 这是我的github，看能不能也帮到你
 
 ## Prompts
 
 ### Prompt 1
 
-portfolio服务于我想申请一些黑客松选手报名，需要做自己的简历
+需要的，然后https://github.com/witch-Judy 这是我的github，看能不能也帮到你
 
 ## Summary
 
-那目标就清晰了：**黑客松评审者 30 秒内要看到"你能 ship"**。所以单页就够了，结构大概是：一句话自我定位 → 3-5 个精选项目卡片（角色 / 技术栈 / demo 或 repo 链接）→ 联系方式。博客式的长文反而是干扰。
+两边都看完了，给你一个候选清单 + 我的初步建议，你勾选 / 增删：
 
-好消息是你 `/public/` 下已经有不少项目页（illucio-onboarding、kangbo、pfc 系列、seven-notes 等），素材现成，主要是做一个**汇总入口页 + 统一卡片样式**。
+## A 类：交互式 web 作品（最能打，黑客松评审最爱）
+这些是"我做了能跑的东西"的铁证——前端 + 设计 + 讲故事能力都有。
+- [ ] **ILLUCIO Onboarding v1** — 产品原型，文字从模糊→清晰的交互
+- [ ] **The Communal Science Lab** — Bret Victor 论文的交互式阅读指南（SVG + 动画）
+- [ ] **Riding the Kondratieff Wave** — 康波周期可视化 / 交互图表
+- [ ] **The Secret of Seven Notes** — 音律数学的交互可视化
+- [ ] **Prefrontal Cortex 系列 (EP1/2/3/6)** — 神经科学可交互科普，四集成系列
+- [ ] **No Suffering Required** — 哲学向交互体验
 
-要不要我先看一下你现有的项目页，列一个候选清单给你勾选，再开始搭？
+## B 类：GitHub 代码项目（工程 / 数据 / 后端信号）
+补上"不止会前端"的证据。
+- [ ] **BuzzScope** — 跨社区（HN/Reddit/YouTube/Discord）关键词追踪，Python
+- [ ] **buzzscope-historical** — 科技趋势历史分析 dashboard
+- [ ] **uns-semantic-space-explorer** — Unified Namespace 的语义建模 + 3D 可视化
+- [ ] **Job-Role-Recommendation-App** — 基于简历的岗位推荐 web app
+
+## C 类：思考 / 研究类写作（加分项，不是主角）
+除非评审明确看重 AI / research 背景，否则折叠或放次要位置。
+- [ ] **ILLUCIO as a Verb** — AI 创业的科研本质论
+- [ ] **Five First Principles for Multi-Agent System Design** — Google 论文的原则提炼
+- [ ] **Towards a Science of Scaling Agent Systems** — 论文 curation
+- [ ] **Nature Beyond Technology** — 外站 curation（最弱，建议删）
+
+---
+
+## 我的初步建议
+
+**精选 6 个左右，别贪多**。黑客松评审 30 秒，超过 6 个开始失焦。
+
+推荐组合（你可以改）：
+1. **ILLUCIO Onboarding** — 产品代表作
+2. **Communal Science Lab** 或 **Seven Notes** 选一个 — 交互讲故事能力
+3. **PFC 系列** 打包成 1 个卡片 — 体现持续产出
+4. **BuzzScope** — 工程能力
+5. **uns-semantic-space-explorer** — 展示数据 / 可视化 / 跨学科
+6. **Multi-Agent First Principles** — AI 领域 thought leadership（如果黑客松偏 AI 方向）
+
+**两个还需要你确认的问题：**
+1. 这些黑客松偏什么方向？AI / 工具 / 设计 / 全栈？这决定 B 类 vs C 类的权重。
+2. 有没有团队项目 / 已经拿过名次的比赛作品想放进去？GitHub 上 12 个 repo 只看到 6 个，另外 6 个里有没有该露脸的？
+
+你先勾一下，或者告诉我方向，我就开始搭结构。
