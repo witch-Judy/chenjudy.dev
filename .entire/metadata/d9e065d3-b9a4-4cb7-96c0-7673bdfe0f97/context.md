@@ -1,38 +1,32 @@
 # Session Context
 
 Session ID: d9e065d3-b9a4-4cb7-96c0-7673bdfe0f97
-Commit Message: Illucio是一个完整的产品了已经，不只是onboarding，illuciov2和sigint 是工程上最完善的两个项目了，这些我也写在我的
+Commit Message: 黑客松让提交个人简历和作品集，是必填的，所以还是得有一个pdf简历
 
 ## Prompts
 
 ### Prompt 1
 
-illucio是一个完整的产品了已经，不只是onboarding，illuciov2和sigint 是工程上最完善的两个项目了，这些我也写在我的个人博客里了
+黑客松让提交个人简历和作品集，是必填的，所以还是得有一个pdf简历
 
 ## Summary
 
-更新好了。现在重新看你最开始的问题「Page 和我的个人网页有什么差别？」——答案其实是：**差别很小**。你站上已经有：
+好，明确了。PDF 简历的话，我的思路是：**用 HTML + CSS 写一个高质量 one-pager，再导出 PDF**——可以完全匹配你个人站的视觉语言和"好玩儿主义 + 交界地带"的气质，比用 Word 模板好太多。
 
-### 你已经有的（约等于作品集）
-- **`/about`** — 强人设 bio（"I build what I can't stop thinking about"、ILLUCIO co-founder & CTO / 6000 users、技术布道者、两周学摄影…）
-- **`Projects.astro`** 8 个项目，live 链接 + 登录凭证都齐了：
-  - SIGINT（Next.js，含 demo login）
-  - ILLUCIO v2（6000 users，live）
-  - Su Shi Moon Phases（React + GSAP）
-  - Monkey King Havoc in Heaven
-  - BuzzScope ⭐16 / buzzscope-historical ⭐4
-  - UNS Semantic Space Explorer ⭐2
-  - email-analysis-deepseek ⭐6
-- **`/blog`** 里还有 PFC 系列、Seven Notes、Communal Science Lab 等作为"深度支撑"
+不过要出成品，我还缺几块信息：
 
-所以策略上其实是三选一：
+### 必须要你提供
+1. **教育背景** — 从你邮箱 `@u.nus.edu` 看像是 NUS 学生？请告诉我：学校 / 学院 / 专业 / 入学-毕业年份 / GPA（选填）
+2. **工作 / 实习经历** — about 里提到「industrial automation company 的 Technology Evangelist」和「ILLUCIO co-founder & CTO」——给我公司名、职位、起止时间、1-2 条关键成果
+3. **语言偏好** — 中文 / 英文 / 双版本？（黑客松如果是国际的建议英文或中英双版本）
+4. **一页还是两页** — 我建议一页，逼自己精简；但如果经历多也可以两页
+5. **额外想放的东西**（任选）：奖项 / 发表 / 技术栈清单 / 语言能力 / 志愿经历等
 
-| 方案 | 适合什么情况 | 工作量 |
-|------|----------|------|
-| **A. 直接提交个人站 URL** | 黑客松只要求填"portfolio link"——你现在就可以投 | 0 |
-| **B. 加一个 `/resume` 或 `/hackathon` 路由**，单页紧凑版，SIGINT + ILLUCIO 置顶，3-5 项精选，带联系方式 | 想要更"简历感"、更聚焦、一屏看完 | 中 |
-| **C. 生成一份 PDF 简历** | 黑客松明确要求 PDF / resume 文件 | 中 |
+### 我已经从你站上拉到的（不用重新告诉我）
+- 姓名 Judy Chen / 陈小爷
+- 人设 tagline（约 1-2 句）
+- 项目：SIGINT、ILLUCIO v2、Su Shi、Monkey King、BuzzScope、UNS、buzzscope-historical、email-analysis-deepseek（可精选 4-5 个）
+- 亮点：ILLUCIO 6000 用户、BuzzScope 追踪 760 万+ 帖子、两周学摄影一个月跑通商业闭环
+- 联系方式：GitHub（witch-Judy）、个人站、邮箱
 
-**我的建议是 B**——因为你现有的 Projects.astro 是 8 个并列，黑客松 30 秒视角下反而松散。做一个 `/resume` 做"强排序版"：SIGINT + ILLUCIO v2 两个大卡置顶讲故事，下面接 3-4 个小卡，最后联系方式。复用现有数据，不重复造轮子。
-
-想走哪个方案？如果是 B，我可以先出一个页面结构草图给你过。
+你把 1-4 告诉我，5 有想放的再加，我就开始出草稿。
