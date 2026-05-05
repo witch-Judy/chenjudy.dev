@@ -8,7 +8,7 @@ export const zh = {
 
   // About
   aboutTitle: "关于我",
-  aboutBio: `我是 ILLUCIO 创始人，用 AI 把复杂文本变成可以交互的立体文章——不只是读，而是上手玩。哈工大计算机本科，新加坡国立大学硕士。写代码，做产品，练剑，信仰"好玩儿主义"。`,
+  aboutBio: `ILLUCIO 创始人，用 AI 把复杂文本变成可交互的立体文章——不只是读，而是上手玩。哈工大 CS + NUS 硕士，全栈 builder。写代码、做产品、做增长、建个人 IP、练剑。信仰好玩儿主义。`,
 
   // Projects
   projectsTitle: "精选项目",

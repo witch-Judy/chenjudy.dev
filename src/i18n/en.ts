@@ -8,7 +8,7 @@ export const en = {
 
   // About
   aboutTitle: "About Me",
-  aboutBio: `I'm the founder of ILLUCIO — using AI to turn complex text into interactive, dimensional articles you don't just read, but play. CS undergrad at Harbin Institute of Technology, MSc at National University of Singapore. I write code, build products, practice the sword, and believe in "playfulness".`,
+  aboutBio: `Founder of ILLUCIO — turning complex texts into interactive, explorable essays with AI. Not just reading, but hands-on playing. CS from HIT, MS from NUS. Full-stack builder: code, product, growth, personal brand, swordsmanship. I believe in fun as a philosophy.`,
 
   // Projects
   projectsTitle: "Featured Projects",
