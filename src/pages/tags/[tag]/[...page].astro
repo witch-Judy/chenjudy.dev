@@ -9,36 +9,43 @@ import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
 import getUniqueTags from "@/utils/getUniqueTags";
 import getPostsByTag from "@/utils/getPostsByTag";
+import { getPostsForLang } from "@/utils/langUtils";
 import { SITE } from "@/config";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("blog");
-  const tags = getUniqueTags(posts);
 
-  return tags.flatMap(({ tag, tagName }) => {
-    const tagPosts = getPostsByTag(posts, tag);
+  const langs = ["en", "zh"] as const;
+  return langs.flatMap(lang => {
+    const langPosts = getPostsForLang(posts, lang);
+    const tags = getUniqueTags(langPosts);
 
-    return paginate(tagPosts, {
-      params: { tag },
-      props: { tagName },
-      pageSize: SITE.postPerPage,
+    return tags.flatMap(({ tag, tagName }) => {
+      const tagPosts = getPostsByTag(langPosts, tag);
+
+      return paginate(tagPosts, {
+        params: { tag: lang === "zh" ? `zh/${tag}` : tag },
+        props: { tagName, lang },
+        pageSize: SITE.postPerPage,
+      });
     });
   });
 }
 
 const params = Astro.params;
 const { tag } = params;
-const { page, tagName } = Astro.props;
+const { page, tagName, lang } = Astro.props;
+const displayTag = tag?.replace(/^zh\//, "") ?? "";
 ---
 
 <Layout title={`Tag: ${tagName} | ${SITE.title}`}>
   <Header />
   <Main
     pageTitle={[`Tag:`, `${tagName}`]}
-    titleTransition={tag}
-    pageDesc={`All the articles with the tag "${tagName}".`}
+    titleTransition={displayTag}
+    pageDesc={lang === "zh" ? `所有带有 "${tagName}" 标签的文章。` : `All the articles with the tag "${tagName}".`}
   >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
+    <h1 slot="title" transition:name={displayTag}>{`Tag:${displayTag}`}</h1>
     <ul>
       {page.data.map(data => <Card {...data} />)}
     </ul>

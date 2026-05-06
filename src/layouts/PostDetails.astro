@@ -11,6 +11,7 @@ import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
+import { getPostLang, getPostsForLang } from "@/utils/langUtils";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
@@ -18,9 +19,11 @@ import { SITE } from "@/config";
 type Props = {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
+  translationPath?: string;
 };
 
-const { post, posts } = Astro.props;
+const { post, posts, translationPath } = Astro.props;
+const postLang = getPostLang(post);
 
 const {
   title,
@@ -67,19 +70,20 @@ const layoutProps = {
   scrollSmooth: true,
 };
 
-/* ========== Prev/Next Posts ========== */
+/* ========== Prev/Next Posts (same language only) ========== */
 
-const allPosts = posts.map(({ data: { title }, id, filePath }) => ({
+const sameLangPosts = getPostsForLang(posts, postLang).map(({ data: { title }, id, filePath }) => ({
   id,
   title,
   filePath,
+  lang: postLang,
 }));
 
-const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
+const currentPostIndex = sameLangPosts.findIndex(a => a.id === post.id);
 
-const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
+const prevPost = currentPostIndex > 0 ? sameLangPosts[currentPostIndex - 1] : null;
 const nextPost =
-  currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
+  currentPostIndex < sameLangPosts.length - 1 ? sameLangPosts[currentPostIndex + 1] : null;
 ---
 
 <Layout {...layoutProps}>
@@ -96,6 +100,16 @@ const nextPost =
     >
       {title}
     </h1>
+    {translationPath && (
+      <a
+        href={translationPath}
+        class="mt-2 inline-block text-sm text-accent underline decoration-dashed underline-offset-4 hover:decoration-solid"
+        id="translation-link"
+        data-translation-path={translationPath}
+      >
+        {postLang === "en" ? "阅读中文版 →" : "Read in English →"}
+      </a>
+    )}
     <div class="my-2 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
       <span
@@ -119,7 +133,7 @@ const nextPost =
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
     <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
+      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" lang={postLang} />)}
     </ul>
 
     <BackToTopButton />
@@ -133,7 +147,7 @@ const nextPost =
       {
         prevPost && (
           <a
-            href={getPath(prevPost.id, prevPost.filePath)}
+            href={getPath(prevPost.id, prevPost.filePath, true, prevPost.lang)}
             class="flex w-full gap-1 hover:opacity-75"
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
@@ -147,7 +161,7 @@ const nextPost =
       {
         nextPost && (
           <a
-            href={getPath(nextPost.id, nextPost.filePath)}
+            href={getPath(nextPost.id, nextPost.filePath, true, nextPost.lang)}
             class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
           >
             <div>
@@ -282,4 +296,15 @@ const nextPost =
   document.addEventListener("astro:after-swap", () =>
     window.scrollTo({ left: 0, top: 0, behavior: "instant" })
   );
+
+  /* Auto-navigate to translation when language is switched */
+  window.addEventListener("lang-change", function(e) {
+    const link = document.getElementById("translation-link");
+    if (link) {
+      const translationPath = link.getAttribute("data-translation-path");
+      if (translationPath) {
+        window.location.href = translationPath;
+      }
+    }
+  });
 </script>

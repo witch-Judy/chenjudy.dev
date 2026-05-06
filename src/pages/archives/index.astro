@@ -6,6 +6,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
 import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
+import { getPostsForLang } from "@/utils/langUtils";
 import { SITE } from "@/config";
 
 // Redirect to 404 page if `showArchives` config is false
@@ -13,7 +14,9 @@ if (!SITE.showArchives) {
   return Astro.redirect("/404");
 }
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const enPosts = getPostsForLang(allPosts, "en");
+const zhPosts = getPostsForLang(allPosts, "zh");
 
 const months = [
   "January",
@@ -29,19 +32,31 @@ const months = [
   "November",
   "December",
 ];
+
+const zhMonths = [
+  "一月", "二月", "三月", "四月", "五月", "六月",
+  "七月", "八月", "九月", "十月", "十一月", "十二月",
+];
+
+function getArchiveGroups(posts: typeof allPosts) {
+  return Object.entries(
+    getPostsByGroupCondition(posts, post =>
+      post.data.pubDatetime.getFullYear()
+    )
+  )
+    .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA));
+}
+
+const enGroups = getArchiveGroups(enPosts);
+const zhGroups = getArchiveGroups(zhPosts);
 ---
 
 <Layout title={`Archives | ${SITE.title}`}>
   <Header />
   <Main pageTitle="Archives" pageDesc="All the articles I've archived.">
+    <div data-lang-list="en">
     {
-      Object.entries(
-        getPostsByGroupCondition(posts, post =>
-          post.data.pubDatetime.getFullYear()
-        )
-      )
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-        .map(([year, yearGroup]) => (
+      enGroups.map(([year, yearGroup]) => (
           <div>
             <span class="text-2xl font-bold">{year}</span>
             <sup class="text-sm">{yearGroup.length}</sup>
@@ -78,6 +93,67 @@ const months = [
           </div>
         ))
     }
+    {enGroups.length === 0 && <p class="text-foreground/50 italic">No archived posts yet.</p>}
+    </div>
+
+    <div data-lang-list="zh" class="hidden">
+    {
+      zhGroups.map(([year, yearGroup]) => (
+          <div>
+            <span class="text-2xl font-bold">{year}</span>
+            <sup class="text-sm">{yearGroup.length}</sup>
+            {Object.entries(
+              getPostsByGroupCondition(
+                yearGroup,
+                post => post.data.pubDatetime.getMonth() + 1
+              )
+            )
+              .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
+              .map(([month, monthGroup]) => (
+                <div class="flex flex-col sm:flex-row">
+                  <div class="mt-6 min-w-36 text-lg sm:my-6">
+                    <span class="font-bold">{zhMonths[Number(month) - 1]}</span>
+                    <sup class="text-xs">{monthGroup.length}</sup>
+                  </div>
+                  <ul>
+                    {monthGroup
+                      .sort(
+                        (a, b) =>
+                          Math.floor(
+                            new Date(b.data.pubDatetime).getTime() / 1000
+                          ) -
+                          Math.floor(
+                            new Date(a.data.pubDatetime).getTime() / 1000
+                          )
+                      )
+                      .map(data => (
+                        <Card {...data} />
+                      ))}
+                  </ul>
+                </div>
+              ))}
+          </div>
+        ))
+    }
+    {zhGroups.length === 0 && <p class="text-foreground/50 italic">暂无归档文章。</p>}
+    </div>
   </Main>
   <Footer />
 </Layout>
+
+<script>
+  function initArchivesLang() {
+    const lang = localStorage.getItem("lang") || "en";
+    applyLang(lang);
+  }
+  function applyLang(lang: string) {
+    document.querySelectorAll<HTMLElement>("[data-lang-list]").forEach(el => {
+      el.classList.toggle("hidden", el.dataset.langList !== lang);
+    });
+  }
+  window.addEventListener("lang-change", ((e: CustomEvent) => {
+    applyLang(e.detail.lang);
+  }) as EventListener);
+  initArchivesLang();
+  document.addEventListener("astro:after-swap", initArchivesLang);
+</script>

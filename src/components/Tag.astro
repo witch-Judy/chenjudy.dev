@@ -5,15 +5,17 @@ type Props = {
   tag: string;
   tagName: string;
   size?: "sm" | "lg";
+  lang?: "en" | "zh";
 };
 
-const { tag, tagName, size = "lg" } = Astro.props;
+const { tag, tagName, size = "lg", lang = "en" } = Astro.props;
+const tagPath = lang === "zh" ? `/tags/zh/${tag}/` : `/tags/${tag}/`;
 ---
 
 <li>
   <a
-    href={`/tags/${tag}/`}
-    transition:name={tag}
+    href={tagPath}
+    transition:name={lang === "zh" ? `zh/${tag}` : tag}
     class:list={[
       "flex items-center gap-0.5",
       "border-b-2 border-dashed border-foreground",

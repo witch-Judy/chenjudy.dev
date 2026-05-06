@@ -3,25 +3,40 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PostDetails from "@/layouts/PostDetails.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { getPath } from "@/utils/getPath";
+import { getPostLang, getBaseSlug, buildTranslationMap } from "@/utils/langUtils";
 
 type Props = {
   post: CollectionEntry<"blog">;
+  translationPath?: string;
 };
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  const postResult = posts.map(post => ({
-    params: { slug: getPath(post.id, post.filePath, false) },
-    props: { post },
-  }));
+  const translationMap = buildTranslationMap(posts);
+
+  const postResult = posts.map(post => {
+    const lang = getPostLang(post);
+    const base = getBaseSlug(post.id, post);
+    const pair = translationMap.get(base);
+    const otherLang = lang === "en" ? "zh" : "en";
+    const otherPost = pair?.[otherLang];
+    const translationPath = otherPost
+      ? getPath(otherPost.id, otherPost.filePath, true, getPostLang(otherPost))
+      : undefined;
+
+    return {
+      params: { slug: getPath(post.id, post.filePath, false, lang) },
+      props: { post, translationPath },
+    };
+  });
 
   return postResult;
 }
 
-const { post } = Astro.props;
+const { post, translationPath } = Astro.props;
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 ---
 
-<PostDetails post={post} posts={sortedPosts} />
+<PostDetails post={post} posts={sortedPosts} translationPath={translationPath} />

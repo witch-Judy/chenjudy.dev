@@ -17,6 +17,7 @@ const blog = defineCollection({
       category: z.enum(["notes", "collections"]).default("notes"),
       tags: z.array(z.string()).default(["others"]),
       ogImage: image().or(z.string()).optional(),
+      lang: z.enum(["en", "zh"]).default("en"),
       description: z.string(),
       canonicalURL: z.string().optional(),
       externalUrl: z.string().optional(),

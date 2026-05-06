@@ -6,19 +6,47 @@ import Tag from "@/components/Tag.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import getUniqueTags from "@/utils/getUniqueTags";
+import { getPostsForLang } from "@/utils/langUtils";
 import { SITE } from "@/config";
 
 const posts = await getCollection("blog");
 
-let tags = getUniqueTags(posts);
+const enTags = getUniqueTags(getPostsForLang(posts, "en"));
+const zhTags = getUniqueTags(getPostsForLang(posts, "zh"));
 ---
 
 <Layout title={`Tags | ${SITE.title}`}>
   <Header />
   <Main pageTitle="Tags" pageDesc="All the tags used in posts.">
-    <ul class="flex flex-wrap gap-6">
-      {tags.map(({ tag, tagName }) => <Tag {tag} {tagName} />)}
-    </ul>
+    <div data-lang-list="en">
+      <ul class="flex flex-wrap gap-6">
+        {enTags.map(({ tag, tagName }) => <Tag {tag} {tagName} lang="en" />)}
+      </ul>
+      {enTags.length === 0 && <p class="text-foreground/50 italic">No tags yet.</p>}
+    </div>
+    <div data-lang-list="zh" class="hidden">
+      <ul class="flex flex-wrap gap-6">
+        {zhTags.map(({ tag, tagName }) => <Tag {tag} {tagName} lang="zh" />)}
+      </ul>
+      {zhTags.length === 0 && <p class="text-foreground/50 italic">还没有标签。</p>}
+    </div>
   </Main>
   <Footer />
 </Layout>
+
+<script>
+  function initTagsLang() {
+    const lang = localStorage.getItem("lang") || "en";
+    applyLang(lang);
+  }
+  function applyLang(lang: string) {
+    document.querySelectorAll<HTMLElement>("[data-lang-list]").forEach(el => {
+      el.classList.toggle("hidden", el.dataset.langList !== lang);
+    });
+  }
+  window.addEventListener("lang-change", ((e: CustomEvent) => {
+    applyLang(e.detail.lang);
+  }) as EventListener);
+  initTagsLang();
+  document.addEventListener("astro:after-swap", initTagsLang);
+</script>

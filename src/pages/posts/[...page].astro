@@ -6,8 +6,8 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
-import Pagination from "@/components/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
+import { getPostsForLang } from "@/utils/langUtils";
 import { SITE } from "@/config";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -15,88 +15,136 @@ export const getStaticPaths = (async ({ paginate }) => {
   return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage });
 }) satisfies GetStaticPaths;
 
-const { page } = Astro.props;
-
-// Get ALL posts for category filtering (not just current page)
+// Get ALL posts for category + language filtering
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const sortedAll = getSortedPosts(allPosts);
 
-const notesPosts = sortedAll.filter(p => (p.data.category || "notes") === "notes");
-const collectionsPosts = sortedAll.filter(p => p.data.category === "collections");
+const enPosts = getPostsForLang(sortedAll, "en");
+const zhPosts = getPostsForLang(sortedAll, "zh");
+
+const enNotes = enPosts.filter(p => (p.data.category || "notes") === "notes");
+const enCollections = enPosts.filter(p => p.data.category === "collections");
+const zhNotes = zhPosts.filter(p => (p.data.category || "notes") === "notes");
+const zhCollections = zhPosts.filter(p => p.data.category === "collections");
 ---
 
 <Layout title={`Posts | ${SITE.title}`}>
   <Header />
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
-    <div class="mb-6 flex gap-4 border-b border-border" id="category-tabs">
-      <button
-        class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
-        data-tab="notes"
-        data-lang-en={`Notes (${notesPosts.length})`}
-        data-lang-zh={`手记 (${notesPosts.length})`}
-      >
-        {`Notes (${notesPosts.length})`}
-      </button>
-      <button
-        class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
-        data-tab="collections"
-        data-lang-en={`Collections (${collectionsPosts.length})`}
-        data-lang-zh={`收藏 (${collectionsPosts.length})`}
-      >
-        {`Collections (${collectionsPosts.length})`}
-      </button>
+    <!-- English content -->
+    <div data-lang-list="en">
+      <div class="mb-6 flex gap-4 border-b border-border category-tabs">
+        <button
+          class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
+          data-tab="notes"
+        >
+          {`Notes (${enNotes.length})`}
+        </button>
+        <button
+          class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
+          data-tab="collections"
+        >
+          {`Collections (${enCollections.length})`}
+        </button>
+      </div>
+
+      <ul data-category="notes">
+        {enNotes.length > 0 ? (
+          enNotes.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">No notes yet.</p>
+        )}
+      </ul>
+
+      <ul data-category="collections" class="hidden">
+        {enCollections.length > 0 ? (
+          enCollections.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">No collections yet.</p>
+        )}
+      </ul>
     </div>
 
-    <ul id="notes-list">
-      {notesPosts.length > 0 ? (
-        notesPosts.map(data => <Card {...data} />)
-      ) : (
-        <p class="text-foreground/50 italic" data-lang-en="No notes yet." data-lang-zh="还没有手记。">No notes yet.</p>
-      )}
-    </ul>
+    <!-- Chinese content -->
+    <div data-lang-list="zh" class="hidden">
+      <div class="mb-6 flex gap-4 border-b border-border category-tabs">
+        <button
+          class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
+          data-tab="notes"
+        >
+          {`手记 (${zhNotes.length})`}
+        </button>
+        <button
+          class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
+          data-tab="collections"
+        >
+          {`收藏 (${zhCollections.length})`}
+        </button>
+      </div>
 
-    <ul id="collections-list" class="hidden">
-      {collectionsPosts.length > 0 ? (
-        collectionsPosts.map(data => <Card {...data} />)
-      ) : (
-        <p class="text-foreground/50 italic" data-lang-en="No collections yet." data-lang-zh="还没有收藏。">No collections yet.</p>
-      )}
-    </ul>
+      <ul data-category="notes">
+        {zhNotes.length > 0 ? (
+          zhNotes.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">还没有手记。</p>
+        )}
+      </ul>
+
+      <ul data-category="collections" class="hidden">
+        {zhCollections.length > 0 ? (
+          zhCollections.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">还没有收藏。</p>
+        )}
+      </ul>
+    </div>
   </Main>
 
   <Footer />
 </Layout>
 
 <script>
-  function initTabs() {
-    const tabs = document.querySelectorAll<HTMLButtonElement>(".category-tab");
-    const notesList = document.getElementById("notes-list");
-    const collectionsList = document.getElementById("collections-list");
+  function initPostsPage() {
+    const lang = localStorage.getItem("lang") || "en";
+    applyLangFilter(lang);
+    initAllTabs();
+  }
 
-    if (!tabs.length || !notesList || !collectionsList) return;
+  function applyLangFilter(lang: string) {
+    document.querySelectorAll<HTMLElement>("[data-lang-list]").forEach(el => {
+      el.classList.toggle("hidden", el.dataset.langList !== lang);
+    });
+  }
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const target = tab.dataset.tab;
+  function initAllTabs() {
+    document.querySelectorAll<HTMLElement>(".category-tabs").forEach(tabContainer => {
+      const tabs = tabContainer.querySelectorAll<HTMLButtonElement>(".category-tab");
+      const parent = tabContainer.parentElement;
+      if (!parent) return;
 
-        tabs.forEach(t => {
-          t.classList.remove("active-tab", "text-accent", "border-b-2", "border-accent");
-          t.classList.add("text-foreground/50");
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.tab;
+
+          tabs.forEach(t => {
+            t.classList.remove("active-tab", "text-accent", "border-b-2", "border-accent");
+            t.classList.add("text-foreground/50");
+          });
+          tab.classList.add("active-tab", "text-accent", "border-b-2", "border-accent");
+          tab.classList.remove("text-foreground/50");
+
+          parent.querySelectorAll<HTMLElement>("[data-category]").forEach(list => {
+            list.classList.toggle("hidden", list.dataset.category !== target);
+          });
         });
-        tab.classList.add("active-tab", "text-accent", "border-b-2", "border-accent");
-        tab.classList.remove("text-foreground/50");
-
-        if (target === "notes") {
-          notesList.classList.remove("hidden");
-          collectionsList.classList.add("hidden");
-        } else {
-          notesList.classList.add("hidden");
-          collectionsList.classList.remove("hidden");
-        }
       });
     });
   }
 
-  initTabs();
-  document.addEventListener("astro:after-swap", initTabs);
+  window.addEventListener("lang-change", ((e: CustomEvent) => {
+    applyLangFilter(e.detail.lang);
+  }) as EventListener);
+
+  initPostsPage();
+  document.addEventListener("astro:after-swap", initPostsPage);
 </script>
