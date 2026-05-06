@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>ILLUCIO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --lav:#b8a9e8;--aur:#6ec6e6;--mint:#7edcb4;
+  --glow:#f4d58d;--pink:#e8a9c8;--bg:#0a0a16;
+  --text:#fff;--text-dim:rgba(255,255,255,.6);--text-mute:rgba(255,255,255,.3);
+  --card-bg:rgba(255,255,255,.025);--card-border:rgba(255,255,255,.05);
+  --overlay:rgba(255,255,255,.04);
+}
+html,body{
+  width:100%;min-height:100vh;overflow-x:hidden;
+  background:var(--bg);color:var(--text);
+  font-family:'Noto Serif SC',serif;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  transition:background .6s,color .6s;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ===== PHASE 0: OPENING ===== */
+#opening{
+  position:fixed;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;z-index:100;
+  background:var(--bg);transition:opacity 1.8s cubic-bezier(.4,0,.2,1),transform 1.8s cubic-bezier(.4,0,.2,1);
+}
+#opening.out{opacity:0;transform:scale(1.04);pointer-events:none}
+#opening h1{
+  font-size:clamp(1.2rem,3.5vw,1.8rem);font-weight:400;
+  color:#444;letter-spacing:.08em;opacity:0;
+  animation:fu 1.2s ease .5s forwards;
+}
+#opening .sub{
+  font-size:.78rem;color:#2a2a3a;opacity:0;
+  animation:fu 1.2s ease 1.5s forwards;letter-spacing:.15em;margin-top:.8rem;
+}
+#opening .sub span{animation:pulse 2s ease-in-out 2.5s infinite;color:var(--lav)}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ===== PROGRESS ===== */
+#prog{
+  position:fixed;bottom:0;left:0;height:3px;width:0;z-index:50;
+  background:linear-gradient(90deg,var(--lav),var(--aur),var(--mint));
+  box-shadow:0 0 16px rgba(184,169,232,.5);transition:width .3s;
+}
+
+/* ===== PHASE 1: DEAD TEXT ===== */
+#phase1{position:relative;min-height:100vh;padding:10vh 6vw;display:none;opacity:0;
+  transition:opacity 1.5s cubic-bezier(.4,0,.2,1);overflow:hidden}
+#phase1.on{display:block;opacity:1}
+.dtxt{max-width:600px;margin:0 auto;position:relative;z-index:2}
+.dtxt p{font-size:clamp(.92rem,2.3vw,1.1rem);line-height:2.2;color:#2a2a3a;user-select:none;-webkit-user-select:none}
+.dc{display:inline;transition:color .5s,text-shadow .5s}
+.dc.a1{color:var(--lav);text-shadow:0 0 10px rgba(184,169,232,.4);animation:breathe1 3s ease-in-out infinite;filter:drop-shadow(0 0 4px rgba(184,169,232,.3))}
+.dc.a2{color:var(--aur);text-shadow:0 0 10px rgba(110,198,230,.4);animation:breathe2 3.5s ease-in-out infinite;filter:drop-shadow(0 0 4px rgba(110,198,230,.3))}
+.dc.a3{color:var(--mint);text-shadow:0 0 10px rgba(126,220,180,.4);animation:breathe3 4s ease-in-out infinite;filter:drop-shadow(0 0 4px rgba(126,220,180,.3))}
+
+@keyframes breathe1{
+  0%,100%{color:var(--lav);text-shadow:0 0 8px rgba(184,169,232,.3)}
+  50%{color:#d4c8f5;text-shadow:0 0 18px rgba(184,169,232,.6)}
+}
+@keyframes breathe2{
+  0%,100%{color:var(--aur);text-shadow:0 0 8px rgba(110,198,230,.3)}
+  50%{color:#a8e0f5;text-shadow:0 0 18px rgba(110,198,230,.6)}
+}
+@keyframes breathe3{
+  0%,100%{color:var(--mint);text-shadow:0 0 8px rgba(126,220,180,.3)}
+  50%{color:#b0f0d8;text-shadow:0 0 18px rgba(126,220,180,.6)}
+}
+
+/* Falling characters */
+.dc-fly{
+  position:fixed;
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(.7rem,1.8vw,.9rem);
+  pointer-events:none;z-index:1;
+  transition:all 1.8s cubic-bezier(.25,.46,.45,.94);
+  opacity:1;
+  animation:flyBreathe 2.5s ease-in-out infinite;
+  filter:drop-shadow(0 0 3px currentColor);
+}
+@keyframes flyBreathe{
+  0%,100%{opacity:.45}
+  50%{opacity:.75}
+}
+
+/* ILLUCIO landing zone */
+#landing-zone{
+  position:fixed;bottom:6vh;left:0;right:0;
+  text-align:center;z-index:1;pointer-events:none;
+}
+
+.particle{position:fixed;width:4px;height:4px;border-radius:50%;pointer-events:none;z-index:150;
+  animation:pf 1.5s ease forwards;
+  filter:drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor);
+}
+@keyframes pf{0%{opacity:.7;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-60px) scale(0)}}
+
+/* ===== PHASE 2: BUSY BOARD ===== */
+#phase2{display:none;opacity:0;transition:opacity 1.5s cubic-bezier(.4,0,.2,1);position:relative;min-height:100vh}
+#phase2.on{display:block;opacity:1}
+
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--bg)}
+/* Layer 1: Deep background - slowest */
+.aurora::before{
+  content:'';position:absolute;inset:-20%;
+  background:
+    radial-gradient(ellipse at 30% 40%,rgba(184,169,232,.08) 0%,transparent 60%),
+    radial-gradient(ellipse at 70% 70%,rgba(110,198,230,.06) 0%,transparent 50%);
+  animation:aur1 20s ease-in-out infinite alternate;
+}
+/* Layer 2: Mid ground - medium speed */
+.aurora::after{
+  content:'';position:absolute;inset:-10%;
+  background:
+    radial-gradient(ellipse at 20% 50%,rgba(184,169,232,.1) 0%,transparent 45%),
+    radial-gradient(ellipse at 80% 30%,rgba(110,198,230,.07) 0%,transparent 40%),
+    radial-gradient(ellipse at 50% 80%,rgba(126,220,180,.05) 0%,transparent 45%);
+  animation:aur2 12s ease-in-out infinite alternate;
+}
+/* Layer 3: Foreground nebula - fastest, adds depth */
+.aurora-fg{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 60%,rgba(184,169,232,.04) 0%,transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(244,213,141,.03) 0%,transparent 25%);
+  animation:aur3 8s ease-in-out infinite alternate;
+}
+@keyframes aur1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(15px,10px) scale(1.02)}}
+@keyframes aur2{0%{transform:translate(0,0)}100%{transform:translate(-20px,15px);filter:hue-rotate(10deg)}}
+@keyframes aur3{0%{transform:translate(0,0);opacity:.6}100%{transform:translate(25px,-18px);opacity:1}}
+
+/* Jerry */
+#jerry{position:fixed;top:1.5rem;right:1.5rem;z-index:60;opacity:0;transition:opacity .8s}
+#jerry.on{opacity:1}
+#jerry svg{width:40px;height:40px;animation:jf 3s ease-in-out infinite}
+@keyframes jf{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#jspeech{
+  position:fixed;top:4.5rem;right:1.5rem;max-width:240px;
+  background:rgba(184,169,232,.08);border:1px solid rgba(184,169,232,.18);
+  border-radius:14px;padding:.8rem 1rem;font-size:.78rem;line-height:1.6;
+  color:rgba(255,255,255,.6);z-index:60;opacity:0;transform:translateY(8px);
+  transition:opacity .6s,transform .6s;backdrop-filter:blur(8px);
+}
+#jspeech.on{opacity:1;transform:translateY(0)}
+
+.board{
+  max-width:520px;margin:0 auto;padding:4vh 4vw 8vh;
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+}
+.board-head{
+  grid-column:1/-1;text-align:center;margin-bottom:1rem;
+  opacity:0;animation:fu .8s ease .2s forwards;
+}
+.board-head h2{
+  font-size:clamp(1.1rem,3vw,1.5rem);font-weight:400;
+  background:linear-gradient(135deg,var(--lav),var(--aur));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.board-head p{font-size:.7rem;color:rgba(255,255,255,.25);letter-spacing:.15em;margin-top:.3rem}
+
+/* Cards - minimal, visual-first */
+.bcard{
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);
+  border-radius:18px;padding:1.2rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:180px;cursor:pointer;
+  transition:all .6s cubic-bezier(.4,0,.2,1);opacity:0;transform:translateY(24px) scale(.97);
+  position:relative;overflow:hidden;
+}
+.bcard.on{opacity:1;transform:translateY(0) scale(1)}
+.bcard:hover{border-color:rgba(184,169,232,.2);background:rgba(255,255,255,.04)}
+.bcard-label{
+  position:absolute;top:.7rem;left:.8rem;
+  font-size:.55rem;letter-spacing:.15em;
+  color:rgba(255,255,255,.2);font-family:'Space Mono',monospace;
+  text-transform:uppercase;
+}
+
+/* Card 1: Neuron - just a circle that fires */
+.neuron-wrap{display:flex;flex-direction:column;align-items:center;gap:.6rem;width:100%}
+.neuron-ring{
+  width:90px;height:90px;border-radius:50%;
+  border:2px solid rgba(184,169,232,.4);
+  position:relative;display:flex;align-items:center;justify-content:center;
+  transition:all .4s;
+}
+.neuron-ring .inner{
+  width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,169,232,.15) 0%,transparent 70%);
+  transition:all .4s;
+}
+.neuron-ring.fire{
+  border-color:var(--glow);
+  box-shadow:0 0 30px rgba(244,213,141,.25),0 0 60px rgba(244,213,141,.1);
+  filter:drop-shadow(0 0 8px rgba(244,213,141,.4));
+}
+.neuron-ring.fire .inner{
+  background:radial-gradient(circle,rgba(244,213,141,.4) 0%,rgba(244,213,141,.05) 70%);
+  animation:fpulse .5s ease;
+}
+@keyframes fpulse{0%{transform:scale(.6);opacity:.5}50%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:1}}
+
+.n-slider{
+  width:80%;-webkit-appearance:none;appearance:none;
+  height:4px;border-radius:2px;background:rgba(255,255,255,.08);outline:none;
+}
+.n-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--lav);cursor:grab;box-shadow:0 0 10px rgba(184,169,232,.3);
+}
+
+/* Card 2: Brain Network - SVG nodes */
+.net-svg{width:100%;height:120px}
+.net-node{cursor:pointer;transition:all .3s}
+.net-node circle{transition:all .4s}
+.net-node text{font-size:7px;fill:rgba(255,255,255,.35);font-family:'Noto Serif SC',serif;transition:fill .3s}
+.net-link{stroke:rgba(255,255,255,.06);stroke-width:1;transition:all .4s}
+.net-link.active{stroke:var(--aur);stroke-width:1.5;opacity:.6;filter:drop-shadow(0 0 4px rgba(110,198,230,.3))}
+.net-node.active circle{fill:var(--aur);filter:drop-shadow(0 0 6px rgba(110,198,230,.5)) drop-shadow(0 0 12px rgba(110,198,230,.2))}
+.net-node.active text{fill:var(--aur)}
+
+/* Card 3: Wave - canvas only */
+.wave-wrap{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:.5rem;padding-top:1.2rem}
+.wave-canvas{width:100%;height:70px;border-radius:8px}
+.wave-btns{display:flex;gap:.4rem}
+.wbtn{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.1);background:transparent;
+  color:rgba(255,255,255,.3);font-size:.55rem;font-family:'Space Mono',monospace;
+  cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;
+}
+.wbtn:hover{border-color:var(--mint);color:var(--mint)}
+.wbtn.on{border-color:var(--mint);color:var(--mint);background:rgba(126,220,180,.1);
+  box-shadow:0 0 12px rgba(126,220,180,.15);
+  filter:drop-shadow(0 0 4px rgba(126,220,180,.3))}
+
+/* Card 4: Balance - visual seesaw */
+.bal-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:.6rem;padding-top:.8rem}
+.bal-visual{position:relative;width:100%;height:80px}
+.bal-beam{
+  position:absolute;top:50%;left:10%;right:10%;height:3px;
+  background:rgba(255,255,255,.1);border-radius:2px;
+  transform-origin:center;transition:transform .4s;
+}
+.bal-fulcrum{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;
+  border-bottom:10px solid rgba(255,255,255,.15);
+}
+.bal-orb-l,.bal-orb-r{
+  position:absolute;top:50%;width:24px;height:24px;border-radius:50%;
+  transform:translateY(-50%);transition:all .4s;
+}
+.bal-orb-l{left:10%;background:var(--pink);box-shadow:0 0 12px rgba(232,169,200,.3)}
+.bal-orb-r{right:10%;background:var(--aur);box-shadow:0 0 12px rgba(110,198,230,.3)}
+.bal-slider{
+  width:70%;-webkit-appearance:none;appearance:none;
+  height:3px;border-radius:2px;background:rgba(255,255,255,.06);outline:none;
+}
+.bal-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:#fff;cursor:grab;box-shadow:0 0 10px rgba(255,255,255,.2);
+}
+.bal-emoji{font-size:1.2rem;min-height:1.5rem;transition:all .3s}
+
+/* Full-width card */
+.bcard.full{grid-column:1/-1;min-height:120px}
+
+/* Profile button */
+.gen-wrap{
+  grid-column:1/-1;text-align:center;padding:1rem 0;
+  opacity:0;transition:opacity 1.5s cubic-bezier(.4,0,.2,1);
+}
+.gen-wrap.on{opacity:1}
+.cta{
+  display:inline-block;padding:.7rem 1.8rem;border:1px solid var(--lav);
+  border-radius:24px;color:var(--lav);font-family:'Noto Serif SC',serif;
+  font-size:.82rem;cursor:pointer;background:transparent;transition:all .3s;
+}
+.cta:hover{background:rgba(184,169,232,.08);box-shadow:0 0 24px rgba(184,169,232,.15)}
+
+/* ===== PHASE 3: PROFILE ===== */
+#phase3{display:none;opacity:0;transition:opacity 1.5s cubic-bezier(.4,0,.2,1);min-height:100vh;padding:8vh 5vw}
+#phase3.on{display:block;opacity:1}
+.prof{max-width:400px;margin:0 auto;text-align:center}
+.orb-c{width:160px;height:160px;margin:0 auto 1.5rem}
+.orb-c canvas{width:100%;height:100%}
+.prof-name{
+  font-size:clamp(1.1rem,3vw,1.4rem);font-weight:400;
+  background:linear-gradient(135deg,var(--lav),var(--aur),var(--mint));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.prof-arch{font-family:'Space Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:.18em;margin:.4rem 0 1.5rem}
+.prof-dims{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:2rem}
+.pdim{
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);
+  border-radius:14px;padding:.8rem;text-align:left;
+}
+.pdim-l{font-size:.6rem;letter-spacing:.12em;color:rgba(255,255,255,.25);font-family:'Space Mono',monospace;margin-bottom:.3rem}
+.pdim-v{font-size:.82rem}
+.pdim-bar{margin-top:.4rem;height:3px;border-radius:2px;background:rgba(255,255,255,.05);overflow:hidden}
+.pdim-fill{height:100%;border-radius:2px;transition:width 1.5s ease}
+.prof-cta{margin-top:1.5rem}
+.prof-cta p{font-size:.8rem;color:rgba(255,255,255,.35);line-height:1.8;margin-bottom:1rem}
+
+/* ===== PHASE 4: AWAKEN DEMO ===== */
+#phase4{display:none;opacity:0;transition:opacity 1.5s cubic-bezier(.4,0,.2,1);min-height:100vh;padding:6vh 5vw 10vh;position:relative}
+#phase4.on{display:block;opacity:1}
+.aw-stage{max-width:520px;margin:0 auto}
+
+.drop-z{text-align:center;padding:2rem 0;opacity:0;animation:fu .8s ease .3s forwards}
+.drop-z .ico{
+  width:48px;height:48px;margin:0 auto .8rem;
+  border:1.5px dashed rgba(255,255,255,.12);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:rgba(255,255,255,.15);
+  animation:dpulse 2s ease-in-out infinite;
+}
+@keyframes dpulse{0%,100%{border-color:rgba(255,255,255,.08)}50%{border-color:rgba(184,169,232,.25)}}
+.drop-z p{font-size:.72rem;color:rgba(255,255,255,.2);line-height:1.6}
+
+.sam-art{
+  opacity:0;transform:translateY(-30px) scale(.96);
+  transition:all 1s cubic-bezier(.4,0,.2,1);
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);
+  border-radius:14px;padding:1.2rem;margin:1rem 0;
+}
+.sam-art.in{opacity:1;transform:translateY(0) scale(1)}
+.sam-art-h{
+  font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.15);
+  font-family:'Space Mono',monospace;margin-bottom:.8rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+.ficon{width:12px;height:16px;border:1px solid rgba(255,255,255,.15);border-radius:1px;display:inline-block}
+
+.dl{height:8px;background:rgba(255,255,255,.05);border-radius:4px;margin-bottom:6px;transition:all .8s}
+.dl:nth-child(2){width:100%}.dl:nth-child(3){width:82%}.dl:nth-child(4){width:68%}
+.dl:nth-child(5){width:100%}.dl:nth-child(6){width:82%}.dl:nth-child(7){width:68%}
+.dl.shim{background:linear-gradient(90deg,rgba(184,169,232,.12),rgba(110,198,230,.12));animation:shim 1.5s ease infinite}
+@keyframes shim{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.dl.head{height:14px;width:50%!important;border-radius:7px;background:linear-gradient(90deg,var(--lav),var(--aur));opacity:.6;margin-top:4px}
+.dl.txt{background:rgba(255,255,255,.1);opacity:.5}
+.dl.shrink{height:0!important;margin:0!important;padding:0!important;opacity:0!important;overflow:hidden}
+
+/* Grown mini widgets */
+.gw{
+  opacity:0;transform:translateY(16px) scale(.92);
+  transition:all .7s cubic-bezier(.34,1.56,.64,1);
+  margin:.8rem 0;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:12px;
+  padding:.8rem;overflow:hidden;
+}
+.gw.on{opacity:1;transform:translateY(0) scale(1)}
+
+/* Mini neuron in grown widget */
+.gw-neuron{display:flex;align-items:center;gap:.8rem}
+.gw-nr{
+  width:36px;height:36px;border-radius:50%;border:1.5px solid var(--aur);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;
+}
+.gw-nr.fire{border-color:var(--glow);box-shadow:0 0 12px rgba(244,213,141,.2)}
+.gw-ns{
+  flex:1;-webkit-appearance:none;appearance:none;
+  height:3px;border-radius:2px;background:rgba(255,255,255,.06);outline:none;
+}
+.gw-ns::-webkit-slider-thumb{
+  -webkit-appearance:none;width:12px;height:12px;border-radius:50%;
+  background:var(--aur);cursor:grab;box-shadow:0 0 6px rgba(110,198,230,.3);
+}
+
+/* Mini toggles */
+.gw-tg{display:flex;gap:.4rem;flex-wrap:wrap}
+.gw-t{
+  padding:.3rem .6rem;border-radius:12px;border:1px solid rgba(255,255,255,.06);
+  background:transparent;font-size:.65rem;color:rgba(255,255,255,.3);
+  cursor:pointer;transition:all .3s;font-family:'Noto Serif SC',serif;
+}
+.gw-t:hover,.gw-t.on{border-color:var(--mint);color:var(--mint);background:rgba(126,220,180,.06)}
+
+/* Mini bars */
+.gw-bars{display:flex;align-items:flex-end;gap:5px;height:40px}
+.gw-bar{
+  flex:1;border-radius:3px 3px 0 0;min-width:16px;
+  transition:height .5s cubic-bezier(.34,1.56,.64,1),background .3s;cursor:pointer;
+}
+.gw-bar:hover{filter:brightness(1.3)}
+
+.aw-status{text-align:center;margin:1.5rem 0;min-height:2rem}
+.aw-status p{font-size:.75rem;color:rgba(255,255,255,.3);transition:all .4s}
+.aw-status p.hi{color:var(--lav)}
+
+.final-c{
+  text-align:center;padding:2rem 0;opacity:0;transform:translateY(16px);transition:all .8s;
+}
+.final-c.on{opacity:1;transform:translateY(0)}
+.final-c h3{font-size:clamp(.95rem,2.5vw,1.2rem);font-weight:400;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:.6rem}
+.final-c p{font-size:.72rem;color:rgba(255,255,255,.25);margin-bottom:1rem}
+.freq-badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.25rem .65rem;border-radius:16px;
+  background:rgba(184,169,232,.06);border:1px solid rgba(184,169,232,.12);
+  font-size:.6rem;color:var(--lav);font-family:'Space Mono',monospace;margin-bottom:1rem;
+}
+.freq-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--lav);animation:pulse 2s ease-in-out infinite}
+
+/* ===== RESPONSIVE ===== */
+
+/* Safe area for notched phones */
+body{padding-bottom:env(safe-area-inset-bottom,0)}
+#audio-btn,#theme-btn{bottom:calc(1.2rem + env(safe-area-inset-bottom,0))}
+
+/* Touch devices: better tap targets */
+@media(pointer:coarse){
+  .scene-btn{min-height:36px;padding:.4rem .7rem}
+  .sense-ico svg{width:44px;height:44px}
+  .preset-card{min-height:54px}
+  .story-arrow{width:36px;height:36px;font-size:.9rem}
+  .story-dot{width:9px;height:9px}
+}
+
+/* Tablet: 521-768px */
+@media(max-width:768px){
+  .board{max-width:440px;gap:.8rem}
+  .bcard{min-height:160px;padding:1rem}
+  .aw-stage{max-width:480px;padding:0 1rem}
+  .prof{max-width:440px}
+  .gw4{padding:1rem}
+}
+
+/* Mobile: ≤520px */
+@media(max-width:520px){
+  /* Phase 1: Dead text */
+  #phase1{padding:8vh 5vw}
+  .dtxt p{font-size:clamp(.82rem,4vw,.95rem);line-height:2}
+
+  /* Phase 2: Busy board — KEEP 2x2 grid, just smaller */
+  .board{max-width:340px;gap:.5rem;padding:3vh 3vw 6vh}
+  .bcard{min-height:120px;padding:.7rem;border-radius:14px}
+  .bcard-label{font-size:.55rem}
+  .neuron-ring{width:55px;height:55px}
+  .neuron-ring .inner{width:25px;height:25px}
+  .n-slider{width:85%}
+  .net-svg{height:90px}
+  .wave-canvas{height:50px!important}
+  .wave-btns{gap:.3rem}
+  .wbtn{font-size:.55rem;padding:.25rem .5rem;min-width:28px;min-height:28px}
+  .bal-wrap{padding:.3rem 0}
+  .bal-beam{width:85%}
+  .bal-emoji{font-size:.9rem}
+
+  /* Jerry: bottom sheet on mobile */
+  #jerry{top:auto;bottom:3.5rem;right:.8rem}
+  #jerry svg{width:28px;height:28px}
+  #jspeech{top:auto;bottom:5rem;right:.8rem;left:.8rem;max-width:none;
+    border-radius:12px;font-size:.7rem;padding:.5rem .7rem}
+
+  /* Gen button */
+  .gen-wrap{padding:1rem 0}
+  .gen-wrap .cta{font-size:.8rem;padding:.6rem 1.5rem}
+
+  /* Phase 3: Profile */
+  .prof{padding:5vh 4vw}
+  .prof-dims{grid-template-columns:1fr}
+  .prof-name{font-size:clamp(1rem,5vw,1.3rem)}
+  .prof-cta{padding:0 1rem}
+  .orb-c{width:200px;height:200px}
+  .orb-c canvas{width:200px;height:200px}
+
+  /* Phase 4: Article */
+  .aw-stage{max-width:100%;padding:0 .8rem}
+  .sam-art{padding:.8rem;border-radius:12px}
+  .art-h{font-size:clamp(.85rem,4vw,1.05rem)}
+  .art-p{font-size:.78rem;line-height:1.8}
+  .gw4{padding:.8rem;border-radius:12px;margin:.8rem 0}
+  .gw4-title{font-size:.78rem}
+  .gw4-label{font-size:.55rem}
+  .scenario-btns{gap:.3rem}
+  .scene-btn{font-size:.6rem;padding:.3rem .5rem}
+  .gw4-bar-label{width:24px;font-size:.55rem}
+
+  /* Mode comparison */
+  .mode-tabs{gap:.3rem}
+  .mode-tab{font-size:.6rem;padding:.25rem .5rem}
+  .mode-preview{font-size:.68rem}
+
+  /* Analytical: weight sliders */
+  .weight-name{width:24px;font-size:.55rem}
+  .weight-val{font-size:.55rem;width:24px}
+  .weight-formula{font-size:.55rem}
+
+  /* Analytical: data table */
+  .data-table{font-size:.5rem}
+  .data-table td,.data-table th{padding:2px 3px}
+
+  /* Narrative: story cards */
+  .story-step{padding:.6rem}
+  .step-char{font-size:.75rem}
+  .step-text{font-size:.68rem}
+
+  /* Intuitive: radar & gauge */
+  .radar-svg,.gauge-svg{max-width:180px}
+  .ring-row{gap:.6rem}
+  .ring-item svg{width:58px;height:58px}
+  .ring-label{font-size:.55rem}
+
+  /* Preset cards */
+  .preset-cards{gap:.3rem}
+  .preset-emoji{font-size:1.1rem}
+  .preset-name{font-size:.58rem}
+  .preset-sub{font-size:.5rem}
+
+  /* Final CTA */
+  .final-c{padding:2rem 1rem}
+  .final-c h3{font-size:clamp(.85rem,4vw,1.1rem)}
+
+  /* Opening */
+  #opening h1{font-size:clamp(1rem,5vw,1.5rem);padding:0 1rem}
+  #opening .sub{font-size:.7rem}
+
+  /* Progress bar */
+  .prog-bar{height:2px}
+
+  /* Drop zone */
+  .drop-z{padding:1.2rem;margin-bottom:.6rem}
+  .drop-z .ico{font-size:1rem}
+  .drop-z p{font-size:.65rem}
+
+  /* Bottom buttons */
+  #audio-btn,#theme-btn{width:32px;height:32px;font-size:.75rem}
+  #audio-btn{left:.8rem}
+  #theme-btn{left:3rem}
+}
+
+/* Very small phones: ≤360px */
+@media(max-width:360px){
+  .board{max-width:290px;gap:.4rem;padding:2vh 2vw 5vh}
+  .bcard{min-height:100px;padding:.5rem;border-radius:12px}
+  .bcard-label{font-size:.5rem}
+  .neuron-ring{width:45px;height:45px}
+  .net-svg{height:75px}
+  .wave-canvas{height:40px!important}
+  .gw4{padding:.6rem}
+  .scene-btn{font-size:.55rem;padding:.25rem .4rem}
+}
+
+/* Landscape mobile */
+@media(max-height:500px) and (orientation:landscape){
+  #opening h1{font-size:1.1rem}
+  #phase1{padding:4vh 6vw}
+  .board{max-width:560px;grid-template-columns:1fr 1fr}
+  .bcard{min-height:120px}
+  .prof{padding:3vh 5vw}
+  .orb-c{width:160px;height:160px}
+  .orb-c canvas{width:160px;height:160px}
+}
+
+/* Desktop: wider layout for large screens */
+@media(min-width:769px){
+  .aw-stage{max-width:560px}
+  .board{max-width:520px}
+  .gw4{padding:1.2rem 1.4rem}
+}
+
+/* Light theme — matches 交互式探索文章设计系统 v2.1 */
+html.light{
+  --lav:#4a7fb5;--aur:#7b68ae;--mint:#4a8f5c;
+  --glow:#d4880f;--pink:#c25a7a;--bg:#f8f6f1;
+  --text:#1a1a1a;--text-dim:#555555;--text-mute:#999999;
+  --card-bg:#fff;--card-border:#e4e0d8;
+  --overlay:rgba(0,0,0,.02);
+}
+html.light #opening{background:var(--bg)}
+html.light #opening h1{color:#555}
+html.light #opening .sub{color:#999}
+html.light #opening .sub span{color:var(--lav)}
+/* Phase 1: no glow on text, use color + weight only */
+html.light .dtxt p{color:#999}
+html.light .dc.a1{color:var(--lav);text-shadow:none;filter:none;animation:none;font-weight:500}
+html.light .dc.a2{color:var(--aur);text-shadow:none;filter:none;animation:none;font-weight:500}
+html.light .dc.a3{color:var(--mint);text-shadow:none;filter:none;animation:none;font-weight:500}
+html.light .dc-fly{filter:none;text-shadow:none}
+html.light .particle{filter:none;opacity:.6}
+html.light #prog{box-shadow:none}
+/* Aurora: warm subtle tint */
+html.light .aurora{background:var(--bg)}
+html.light .aurora::before{background:radial-gradient(ellipse at 30% 40%,rgba(74,127,181,.03) 0%,transparent 60%),radial-gradient(ellipse at 70% 70%,rgba(123,104,174,.02) 0%,transparent 50%)}
+html.light .aurora::after{background:radial-gradient(ellipse at 20% 50%,rgba(74,127,181,.04) 0%,transparent 45%),radial-gradient(ellipse at 80% 30%,rgba(123,104,174,.03) 0%,transparent 40%)}
+html.light .aurora-fg{background:none}
+/* Cards: white surface, warm border */
+html.light .bcard{background:#fff;border-color:#e4e0d8;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+html.light .bcard:hover{border-color:var(--lav);box-shadow:0 2px 8px rgba(74,127,181,.08)}
+html.light .bcard-label{color:#999}
+html.light .board-head h2{background:linear-gradient(135deg,var(--lav),var(--aur));-webkit-background-clip:text;background-clip:text}
+html.light .board-head p{color:#999}
+/* Neuron: colored border, no bloom */
+html.light .neuron-ring{border-color:rgba(74,127,181,.3)}
+html.light .neuron-ring .inner{background:rgba(74,127,181,.05)}
+html.light .neuron-ring.fire{border-color:var(--glow);box-shadow:none;background:rgba(212,136,15,.06)}
+html.light .neuron-ring.fire .inner{background:rgba(212,136,15,.12)}
+/* Network: clean strokes */
+html.light .net-node text{fill:#555}
+html.light .net-node circle{fill:#f8f6f1;stroke:#ccc}
+html.light .net-node.active circle{fill:rgba(123,104,174,.08);stroke:var(--aur);filter:none}
+html.light .net-node.active text{fill:var(--aur)}
+html.light .net-link{stroke:#e4e0d8}
+html.light .net-link.active{stroke:var(--aur);filter:none;opacity:.8}
+/* Wave buttons: pill style */
+html.light .wbtn{border-color:#e4e0d8;color:#555;background:#fff}
+html.light .wbtn.on{border-color:var(--mint);color:var(--mint);background:rgba(74,143,92,.06);filter:none;box-shadow:none}
+/* Balance */
+html.light .bal-beam{background:#e4e0d8}
+html.light .bal-fulcrum{border-bottom-color:#ccc}
+html.light .bal-orb-l{background:var(--pink);box-shadow:none}
+html.light .bal-orb-r{background:var(--aur);box-shadow:none}
+html.light .bal-slider{background:#e4e0d8}
+html.light .bal-slider::-webkit-slider-thumb{background:#1a1a1a;box-shadow:none}
+/* Sliders — ink thumb per design system */
+html.light .n-slider{background:#e4e0d8}
+html.light .n-slider::-webkit-slider-thumb{background:#1a1a1a;box-shadow:none}
+/* CTA */
+html.light .cta{border-color:var(--lav);color:var(--lav)}
+html.light .cta:hover{background:rgba(74,127,181,.05);box-shadow:none}
+html.light .gen-wrap .cta{border-color:var(--lav);color:var(--lav)}
+/* Jerry */
+html.light #jspeech{background:#fff;border-color:#e4e0d8;color:#555;backdrop-filter:none;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+html.light #jerry svg path{stroke:var(--lav)}
+/* Profile */
+html.light .prof-name{background:linear-gradient(135deg,var(--lav),var(--aur));-webkit-background-clip:text;background-clip:text}
+html.light .prof-arch{color:#999}
+html.light .pdim{background:#fff;border-color:#e4e0d8}
+html.light .pdim-l{color:#999}
+html.light .pdim-bar{background:#f0ede6}
+html.light .prof-cta p{color:#555}
+/* Phase 4 article */
+html.light .sam-art{background:#fff;border-color:#e4e0d8;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+html.light .sam-art-h{color:#999}
+html.light .dl{background:#f0ede6}
+html.light .dl.shim{background:linear-gradient(90deg,rgba(74,127,181,.08),rgba(123,104,174,.08))}
+html.light .dl.head{background:linear-gradient(90deg,var(--lav),var(--aur));opacity:.8}
+html.light .dl.txt{background:#e4e0d8}
+html.light .art-h{color:#1a1a1a}
+html.light .art-p{color:#555}
+html.light .gw4{background:#fff;border-color:#e4e0d8;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+html.light .gw4-label{color:#999}
+html.light .gw4-title{color:#1a1a1a}
+html.light .gw4-desc{color:#555}
+html.light .gw4-desc.lit{color:#333}
+html.light .gw4-slider{background:#f0ede6}
+html.light .gw4-slider::-webkit-slider-thumb{background:#1a1a1a;box-shadow:none}
+html.light .gw4-combo{background:#f8f6f1;border-color:#e4e0d8;color:#555}
+html.light .sense-ico{opacity:.4}
+html.light .sense-ico.on{opacity:1}
+html.light .sense-ico span{color:#999}
+html.light .sense-ico.on span{color:#555}
+html.light .sense-ico.on svg circle:first-child{filter:none}
+html.light .scene-btn{border-color:#e4e0d8;color:#555;background:#fff}
+html.light .scene-btn:hover{border-color:#ccc}
+html.light .scene-btn.on{border-color:var(--lav);color:var(--lav);background:rgba(74,127,181,.05)}
+html.light .gw4-bar-label{color:#555}
+html.light .gw4-bar-track{background:#f0ede6}
+/* Final */
+html.light .final-c h3{color:#333}
+html.light .final-c p{color:#999}
+html.light .freq-badge{background:rgba(74,127,181,.05);border-color:rgba(74,127,181,.12);color:var(--lav)}
+html.light .freq-badge .dot{background:var(--lav)}
+html.light .mode-badge.narrative{background:rgba(194,90,122,.06);border-color:rgba(194,90,122,.15);color:var(--pink)}
+html.light .mode-badge.analytical{background:rgba(74,143,92,.06);border-color:rgba(74,143,92,.15);color:var(--mint)}
+html.light .mode-badge.explorer{background:rgba(212,136,15,.06);border-color:rgba(212,136,15,.15);color:var(--glow)}
+html.light .mode-badge.intuitive{background:rgba(74,127,181,.06);border-color:rgba(74,127,181,.15);color:var(--lav)}
+html.light .mode-compare{background:#fff;border-color:#e4e0d8}
+html.light .mode-compare-title{color:#999}
+html.light .mode-tab{border-color:#e4e0d8;color:#555;background:#fff}
+html.light .mode-tab.current{border-color:var(--lav);color:var(--lav);background:rgba(74,127,181,.04)}
+html.light .mode-preview{color:#555}
+html.light .aw-status p{color:#999}
+html.light .aw-status p.hi{color:var(--lav)}
+html.light .drop-z .ico{border-color:#e4e0d8;color:#999}
+html.light .drop-z p{color:#999}
+/* Toggles */
+html.light #audio-btn,html.light #theme-btn{background:#fff;border-color:#e4e0d8;color:#555;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+html.light #audio-btn:hover,html.light #theme-btn:hover{border-color:var(--lav);color:var(--lav)}
+html.light #audio-btn.on{border-color:var(--lav);color:var(--lav);background:rgba(74,127,181,.05)}
+/* Brain SVG */
+html.light #brain-outline{stroke:#ccc!important}
+html.light #pfc-area{fill:rgba(74,127,181,.04)!important}
+html.light .brain-dot{fill:rgba(74,127,181,.2)!important}
+/* Preset cards & weight sliders */
+html.light .preset-card{border-color:#e4e0d8;background:#fff}
+html.light .preset-card:hover{border-color:var(--lav)}
+html.light .preset-card.active,html.light .preset-card.on{border-color:var(--lav);background:rgba(74,127,181,.04)}
+html.light .weight-name{color:#999}
+html.light .weight-val{color:#555}
+html.light .weight-slider{background:#e4e0d8}
+html.light .weight-formula{background:#f8f6f1;border-color:#e4e0d8;color:#555}
+html.light .data-table th{border-color:#e4e0d8;color:#999}
+html.light .data-table td{color:#555}
+html.light .ana-num{color:var(--lav)}
+html.light .ana-fill{background:var(--lav)}
+html.light .ana-bar{background:#e4e0d8}
+/* Audio & theme toggles */
+#audio-btn,#theme-btn{
+  position:fixed;bottom:1.2rem;z-index:200;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.3);font-size:.9rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;backdrop-filter:blur(6px);
+}
+#audio-btn{left:1.2rem}
+#theme-btn{left:3.6rem}
+#audio-btn:hover,#theme-btn:hover{border-color:var(--lav);color:var(--lav)}
+#audio-btn.on{border-color:var(--lav);color:var(--lav);background:rgba(184,169,232,.08)}
+
+/* === Rich Phase 4 widgets === */
+.gw4{
+  opacity:0;transform:translateY(20px) scale(.95);
+  transition:all .8s cubic-bezier(.4,0,.2,1);
+  margin:1.2rem 0;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);border-radius:16px;
+  padding:1.2rem 1.4rem;overflow:hidden;
+}
+.gw4.on{opacity:1;transform:translateY(0) scale(1)}
+.gw4-label{
+  font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.2);
+  font-family:'Space Mono',monospace;text-transform:uppercase;margin-bottom:.5rem;
+}
+.gw4-title{
+  font-size:.95rem;color:rgba(255,255,255,.7);margin-bottom:.6rem;line-height:1.6;
+}
+.gw4-desc{
+  font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.7;margin-top:.5rem;
+  transition:all .4s;
+}
+.gw4-desc.lit{color:rgba(255,255,255,.6)}
+
+/* Slider widget */
+.gw4-slider-row{display:flex;align-items:center;gap:1rem}
+.gw4-ring{
+  width:56px;height:56px;border-radius:50%;flex-shrink:0;
+  border:2px solid rgba(184,169,232,.35);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;transition:all .4s;
+}
+.gw4-ring .glow{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,169,232,.2),transparent);
+  transform:scale(0);transition:transform .4s;
+}
+.gw4-ring.fire{border-color:var(--glow);box-shadow:0 0 24px rgba(244,213,141,.2)}
+.gw4-ring.fire .glow{transform:scale(1.5);background:radial-gradient(circle,rgba(244,213,141,.25),transparent)}
+.gw4-slider{
+  flex:1;-webkit-appearance:none;appearance:none;
+  height:4px;border-radius:2px;background:rgba(255,255,255,.07);outline:none;
+}
+.gw4-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--lav);cursor:grab;box-shadow:0 0 8px rgba(184,169,232,.3);
+}
+
+/* Toggle grid */
+.gw4-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:.5rem;
+}
+.gw4-toggle{
+  padding:.6rem .8rem;border-radius:12px;
+  border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);
+  font-size:.75rem;color:rgba(255,255,255,.4);cursor:pointer;
+  transition:all .3s;font-family:'Noto Serif SC',serif;text-align:center;
+}
+.gw4-toggle:hover{border-color:rgba(126,220,180,.25)}
+.gw4-toggle.on{
+  border-color:var(--mint);color:var(--mint);
+  background:rgba(126,220,180,.06);box-shadow:0 0 12px rgba(126,220,180,.08);
+}
+.gw4-combo{
+  margin-top:.8rem;padding:.7rem;border-radius:10px;
+  background:rgba(184,169,232,.04);border:1px solid rgba(184,169,232,.08);
+  font-size:.78rem;color:var(--text-mute);line-height:1.7;
+  min-height:2.5rem;transition:all .5s;
+}
+
+/* Bar chart with labels */
+.gw4-chart{display:flex;flex-direction:column;gap:.3rem}
+.gw4-bar-row{display:flex;align-items:center;gap:.6rem}
+.gw4-bar-label{font-size:.68rem;color:rgba(255,255,255,.3);width:60px;text-align:right;flex-shrink:0}
+.gw4-bar-track{flex:1;height:12px;border-radius:6px;background:rgba(255,255,255,.03);overflow:hidden;cursor:pointer}
+.gw4-bar-fill{height:100%;border-radius:6px;transition:width .8s cubic-bezier(.34,1.56,.64,1);min-width:2px}
+.gw4-bar-val{font-size:.6rem;color:rgba(255,255,255,.2);width:30px;font-family:'Space Mono',monospace}
+
+/* Article real content */
+.art-content{display:none}
+.art-content.on{display:block}
+.art-h{
+  font-size:clamp(.95rem,2.5vw,1.15rem);font-weight:400;
+  color:rgba(255,255,255,.7);margin:1.2rem 0 .6rem;line-height:1.6;
+  opacity:0;transform:translateY(16px);transition:all .8s cubic-bezier(.4,0,.2,1);
+}
+.art-h.on{opacity:1;transform:translateY(0)}
+.art-p{
+  font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.9;
+  margin:.6rem 0 1rem;
+  opacity:0;transform:translateY(16px);transition:all .8s cubic-bezier(.4,0,.2,1);
+}
+.art-p.on{opacity:1;transform:translateY(0)}
+
+/* Brain visualization */
+.brain-viz{display:flex;flex-direction:column;align-items:center}
+.brain-svg{width:100%;max-width:260px;height:auto}
+.brain-dot{transition:all .4s ease}
+#pfc-area{transition:all .5s ease}
+#brain-outline{transition:stroke .4s}
+
+/* Scenario buttons */
+.scenario-btns{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
+
+/* === MODE WIDGET VARIANTS === */
+
+/* Narrative: orb fill */
+.nar-orb{width:80px;height:80px;border-radius:50%;border:2px solid var(--card-border);position:relative;overflow:hidden;margin:0 auto;transition:all .5s}
+.nar-fill{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,var(--lav),transparent);transition:height .3s;border-radius:0 0 50% 50%}
+
+/* Narrative: auto-play scene */
+.nar-scene{text-align:center}
+.nar-emoji{font-size:2rem;transition:all .3s}
+
+/* Analytical: big number meter */
+.ana-meter{display:flex;align-items:center;gap:.8rem}
+.ana-num{font-family:'Space Mono',monospace;font-size:1.6rem;color:var(--lav);min-width:50px;text-align:right;transition:color .3s}
+.ana-num span{font-size:.65rem;color:var(--text-mute)}
+.ana-bar{height:4px;border-radius:2px;background:var(--card-border);overflow:hidden;margin-top:.5rem}
+.ana-fill{height:100%;border-radius:2px;transition:width .2s,background .3s;background:var(--lav)}
+
+/* Analytical: data table */
+.data-table{width:100%;font-size:.6rem;font-family:'Space Mono',monospace;border-collapse:collapse;margin-top:.4rem}
+.data-table th{color:var(--text-mute);font-weight:400;padding:3px 5px;text-align:center;border-bottom:1px solid var(--card-border)}
+.data-table td{padding:3px 5px;text-align:center;color:var(--text-dim)}
+html.light .data-table th{border-color:#e2e8f0}
+
+/* Intuitive: gauge arc */
+.gauge-svg{display:block;margin:0 auto}
+.gz{cursor:pointer;transition:opacity .3s}
+.gz:hover{opacity:.7}
+
+/* Intuitive: radar */
+.radar-svg{display:block;margin:0 auto}
+.radar-shape{transition:all .6s}
+
+/* Intuitive: ring container */
+.ring-row{display:flex;justify-content:center;gap:1rem}
+.ring-item{text-align:center;cursor:pointer;transition:transform .3s}
+.ring-item:hover{transform:scale(1.05)}
+.ring-label{font-size:.6rem;color:var(--text-mute);margin-top:.2rem}
+
+/* Narrative: Step-through story cards */
+.story-step{padding:.8rem;border-radius:10px;background:var(--overlay);min-height:4rem;transition:all .5s;line-height:1.7}
+.story-step .step-char{font-size:.85rem;color:var(--pink);font-weight:500;margin-bottom:.3rem}
+.story-step .step-text{font-size:.78rem;color:var(--text-dim)}
+.story-nav{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:.8rem}
+.story-dot{width:8px;height:8px;border-radius:50%;background:var(--card-border);cursor:pointer;transition:all .3s}
+.story-dot.active{background:var(--pink);transform:scale(1.3)}
+.story-arrow{width:28px;height:28px;border-radius:50%;border:1px solid var(--card-border);background:transparent;
+  color:var(--text-mute);font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.story-arrow:hover{border-color:var(--pink);color:var(--pink)}
+
+/* Analytical: Weight sliders with values */
+.weight-grid{display:grid;gap:.5rem}
+.weight-row{display:flex;align-items:center;gap:.6rem}
+.weight-name{font-size:.7rem;color:var(--text-mute);width:36px;text-align:right;font-family:'Space Mono',monospace}
+.weight-slider{flex:1;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;background:var(--card-border);outline:none}
+.weight-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;cursor:grab;border:2px solid var(--bg);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.weight-val{font-size:.65rem;color:var(--text-dim);width:28px;font-family:'Space Mono',monospace}
+.weight-formula{margin-top:.6rem;padding:.5rem .8rem;border-radius:8px;background:var(--overlay);font-size:.68rem;
+  font-family:'Space Mono',monospace;color:var(--text-dim);text-align:center;transition:all .3s}
+
+/* Explorer: Icon toggles (existing design, rebuilt dynamically) */
+.sense-icons{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;padding:.5rem 0}
+.sense-ico{display:flex;flex-direction:column;align-items:center;gap:.3rem;cursor:pointer;transition:all .3s;opacity:.5}
+.sense-ico:hover{opacity:.8}
+.sense-ico.on{opacity:1}
+.sense-ico span{font-size:.6rem;color:var(--text-mute);transition:color .3s;font-family:'Space Mono',monospace}
+.sense-ico.on span{color:var(--text-dim)}
+
+/* Intuitive: Preset config cards */
+.preset-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem}
+.preset-card{padding:.6rem;border-radius:10px;border:1px solid var(--card-border);background:transparent;
+  text-align:center;cursor:pointer;transition:all .3s}
+.preset-card:hover{border-color:var(--lav)}
+.preset-card.active{border-color:var(--lav);background:rgba(99,102,241,.04)}
+.preset-emoji{font-size:1.4rem;margin-bottom:.3rem}
+.preset-name{font-size:.7rem;color:var(--text-dim);font-weight:500}
+.preset-sub{font-size:.6rem;color:var(--text-mute);margin-top:.15rem}
+html.light .preset-card.active{background:rgba(99,102,241,.04)}
+
+/* Light theme sense-ico overrides (shared) */
+html.light .sense-ico.on[data-g="emotion"] svg circle:first-child{stroke:var(--pink);filter:none}
+html.light .sense-ico.on[data-g="memory"] svg circle:first-child{stroke:var(--aur);filter:none}
+html.light .sense-ico.on[data-g="logic"] svg circle:first-child{stroke:var(--mint);filter:none}
+html.light .sense-ico.on[data-g="reward"] svg circle:first-child{stroke:var(--glow);filter:none}
+html.light .sense-ico.on[data-g="risk"] svg circle:first-child{stroke:#ef4444;filter:none}
+/* Dark theme sense-ico glow */
+html:not(.light) .sense-ico.on[data-g="emotion"] svg circle:first-child{stroke:var(--pink);filter:drop-shadow(0 0 8px rgba(232,169,200,.3))}
+html:not(.light) .sense-ico.on[data-g="memory"] svg circle:first-child{stroke:var(--aur);filter:drop-shadow(0 0 8px rgba(110,198,230,.3))}
+html:not(.light) .sense-ico.on[data-g="logic"] svg circle:first-child{stroke:var(--mint);filter:drop-shadow(0 0 8px rgba(126,220,180,.3))}
+html:not(.light) .sense-ico.on[data-g="reward"] svg circle:first-child{stroke:var(--glow);filter:drop-shadow(0 0 8px rgba(244,213,141,.3))}
+html:not(.light) .sense-ico.on[data-g="risk"] svg circle:first-child{stroke:rgba(255,120,120,.6);filter:drop-shadow(0 0 8px rgba(255,120,120,.2))}
+.sense-ico.on .ico-inner{stroke-width:2.5;opacity:1}
+
+/* Weight slider thumb colors */
+.weight-slider.s-emo::-webkit-slider-thumb{background:var(--pink)}
+.weight-slider.s-mem::-webkit-slider-thumb{background:var(--aur)}
+.weight-slider.s-log::-webkit-slider-thumb{background:var(--mint)}
+.weight-slider.s-rew::-webkit-slider-thumb{background:var(--glow)}
+.weight-slider.s-rsk::-webkit-slider-thumb{background:rgba(255,120,120,.7)}
+.scene-btn{
+  padding:.4rem .7rem;border-radius:16px;
+  border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);
+  font-size:.72rem;color:rgba(255,255,255,.35);cursor:pointer;
+  transition:all .3s;font-family:'Noto Serif SC',serif;
+}
+.scene-btn:hover{border-color:rgba(184,169,232,.2)}
+.scene-btn.on{
+  border-color:var(--lav);color:var(--lav);
+  background:rgba(184,169,232,.08);
+}
+
+/* Learning mode indicator */
+.mode-banner{
+  text-align:center;margin-bottom:1.5rem;opacity:0;animation:fu .8s ease .2s forwards;
+}
+.mode-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.35rem .8rem;border-radius:20px;
+  font-size:.65rem;font-family:'Space Mono',monospace;
+  letter-spacing:.1em;margin-bottom:.5rem;
+}
+.mode-badge.narrative{background:rgba(232,169,200,.1);border:1px solid rgba(232,169,200,.2);color:var(--pink)}
+.mode-badge.analytical{background:rgba(126,220,180,.1);border:1px solid rgba(126,220,180,.2);color:var(--mint)}
+.mode-badge.explorer{background:rgba(244,213,141,.1);border:1px solid rgba(244,213,141,.2);color:var(--glow)}
+.mode-badge.intuitive{background:rgba(184,169,232,.1);border:1px solid rgba(184,169,232,.2);color:var(--lav)}
+.mode-hint{font-size:.7rem;color:rgba(255,255,255,.2);line-height:1.6}
+
+/* Mode comparison teaser */
+.mode-compare{
+  margin-top:1.5rem;padding:1rem;border-radius:14px;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);
+  opacity:0;transform:translateY(12px);transition:all .8s cubic-bezier(.4,0,.2,1);
+}
+.mode-compare.on{opacity:1;transform:translateY(0)}
+.mode-compare-title{font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.2);font-family:'Space Mono',monospace;margin-bottom:.6rem}
+.mode-tabs{display:flex;gap:.4rem;margin-bottom:.6rem;flex-wrap:wrap}
+.mode-tab{
+  padding:.3rem .6rem;border-radius:12px;font-size:.68rem;
+  border:1px solid rgba(255,255,255,.06);background:transparent;
+  color:rgba(255,255,255,.3);cursor:pointer;transition:all .3s;
+  font-family:'Noto Serif SC',serif;
+}
+.mode-tab.current{border-color:var(--lav);color:var(--lav);background:rgba(184,169,232,.08)}
+.mode-tab:hover:not(.current){border-color:rgba(255,255,255,.15)}
+.mode-preview{font-size:.75rem;color:rgba(255,255,255,.4);line-height:1.7;min-height:3rem;transition:all .4s}
+</style>
+</head>
+<body>
+
+<div id="opening">
+  <h1>你上一次觉得知识是好玩的，是什么时候？</h1>
+  <p class="sub">触摸开始 <span>↓</span></p>
+</div>
+
+<div id="prog"></div>
+
+<div id="phase1">
+  <div class="dtxt"><p id="dt"></p></div>
+  <div id="landing-zone"></div>
+</div>
+
+<div id="phase2">
+  <div class="aurora"></div><div class="aurora-fg"></div>
+
+  <div class="board">
+    <div class="board-head">
+      <h2>你的大脑</h2>
+      <p>拨弄每一个部件</p>
+    </div>
+
+    <!-- Card 1: Neuron - pure visual -->
+    <div class="bcard" id="c1" data-d="0.3">
+      <span class="bcard-label">点燃</span>
+      <div class="neuron-wrap">
+        <div class="neuron-ring" id="nr"><div class="inner"></div></div>
+        <input type="range" class="n-slider" id="ns" min="0" max="100" value="20">
+      </div>
+    </div>
+
+    <!-- Card 2: Brain Network - SVG -->
+    <div class="bcard" id="c2" data-d="0.5">
+      <span class="bcard-label">连接</span>
+      <svg class="net-svg" id="net" viewBox="0 0 180 120"></svg>
+    </div>
+
+    <!-- Card 3: Waveform -->
+    <div class="bcard" id="c3" data-d="0.7">
+      <span class="bcard-label">频率</span>
+      <div class="wave-wrap">
+        <canvas class="wave-canvas" id="wc"></canvas>
+        <div class="wave-btns">
+          <div class="wbtn on" data-w="alpha">α</div>
+          <div class="wbtn" data-w="beta">β</div>
+          <div class="wbtn" data-w="theta">θ</div>
+          <div class="wbtn" data-w="gamma">γ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Balance Seesaw -->
+    <div class="bcard" id="c4" data-d="0.9">
+      <span class="bcard-label">平衡</span>
+      <div class="bal-wrap">
+        <div class="bal-visual">
+          <div class="bal-fulcrum"></div>
+          <div class="bal-beam" id="beam"></div>
+          <div class="bal-orb-l" id="borbl"></div>
+          <div class="bal-orb-r" id="borbr"></div>
+        </div>
+        <input type="range" class="bal-slider" id="bs" min="0" max="100" value="50">
+        <div class="bal-emoji" id="bemoji">⚖️</div>
+      </div>
+    </div>
+
+    <div class="gen-wrap" id="genw">
+      <button class="cta" id="gen-btn">我的灵魂光谱 →</button>
+    </div>
+  </div>
+</div>
+
+<div id="phase3">
+  <div class="aurora"></div><div class="aurora-fg"></div>
+  <div class="prof">
+    <div class="orb-c"><canvas id="orbc" width="320" height="320"></canvas></div>
+    <h2 class="prof-name" id="pname"></h2>
+    <p class="prof-arch" id="parch"></p>
+    <div class="prof-dims" id="pdims"></div>
+    <div class="prof-cta">
+      <p>如果每一段知识，都能用<strong style="color:var(--lav)">你的频率</strong>重新演奏……</p>
+      <button class="cta" id="aw-btn">看看你的专属版本 →</button>
+    </div>
+  </div>
+</div>
+
+<div id="phase4">
+  <div class="aurora"></div><div class="aurora-fg"></div>
+  <div class="aw-stage">
+    <div class="drop-z" id="dropz">
+      <div class="ico">📄</div>
+      <p>拖入任何文章 · 示例演示中</p>
+    </div>
+
+    <!-- The "article" being awakened -->
+    <div class="mode-banner" id="mode-banner">
+      <div class="mode-badge" id="mode-badge"></div>
+    </div>
+    <div class="sam-art" id="sa">
+      <div class="sam-art-h"><span class="ficon"></span> prefrontal_cortex_decision.txt · 4.1KB</div>
+      <div class="dl"></div><div class="dl"></div><div class="dl"></div>
+      <div class="dl"></div><div class="dl"></div><div class="dl"></div>
+      <div class="dl"></div><div class="dl"></div><div class="dl"></div>
+      <div class="dl"></div>
+      <div class="art-content" id="art-content">
+        <h3 class="art-h" id="ah1"></h3>
+        <p class="art-p" id="ap1"></p>
+        <div class="gw4" id="g1"><div class="gw4-label" id="g1label"></div><div class="gw4-title" id="g1title"></div><div id="g1body"></div><p class="gw4-desc" id="g1desc"></p></div>
+        <p class="art-p" id="ap2"></p>
+        <div class="gw4" id="g2"><div class="gw4-label" id="g2label"></div><div class="gw4-title" id="g2title"></div><div id="g2body"></div><div class="gw4-combo" id="g2combo"></div></div>
+        <p class="art-p" id="ap3"></p>
+        <div class="gw4" id="g3"><div class="gw4-label" id="g3label"></div><div class="gw4-title" id="g3title"></div><div id="g3body"></div><p class="gw4-desc" id="g3desc"></p></div>
+      </div>
+    </div>
+
+    <div class="mode-compare" id="mode-compare">
+      <div class="mode-compare-title">同一篇文章的其他编排方式</div>
+      <div class="mode-tabs" id="mode-tabs"></div>
+      <p class="mode-preview" id="mode-preview"></p>
+    </div>
+
+    <div class="aw-status"><p id="awst">—</p></div>
+    <div class="final-c" id="fc">
+      <div class="freq-badge"><span class="dot"></span><span id="fbt">—</span></div>
+      <h3>同一段知识，<br>不同的灵魂，不同的演奏方式</h3>
+      <p>ILLUCIO — 用你的方式理解世界</p>
+      <button class="cta" onclick="window.open('https://www.illucio.co/','_blank')">开始使用</button>
+    </div>
+  </div>
+</div>
+
+<!-- Jerry (global, persists across phases) -->
+<div id="jerry">
+  <svg viewBox="0 0 48 48" fill="none">
+    <path d="M24 4C12 8,8 20,14 30C18 36,24 42,30 36C38 28,40 14,24 4Z" stroke="url(#jg)" stroke-width="1.5" fill="none" opacity=".7">
+      <animate attributeName="d" dur="4s" repeatCount="indefinite" values="M24 4C12 8,8 20,14 30C18 36,24 42,30 36C38 28,40 14,24 4Z;M24 6C10 10,6 22,16 30C20 38,26 44,32 34C40 26,42 12,24 6Z;M24 4C12 8,8 20,14 30C18 36,24 42,30 36C38 28,40 14,24 4Z"/>
+    </path>
+    <defs><linearGradient id="jg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#b8a9e8"/><stop offset="100%" stop-color="#6ec6e6"/></linearGradient></defs>
+  </svg>
+</div>
+<div id="jspeech"></div>
+
+<!-- Audio Toggle -->
+<div id="audio-btn" title="音效">🔇</div>
+<div id="theme-btn" title="切换主题">☀️</div>
+
+<script>
+// ============ AUDIO ENGINE ============
+const Audio=(()=>{
+  let ctx,on=false,droneOsc,droneGain,masterGain;
+  const notes={C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,C5:523.25,E5:659.25,G5:784};
+  const pentatonic=[notes.C4,notes.D4,notes.E4,notes.G4,notes.A4,notes.C5,notes.E5];
+  let noteIdx=0;
+  
+  function init(){
+    if(ctx)return;
+    ctx=new(window.AudioContext||window.webkitAudioContext)();
+    masterGain=ctx.createGain();masterGain.gain.value=0.3;masterGain.connect(ctx.destination);
+  }
+  
+  function toggle(){
+    init();
+    on=!on;
+    const btn=document.getElementById('audio-btn');
+    btn.textContent=on?'🔊':'🔇';
+    btn.classList.toggle('on',on);
+    if(on)startDrone();else stopDrone();
+  }
+  
+  function enable(){
+    if(on)return;
+    toggle();
+  }
+  
+  function startDrone(){
+    if(droneOsc)return;
+    droneGain=ctx.createGain();droneGain.gain.value=0;droneGain.connect(masterGain);
+    droneOsc=ctx.createOscillator();droneOsc.type='sine';droneOsc.frequency.value=65.41;// C2
+    const osc2=ctx.createOscillator();osc2.type='sine';osc2.frequency.value=98.0;// G2
+    const g2=ctx.createGain();g2.gain.value=0;g2.connect(masterGain);
+    droneOsc.connect(droneGain);osc2.connect(g2);
+    droneOsc.start();osc2.start();
+    droneGain.gain.linearRampToValueAtTime(0.06,ctx.currentTime+2);
+    g2.gain.linearRampToValueAtTime(0.03,ctx.currentTime+3);
+    droneOsc._g2=g2;droneOsc._o2=osc2;
+  }
+  
+  function stopDrone(){
+    if(!droneOsc)return;
+    droneGain.gain.linearRampToValueAtTime(0,ctx.currentTime+1);
+    droneOsc._g2.gain.linearRampToValueAtTime(0,ctx.currentTime+1);
+    const o1=droneOsc,o2=droneOsc._o2;
+    setTimeout(()=>{o1.stop();o2.stop()},1200);
+    droneOsc=null;
+  }
+  
+  function ping(freq,dur=0.3,type='sine',vol=0.12){
+    if(!on||!ctx)return;
+    const osc=ctx.createOscillator(),g=ctx.createGain();
+    osc.type=type;osc.frequency.value=freq;
+    g.gain.value=vol;g.connect(masterGain);osc.connect(g);
+    osc.start();g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+    osc.stop(ctx.currentTime+dur+0.05);
+  }
+  
+  function awakePing(){
+    if(!on)return;
+    ping(pentatonic[noteIdx%pentatonic.length],0.4,'sine',0.08);
+    noteIdx++;
+  }
+  
+  function firePing(){ping(notes.G5,0.6,'triangle',0.15);setTimeout(()=>ping(notes.C5,0.5,'sine',0.1),150)}
+  
+  function clickPing(){ping(pentatonic[~~(Math.random()*pentatonic.length)],0.2,'triangle',0.06)}
+  
+  function nodePing(active){
+    if(!on)return;
+    const f=active?notes.E4:notes.C4;
+    ping(f,0.25,'sine',0.08);
+  }
+  
+  function wavePing(type){
+    const map={alpha:notes.C4,beta:notes.E4,theta:notes.G4,gamma:notes.A4};
+    ping(map[type]||notes.C4,0.4,'triangle',0.1);
+  }
+  
+  function chime(){
+    if(!on)return;
+    [notes.C5,notes.E5,notes.G5].forEach((f,i)=>setTimeout(()=>ping(f,0.5,'sine',0.1),i*200));
+  }
+  
+  function growPing(){
+    ping(notes.D4,0.6,'sine',0.08);
+    setTimeout(()=>ping(notes.G4,0.5,'sine',0.06),200);
+  }
+  
+  return{toggle,enable,awakePing,firePing,clickPing,nodePing,wavePing,chime,growPing,ping,init};
+})();
+
+document.getElementById('audio-btn').addEventListener('click',Audio.toggle);
+document.getElementById('theme-btn').addEventListener('click',()=>{
+  const isLight=document.documentElement.classList.toggle('light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+});
+
+// ============ STATE ============
+const S={phase:0,awake:0,total:0,
+  profile:{mode:'narrative',arch:'',cn:''},  // Set by genProfile
+  // Phase 1 micro-data
+  p1:{startTime:0,charTimes:[],speedBursts:0,pauseCount:0},
+  // Phase 2 micro-data
+  ix:{
+    // Neuron slider
+    thresh:0,fire:false,fireTime:0,sliderReversals:0,lastSliderDir:0,lastSliderVal:0,
+    // Network
+    nodes:[],nodeToggles:0,nodeUndos:0,
+    // Waves
+    waves:[],waveSwitchTimes:[],
+    // Balance
+    bal:50,balChanges:0,balSettleTime:0,balStartTime:0,
+    // Meta
+    order:[],time:{},firstInteractTime:0,
+    // Click rhythm
+    clickTimes:[],
+  }
+};
+
+const txt=`前额叶皮层是人类大脑中最晚进化完成的区域。它负责工作记忆、决策制定、冲动控制和社会行为的调节。神经科学研究表明，前额叶通过整合来自杏仁核的情绪信号、海马体的记忆信息以及感觉皮层的环境输入，形成对复杂情境的综合判断。当神经元的膜电位达到阈值时，会产生动作电位。这种全或无的电信号沿轴突传播，触发突触释放神经递质，将信息传递给下一个神经元。`;
+
+// ============ PHASE 0 ============
+(function(){
+  const o=document.getElementById('opening');
+  let gone=false;
+  const go=()=>{
+    if(gone)return;gone=true;
+    o.classList.add('out');
+    Audio.enable(); // Auto-enable audio on first user gesture
+    setTimeout(()=>{o.style.display='none';startP1()},1800);
+    window.removeEventListener('scroll',go);window.removeEventListener('touchstart',go);window.removeEventListener('click',go);
+  };
+  setTimeout(()=>{if(S.phase===0)go()},4000);
+  window.addEventListener('scroll',go);window.addEventListener('touchstart',go);window.addEventListener('click',go);
+})();
+
+// ============ PHASE 1: DEAD TEXT → ILLUCIO ============
+let illuTargets=[];
+let illuIdx=0;
+
+function buildIllucioTargets(){
+  // Pre-defined bitmap for "ILLUCIO" - each letter is a 5x7 grid of 0/1
+  const L={
+    I:['01110','00100','00100','00100','00100','00100','01110'],
+    L:['10000','10000','10000','10000','10000','10000','11111'],
+    U:['10001','10001','10001','10001','10001','10001','01110'],
+    C:['01110','10001','10000','10000','10000','10001','01110'],
+    O:['01110','10001','10001','10001','10001','10001','01110'],
+  };
+  const word=['I','L','L','U','C','I','O'];
+  const vw=window.innerWidth;
+  const vh=window.innerHeight;
+  
+  const totalCols=word.length*5+(word.length-1); // 5 cols per letter + 1 gap
+  const maxW=Math.min(vw*0.85,500);
+  const cell=Math.floor(maxW/totalCols);
+  const totalW=totalCols*cell;
+  const sx=(vw-totalW)/2;
+  const sy=vh-cell*7-vh*0.08;
+  
+  const targets=[];
+  let xOff=0;
+  
+  word.forEach(ch=>{
+    const grid=L[ch];
+    grid.forEach((row,ry)=>{
+      row.split('').forEach((px,cx)=>{
+        if(px==='1'){
+          // 4 targets per pixel for thick fill
+          for(let d=0;d<4;d++){
+            targets.push({
+              x:sx+xOff+cx*cell+(Math.random()-.5)*cell*.7,
+              y:sy+ry*cell+(Math.random()-.5)*cell*.7
+            });
+          }
+        }
+      });
+    });
+    xOff+=6*cell;
+  });
+  
+  // Shuffle
+  for(let i=targets.length-1;i>0;i--){const j=~~(Math.random()*(i+1));[targets[i],targets[j]]=[targets[j],targets[i]]}
+  return targets;
+}
+
+function startP1(){
+  S.phase=1;
+  const c=document.getElementById('dt'),p=document.getElementById('phase1');
+  txt.split('').forEach((ch,i)=>{const s=document.createElement('span');s.className='dc';s.textContent=ch;s.dataset.i=i;c.appendChild(s)});
+  S.total=txt.length;p.classList.add('on');
+  
+  illuTargets=buildIllucioTargets();
+  illuIdx=0;
+  S.p1.startTime=Date.now();
+  let lastPing=0,lastAwakeTime=0;
+  const colors={a1:'var(--lav)',a2:'var(--aur)',a3:'var(--mint)'};
+  
+  const aw=(x,y)=>{
+    const el=document.elementFromPoint(x,y);
+    if(el&&el.classList.contains('dc')&&!el.dataset.a){
+      el.dataset.a='1';
+      const cc=['a1','a2','a3'][~~(Math.random()*3)];
+      el.classList.add(cc);S.awake++;
+      el.style.animationDelay=(Math.random()*3).toFixed(1)+'s';
+      
+      // Micro-tracking: speed and rhythm
+      const now=Date.now();
+      const gap=now-lastAwakeTime;
+      if(lastAwakeTime>0){
+        S.p1.charTimes.push(gap);
+        if(gap<50)S.p1.speedBursts++;     // very fast = burst mode
+        if(gap>800)S.p1.pauseCount++;      // long pause = contemplative
+      }
+      lastAwakeTime=now;
+      
+      if(now-lastPing>80){Audio.awakePing();lastPing=now}
+      
+      // Spawn 3 flying clones per character
+      const rect=el.getBoundingClientRect();
+      const n=Math.min(3,illuTargets.length-illuIdx);
+      for(let ci=0;ci<n;ci++){
+        if(illuIdx>=illuTargets.length)break;
+        const fly=document.createElement('div');
+        fly.className='dc-fly';
+        fly.textContent=el.textContent;
+        fly.style.cssText=`left:${rect.left+(Math.random()-.5)*8}px;top:${rect.top}px;color:${colors[cc]};text-shadow:0 0 8px ${colors[cc]};animation-delay:${(Math.random()*2.5).toFixed(1)}s`;
+        document.getElementById('phase1').appendChild(fly);
+        
+        const tgt=illuTargets[illuIdx++];
+        setTimeout(()=>{
+          requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+            fly.style.left=tgt.x+'px';
+            fly.style.top=tgt.y+'px';
+            fly.style.opacity='0.7';
+            fly.style.fontSize='clamp(5px,1.2vw,8px)';
+          })});
+        },ci*50);
+      }
+      
+      el.style.transition='opacity .6s';
+      el.style.opacity='.15';
+      
+      document.getElementById('prog').style.width=(S.awake/S.total*100)+'%';
+      if(S.awake/S.total>.35&&S.phase===1)goP2();
+    }
+  };
+  c.addEventListener('mousemove',e=>aw(e.clientX,e.clientY));
+  c.addEventListener('touchmove',e=>{e.preventDefault();aw(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+  c.addEventListener('click',e=>aw(e.clientX,e.clientY));
+}
+
+// ============ PHASE 2 ============
+function goP2(){
+  S.phase=2;
+  Audio.chime();
+  const p1=document.getElementById('phase1'),pr=document.getElementById('prog');
+  p1.style.opacity='0';pr.style.opacity='0';
+  setTimeout(()=>{p1.style.display='none';pr.style.display='none';
+    document.getElementById('phase2').classList.add('on');
+    document.querySelectorAll('.bcard').forEach((c,i)=>setTimeout(()=>{c.classList.add('on');S.ix.time[c.id]=Date.now()},(parseFloat(c.dataset.d)||.3)*1000));
+    setTimeout(()=>{document.getElementById('jerry').classList.add('on');Jerry.onFirstInteract()},600);
+    initNeuron();initNet();initWave();initBal();
+    setTimeout(()=>document.getElementById('genw').classList.add('on'),5000);
+  },1000);
+}
+
+// Jerry smart coaching - tracks what's been said to avoid repeating
+const Jerry=(()=>{
+  const said=new Set();
+  let speakTimer=null;
+  
+  function say(key,text,dur=7000){
+    if(said.has(key))return;
+    said.add(key);
+    const s=document.getElementById('jspeech');
+    s.textContent=text;s.classList.add('on');
+    clearTimeout(speakTimer);
+    speakTimer=setTimeout(()=>s.classList.remove('on'),dur);
+  }
+  
+  // Neuron observations
+  function onNeuronReversals(){say('n-rev','你在来回试探……在找那个精确的临界点，对吧？')}
+  function onNeuronQuickFire(){say('n-quick','这么快就找到了。你的直觉很敏锐。')}
+  function onNeuronSlowExplore(){say('n-slow','你很有耐心，把每一个区间都摸了一遍。')}
+  function onNeuronFire(){say('n-fire','找到了！就是这个感觉——全或无。')}
+  
+  // Network observations  
+  function onNetworkFirst(){say('net-1','点亮一个试试，看看谁和谁有连接。')}
+  function onNetworkCombo(){say('net-combo','有意思，你选的这几个会形成一个回路。')}
+  function onNetworkUndo(){say('net-undo','改主意了？没关系，大脑也经常这样。')}
+  function onNetworkAll(){say('net-all','全点亮了？你想看到完整的图景。')}
+  
+  // Wave observations
+  function onWaveFirst(w){
+    const names={alpha:'α 波，放松的频率',beta:'β 波，专注的频率',theta:'θ 波，白日梦的频率',gamma:'γ 波，顿悟的频率'};
+    say('w-1','你先选了'+names[w]+'。有意思。');
+  }
+  function onWaveFastSwitch(){say('w-fast','你在快速扫描每一个频率——在找哪个和你共振？')}
+  function onWaveLinger(){say('w-ling','你在这个频率上停了很久。找到舒适区了？')}
+  
+  // Balance observations
+  function onBalanceExtreme(side){
+    say('b-ext',side==='feeling'?'完全偏向感性……你相信直觉胜过数据。':'完全偏向理性……你更相信逻辑链条。');
+  }
+  function onBalanceFidget(){say('b-fidg','你一直在微调……也许平衡本身就是你的答案。')}
+  function onBalanceQuickSet(){say('b-quick','很果断。你清楚自己站在哪一边。')}
+  
+  // Meta observations
+  function onFirstInteract(){say('meta-1','拨弄每一个部件，看看会发生什么')}
+  function onAllExplored(){say('meta-all','四个都玩了一遍——你是那种不放过任何角落的人。')}
+  
+  return{say,onNeuronReversals,onNeuronQuickFire,onNeuronSlowExplore,onNeuronFire,
+    onNetworkFirst,onNetworkCombo,onNetworkUndo,onNetworkAll,
+    onWaveFirst,onWaveFastSwitch,onWaveLinger,
+    onBalanceExtreme,onBalanceFidget,onBalanceQuickSet,
+    onFirstInteract,onAllExplored};
+})();
+
+// -- Neuron --
+function initNeuron(){
+  const sl=document.getElementById('ns'),ring=document.getElementById('nr');
+  let lastSnd=0;
+  sl.addEventListener('input',()=>{
+    const v=+sl.value;S.ix.thresh++;
+    const dir=v>S.ix.lastSliderVal?1:v<S.ix.lastSliderVal?-1:0;
+    if(S.ix.lastSliderDir!==0&&dir!==0&&dir!==S.ix.lastSliderDir)S.ix.sliderReversals++;
+    S.ix.lastSliderDir=dir;S.ix.lastSliderVal=v;
+    if(!S.ix.firstInteractTime)S.ix.firstInteractTime=Date.now();
+    S.ix.clickTimes.push(Date.now());
+    
+    if(v>55){
+      ring.classList.add('fire');
+      if(!S.ix.fire){
+        S.ix.fire=true;S.ix.fireTime=Date.now();Audio.firePing();
+        if(S.ix.thresh<12)Jerry.onNeuronQuickFire();
+        else Jerry.onNeuronFire();
+      }
+    } else ring.classList.remove('fire');
+    
+    // Jerry reacts to behavior patterns
+    if(S.ix.sliderReversals===4)Jerry.onNeuronReversals();
+    if(S.ix.thresh===30&&!S.ix.fire)Jerry.onNeuronSlowExplore();
+    
+    if(!S.ix.order.includes('n'))S.ix.order.push('n');
+    if(S.ix.order.length===4)Jerry.onAllExplored();
+    const now=Date.now();
+    if(now-lastSnd>90){Audio.ping(160+v*4,0.12,'sine',0.04);lastSnd=now}
+  });
+}
+
+// -- Network --
+function initNet(){
+  const svg=document.getElementById('net');
+  const nodes=[
+    {x:90,y:25,l:'记忆'},{x:35,y:55,l:'情绪'},{x:145,y:55,l:'逻辑'},
+    {x:60,y:95,l:'社交'},{x:120,y:95,l:'奖赏'},{x:90,y:65,l:'风险'}
+  ];
+  const links=[[0,1],[0,2],[1,3],[2,4],[1,5],[2,5],[3,5],[4,5],[0,5]];
+  links.forEach(([a,b],i)=>{
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',nodes[a].x);line.setAttribute('y1',nodes[a].y);
+    line.setAttribute('x2',nodes[b].x);line.setAttribute('y2',nodes[b].y);
+    line.classList.add('net-link');line.id='nl'+i;svg.appendChild(line);
+  });
+  nodes.forEach((n,i)=>{
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.classList.add('net-node');g.id='nn'+i;
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r','10');
+    c.setAttribute('fill','rgba(255,255,255,0.04)');c.setAttribute('stroke','rgba(255,255,255,0.12)');c.setAttribute('stroke-width','1');
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',n.x);t.setAttribute('y',n.y+2.5);t.setAttribute('text-anchor','middle');t.textContent=n.l;
+    g.appendChild(c);g.appendChild(t);svg.appendChild(g);
+    g.addEventListener('click',()=>{
+      g.classList.toggle('active');
+      S.ix.nodeToggles++;
+      const idx=S.ix.nodes.indexOf(i);
+      if(idx>-1){S.ix.nodes.splice(idx,1);S.ix.nodeUndos++;
+        if(S.ix.nodeUndos===2)Jerry.onNetworkUndo();
+      }else{S.ix.nodes.push(i);
+        if(S.ix.nodes.length===1)Jerry.onNetworkFirst();
+        if(S.ix.nodes.length===3)Jerry.onNetworkCombo();
+        if(S.ix.nodes.length===6)Jerry.onNetworkAll();
+      }
+      if(!S.ix.firstInteractTime)S.ix.firstInteractTime=Date.now();
+      S.ix.clickTimes.push(Date.now());
+      Audio.nodePing(g.classList.contains('active'));
+      links.forEach(([a,b],li)=>{
+        document.getElementById('nl'+li).classList.toggle('active',S.ix.nodes.includes(a)&&S.ix.nodes.includes(b));
+      });
+      if(!S.ix.order.includes('net'))S.ix.order.push('net');
+      if(S.ix.order.length===4)Jerry.onAllExplored();
+    });
+  });
+}
+
+// -- Wave --
+function initWave(){
+  const canvas=document.getElementById('wc'),ctx=canvas.getContext('2d');
+  let cur='alpha',t=0;
+  const W={alpha:{f:.02,a:25,s:.03,c:'#b8a9e8'},beta:{f:.04,a:16,s:.05,c:'#6ec6e6'},
+    theta:{f:.015,a:30,s:.02,c:'#7edcb4'},gamma:{f:.06,a:12,s:.08,c:'#f4d58d'}};
+  function rsz(){canvas.width=canvas.offsetWidth*2;canvas.height=canvas.offsetHeight*2;ctx.scale(2,2)}rsz();
+  window.addEventListener('resize',rsz);
+  (function draw(){
+    const w=canvas.offsetWidth,h=canvas.offsetHeight,wv=W[cur];ctx.clearRect(0,0,w,h);
+    ctx.beginPath();ctx.strokeStyle=wv.c;ctx.lineWidth=1.5;ctx.globalAlpha=.7;
+    for(let x=0;x<w;x++){const y=h/2+Math.sin(x*wv.f+t)*wv.a+Math.sin(x*wv.f*1.5+t*.7)*wv.a*.25;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.stroke();
+    ctx.beginPath();ctx.strokeStyle=wv.c;ctx.lineWidth=5;ctx.globalAlpha=.12;
+    for(let x=0;x<w;x++){const y=h/2+Math.sin(x*wv.f+t)*wv.a+Math.sin(x*wv.f*1.5+t*.7)*wv.a*.25;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.stroke();ctx.globalAlpha=1;
+    t+=wv.s;requestAnimationFrame(draw)})();
+  let waveFirstDone=false,waveLingerTimer=null;
+  document.querySelectorAll('.wbtn').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.wbtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    cur=b.dataset.w;S.ix.waves.push(cur);S.ix.waveSwitchTimes.push(Date.now());Audio.wavePing(cur);
+    if(!S.ix.firstInteractTime)S.ix.firstInteractTime=Date.now();
+    S.ix.clickTimes.push(Date.now());
+    if(!S.ix.order.includes('w'))S.ix.order.push('w');
+    if(S.ix.order.length===4)Jerry.onAllExplored();
+    
+    // Jerry: first wave choice
+    if(!waveFirstDone){waveFirstDone=true;Jerry.onWaveFirst(cur)}
+    
+    // Jerry: fast switching detection
+    if(S.ix.waveSwitchTimes.length>=4){
+      const last3=S.ix.waveSwitchTimes.slice(-3);
+      const gaps=[];for(let j=1;j<last3.length;j++)gaps.push(last3[j]-last3[j-1]);
+      if(gaps.every(g=>g<1200))Jerry.onWaveFastSwitch();
+    }
+    
+    // Jerry: linger detection - if they don't switch for 5s
+    clearTimeout(waveLingerTimer);
+    waveLingerTimer=setTimeout(()=>Jerry.onWaveLinger(),5000);
+  }));
+}
+
+// -- Balance --
+function initBal(){
+  const sl=document.getElementById('bs'),beam=document.getElementById('beam'),
+    ol=document.getElementById('borbl'),or=document.getElementById('borbr'),em=document.getElementById('bemoji');
+  let lastSnd=0,balSettleTimer=null;
+  const upd=()=>{
+    const v=+sl.value;
+    S.ix.balChanges++;
+    S.ix.bal=v;
+    if(!S.ix.balStartTime)S.ix.balStartTime=Date.now();
+    S.ix.balSettleTime=Date.now();
+    if(!S.ix.firstInteractTime)S.ix.firstInteractTime=Date.now();
+    S.ix.clickTimes.push(Date.now());
+    beam.style.transform=`translateY(-50%) rotate(${(v-50)/50*8}deg)`;
+    const ls=24+((100-v)/100)*12,rs=24+(v/100)*12;
+    ol.style.width=ol.style.height=ls+'px';or.style.width=or.style.height=rs+'px';
+    ol.style.opacity=.4+((100-v)/100)*.6;or.style.opacity=.4+(v/100)*.6;
+    if(v<35)em.textContent='🌊';else if(v>65)em.textContent='🔬';else em.textContent='⚖️';
+    if(!S.ix.order.includes('b'))S.ix.order.push('b');
+    if(S.ix.order.length===4)Jerry.onAllExplored();
+    
+    // Jerry: extreme positions
+    if(v<15||v>85)Jerry.onBalanceExtreme(v<50?'feeling':'thinking');
+    // Jerry: fidgeting
+    if(S.ix.balChanges===35)Jerry.onBalanceFidget();
+    
+    // Jerry: quick decisive set (if they stop after <8 changes)
+    clearTimeout(balSettleTimer);
+    balSettleTimer=setTimeout(()=>{
+      if(S.ix.balChanges<8)Jerry.onBalanceQuickSet();
+    },2000);
+    
+    const now=Date.now();
+    if(now-lastSnd>100){Audio.ping(220+v*3,0.15,'sine',0.05);lastSnd=now}
+  };
+  sl.addEventListener('input',upd);upd();
+}
+
+// ============ PHASE 3 ============
+document.getElementById('gen-btn').addEventListener('click',()=>{
+  S.phase=3;Audio.chime();
+  document.getElementById('phase2').style.opacity='0';
+  setTimeout(()=>{document.getElementById('phase2').style.display='none';
+    document.getElementById('phase3').classList.add('on');genProfile();drawOrb()},1000);
+});
+
+function genProfile(){
+  const s=S.ix, p1=S.p1;
+  
+  // ========= DERIVED METRICS =========
+  
+  // 1. Exploration speed (Phase 1): avg ms between char awakenings
+  const avgCharSpeed=p1.charTimes.length>5 ? p1.charTimes.reduce((a,b)=>a+b,0)/p1.charTimes.length : 200;
+  const isBurstExplorer=p1.speedBursts>p1.charTimes.length*0.3; // >30% burst = aggressive
+  const isContemplative=p1.pauseCount>3; // multiple pauses = reflective
+  
+  // 2. Decision speed: how fast they found the neuron firing point
+  const fireSpeed=s.fire?(s.fireTime-Object.values(s.time)[0]||5000):99999;
+  const isQuickFinder=s.fire&&s.thresh<12;
+  const isThoroughExplorer=s.thresh>25; // lots of slider moves = methodical
+  
+  // 3. Certainty index: slider reversals indicate hesitation
+  const reversalRate=s.thresh>0?s.sliderReversals/s.thresh:0;
+  const isHesitant=reversalRate>0.15;
+  const isDecisive=reversalRate<0.05&&s.fire;
+  
+  // 4. Network behavior: toggle-undo ratio reveals openness
+  const undoRate=s.nodeToggles>0?s.nodeUndos/s.nodeToggles:0;
+  const isExperimentalNode=s.nodeToggles>8; // lots of toggling = trying combinations
+  const isCommittedNode=s.nodeToggles>2&&undoRate<0.2; // clicks and keeps
+  
+  // 5. Wave preference: dwell time between switches
+  const waveDwells=[];
+  for(let i=1;i<s.waveSwitchTimes.length;i++)waveDwells.push(s.waveSwitchTimes[i]-s.waveSwitchTimes[i-1]);
+  const avgWaveDwell=waveDwells.length>0?waveDwells.reduce((a,b)=>a+b,0)/waveDwells.length:5000;
+  const isWaveSkimmer=avgWaveDwell<1500; // fast switching = scanning
+  const isWaveLingerer=avgWaveDwell>4000; // long dwell = immersive
+  const prefersAlpha=s.waves.filter(w=>w==='alpha').length>s.waves.length*0.4;
+  const prefersHighFreq=s.waves.filter(w=>w==='gamma'||w==='beta').length>s.waves.length*0.5;
+  
+  // 6. Balance behavior: how much they adjust, where they settle
+  const balAdjustments=s.balChanges;
+  const balLeaning=s.bal<40?'feeling':s.bal>60?'thinking':'balanced';
+  const isBalanceFidgeter=balAdjustments>30; // lots of micro-adjustments
+  
+  // 7. Click rhythm regularity
+  const clickGaps=[];
+  for(let i=1;i<s.clickTimes.length;i++)clickGaps.push(s.clickTimes[i]-s.clickTimes[i-1]);
+  const avgClickGap=clickGaps.length>0?clickGaps.reduce((a,b)=>a+b,0)/clickGaps.length:500;
+  const clickVariance=clickGaps.length>2?clickGaps.reduce((a,g)=>a+Math.pow(g-avgClickGap,2),0)/clickGaps.length:0;
+  const isRhythmic=clickVariance<50000; // low variance = steady rhythm
+  const isErratic=clickVariance>200000; // high variance = impulsive/exploratory
+  
+  // 8. Exploration breadth: how many cards, in what order
+  const breadth=s.order.length;
+  const startedWithVisual=s.order[0]==='w'||s.order[0]==='b'; // wave or balance first = sensory
+  const startedWithLogic=s.order[0]==='n'||s.order[0]==='net'; // neuron or network first = analytical
+  
+  // 9. Initial latency: time from Phase 2 start to first interaction
+  const firstCardTime=Math.min(...Object.values(s.time).filter(t=>t>0));
+  const initLatency=s.firstInteractTime?s.firstInteractTime-firstCardTime:5000;
+  const isImpulsive=initLatency<1500;
+  const isCautious=initLatency>4000;
+  
+  // ========= SCORING (0-100 per dimension) =========
+  
+  // E/I: Energy source — external stimulation vs internal reflection
+  let eiScore=50;
+  if(isBurstExplorer)eiScore+=15;if(isContemplative)eiScore-=15;
+  if(isImpulsive)eiScore+=10;if(isCautious)eiScore-=10;
+  if(breadth>=4)eiScore+=10;if(breadth<=2)eiScore-=10;
+  if(isExperimentalNode)eiScore+=8;
+  eiScore=Math.max(5,Math.min(95,eiScore));
+  
+  // S/N: Sensing vs Intuition — concrete vs abstract
+  let snScore=50;
+  if(isThoroughExplorer)snScore-=12; // lots of slider = detail-oriented = S
+  if(isQuickFinder)snScore+=10; // fast pattern recognition = N
+  if(isWaveSkimmer)snScore+=10; // scanning for meaning = N
+  if(isWaveLingerer)snScore-=8; // dwelling in one mode = S
+  if(prefersHighFreq)snScore+=8; // gamma/beta preference = abstract thinking
+  if(prefersAlpha)snScore-=5; // alpha = grounded
+  if(startedWithVisual)snScore+=5;if(startedWithLogic)snScore-=5;
+  snScore=Math.max(5,Math.min(95,snScore));
+  
+  // T/F: Thinking vs Feeling — logic vs values
+  let tfScore=50;
+  if(balLeaning==='thinking')tfScore+=15;if(balLeaning==='feeling')tfScore-=15;
+  if(isDecisive)tfScore+=8;if(isHesitant)tfScore-=5;
+  if(s.nodes.includes(2))tfScore+=8; // chose logic node
+  if(s.nodes.includes(1))tfScore-=8; // chose emotion node
+  if(isRhythmic)tfScore+=5; // steady = systematic
+  if(isErratic)tfScore-=5; // variable = emotional processing
+  tfScore=Math.max(5,Math.min(95,tfScore));
+  
+  // J/P: Judging vs Perceiving — structure vs openness
+  let jpScore=50;
+  if(isBalanceFidgeter)jpScore-=10; // fidgeting = keeping options open = P
+  if(undoRate>0.25)jpScore-=12; // lots of undo = exploring = P
+  if(isCommittedNode)jpScore+=10; // commit to choices = J
+  if(isBurstExplorer)jpScore-=8; // burst mode = spontaneous = P
+  if(isRhythmic)jpScore+=8; // steady rhythm = structured = J
+  if(isCautious)jpScore+=5; // cautious start = planning = J
+  jpScore=Math.max(5,Math.min(95,jpScore));
+  
+  // ========= LEARNING ARCHETYPE =========
+  
+  const isN=snScore>55,isS=snScore<45;
+  const isT=tfScore>55,isF=tfScore<45;
+  const isJ=jpScore>55,isP=jpScore<45;
+  const isE=eiScore>55,isI=eiScore<45;
+  
+  let arch,cn,learningStyle;
+  if(isN&&isF&&isP){arch='RHYTHMIC STORYTELLER';cn='律动叙事者';learningStyle='非线性叙事 · 隐喻驱动 · 发散联想'}
+  else if(isS&&isT&&isJ){arch='GEOMETRIC ARCHITECT';cn='几何构建师';learningStyle='结构化路径 · 数据透视 · 进度追踪'}
+  else if(isN&&isT&&isP){arch='INTUITIVE NAVIGATOR';cn='直觉领航者';learningStyle='模式识别 · 快速跳转 · 极限测试'}
+  else if(isN&&isF&&isJ){arch='HARMONIC INTEGRATOR';cn='和谐整合者';learningStyle='全局俯瞰 · 情感锚点 · 有序探索'}
+  else if(isS&&isT&&isP){arch='DEEP LOGIC FLARE';cn='深邃逻辑之光';learningStyle='深度钻探 · 因果链条 · 开放验证'}
+  else if(isN&&isT&&isJ){arch='CRYSTAL MAPPER';cn='晶体制图师';learningStyle='抽象建模 · 系统思维 · 精确框架'}
+  else if(isS&&isF){arch='SENSORY WEAVER';cn='感知编织者';learningStyle='具象体验 · 情感记忆 · 沉浸式学习'}
+  else if(isE&&isP){arch='SPARK CHASER';cn='火花追逐者';learningStyle='快速试错 · 多维刺激 · 社交学习'}
+  else{arch='ADAPTIVE EXPLORER';cn='自适应探索者';learningStyle='弹性切换 · 情境适配 · 均衡发展'}
+  
+  document.getElementById('pname').textContent=cn;
+  document.getElementById('parch').textContent=arch;
+  
+  // Determine learning mode for Phase 4
+  // 4 types: narrative (story+intuition+guided), analytical (structure+mechanism+guided), 
+  // explorer (question+mechanism+free), intuitive (question+intuition+free)
+  let mode='explorer';
+  if(isF&&!isT&&(isN||!isS))mode='narrative';  // feeling + not-thinking + abstract
+  else if(isT&&(isS||isJ))mode='analytical';     // thinking + sensing/judging
+  else if(isN&&isP&&!isF)mode='intuitive';        // intuition + perceiving + not-feeling = jumper
+  else if(isT&&isP)mode='explorer';               // thinking + perceiving = experimenter
+  S.profile={mode,arch,cn,learningStyle};
+  
+  // ========= RENDER DIMENSIONS =========
+  const dims=[
+    {l:'能量频率',v:eiScore>60?'外向共振':eiScore<40?'内在聚焦':'弹性切换',
+     p:eiScore,c:'var(--lav)',sub:eiScore>60?'E':'I'},
+    {l:'观察维度',v:snScore>60?'意义驱动':snScore<40?'细节敏感':'双频扫描',
+     p:snScore,c:'var(--aur)',sub:snScore>60?'N':'S'},
+    {l:'决策谐波',v:tfScore>60?'逻辑优先':tfScore<40?'价值优先':'整合判断',
+     p:tfScore,c:'var(--mint)',sub:tfScore>60?'T':'F'},
+    {l:'旅程轨迹',v:jpScore>60?'结构导航':jpScore<40?'自由漫游':'适时切换',
+     p:jpScore,c:'var(--glow)',sub:jpScore>60?'J':'P'}
+  ];
+  
+  const dc=document.getElementById('pdims');
+  dims.forEach((d,i)=>{const el=document.createElement('div');el.className='pdim';
+    el.style.cssText=`opacity:0;transform:translateY(12px);transition:all .5s ease ${.2+i*.15}s`;
+    el.innerHTML=`<div class="pdim-l">${d.l} <span style="opacity:.4">${d.sub}</span></div><div class="pdim-v" style="color:${d.c}">${d.v}</div><div class="pdim-bar"><div class="pdim-fill" style="background:${d.c};width:0%"></div></div>`;
+    dc.appendChild(el);
+    requestAnimationFrame(()=>{el.style.opacity='1';el.style.transform='translateY(0)';
+      setTimeout(()=>el.querySelector('.pdim-fill').style.width=d.p+'%',400+i*150)})});
+  
+  // Add learning style line
+  const lsEl=document.createElement('p');
+  lsEl.style.cssText='font-size:.72rem;color:rgba(255,255,255,.35);text-align:center;margin-top:1.2rem;line-height:1.7;opacity:0;transition:opacity .8s ease 1.2s';
+  lsEl.textContent='学习模式：'+learningStyle;
+  dc.parentElement.appendChild(lsEl);
+  requestAnimationFrame(()=>lsEl.style.opacity='1');
+}
+
+function drawOrb(){
+  const cv=document.getElementById('orbc'),ctx=cv.getContext('2d');let t=0;
+  const bal=S.ix.bal,waves=S.ix.waves;
+  const hasCreative=waves.includes('theta')||waves.includes('gamma');
+  const h1=bal<40?310:bal>60?190:hasCreative?280:260;
+  (function draw(){ctx.clearRect(0,0,320,320);ctx.save();ctx.translate(160,160);
+    const g=ctx.createRadialGradient(0,0,30,0,0,85);
+    g.addColorStop(0,`hsla(${h1},60%,70%,.35)`);g.addColorStop(.5,`hsla(${h1+40},50%,60%,.12)`);g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(-160,-160,320,320);
+    for(let i=0;i<5;i++){ctx.beginPath();const r=42-i*3,pts=50;
+      for(let p=0;p<pts;p++){const a=(p/pts)*Math.PI*2,n=Math.sin(a*3+t+i)*4+Math.cos(a*5-t*.7)*2.5,
+        x=Math.cos(a)*(r+n),y=Math.sin(a)*(r+n);p===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}
+      ctx.closePath();ctx.fillStyle=`hsla(${h1+i*12},60%,${65+i*3}%,${.1-i*.015})`;ctx.fill()}
+    const cg=ctx.createRadialGradient(0,0,0,0,0,20);
+    cg.addColorStop(0,`hsla(${h1+20},70%,85%,.5)`);cg.addColorStop(1,'transparent');
+    ctx.fillStyle=cg;ctx.beginPath();ctx.arc(0,0,20,0,Math.PI*2);ctx.fill();
+    ctx.restore();t+=.02;requestAnimationFrame(draw)})();
+}
+
+// ============ PHASE 4 ============
+document.getElementById('aw-btn').addEventListener('click',()=>{
+  S.phase=4;document.getElementById('phase3').style.opacity='0';
+  setTimeout(()=>{document.getElementById('phase3').style.display='none';
+    document.getElementById('phase4').classList.add('on');window.scrollTo({top:0,behavior:'smooth'});
+    document.getElementById('fbt').textContent=document.getElementById('parch').textContent;
+    applyLearningMode();
+    runAwaken()},1000);
+});
+
+// ============ LEARNING MODE CONTENT ============
+const modeContent={
+  narrative:{
+    badge:'叙事模式 · NARRATIVE',badgeClass:'narrative',
+    hint:'你倾向于通过故事和隐喻理解知识——我们用叙事重新编排了这篇文章',
+    h1:'前额叶：你大脑里的指挥家',
+    p1:'想象你的大脑是一支交响乐队。前额叶就是那个站在最前面、最晚登台的指挥家——直到你25岁，它才完全准备好。在那之前，你的乐队一直在"半指挥"状态下演奏。',
+    p2:'每一次决定，都是一场即兴演出。杏仁核是那个激情的鼓手——危险来临时它第一个敲响警钟。海马体是老练的贝斯手，用低沉的记忆旋律为决策铺底。伏隔核是那个永远在期待高潮的小号手。',
+    p3:'所以下次你纠结于一个选择时，别责怪自己"不够理性"——你只是在听一场有太多独奏者的音乐会。指挥家在努力，但有时候鼓手实在太响了。',
+    w1title:'当指挥家逐渐醒来——看它如何接管全场',
+    w2title:'每位乐手都想要solo的机会',
+  },
+  analytical:{
+    badge:'分析模式 · ANALYTICAL',badgeClass:'analytical',
+    hint:'你倾向于通过结构和数据理解知识——我们用逻辑框架重新编排了这篇文章',
+    h1:'前额叶皮层：决策系统的中央处理器',
+    p1:'前额叶皮层（PFC）位于额骨后方，占人类大脑皮层总面积的29%。它是最晚髓鞘化完成的脑区，发育窗口延续至约25岁。核心功能：工作记忆维持、抑制控制、认知灵活性、目标导向行为。',
+    p2:'PFC 的决策机制是一个多输入整合系统。信号源包括：杏仁核（威胁/情绪编码，响应延迟~120ms）、海马体（情景记忆检索）、伏隔核（奖赏预测误差，多巴胺通路）、前扣带皮层（冲突监测与错误检测）。',
+    p3:'关键发现：PFC 并非"理性中心"——它是一个权重分配器。不同情境下，各输入信号的权重系数动态变化。高压力状态下杏仁核信号增益可达300%，同时PFC抑制功能下降40%。',
+    w1title:'PFC 激活强度与认知负荷的关系',
+    w2title:'多通道信号的权重分配',
+  },
+  explorer:{
+    badge:'探索模式 · EXPLORER',badgeClass:'explorer',
+    hint:'你倾向于通过提问和实验理解知识——我们把文章变成了一系列可探索的问题',
+    h1:'如果大脑是一个公司，谁是CEO？',
+    p1:'你有没有想过：为什么你18岁时做的决定，30岁回头看总觉得蠢？不是因为你变聪明了——而是因为你的"CEO"（前额叶）在18岁时还没完全上任。它要到25岁才真正坐稳位置。',
+    p2:'但这个CEO有个问题：它不是独裁者。每次做决定，至少有5个"部门主管"在同时汇报——情绪部说"危险！"，记忆部说"上次这样亏了"，奖赏部说"但如果赢了呢？"——CEO得在0.5秒内拍板。你猜谁的声音最大？',
+    p3:'真正有趣的问题是：如果你能手动调节每个"部门"的音量，你会怎么配置你的决策系统？往下滑，亲手试试。',
+    w1title:'调大CEO的音量，看看会发生什么',
+    w2title:'你想让哪些部门参与这次决策？',
+  },
+  intuitive:{
+    badge:'直觉模式 · INTUITIVE',badgeClass:'intuitive',
+    hint:'你倾向于抓住核心洞察然后自己连线——我们把文章压缩成了几个关键顿悟',
+    h1:'三句话理解前额叶',
+    p1:'第一：你的大脑有个"总裁"，但它25岁才正式上班。在那之前你所有的"理性决定"其实都是副总裁们在代班。',
+    p2:'第二：这个总裁从不独断——它只做一件事：听完所有声音后决定谁的音量调大、谁的调小。情绪太响？压一压。逻辑太弱？提上来。这就是"自控力"的全部秘密。',
+    p3:'第三：所有人的总裁都一样，但每个人的"默认音量配置"不同——这就是性格。下面的控件让你亲手感受这种差异。',
+    w1title:'一个旋钮，感受从静默到全力运转',
+    w2title:'你的默认配置是什么？',
+  }
+};
+
+function applyLearningMode(){
+  const m=S.profile.mode;const c=modeContent[m];
+  const badge=document.getElementById('mode-badge');
+  badge.textContent=c.badge;badge.className='mode-badge '+c.badgeClass;
+  document.getElementById('ah1').textContent=c.h1;
+  document.getElementById('ap1').textContent=c.p1;
+  document.getElementById('ap2').textContent=c.p2;
+  document.getElementById('ap3').textContent=c.p3;
+  document.getElementById('g1title').textContent=c.w1title;
+  document.getElementById('g2title').textContent=c.w2title;
+  const tabs=document.getElementById('mode-tabs'),preview=document.getElementById('mode-preview');
+  [{key:'narrative',label:'🎵 叙事沉浸',desc:'水位圆球 + 翻页故事 + 自动轮播场景'},{key:'analytical',label:'📐 结构分析',desc:'精确仪表 + 权重滑块 + 数据矩阵'},{key:'explorer',label:'❓ 问题探索',desc:'脑部热力图 + 图标组合 + 场景模拟'},{key:'intuitive',label:'💡 直觉跳跃',desc:'弧形仪表 + 雷达图 + 环形对比'}].forEach(md=>{
+    const tab=document.createElement('div');tab.className='mode-tab'+(md.key===m?' current':'');tab.textContent=md.label;
+    tab.addEventListener('click',()=>{document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('current'));tab.classList.add('current');preview.textContent=md.key===m?'← 你正在看的版本':md.desc;Audio.clickPing()});
+    tabs.appendChild(tab);
+  });
+  preview.textContent='你正在看的是为你定制的版本';
+}
+
+// ========== WIDGET 1: Activation ==========
+function initG1(){
+  const m=S.profile.mode;const body=document.getElementById('g1body');const desc=document.getElementById('g1desc');
+  const lbl=document.getElementById('g1label');let lastSnd=0;
+
+  if(m==='narrative'){
+    lbl.textContent='感受 · 指挥家醒来';
+    body.innerHTML=`<div style="display:flex;flex-direction:column;align-items:center">
+      <div class="nar-orb" id="norb"><div class="nar-fill" id="nfill" style="height:15%"></div></div>
+      <input type="range" class="gw4-slider" id="g1sl" min="0" max="100" value="15" style="margin-top:.8rem;width:80%">
+    </div>`;
+    desc.textContent='拖动——看指挥家慢慢醒来';
+    const sl=document.getElementById('g1sl'),fill=document.getElementById('nfill'),orb=document.getElementById('norb');
+    sl.addEventListener('input',()=>{const v=+sl.value;fill.style.height=v+'%';
+      if(v>70){orb.style.borderColor='var(--glow)';fill.style.background='linear-gradient(0deg,var(--glow),transparent)';desc.textContent='🔥 全力运转！';desc.classList.add('lit')}
+      else{orb.style.borderColor='var(--card-border)';fill.style.background='linear-gradient(0deg,var(--lav),transparent)';desc.textContent=v<25?'静息':'逐渐醒来…';desc.classList.toggle('lit',v>25)}
+      const now=Date.now();if(now-lastSnd>80){Audio.ping(140+v*5,0.15,'sine',0.04);lastSnd=now}});
+
+  } else if(m==='analytical'){
+    lbl.textContent='量化 · PFC 激活指数';
+    body.innerHTML=`<div class="ana-meter"><div class="ana-num" id="anum">15<span>%</span></div><div style="flex:1"><input type="range" class="gw4-slider" id="g1sl" min="0" max="100" value="15"><div style="display:flex;justify-content:space-between;font-size:.5rem;color:var(--text-mute);font-family:'Space Mono',monospace;margin-top:1px"><span>0 静息</span><span>-55 阈值-</span><span>100 峰值</span></div></div></div><div class="ana-bar"><div class="ana-fill" id="afill" style="width:15%"></div></div>`;
+    desc.textContent='PFC 激活: 15% · 静息态';
+    const sl=document.getElementById('g1sl'),val=document.getElementById('anum'),fill=document.getElementById('afill');
+    sl.addEventListener('input',()=>{const v=+sl.value;
+      val.innerHTML=v+'<span style="font-size:.65rem;color:var(--text-mute)">%</span>';
+      if(v>70){val.style.color='var(--glow)'}else{val.style.color='var(--lav)'}
+      fill.style.width=v+'%';fill.style.background=v>70?'var(--glow)':'var(--lav)';
+      const state=v<25?'静息态':v<55?'工作记忆态':v<80?'决策整合态':'峰值态';
+      desc.textContent=`PFC: ${v}% · ${state}`;desc.classList.toggle('lit',v>25);
+      const now=Date.now();if(now-lastSnd>80){Audio.ping(180+v*4,0.12,'triangle',0.04);lastSnd=now}});
+
+  } else if(m==='intuitive'){
+    lbl.textContent='感受 · 能量等级';
+    body.innerHTML=`<div style="display:flex;justify-content:center"><svg viewBox="0 0 200 120" width="200" class="gauge-svg">
+      <path d="M20,100 A80,80 0 0,1 180,100" fill="none" stroke="var(--card-border)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M20,100 A80,80 0 0,1 180,100" fill="none" stroke="var(--lav)" stroke-width="12" stroke-linecap="round" id="gauge-arc" stroke-dasharray="251" stroke-dashoffset="125" style="transition:all .5s"/>
+      <text x="35" y="115" font-size="14" style="cursor:pointer" class="gz" data-lv="low">😴</text>
+      <text x="90" y="35" font-size="14" style="cursor:pointer" class="gz" data-lv="mid">🧠</text>
+      <text x="152" y="115" font-size="14" style="cursor:pointer" class="gz" data-lv="high">⚡</text>
+      <circle cx="100" cy="22" r="5" fill="var(--lav)" id="gauge-dot" style="transition:all .5s"/>
+    </svg></div>`;
+    desc.textContent='点击 😴 🧠 ⚡ 切换';
+    const arc=document.getElementById('gauge-arc'),dot=document.getElementById('gauge-dot');
+    const levels={low:{off:210,cx:55,cy:90,c:'var(--text-mute)',t:'自动驾驶——前额叶低功耗',note:196},mid:{off:125,cx:100,cy:22,c:'var(--lav)',t:'工作记忆在线——多信号协调',note:330},high:{off:40,cx:145,cy:42,c:'var(--glow)',t:'🔥 全力运转——统一调度',note:494}};
+    function setLv(lv){const l=levels[lv];arc.setAttribute('stroke-dashoffset',l.off);arc.setAttribute('stroke',l.c);dot.setAttribute('cx',l.cx);dot.setAttribute('cy',l.cy);dot.setAttribute('fill',l.c);desc.textContent=l.t;desc.classList.toggle('lit',lv!=='low');Audio.ping(l.note,0.4,'triangle',0.06)}
+    document.querySelectorAll('.gz').forEach(g=>g.addEventListener('click',()=>setLv(g.dataset.lv)));
+
+  } else { // explorer
+    lbl.textContent='拨弄 · 信号强度';
+    body.innerHTML=`<div style="display:flex;flex-direction:column;align-items:center">
+      <svg viewBox="0 0 200 140" style="width:100%;max-width:260px;height:auto">
+        <path d="M40,100 Q20,80 25,55 Q30,25 60,15 Q90,5 120,10 Q155,15 170,35 Q185,55 175,80 Q168,100 150,110 Q120,120 100,118 Q70,115 50,108 Z" fill="none" stroke="var(--card-border)" stroke-width="1.5" id="brain-outline"/>
+        <ellipse cx="55" cy="50" rx="25" ry="30" fill="rgba(184,169,232,.05)" id="pfc-area"/>
+        <circle cx="50" cy="40" r="3" fill="rgba(184,169,232,.15)" class="brain-dot"/>
+        <circle cx="60" cy="55" r="2.5" fill="rgba(184,169,232,.1)" class="brain-dot"/>
+        <circle cx="45" cy="60" r="2" fill="rgba(184,169,232,.1)" class="brain-dot"/>
+        <circle cx="55" cy="45" r="3.5" fill="rgba(184,169,232,.1)" class="brain-dot"/>
+        <circle cx="65" cy="48" r="2" fill="rgba(184,169,232,.08)" class="brain-dot"/>
+        <text x="55" y="85" text-anchor="middle" fill="var(--text-mute)" font-size="7" font-family="'Space Mono',monospace">前额叶皮层</text>
+      </svg>
+      <input type="range" class="gw4-slider" id="g1sl" min="0" max="100" value="15" style="margin-top:.4rem;width:100%;max-width:260px">
+    </div>`;
+    desc.textContent='拖动——观察前额叶被点亮';
+    const sl=document.getElementById('g1sl'),pfc=document.getElementById('pfc-area'),dots=document.querySelectorAll('.brain-dot'),outline=document.getElementById('brain-outline');
+    sl.addEventListener('input',()=>{const v=+sl.value,int=v/100;
+      if(pfc){pfc.setAttribute('fill',`rgba(184,169,232,${.05+int*.25})`);pfc.setAttribute('rx',25+int*3);pfc.setAttribute('ry',30+int*3)}
+      dots.forEach((d,i)=>{d.setAttribute('fill',v>70?`rgba(244,213,141,${.1+int*.7})`:`rgba(184,169,232,${.1+int*.7})`);d.setAttribute('r',2+int*3+Math.sin(i)*int)});
+      if(outline)outline.setAttribute('stroke',v>70?'rgba(244,213,141,.25)':`rgba(255,255,255,${.1+int*.15})`);
+      desc.textContent=v<25?'静息状态':v<55?'中等激活':v<80?'高度激活':'🔥 峰值';desc.classList.toggle('lit',v>25);
+      if(v>=78&&!desc.dataset.fired){desc.dataset.fired='1';Audio.firePing()}
+      const now=Date.now();if(now-lastSnd>80){Audio.ping(160+v*4,0.12,'sine',0.04);lastSnd=now}});
+  }
+}
+
+// ========== WIDGET 2: Voices ==========
+function initG2(){
+  const m=S.profile.mode;const body=document.getElementById('g2body');const combo=document.getElementById('g2combo');
+  const lbl=document.getElementById('g2label');
+  const regions=[{key:'emotion',name:'情绪',color:'var(--pink)',desc:'杏仁核 → 情绪染色'},{key:'memory',name:'记忆',color:'var(--aur)',desc:'海马体 → 经验参考'},{key:'logic',name:'逻辑',color:'var(--mint)',desc:'前额叶 → 因果推导'},{key:'reward',name:'奖赏',color:'var(--glow)',desc:'伏隔核 → 多巴胺'},{key:'risk',name:'风险',color:'rgba(255,120,120,.7)',desc:'前扣带 → 损失评估'}];
+
+  if(m==='narrative'){
+    lbl.textContent='翻阅 · 每位乐手的故事';
+    const stories=[{c:'🥁 鼓手·杏仁核',t:'最先发声——0.1秒，比理性快10倍。在你意识到危险之前，鼓点已经响了。',note:196},{c:'🎸 贝斯手·海马体',t:'翻出旧唱片，用低沉的记忆旋律为当下的决策铺底。"上次这样做时……"',note:131},{c:'🎹 键盘手·前额叶',t:'负责编曲——把混乱的即兴演奏整理成有结构的音乐。但25岁才完全就位。',note:262},{c:'🎺 小号手·伏隔核',t:'永远在期待高潮。多巴胺是它的乐谱："如果成功了呢？"',note:392},{c:'🛡️ 定音鼓·前扣带',t:'每个关键乐句前敲响警钟。"小心，上次这个音走偏了。"',note:165}];
+    let cur=0;
+    body.innerHTML='<div class="story-step" id="ss"></div><div class="story-nav"><div class="story-arrow" id="sa1">‹</div><div id="sdots" style="display:flex;gap:6px"></div><div class="story-arrow" id="sa2">›</div></div>';
+    const dots=[];stories.forEach((_,i)=>{const d=document.createElement('div');d.className='story-dot'+(i===0?' active':'');d.onclick=()=>go(i);document.getElementById('sdots').appendChild(d);dots.push(d)});
+    function go(i){cur=Math.max(0,Math.min(4,i));document.getElementById('ss').innerHTML=`<div class="step-char">${stories[cur].c}</div><div class="step-text">${stories[cur].t}</div>`;dots.forEach((d,j)=>d.classList.toggle('active',j===cur));combo.textContent=regions[cur].desc;combo.style.color='var(--text-dim)';Audio.ping(stories[cur].note,0.4,'triangle',0.06)}
+    document.getElementById('sa1').onclick=()=>go(cur-1);document.getElementById('sa2').onclick=()=>go(cur+1);go(0);
+
+  } else if(m==='analytical'){
+    lbl.textContent='调参 · 各脑区权重分配';
+    body.innerHTML='<div class="weight-grid" id="wg"></div><div class="weight-formula" id="wf"></div>';
+    const cls=['s-emo','s-mem','s-log','s-rew','s-rsk'],vals=[60,50,70,40,30],notes=[262,294,330,370,415];
+    regions.forEach((r,i)=>{const row=document.createElement('div');row.className='weight-row';row.innerHTML=`<span class="weight-name">${r.name}</span>`;
+      const sl=document.createElement('input');sl.type='range';sl.className='weight-slider '+cls[i];sl.min=0;sl.max=100;sl.value=vals[i];
+      const vs=document.createElement('span');vs.className='weight-val';vs.textContent=vals[i]+'%';
+      row.appendChild(sl);row.appendChild(vs);document.getElementById('wg').appendChild(row);
+      sl.addEventListener('input',()=>{vals[i]=+sl.value;vs.textContent=vals[i]+'%';upd();Audio.ping(notes[i],0.12,'sine',0.04)})});
+    function upd(){const t=vals.reduce((a,b)=>a+b,0),d=regions[vals.indexOf(Math.max(...vals))].name;
+      document.getElementById('wf').textContent=`Σ=${t} · 主导: ${d}`;combo.textContent=`${d}主导 · ${t>300?'高认知负荷':t<150?'低唤醒状态':'标准工作态'}`;combo.style.color='var(--text-dim)'}upd();
+
+  } else if(m==='intuitive'){
+    lbl.textContent='切换 · 脑区配置';
+    const cx=100,cy=80,R=55;const angles=[-90,-18,54,126,198].map(a=>a*Math.PI/180);
+    const rNames=['情绪','记忆','逻辑','奖赏','风险'];
+    function pts(vals){return vals.map((v,i)=>{const r=R*(v/100);return(cx+r*Math.cos(angles[i]))+','+(cy+r*Math.sin(angles[i]))}).join(' ')}
+    const outer=pts([100,100,100,100,100]),mid=pts([65,65,65,65,65]);
+    body.innerHTML=`<div style="display:flex;flex-direction:column;align-items:center">
+      <svg viewBox="0 0 200 175" width="210" class="radar-svg">
+        <polygon points="${outer}" fill="none" stroke="var(--card-border)" stroke-width=".5"/>
+        <polygon points="${mid}" fill="none" stroke="var(--card-border)" stroke-width=".3" opacity=".5"/>
+        ${angles.map((a,i)=>`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(a)}" y2="${cy+R*Math.sin(a)}" stroke="var(--card-border)" stroke-width=".3"/>`).join('')}
+        <polygon id="radar-shape" class="radar-shape" points="${pts([95,40,20,5,90])}" fill="rgba(219,39,119,.1)" stroke="var(--pink)" stroke-width="1.5"/>
+        ${angles.map((a,i)=>`<text x="${cx+(R+12)*Math.cos(a)}" y="${cy+(R+12)*Math.sin(a)+3}" text-anchor="middle" font-size="7.5" fill="var(--text-mute)" font-family="'Noto Serif SC',serif">${rNames[i]}</text>`).join('')}
+      </svg>
+      <div style="display:flex;gap:.4rem;margin-top:.2rem">
+        <div class="preset-card active" data-r="fight" style="flex:0;padding:.3rem .65rem"><div class="preset-emoji" style="font-size:1rem">🔥</div><div class="preset-name" style="font-size:.58rem">战斗</div></div>
+        <div class="preset-card" data-r="think" style="flex:0;padding:.3rem .65rem"><div class="preset-emoji" style="font-size:1rem">📐</div><div class="preset-name" style="font-size:.58rem">分析</div></div>
+        <div class="preset-card" data-r="spark" style="flex:0;padding:.3rem .65rem"><div class="preset-emoji" style="font-size:1rem">✨</div><div class="preset-name" style="font-size:.58rem">灵感</div></div>
+      </div>
+    </div>`;
+    const shape=document.getElementById('radar-shape');
+    const configs={fight:{vals:[95,40,20,5,90],color:'var(--pink)',fill:'rgba(219,39,119,.1)',t:'杏仁核劫持——情绪+风险主导，逻辑被跳过',chord:[196,247,330]},think:{vals:[25,80,90,60,35],color:'var(--mint)',fill:'rgba(16,185,129,.1)',t:'前额叶全力——逻辑+记忆主导，情绪被抑制',chord:[262,330,392]},spark:{vals:[70,60,35,80,10],color:'var(--glow)',fill:'rgba(217,119,6,.1)',t:'多巴胺驱动——奖赏+情绪主导，风险被忽略',chord:[220,277,370]}};
+    function setR(key){const c=configs[key];shape.setAttribute('points',pts(c.vals));shape.setAttribute('stroke',c.color);shape.setAttribute('fill',c.fill);
+      combo.textContent=c.t;combo.style.color='var(--text-dim)';c.chord.forEach((f,i)=>setTimeout(()=>Audio.ping(f,0.4,'sine',0.06),i*100))}
+    document.querySelectorAll('[data-r]').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('[data-r]').forEach(x=>x.classList.remove('active'));c.classList.add('active');setR(c.dataset.r)}));
+    combo.textContent='杏仁核劫持——情绪+风险主导';combo.style.color='var(--text-dim)';
+
+  } else { // explorer
+    lbl.textContent='组合 · 自由点亮声部';
+    body.innerHTML='<div class="sense-icons"></div>';const wrap=body.querySelector('.sense-icons'),active=new Set();
+    const svgs={emotion:'<circle cx="16" cy="16" r="14" fill="none" stroke="rgba(232,169,200,.3)" stroke-width="1.5"/><path d="M10,20 Q16,25 22,20" fill="none" stroke="rgba(232,169,200,.4)" stroke-width="1.5" stroke-linecap="round" class="ico-inner"/>',memory:'<circle cx="16" cy="16" r="14" fill="none" stroke="rgba(110,198,230,.3)" stroke-width="1.5"/><circle cx="16" cy="14" r="5" fill="none" stroke="rgba(110,198,230,.4)" stroke-width="1.5" class="ico-inner"/>',logic:'<circle cx="16" cy="16" r="14" fill="none" stroke="rgba(126,220,180,.3)" stroke-width="1.5"/><path d="M10,22 L16,10 L22,22" fill="none" stroke="rgba(126,220,180,.4)" stroke-width="1.5" stroke-linecap="round" class="ico-inner"/>',reward:'<circle cx="16" cy="16" r="14" fill="none" stroke="rgba(244,213,141,.3)" stroke-width="1.5"/><circle cx="16" cy="16" r="4" fill="rgba(244,213,141,.15)" stroke="rgba(244,213,141,.4)" stroke-width="1.5" class="ico-inner"/>',risk:'<circle cx="16" cy="16" r="14" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><path d="M16,10 L16,19 M16,23 L16,24" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-linecap="round" class="ico-inner"/>'};
+    const combos={'emotion,logic':'💡 感性+理性——最稳健','emotion,reward':'⚡ 情绪+奖赏——小心冲动','logic,risk':'🛡️ 理性+风险——安全网','emotion,memory':'🌊 直觉的本质','emotion,logic,memory,reward,risk':'✨ 全声部合奏'};
+    const pings={emotion:262,memory:294,logic:330,reward:392,risk:220};
+    regions.forEach(r=>{const ico=document.createElement('div');ico.className='sense-ico';ico.dataset.g=r.key;
+      ico.innerHTML=`<svg viewBox="0 0 32 32" width="40" height="40">${svgs[r.key]}</svg><span>${r.name}</span>`;wrap.appendChild(ico);
+      ico.addEventListener('click',()=>{ico.classList.toggle('on');const on=ico.classList.contains('on');Audio.ping(pings[r.key],0.3,on?'triangle':'sine',0.05);
+        if(active.has(r.key))active.delete(r.key);else active.add(r.key);const s=[...active].sort().join(',');
+        if(combos[s]){combo.textContent=combos[s];combo.style.color='var(--mint)'}else if(active.size>0){combo.textContent=[...active].map(k=>regions.find(x=>x.key===k).desc).join(' · ');combo.style.color='var(--text-dim)'}else{combo.textContent='自由组合';combo.style.color='var(--text-mute)'}})});
+    combo.textContent='点亮任意组合';combo.style.color='var(--text-mute)';
+  }
+}
+
+// ========== WIDGET 3: Scenarios ==========
+function initG3(){
+  const m=S.profile.mode;const body=document.getElementById('g3body');const desc=document.getElementById('g3desc');
+  const lbl=document.getElementById('g3label');const title=document.getElementById('g3title');
+  const regions=['情绪','记忆','逻辑','奖赏','风险'];
+  const colors=['var(--pink)','var(--aur)','var(--mint)','var(--glow)','rgba(255,150,150,.5)'];
+  const scenarios={danger:{vals:[95,40,20,5,90],desc:'杏仁核劫持——0.1秒接管。',chord:[196,247,330]},exam:{vals:[25,80,90,60,35],desc:'逻辑和记忆全速运转。',chord:[262,330,392]},love:{vals:[90,70,15,85,50],desc:'多巴胺让对方完美。',chord:[262,311,392]},learn:{vals:[30,90,75,45,15],desc:'海马体活跃，新旧知识连接。',chord:[294,370,440]},create:{vals:[70,60,35,80,10],desc:'逻辑松缰，记忆自由重组。',chord:[220,277,370]},sport:{vals:[60,50,10,70,80],desc:'身体记忆接管，逻辑旁路。',chord:[330,415,494]},dream:{vals:[50,75,5,20,8],desc:'记忆重织，逻辑关闭。',chord:[196,262,370]},argue:{vals:[85,65,80,30,60],desc:'前额叶+杏仁核同时满载。',chord:[247,311,415]}};
+
+  function buildBars(containerId){
+    const el=document.getElementById(containerId);
+    regions.forEach((r,i)=>{const row=document.createElement('div');row.className='gw4-bar-row';row.innerHTML=`<span class="gw4-bar-label">${r}</span><div class="gw4-bar-track"><div class="gw4-bar-fill" id="bf${containerId}${i}" style="background:${colors[i]};width:0%"></div></div>`;el.appendChild(row)});
+    return (key)=>{const s=scenarios[key];s.vals.forEach((v,i)=>setTimeout(()=>document.getElementById('bf'+containerId+i).style.width=v+'%',i*60));s.chord.forEach((f,i)=>setTimeout(()=>Audio.ping(f,0.5,'sine',0.07),i*120));desc.textContent=s.desc;desc.classList.add('lit')};
+  }
+
+  if(m==='narrative'){
+    lbl.textContent='观看 · 大脑的不同乐章';title.textContent='自动轮播——感受每个场景的氛围';
+    const keys=Object.keys(scenarios);const emojis=['🔥','📝','💌','📖','🎨','⚡','🌙','💬'];const names=['遇到危险','考试答题','表白时刻','深度学习','创作灵感','竞技运动','入睡前','激烈争论'];
+    let cur=0;body.innerHTML=`<div class="nar-scene"><div class="nar-emoji" id="s3e">🔥</div><div style="font-size:.72rem;color:var(--text-mute)" id="s3n">遇到危险</div></div><div id="s3bars" style="margin-top:.5rem"></div>`;
+    const set=buildBars('s3bars');
+    function show(){const k=keys[cur];set(k);document.getElementById('s3e').textContent=emojis[cur];document.getElementById('s3n').textContent=names[cur]}
+    setTimeout(()=>show(),300);setInterval(()=>{cur=(cur+1)%keys.length;show()},3500);
+
+  } else if(m==='analytical'){
+    lbl.textContent='数据 · 全场景权重矩阵';title.textContent='所有场景一览——横向对比';
+    const skeys=['danger','exam','love','learn','create','sport'];const snames=['危险','考试','表白','学习','创作','运动'];
+    body.innerHTML='<table class="data-table" id="s3t"></table>';
+    const t=document.getElementById('s3t');
+    t.innerHTML='<tr><th></th>'+snames.map(n=>`<th>${n}</th>`).join('')+'</tr>';
+    regions.forEach((r,ri)=>{const tr=document.createElement('tr');
+      tr.innerHTML=`<td style="text-align:right;color:var(--text-dim)">${r}</td>`+skeys.map(k=>`<td style="cursor:pointer" data-sk="${k}">${scenarios[k].vals[ri]}%</td>`).join('');t.appendChild(tr)});
+    desc.textContent='点击任意数字听该场景的和弦';desc.classList.add('lit');
+    t.addEventListener('click',e=>{const sk=e.target.dataset.sk;if(sk){const s=scenarios[sk];s.chord.forEach((f,i)=>setTimeout(()=>Audio.ping(f,0.5,'sine',0.07),i*120));desc.textContent=s.desc}});
+
+  } else if(m==='intuitive'){
+    lbl.textContent='对比 · 三种极端';title.textContent='';
+    body.innerHTML='<div class="ring-row" id="s3rings"></div>';
+    const picks=[{key:'danger',emoji:'🔥',name:'战斗'},{key:'exam',emoji:'📐',name:'考试'},{key:'create',emoji:'✨',name:'创作'}];
+    const ringColors=['var(--pink)','var(--aur)','var(--mint)','var(--glow)','rgba(239,68,68,.6)'];
+    picks.forEach(p=>{
+      const s=scenarios[p.key],total=s.vals.reduce((a,b)=>a+b,0);
+      const wrap=document.createElement('div');wrap.className='ring-item';
+      const r=28,circ=2*Math.PI*r;let offset=0;
+      let svg=`<svg viewBox="0 0 80 80" width="68" height="68">`;
+      s.vals.forEach((v,i)=>{const pct=v/total,dash=pct*circ;
+        svg+=`<circle cx="40" cy="40" r="${r}" fill="none" stroke="${ringColors[i]}" stroke-width="7" stroke-dasharray="${dash} ${circ-dash}" stroke-dashoffset="${-offset}" opacity=".75" transform="rotate(-90 40 40)" style="transition:all .5s"/>`;offset+=dash});
+      svg+=`<text x="40" y="44" text-anchor="middle" font-size="20">${p.emoji}</text></svg>`;
+      wrap.innerHTML=svg+`<div class="ring-label">${p.name}</div>`;
+      document.getElementById('s3rings').appendChild(wrap);
+      wrap.addEventListener('click',()=>{desc.textContent=s.desc;desc.classList.add('lit');
+        s.chord.forEach((f,i)=>setTimeout(()=>Audio.ping(f,0.5,'sine',0.07),i*120));
+        wrap.style.transform='scale(1.12)';setTimeout(()=>wrap.style.transform='',300)});
+    });
+    desc.textContent='点击环形图对比';desc.style.color='var(--text-mute)';
+
+  } else { // explorer: full buttons + bars
+    lbl.textContent='切换 · 不同情境的大脑配置';title.textContent='同一个大脑，不同的"乐队编制"';
+    const allKeys=Object.keys(scenarios);const allNames=['🔥 危险','📝 考试','💌 表白','📖 学习','🎨 创作','⚡ 运动','🌙 入睡','💬 争论'];
+    body.innerHTML=`<div class="scenario-btns" id="scene-btns">${allKeys.map((k,i)=>`<div class="scene-btn${i===0?' on':''}" data-s="${k}">${allNames[i]}</div>`).join('')}</div><div id="s3bars2" style="margin-top:.4rem"></div>`;
+    const set=buildBars('s3bars2');
+    setTimeout(()=>set('danger'),300);
+    document.querySelectorAll('.scene-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.scene-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');set(b.dataset.s)}));
+  }
+}
+
+// ========== AWAKEN SEQUENCE ==========
+function runAwaken(){
+  const st=document.getElementById('awst'),sa=document.getElementById('sa'),
+    dls=sa.querySelectorAll('.dl'),ac=document.getElementById('art-content');
+  const m=S.profile.mode;
+  const jl={narrative:{drop:'让我看看……你喜欢故事。',struct:'我用一个隐喻重新讲这篇文章给你听。',grow:'你的版本会先给你画面，再给你逻辑。',done:'这是你的版本。换个人来，同一篇文章会完全不同。'},analytical:{drop:'让我看看……你需要精确的结构。',struct:'我把模糊的描述替换成了数据和框架。',grow:'你的版本会先给你地图，再让你深入。',done:'这是你的版本。叙事型的人看到的是一个完全不同的故事。'},explorer:{drop:'让我看看……你喜欢自己找答案。',struct:'我把文章变成了一系列问题，答案藏在控件里。',grow:'你的版本有最多的可拨弄部件。',done:'这是你的版本。分析型的人看到的是数据仪表盘。'},intuitive:{drop:'让我看看……你只需要核心洞察。',struct:'我把整篇文章压缩成了三个顿悟。',grow:'你的版本最短——因为你能自己把点连成线。',done:'这是你的版本。叙事型的人需要完整故事才能理解同一件事。'}}[m];
+  const shimScale=[196,220,247,262,294,330,349,392,440,494];
+  const formScale=[262,294,330,392,440,524,588,660,784,880];
+  const fast=m==='intuitive'?0.65:1;const t=ms=>ms*fast;
+
+  setTimeout(()=>{st.innerHTML='<p class="hi">落入中……</p>';sa.classList.add('in');Audio.ping(131,0.6,'sine',0.06)},t(600));
+  setTimeout(()=>Jerry.say('p4-drop',jl.drop,6000),t(800));
+  setTimeout(()=>{st.innerHTML='<p class="hi">提取骨架……</p>';dls.forEach((d,i)=>setTimeout(()=>{d.classList.add('shim');Audio.ping(shimScale[i],0.25,'sine',0.04)},i*(fast<1?50:80)))},t(1800));
+  setTimeout(()=>{st.innerHTML='<p class="hi">重组结构……</p>';Jerry.say('p4-struct',jl.struct,6000);[0,1,2,3,4,5,6,7,8,9].forEach((i,idx)=>{setTimeout(()=>{dls[i].classList.remove('shim');const h=[0,4,7].includes(i);dls[i].classList.add(h?'head':'txt');if(i===4)dls[i].style.width='42%';if(i===7)dls[i].style.width='38%';Audio.ping(formScale[i],h?.4:.2,h?'triangle':'sine',h?.07:.035)},idx*(fast<1?70:120))})},t(3200));
+  setTimeout(()=>{st.innerHTML='<p class="hi">赋予呼吸……</p>';dls.forEach((d,i)=>setTimeout(()=>{d.classList.add('shrink');Audio.ping(880-i*60,0.15,'sine',0.02)},i*40));
+    setTimeout(()=>{ac.classList.add('on');document.getElementById('ah1').classList.add('on');Audio.ping(524,0.5,'triangle',0.06)},350);
+    setTimeout(()=>{document.getElementById('ap1').classList.add('on');Audio.ping(588,0.3,'sine',0.04)},550);
+  },t(4800));
+  setTimeout(()=>{st.innerHTML='<p class="hi">概念长出交互……</p>';Jerry.say('p4-grow',jl.grow,6000);Audio.growPing();document.getElementById('g1').classList.add('on');initG1()},t(6200));
+  setTimeout(()=>{document.getElementById('ap2').classList.add('on');Audio.ping(440,0.3,'sine',0.04)},t(7200));
+  setTimeout(()=>{Audio.growPing();document.getElementById('g2').classList.add('on');initG2()},t(7700));
+  setTimeout(()=>{document.getElementById('ap3').classList.add('on');Audio.ping(494,0.3,'sine',0.04)},t(8600));
+  setTimeout(()=>{Audio.growPing();document.getElementById('g3').classList.add('on');initG3()},t(9100));
+  setTimeout(()=>{Audio.chime();Jerry.say('p4-done',jl.done,8000);st.innerHTML='<p style="color:var(--mint)">唤醒完成。</p>';
+    setTimeout(()=>{document.getElementById('fc').classList.add('on');document.getElementById('dropz').style.opacity='0'},400);
+    setTimeout(()=>document.getElementById('mode-compare').classList.add('on'),800);
+  },t(10500));
+}
+
+</script>
+</body>
+</html>

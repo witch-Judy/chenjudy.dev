@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>棉花糖与股市 · 前额叶探索之旅 第三期</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f6f1;--paper:#fff;--ink:#1a1a1a;--mid:#555;--dim:#999;--faint:#ccc;--rule:#e4e0d8;--old:#b84c4c;--new:#4a8f5c;--mono:'Menlo','Consolas',monospace;--hot:#d4550f;--cool:#4a7fb5;--vmpfc:#c06040}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:18px/1.8 'Noto Serif SC',Georgia,serif;-webkit-font-smoothing:antialiased}.page{max-width:720px;margin:0 auto;padding:60px 24px 120px}h1{font-size:32px;line-height:1.3;font-weight:700;margin-bottom:6px;letter-spacing:-.5px}h2{font-size:22px;font-weight:600;margin:48px 0 12px;line-height:1.4}.byline{font-size:13px;color:var(--dim);margin-bottom:32px;font-family:var(--mono)}.lead{font-size:19px;line-height:1.9;color:var(--mid);margin-bottom:36px;border-left:3px solid var(--rule);padding-left:16px}p{margin-bottom:18px}strong{font-weight:600}.section-num{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:4px;margin-top:56px;letter-spacing:1px}.fig{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 16px 12px;margin:24px 0}.fig-body{position:relative}.fig-cap{font-size:13px;color:var(--mid);margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);line-height:1.6}.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}.tab{background:none;border:1.5px solid var(--faint);border-radius:20px;padding:5px 14px;font-size:12px;font-family:var(--mono);cursor:pointer;transition:all .2s;color:var(--dim)}.tab.active{border-color:currentColor;font-weight:600}.tab:hover:not(.active){border-color:var(--dim)}.btn{background:none;border:1.5px solid var(--faint);border-radius:6px;padding:4px 12px;font-size:12px;font-family:var(--mono);cursor:pointer;color:var(--ink);transition:all .15s}.btn:hover{border-color:var(--ink)}.btn.dim{opacity:.3;pointer-events:none}.ctrl{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px}input[type=range]{width:100%;accent-color:var(--ink);margin:8px 0}.fn{font-size:12px;color:var(--dim);margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);line-height:1.7}svg{display:block;width:100%;height:auto}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>棉花糖与股市</h1>
+<p class="byline">前额叶探索之旅 · 第三期 · 自控力的神经经济学 · 2025</p>
+<p class="lead">一个四岁小孩坐在桌前，面前放着一颗棉花糖。实验员说："我出去一下，如果我回来的时候棉花糖还在，你就能得到两颗。"门关上了。摄像头记录下了人类意志力最纯粹的战场：一个孩子和一颗糖之间的战争。四十年后，科学家找到了这些孩子——现在已经是中年人——扫描了他们的大脑。结果令人震惊。</p>
+
+<p class="section-num">第一部分</p>
+<h2>一颗糖的四十年</h2>
+<p>1972 年，斯坦福大学的 Walter Mischel 设计了"棉花糖实验"。他观察了 600 多名 4-6 岁的儿童，记录每个孩子等待的时间。2011 年，B.J. Casey 团队找到了 59 名当年的被试，此时他们已经 40 多岁了。</p>
+<p><strong>点击"下一步"按钮</strong>，走过这个实验从 1972 到 2011 的时间线。注意最后一步的脑扫描结果：</p>
+<div class="fig"><div class="fig-body"><svg id="marshSvg" viewBox="0 0 680 360"></svg><div class="ctrl"><button class="btn" id="marshPrev" onclick="marshNav(-1)">←</button><span id="marshStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);">1/4</span><button class="btn" id="marshNext" onclick="marshNav(1)">下一步 →</button></div></div><div class="fig-cap" id="marshCap"></div></div>
+<p>当年能等住的孩子，40 年后面对诱惑时前额叶激活更强；没等住的孩子，纹状体反应更强烈。<strong>四岁时棉花糖前的行为，在某种程度上预测了四十年后的大脑激活模式。</strong>但这不是宿命论——它告诉我们自控力有非常真实的神经基础。</p>
+
+<p class="section-num">第二部分</p>
+<h2>你大脑里的两个声音</h2>
+<p>每次面对诱惑，大脑里都在上演同一场戏："要！现在就要！" vs "等等，想想后果"。Metcalfe 和 Mischel（1999）把它们叫做"热系统"和"冷系统"。</p>
+<p><strong>点击下面三个标签</strong>，看看面对同一块蛋糕时，热系统、冷系统和它们竞争时的大脑：</p>
+<div class="fig"><div class="fig-body"><div class="tabs" id="sysTabs"></div><svg id="sysSvg" viewBox="0 0 680 380"></svg></div><div class="fig-cap" id="sysCap"></div></div>
+<p>还记得第一期的"偏置信号"吗？冷系统（dlPFC）发出的 Beta 波偏置信号，就是在压制热系统的 Gamma 爆发。<strong>自控力不是"忍住不动"，而是冷系统赢了这一轮信号竞争。</strong></p>
+
+<p class="section-num">第三部分</p>
+<h2>未来的你，是个陌生人</h2>
+<p>今天拿 100 元，还是一年后拿 150 元？研究显示一年后的 150 元在心理上只值今天的 70-80 元。更令人吃惊的是：当人们想象"未来的自己"时，vmPFC 的激活模式竟然更像在想"一个陌生人"。</p>
+<p><strong>拖动下面的滑块</strong>，把奖赏从"现在"推迟到"5 年后"，看看大脑对同样 1000 元的主观价值如何崩塌：</p>
+<div class="fig"><div class="fig-body"><svg id="discSvg" viewBox="0 0 680 400"></svg><input type="range" id="discSlider" min="0" max="10" step="1" value="0" oninput="renderDisc()"></div><div class="fig-cap" id="discCap"></div></div>
+<p>当你把滑块拉到最右边，1000 元的心理价值缩水到了不到 300 元。<strong>这就是为什么存退休金这么难——你的大脑觉得在为一个陌生人攒钱。</strong></p>
+
+<p class="section-num">第四部分</p>
+<h2>意志力会用完吗？</h2>
+<p>这是过去二十年自控力研究中最大的争议。一个看似坚实的理论，在一夜之间被颠覆。这个故事本身就是一堂关于"科学如何自我修正"的课。</p>
+<p><strong>点击"下一步"按钮</strong>，走过从 1998 年到 2016 年这场关于意志力的科学革命——注意第三步的反转：</p>
+<div class="fig"><div class="fig-body"><svg id="depSvg" viewBox="0 0 680 380"></svg><div class="ctrl"><button class="btn" id="depPrev" onclick="depNav(-1)">←</button><span id="depStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);">1/5</span><button class="btn" id="depNext" onclick="depNav(1)">下一步 →</button></div></div><div class="fig-cap" id="depCap"></div></div>
+<p>走完五步你会发现：意志力"用完"的感觉是真实的，但原因不是"燃料耗尽"，而是<strong>你的大脑在做一个经济学决策——"继续坚持的收益还值不值这个代价？"</strong>这跟第三部分的时间折扣是同一个逻辑：大脑永远在做成本-收益分析。</p>
+
+<p class="section-num">第五部分</p>
+<h2>不靠"忍"的自控策略</h2>
+<p>认知科学已经找到了几种绕过"意志力拉锯战"的策略——共同点是：<strong>改变战场，而不是在原地苦战。</strong></p>
+<p><strong>点击下面四张卡片</strong>，查看每种策略的原理和具体做法：</p>
+<div class="fig"><div class="fig-body"><svg id="stratSvg" viewBox="0 0 680 420"></svg></div><div class="fig-cap" id="stratCap"></div></div>
+<p>这四种策略都不是在增强冷系统的力量，而是<strong>减少冷系统需要做的工作</strong>。还记得第二期的组块策略吗？组块是用长期记忆帮工作记忆减负，这里也一样——用环境和认知框架帮前额叶减负。</p>
+
+<h2 style="margin-top:56px;">下一站</h2>
+<p>现在你知道了自控力的神经经济学。但自控只是前额叶调节能力的一面。当你面对恐惧、愤怒或悲伤时，前额叶是怎么驯服这些情绪的？</p>
+<p><strong>下一期：「情绪不是敌人 —— PFC 如何驯服杏仁核」。</strong></p>
+<p class="fn">参考文献：Mischel, W. et al. (1989). Delay of gratification in children. <em>Science</em>, 244, 933–938 · Casey, B.J. et al. (2011). PNAS, 108(36), 14998–15003 · Metcalfe & Mischel (1999). Psychological Review, 106(1), 3–19 · Hagger et al. (2016). Perspectives on Psychological Science, 11(4), 546–573 · Job et al. (2010). Psychological Science, 21(11), 1686–1693 · Kable & Glimcher (2007). Nature Neuroscience, 10, 1625–1633</p>
+</div>
+
+<script>
+const INK='#1a1a1a',DIM='#999',FAINT='#ccc',OLD='#b84c4c',NEW='#4a8f5c',HOT='#d4550f',COOL='#4a7fb5',VMPFC='#c06040';
+function P(x,y,a,c=INK,op=1,sc=1){let g=`<g transform="translate(${x},${y}) rotate(${a-90})" opacity="${op}">`;g+=`<line x1="0" y1="0" x2="${14*sc}" y2="0" stroke="${c}" stroke-width="${2.5*sc}" stroke-linecap="round"/>`;g+=`<circle cx="${16*sc}" cy="0" r="${5.5*sc}" fill="${c}"/>`;g+=`<line x1="${4*sc}" y1="${-7*sc}" x2="${4*sc}" y2="${7*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${-6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;return g+`</g>`;}
+
+// ── SECTION 1: Marshmallow Timeline ──
+const MS=[
+{t:'1972 · 实验',cap:'Walter Mischel 让 600 多名 4-6 岁儿童面对一颗棉花糖。等 15 分钟可以得到两颗。',draw(o){o+=`<rect x="30" y="55" width="300" height="250" rx="6" fill="#fdf8f4" stroke="${FAINT}"/>`;o+=`<text x="180" y="75" text-anchor="middle" font-size="10" fill="${DIM}" font-family="var(--mono)">斯坦福实验室 · 1972</text>`;o+=`<rect x="100" y="170" width="130" height="8" rx="2" fill="#d4c8b8"/>`;o+=`<circle cx="165" cy="162" r="14" fill="#f5e8d8" stroke="#e0c8a8" stroke-width="1.5"/>`;o+=`<text x="165" y="166" text-anchor="middle" font-size="10">🍡</text>`;o+=`<text x="165" y="148" text-anchor="middle" font-size="7" fill="${HOT}" font-family="var(--mono)">1 颗棉花糖</text>`;o+=P(165,220,90,INK,.8,.9);o+=`<text x="165" y="248" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">4 岁儿童 · 独自等待</text>`;o+=`<text x="240" y="130" font-size="9" fill="${DIM}" font-family="var(--mono)">⏱ 15 分钟</text>`;o+=`<text x="240" y="148" font-size="8" fill="${NEW}" font-family="var(--mono)">等住 → 2 颗</text>`;o+=`<text x="240" y="163" font-size="8" fill="${HOT}" font-family="var(--mono)">没等住 → 1 颗</text>`;o+=`<rect x="360" y="55" width="290" height="250" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="505" y="75" text-anchor="middle" font-size="10" fill="${DIM}" font-family="var(--mono)">观察到的策略</text>`;['捂住眼睛不看','唱歌分散注意力','把椅子转过去','舔一下又放回去','直接吃掉 (< 3 分钟)'].forEach((s,i)=>{o+=`<text x="380" y="${105+i*35}" font-size="10" fill="${i<3?NEW:HOT}" font-family="var(--mono)">• ${s}</text>`;});o+=`<text x="505" y="295" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">约 1/3 成功等到了第二颗</text>`;return o;}},
+{t:'追踪 · 青少年',cap:'当年等得更久的孩子，SAT 平均高 210 分，社交能力和抗压能力更强。',draw(o){o+=`<rect x="30" y="55" width="620" height="250" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${INK}" font-weight="600">第一次追踪 · 青少年时期</text>`;o+=`<rect x="80" y="100" width="240" height="180" rx="6" fill="${NEW}08" stroke="${NEW}40"/>`;o+=`<text x="200" y="122" text-anchor="middle" font-size="10" fill="${NEW}" font-weight="600">高延迟组（等住了）</text>`;['SAT +210 分','更高的社交能力','更强的抗压能力','BMI 更低 · 收入更高'].forEach((s,i)=>{o+=`<text x="100" y="${150+i*32}" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ ${s}</text>`;});o+=`<rect x="380" y="100" width="240" height="180" rx="6" fill="${HOT}08" stroke="${HOT}40"/>`;o+=`<text x="500" y="122" text-anchor="middle" font-size="10" fill="${HOT}" font-weight="600">低延迟组（没等住）</text>`;['SAT 分数相对较低','更多注意力问题','更难维持友谊','更易冲动决策'].forEach((s,i)=>{o+=`<text x="400" y="${150+i*32}" font-size="10" fill="${HOT}" font-family="var(--mono)">✕ ${s}</text>`;});o+=`<text x="340" y="300" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">注意：这是相关性，不是因果关系</text>`;return o;}},
+{t:'2011 · 脑扫描',cap:'Casey 团队用 fMRI（脑扫描技术，能看到大脑哪些区域在活动）扫描 59 名当年被试（现 40+ 岁）面对诱惑时的大脑。',draw(o){o+=`<rect x="30" y="55" width="620" height="250" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${INK}" font-weight="600">2011 · Casey 团队脑扫描 · 被试 40+ 岁</text>`;const bx1=80,bx2=400,by=120;o+=`<text x="${bx1+80}" y="${by-10}" text-anchor="middle" font-size="10" fill="${NEW}" font-weight="600">高延迟者的大脑</text>`;o+=`<ellipse cx="${bx1+80}" cy="${by+60}" rx="80" ry="55" fill="#ece8e0" stroke="#ddd" opacity=".4"/>`;o+=`<rect x="${bx1+10}" y="${by+25}" width="55" height="50" rx="10" fill="${COOL}35" stroke="${COOL}" stroke-width="2.5"/>`;o+=`<text x="${bx1+37}" y="${by+48}" text-anchor="middle" font-size="7" fill="${COOL}" font-weight="600" font-family="var(--mono)">dlPFC</text>`;o+=`<text x="${bx1+37}" y="${by+62}" text-anchor="middle" font-size="7" fill="${COOL}" font-family="var(--mono)">⚡ 强激活</text>`;o+=`<circle cx="${bx1+120}" cy="${by+70}" r="18" fill="${HOT}08" stroke="${HOT}30" stroke-dasharray="3 2"/>`;o+=`<text x="${bx1+120}" y="${by+72}" text-anchor="middle" font-size="6" fill="${HOT}60" font-family="var(--mono)">纹状体 · 低</text>`;o+=`<text x="${bx1+80}" y="${by+130}" text-anchor="middle" font-size="8" fill="${NEW}" font-family="var(--mono)">冷系统主导 ✓</text>`;o+=`<text x="${bx2+80}" y="${by-10}" text-anchor="middle" font-size="10" fill="${HOT}" font-weight="600">低延迟者的大脑</text>`;o+=`<ellipse cx="${bx2+80}" cy="${by+60}" rx="80" ry="55" fill="#ece8e0" stroke="#ddd" opacity=".4"/>`;o+=`<rect x="${bx2+10}" y="${by+25}" width="55" height="50" rx="10" fill="${COOL}08" stroke="${COOL}30" stroke-dasharray="3 2"/>`;o+=`<text x="${bx2+37}" y="${by+48}" text-anchor="middle" font-size="7" fill="${COOL}60" font-family="var(--mono)">dlPFC</text>`;o+=`<text x="${bx2+37}" y="${by+62}" text-anchor="middle" font-size="7" fill="${COOL}50" font-family="var(--mono)">○ 弱激活</text>`;o+=`<circle cx="${bx2+120}" cy="${by+70}" r="22" fill="${HOT}30" stroke="${HOT}" stroke-width="2.5"/>`;o+=`<text x="${bx2+120}" y="${by+68}" text-anchor="middle" font-size="7" fill="${HOT}" font-weight="600" font-family="var(--mono)">纹状体</text>`;o+=`<text x="${bx2+120}" y="${by+80}" text-anchor="middle" font-size="6" fill="${HOT}" font-family="var(--mono)">⚡ 强激活</text>`;o+=`<text x="${bx2+80}" y="${by+130}" text-anchor="middle" font-size="8" fill="${HOT}" font-family="var(--mono)">热系统主导 ✕</text>`;o+=`<text x="340" y="295" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">Casey et al. (2011) · 4 岁行为 → 40 岁大脑激活模式</text>`;return o;}},
+{t:'启示',cap:'自控力有真实的神经基础，但不是固定属性——是两个系统的动态竞争，天平可以被改变。',draw(o){o+=`<rect x="30" y="55" width="620" height="250" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="85" text-anchor="middle" font-size="12" fill="${INK}" font-weight="700">核心发现</text>`;[{i:'🧠',t:'自控力有真实的神经基础（dlPFC vs 纹状体）',c:COOL},{i:'📊',t:'童年行为模式与成年大脑激活存在相关性',c:DIM},{i:'⚖️',t:'但这是两个系统的动态竞争，不是固定属性',c:NEW},{i:'🔧',t:'竞争的天平可以被策略和环境改变',c:NEW}].forEach((f,i)=>{o+=`<text x="100" y="${120+i*45}" font-size="18">${f.i}</text>`;o+=`<text x="130" y="${120+i*45}" font-size="12" fill="${f.c}">${f.t}</text>`;});o+=`<rect x="80" y="265" width="480" height="30" rx="6" fill="${NEW}10" stroke="${NEW}30"/>`;o+=`<text x="320" y="285" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="600">不是"你有没有意志力"，而是"哪个系统此刻更强"</text>`;return o;}}
+];
+let curM=0;
+function renderMarsh(){const s=MS[curM];let o='';MS.forEach((_,i)=>{const cx=220+(i-1.5)*80;o+=`<circle cx="${cx}" cy="18" r="${i===curM?6:3.5}" fill="${i<=curM?INK:'#ddd'}"/>`;o+=`<text x="${cx}" y="38" text-anchor="middle" font-size="7" fill="${i===curM?INK:DIM}" font-family="var(--mono)">${_.t}</text>`;});o=s.draw(o);document.getElementById('marshSvg').innerHTML=o;document.getElementById('marshStep').textContent=`${curM+1}/${MS.length}`;document.getElementById('marshCap').innerHTML=s.cap;document.getElementById('marshPrev').classList.toggle('dim',curM<=0);document.getElementById('marshNext').classList.toggle('dim',curM>=MS.length-1);}
+function marshNav(d){const n=curM+d;if(n>=0&&n<MS.length){curM=n;renderMarsh();}}
+
+// ── SECTION 2: Hot vs Cool ──
+const SL=[{l:'热系统',c:HOT,cap:'<strong style="color:#d4550f">热系统</strong>：快、自动、情绪驱动。纹状体+杏仁核。"现在就要！"'},{l:'冷系统',c:COOL,cap:'<strong style="color:#4a7fb5">冷系统</strong>：慢、费力、认知驱动。dlPFC。"想想明天的体重秤。"'},{l:'竞争',c:'#7b68ae',cap:'<strong style="color:#7b68ae">实时竞争</strong>：两个系统同时激活，信号强度决定谁赢。疲劳、压力、酒精都会削弱冷系统。'}];
+let curS=0;
+function buildSysTabs(){const el=document.getElementById('sysTabs');SL.forEach((s,i)=>{const b=document.createElement('button');b.className='tab'+(i===0?' active':'');b.textContent=s.l;b.style.color=i===0?s.c:'';b.onclick=()=>{curS=i;renderSys();document.querySelectorAll('#sysTabs .tab').forEach((t,j)=>{t.classList.toggle('active',j===i);t.style.color=j===i?SL[j].c:'';});};el.appendChild(b);});}
+function renderSys(){const lens=curS;let o=`<rect x="10" y="5" width="660" height="370" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="35" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">刺激：一块蛋糕 🎂</text>`;const hotOp=lens===1?.2:1,coolOp=lens===0?.2:1;
+o+=`<rect x="80" y="80" width="220" height="240" rx="8" fill="${HOT}${lens===0?'0a':'05'}" stroke="${HOT}${lens===0?'60':'25'}" stroke-width="${lens===0?2:1}" opacity="${hotOp}"/>`;o+=`<text x="190" y="102" text-anchor="middle" font-size="12" fill="${HOT}" font-weight="600" opacity="${hotOp}">🔥 热系统</text>`;o+=`<text x="190" y="122" text-anchor="middle" font-size="8" fill="${HOT}bb" font-family="var(--mono)" opacity="${hotOp}">快 · 自动 · 情绪驱动</text>`;o+=`<circle cx="150" cy="170" r="25" fill="${HOT}${lens===0?'25':'10'}" stroke="${HOT}" stroke-width="${lens===0?2:1}" opacity="${hotOp}"/>`;o+=`<text x="150" y="168" text-anchor="middle" font-size="7" fill="${HOT}" font-family="var(--mono)" opacity="${hotOp}">纹状体</text>`;o+=`<text x="150" y="180" text-anchor="middle" font-size="6" fill="${HOT}" font-family="var(--mono)" opacity="${hotOp}">"想要！"</text>`;o+=`<circle cx="240" cy="170" r="20" fill="${HOT}${lens===0?'20':'08'}" stroke="${HOT}80" opacity="${hotOp}"/>`;o+=`<text x="240" y="172" text-anchor="middle" font-size="7" fill="${HOT}cc" font-family="var(--mono)" opacity="${hotOp}">杏仁核</text>`;['多巴胺 ↑↑','食欲 → 运动系统','"吃了吧"','速度 < 200ms'].forEach((t,i)=>{o+=`<text x="100" y="${215+i*22}" font-size="9" fill="${HOT}${lens===0?'cc':'60'}" font-family="var(--mono)" opacity="${hotOp}">${t}</text>`;});
+o+=`<rect x="380" y="80" width="220" height="240" rx="8" fill="${COOL}${lens===1?'0a':'05'}" stroke="${COOL}${lens===1?'60':'25'}" stroke-width="${lens===1?2:1}" opacity="${coolOp}"/>`;o+=`<text x="490" y="102" text-anchor="middle" font-size="12" fill="${COOL}" font-weight="600" opacity="${coolOp}">❄️ 冷系统</text>`;o+=`<text x="490" y="122" text-anchor="middle" font-size="8" fill="${COOL}bb" font-family="var(--mono)" opacity="${coolOp}">慢 · 费力 · 认知驱动</text>`;o+=`<circle cx="450" cy="170" r="25" fill="${COOL}${lens===1?'25':'10'}" stroke="${COOL}" stroke-width="${lens===1?2:1}" opacity="${coolOp}"/>`;o+=`<text x="450" y="168" text-anchor="middle" font-size="7" fill="${COOL}" font-family="var(--mono)" opacity="${coolOp}">dlPFC</text>`;o+=`<text x="450" y="180" text-anchor="middle" font-size="6" fill="${COOL}" font-family="var(--mono)" opacity="${coolOp}">"等一下"</text>`;o+=`<circle cx="540" cy="170" r="20" fill="${COOL}${lens===1?'20':'08'}" stroke="${COOL}80" opacity="${coolOp}"/>`;o+=`<text x="540" y="172" text-anchor="middle" font-size="7" fill="${COOL}cc" font-family="var(--mono)" opacity="${coolOp}">vmPFC</text>`;['调取长期目标','抑制信号 → 纹状体','重新评估："不值"','速度 500-2000ms'].forEach((t,i)=>{o+=`<text x="400" y="${215+i*22}" font-size="9" fill="${COOL}${lens===1?'cc':'60'}" font-family="var(--mono)" opacity="${coolOp}">${t}</text>`;});
+if(lens===2){o+=`<line x1="300" y1="200" x2="380" y2="200" stroke="#7b68ae" stroke-width="3"/>`;o+=`<text x="340" y="190" text-anchor="middle" font-size="10" fill="#7b68ae" font-weight="700">⚡ 信号竞争 ⚡</text>`;o+=`<text x="340" y="218" text-anchor="middle" font-size="8" fill="#7b68ae" font-family="var(--mono)">谁更强 = 谁赢</text>`;o+=`<rect x="120" y="340" width="440" height="25" rx="4" fill="#7b68ae08" stroke="#7b68ae25"/>`;o+=`<text x="340" y="358" text-anchor="middle" font-size="8" fill="#7b68ae" font-family="var(--mono)">削弱冷系统：疲劳 · 压力 · 酒精 · 睡眠不足 · 情绪波动</text>`;}
+document.getElementById('sysSvg').innerHTML=o;document.getElementById('sysCap').innerHTML=SL[curS].cap;}
+
+// ── SECTION 3: Temporal Discounting ──
+function renderDisc(){const delay=+document.getElementById('discSlider').value;const years=delay*0.5;const k=0.5;const rawVal=1000;const subjVal=Math.round(rawVal/(1+k*years));const pct=Math.round(subjVal/rawVal*100);let o=`<rect x="10" y="5" width="660" height="390" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="30" text-anchor="middle" font-size="11" fill="${DIM}" font-family="var(--mono)">客观价值：¥1,000 · 延迟：${years===0?'现在':years+'年后'}</text>`;
+const gx=60,gy=60,gw=400,gh=200;o+=`<rect x="${gx}" y="${gy}" width="${gw}" height="${gh}" rx="4" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="${gx-5}" y="${gy+10}" text-anchor="end" font-size="7" fill="${DIM}" font-family="var(--mono)">¥1000</text>`;o+=`<text x="${gx-5}" y="${gy+gh}" text-anchor="end" font-size="7" fill="${DIM}" font-family="var(--mono)">¥0</text>`;o+=`<line x1="${gx}" y1="${gy+gh/2}" x2="${gx+gw}" y2="${gy+gh/2}" stroke="${FAINT}" stroke-dasharray="4 3"/>`;for(let yr=0;yr<=5;yr++){o+=`<text x="${gx+yr/5*gw}" y="${gy+gh+14}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${yr}年</text>`;}
+let path=`M${gx},${gy}`;for(let d=0;d<=50;d++){const yrs=d/10;const v=1000/(1+k*yrs);path+=` L${gx+(yrs/5)*gw},${gy+gh-(v/1000)*gh}`;}o+=`<path d="${path}" fill="none" stroke="${VMPFC}" stroke-width="2" opacity=".6"/>`;
+if(delay>0){let area=`M${gx},${gy+gh}`;for(let d=0;d<=delay*5;d++){const yrs=d/10;const v=1000/(1+k*yrs);area+=` L${gx+(yrs/5)*gw},${gy+gh-(v/1000)*gh}`;}area+=` L${gx+(years/5)*gw},${gy+gh} Z`;o+=`<path d="${area}" fill="${VMPFC}10"/>`;}
+const curX=gx+(years/5)*gw,curY=gy+gh-(subjVal/1000)*gh;o+=`<circle cx="${curX}" cy="${curY}" r="6" fill="${VMPFC}" stroke="#fff" stroke-width="2"/>`;o+=`<line x1="${curX}" y1="${curY}" x2="${curX}" y2="${gy+gh}" stroke="${VMPFC}" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>`;o+=`<rect x="${curX-35}" y="${curY-26}" width="70" height="20" rx="4" fill="${VMPFC}" opacity=".9"/>`;o+=`<text x="${curX}" y="${curY-12}" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">¥${subjVal}</text>`;
+const px=500,py=60;o+=`<rect x="${px}" y="${py}" width="155" height="200" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="${px+77}" y="${py+18}" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">大脑状态</text>`;const strAct=Math.max(0.1,1-years*0.25);o+=`<text x="${px+15}" y="${py+42}" font-size="8" fill="${HOT}" font-family="var(--mono)">纹状体活跃度</text>`;o+=`<rect x="${px+15}" y="${py+48}" width="125" height="8" rx="4" fill="#eee"/>`;o+=`<rect x="${px+15}" y="${py+48}" width="${125*strAct}" height="8" rx="4" fill="${HOT}"/>`;o+=`<text x="${px+77}" y="${py+72}" text-anchor="middle" font-size="8" fill="${HOT}" font-family="var(--mono)">${strAct>.7?'🔥 "要！"':strAct>.3?'… 兴趣降低':'○ 几乎无感'}</text>`;const selfness=Math.max(0.1,1-years*0.22);o+=`<text x="${px+15}" y="${py+100}" font-size="8" fill="${VMPFC}" font-family="var(--mono)">vmPFC "自我感"</text>`;o+=`<rect x="${px+15}" y="${py+106}" width="125" height="8" rx="4" fill="#eee"/>`;o+=`<rect x="${px+15}" y="${py+106}" width="${125*selfness}" height="8" rx="4" fill="${VMPFC}"/>`;o+=`<text x="${px+77}" y="${py+130}" text-anchor="middle" font-size="8" fill="${VMPFC}" font-family="var(--mono)">${selfness>.7?'👤 "给我的"':selfness>.3?'👤→👥 "半个自己"':'👥 "陌生人"'}</text>`;const lost=rawVal-subjVal;o+=`<rect x="${px+10}" y="${py+150}" width="135" height="40" rx="4" fill="${delay>0?OLD+'08':'#faf9f6'}" stroke="${delay>0?OLD+'30':FAINT}"/>`;o+=`<text x="${px+77}" y="${py+168}" text-anchor="middle" font-size="9" fill="${delay>0?OLD:DIM}" font-weight="600" font-family="var(--mono)">${delay===0?'无折扣':'-¥'+lost+' ('+pct+'%)'}</text>`;o+=`<text x="${px+77}" y="${py+184}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${delay===0?'即时 = 全额':'心理缩水'+(100-pct)+'%'}</text>`;o+=`<text x="340" y="380" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">双曲折扣模型 · Kable & Glimcher (2007)</text>`;document.getElementById('discSvg').innerHTML=o;document.getElementById('discCap').innerHTML=delay===0?'现在就拿：¥1,000 = ¥1,000。纹状体全力激活。':`延迟 ${years} 年：心理价值缩水到 ¥${subjVal}（${pct}%）。${years>=3?'vmPFC 把"未来的你"当陌生人了。':'纹状体兴趣在下降。'}`;}
+
+// ── SECTION 4: Ego Depletion (Step Navigator) ──
+const DEP=[
+{t:'原始实验',cap:'1998 年，Baumeister 设计了经典的"饼干实验"：先消耗意志力，再测试后续表现。结果震撼了心理学界。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="260" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${INK}" font-weight="600">Baumeister 饼干实验 · 1998</text>`;
+// Two groups
+o+=`<rect x="50" y="95" width="260" height="200" rx="6" fill="${OLD}06" stroke="${OLD}30"/>`;
+o+=`<text x="180" y="115" text-anchor="middle" font-size="10" fill="${OLD}" font-weight="600">实验组</text>`;
+o+=`<text x="70" y="140" font-size="9" fill="${DIM}" font-family="var(--mono)">第一步：桌上有饼干和萝卜</text>`;
+o+=`<text x="70" y="158" font-size="9" fill="${OLD}" font-family="var(--mono)">🍪 "只能吃萝卜，不许碰饼干"</text>`;
+o+=`<text x="70" y="178" font-size="8" fill="${DIM}" font-family="var(--mono)">→ 消耗意志力忍住不吃</text>`;
+o+=`<text x="70" y="205" font-size="9" fill="${DIM}" font-family="var(--mono)">第二步：解一道几何难题</text>`;
+o+=`<text x="70" y="225" font-size="10" fill="${OLD}" font-weight="600" font-family="var(--mono)">平均 8 分钟后放弃 ✕</text>`;
+o+=`<text x="70" y="248" font-size="9" fill="${OLD}" font-family="var(--mono)">尝试次数更少，更快说"不行了"</text>`;
+o+=`<rect x="350" y="95" width="260" height="200" rx="6" fill="${NEW}06" stroke="${NEW}30"/>`;
+o+=`<text x="480" y="115" text-anchor="middle" font-size="10" fill="${NEW}" font-weight="600">对照组</text>`;
+o+=`<text x="370" y="140" font-size="9" fill="${DIM}" font-family="var(--mono)">第一步：桌上有饼干</text>`;
+o+=`<text x="370" y="158" font-size="9" fill="${NEW}" font-family="var(--mono)">🍪 "随便吃"（无需自控）</text>`;
+o+=`<text x="370" y="178" font-size="8" fill="${DIM}" font-family="var(--mono)">→ 无意志力消耗</text>`;
+o+=`<text x="370" y="205" font-size="9" fill="${DIM}" font-family="var(--mono)">第二步：同一道几何难题</text>`;
+o+=`<text x="370" y="225" font-size="10" fill="${NEW}" font-weight="600" font-family="var(--mono)">平均 20 分钟后放弃 ✓</text>`;
+o+=`<text x="370" y="248" font-size="9" fill="${NEW}" font-family="var(--mono)">坚持更久，尝试更多策略</text>`;
+o+=`<text x="340" y="310" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">结论：先忍饼干的人，后来更快放弃 → "意志力被消耗了"？</text>`;
+return o;}},
+{t:'肌肉模型',cap:'Baumeister 提出：意志力像肌肉——用多了会疲劳，需要"血糖"作为燃料。这个模型统治了十多年。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="260" rx="6" fill="#fdf6f4" stroke="${OLD}30"/>`;
+o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${OLD}" font-weight="600">🔋 肌肉模型 · "意志力是有限资源"</text>`;
+const bX=80,bY=95,bW=520,bH=35;
+// Battery drain animation
+const levels=[{pct:0.95,label:'早晨 · 精力充沛',emoji:'🔋'},{pct:0.6,label:'忍住不吃饼干后',emoji:'🔋'},{pct:0.3,label:'继续工作几小时',emoji:'🪫'},{pct:0.05,label:'晚上 · 意志力耗尽',emoji:'💀'}];
+levels.forEach((lv,i)=>{
+  const ly=bY+i*50;
+  o+=`<rect x="${bX}" y="${ly}" width="${bW}" height="${bH}" rx="6" fill="#eee" stroke="${OLD}30"/>`;
+  o+=`<rect x="${bX+2}" y="${ly+2}" width="${(bW-4)*lv.pct}" height="${bH-4}" rx="4" fill="${OLD}" opacity="${0.2+lv.pct*0.5}"/>`;
+  o+=`<text x="${bX+12}" y="${ly+23}" font-size="9" fill="${lv.pct<0.2?OLD:INK}" font-family="var(--mono)">${lv.emoji} ${Math.round(lv.pct*100)}% · ${lv.label}</text>`;
+  if(i<3) o+=`<text x="${bX+bW/2}" y="${ly+bH+12}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">↓ 消耗 ↓</text>`;
+});
+o+=`<rect x="80" y="295" width="520" height="18" rx="4" fill="${OLD}10" stroke="${OLD}25"/>`;
+o+=`<text x="340" y="308" text-anchor="middle" font-size="8" fill="${OLD}" font-family="var(--mono)">核心假设：自控消耗血糖 → 物理资源耗尽 → 后续自控失败</text>`;
+return o;}},
+{t:'2016 · 反转',cap:'23 个实验室联合重复 Baumeister 的实验。2141 名被试。结果：效应量从 d=0.62 缩水到 d=0.04——几乎为零。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="260" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+o+=`<text x="340" y="80" text-anchor="middle" font-size="12" fill="${OLD}" font-weight="700">⚠️ 2016 大型重复实验</text>`;
+o+=`<text x="340" y="100" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">Hagger et al. · 23 个实验室 · 2,141 名被试</text>`;
+// Effect size comparison
+o+=`<text x="80" y="135" font-size="9" fill="${DIM}" font-family="var(--mono)">原始效应量 (1998)</text>`;
+o+=`<rect x="80" y="142" width="500" height="20" rx="4" fill="#eee"/>`;
+o+=`<rect x="80" y="142" width="${500*0.62}" height="20" rx="4" fill="${OLD}"/>`;
+o+=`<text x="${80+500*0.62+8}" y="157" font-size="10" fill="${OLD}" font-weight="600" font-family="var(--mono)">d = 0.62 "中等效应"</text>`;
+o+=`<text x="80" y="190" font-size="9" fill="${DIM}" font-family="var(--mono)">重复实验效应量 (2016)</text>`;
+o+=`<rect x="80" y="197" width="500" height="20" rx="4" fill="#eee"/>`;
+o+=`<rect x="80" y="197" width="${500*0.04}" height="20" rx="4" fill="${NEW}"/>`;
+o+=`<text x="${80+500*0.04+8}" y="212" font-size="10" fill="${NEW}" font-weight="600" font-family="var(--mono)">d = 0.04 "几乎为零"</text>`;
+o+=`<text x="340" y="248" text-anchor="middle" font-size="14" fill="${OLD}" font-weight="700">效应缩水了 94%</text>`;
+o+=`<text x="340" y="270" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">十多年的"意志力像肌肉"理论，在严格控制下几乎站不住脚</text>`;
+o+=`<text x="340" y="290" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">Perspectives on Psychological Science, 11(4), 546–573</text>`;
+return o;}},
+{t:'信念模型',cap:'Job, Dweck & Walton (2010) 发现：如果告诉被试"意志力是无限的"，损耗效应就消失了。关键不是资源，是信念。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="260" rx="6" fill="#f4faf6" stroke="${NEW}30"/>`;
+o+=`<text x="340" y="78" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="600">💭 信念模型 · "你相信什么，就会发生什么"</text>`;
+// Two belief groups
+o+=`<rect x="50" y="95" width="270" height="120" rx="6" fill="${OLD}06" stroke="${OLD}30"/>`;
+o+=P(70,130,90,OLD,.7,.8);
+o+=`<text x="110" y="118" font-size="9" fill="${OLD}" font-family="var(--mono)">💭 "意志力是有限的"</text>`;
+o+=`<text x="110" y="138" font-size="9" fill="${OLD}" font-family="var(--mono)">第一轮自控后：</text>`;
+o+=`<text x="110" y="158" font-size="11" fill="${OLD}" font-weight="600" font-family="var(--mono)">第二轮表现 ↓↓ 显著下降</text>`;
+o+=`<text x="110" y="178" font-size="8" fill="${OLD}90" font-family="var(--mono)">大脑：我觉得累了 → 真的表现差了</text>`;
+o+=`<rect x="350" y="95" width="270" height="120" rx="6" fill="${NEW}06" stroke="${NEW}30"/>`;
+o+=P(370,130,90,NEW,.7,.8);
+o+=`<text x="410" y="118" font-size="9" fill="${NEW}" font-family="var(--mono)">💭 "意志力越用越强"</text>`;
+o+=`<text x="410" y="138" font-size="9" fill="${NEW}" font-family="var(--mono)">第一轮自控后：</text>`;
+o+=`<text x="410" y="158" font-size="11" fill="${NEW}" font-weight="600" font-family="var(--mono)">第二轮表现不变! ✓</text>`;
+o+=`<text x="410" y="178" font-size="8" fill="${NEW}90" font-family="var(--mono)">大脑：挑战让我更强 → 真的没有下降</text>`;
+o+=`<rect x="100" y="230" width="480" height="35" rx="6" fill="${NEW}12" stroke="${NEW}40"/>`;
+o+=`<text x="340" y="252" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="700">改变信念 → 损耗效应消失</text>`;
+o+=`<text x="340" y="305" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">Job, Dweck & Walton (2010) Psychological Science</text>`;
+return o;}},
+{t:'新理解',cap:'疲劳感是大脑的"成本-收益信号"——不是说"没油了"，而是在问"继续坚持值不值得？"。信念改变了这个计算。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="260" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+o+=`<text x="340" y="82" text-anchor="middle" font-size="12" fill="${INK}" font-weight="700">新理解：疲劳是信号，不是极限</text>`;
+// Old vs New understanding
+o+=`<rect x="60" y="100" width="250" height="60" rx="6" fill="${OLD}06" stroke="${OLD}25"/>`;
+o+=`<text x="185" y="118" text-anchor="middle" font-size="9" fill="${OLD}" font-family="var(--mono)">❌ 旧理解</text>`;
+o+=`<text x="185" y="140" text-anchor="middle" font-size="10" fill="${OLD}">"油箱空了，物理上做不到"</text>`;
+o+=`<text x="340" y="135" text-anchor="middle" font-size="14" fill="${DIM}">→</text>`;
+o+=`<rect x="370" y="100" width="250" height="60" rx="6" fill="${NEW}06" stroke="${NEW}25"/>`;
+o+=`<text x="495" y="118" text-anchor="middle" font-size="9" fill="${NEW}" font-family="var(--mono)">✓ 新理解</text>`;
+o+=`<text x="495" y="140" text-anchor="middle" font-size="10" fill="${NEW}">"大脑在问：继续值不值？"</text>`;
+// Implications
+o+=`<text x="340" y="190" text-anchor="middle" font-size="10" fill="${INK}" font-weight="600">这意味着什么？</text>`;
+const impl=[
+  {i:'🧠',t:'疲劳感是保护机制（像跑步时的疲劳，≠ 肌肉断裂）',c:COOL},
+  {i:'💭',t:'你对自控力的信念会直接影响你的表现',c:NEW},
+  {i:'⚖️',t:'大脑在做经济学：坚持的成本 vs 预期收益',c:VMPFC},
+  {i:'🔧',t:'改变信念和激励结构，比"硬忍"更有效',c:NEW}
+];
+impl.forEach((m,i)=>{
+  o+=`<text x="80" y="${215+i*30}" font-size="14">${m.i}</text>`;
+  o+=`<text x="110" y="${215+i*30}" font-size="10" fill="${m.c}">${m.t}</text>`;
+});
+return o;}}
+];
+let curDep=0;
+function renderDep(){const s=DEP[curDep];let o='';DEP.forEach((_,i)=>{const cx=140+(i-2)*100;o+=`<circle cx="${cx}" cy="18" r="${i===curDep?6:3.5}" fill="${i<=curDep?INK:'#ddd'}"/>`;o+=`<text x="${cx}" y="38" text-anchor="middle" font-size="7" fill="${i===curDep?INK:DIM}" font-family="var(--mono)">${_.t}</text>`;});o=s.draw(o);document.getElementById('depSvg').innerHTML=o;document.getElementById('depStep').textContent=`${curDep+1}/${DEP.length}`;document.getElementById('depCap').innerHTML=s.cap;document.getElementById('depPrev').classList.toggle('dim',curDep<=0);document.getElementById('depNext').classList.toggle('dim',curDep>=DEP.length-1);}
+function depNav(d){const n=curDep+d;if(n>=0&&n<DEP.length){curDep=n;renderDep();}}
+
+// ── SECTION 5: Strategies ──
+let stSel=-1;
+const ST=[{label:'预承诺',icon:'🔒',color:'#4a7fb5',brief:'在理性时刻绑住未来的自己',detail:'Ulysses 让水手把自己绑在桅杆上，才能安全听海妖之歌。预承诺：在冷系统强势时提前限制选项。清走零食、自动转账、删购物App。',mech:'移除选择 → 热系统无法激活 → 冷系统零负担',ex:'自动定期存款的人平均比手动存款多存 73%。不是更自律，是根本不需要做决定。'},{label:'环境设计',icon:'🏗️',color:'#6a9955',brief:'让诱惑信号在源头变弱',detail:'Wansink 发现：糖果盘从桌上移到抽屉，每日摄入减少 29%。蔬菜放在冰箱视线水平处，摄入增加 25%。操控"热刺激"的信号强度。',mech:'视觉/嗅觉信号 ↓ → 纹状体激活 ↓ → 冲突不发生',ex:'Google 食堂把甜点从前端移到后端，摄入量下降 30%。零意志力参与。'},{label:'认知重评',icon:'🔄',color:'#7b68ae',brief:'改变你对诱惑的"看法"',detail:'Mischel 发现：教孩子"把棉花糖想象成一朵云"（抽象化），等待时间显著延长。核心是把热刺激转化为冷信息。',mech:'重新编码 → 热系统收到冷信号 → 冲突强度 ↓',ex:'告诉被试"把食物想成塑料模型"，dlPFC 激活增加，纹状体减少，食欲评分降 40%。'},{label:'心理对比',icon:'🔮',color:'#c06040',brief:'让"未来的自己"不再陌生',detail:'Oettingen 的 WOOP 方法：先想象目标（Wish+Outcome），再想象障碍（Obstacle），制定计划（Plan）。激活 vmPFC 的自我投射功能。',mech:'强化 vmPFC 自我表征 → 未来自我 ≠ 陌生人 → 时间折扣 ↓',ex:'使用"未来自我"对话技术的被试，退休储蓄意愿提高了 32%。'}];
+function renderStrat(){const sel=stSel;let o='';if(sel<0){const cw=155,gap=10,sx=12;ST.forEach((s,i)=>{const cx=sx+i*(cw+gap);o+=`<g style="cursor:pointer" onclick="stSel=${i};renderStrat()">`;o+=`<rect x="${cx}" y="8" width="${cw}" height="400" rx="8" fill="#faf9f6" stroke="${s.color}40" stroke-width="1.5"/>`;o+=`<text x="${cx+cw/2}" y="52" text-anchor="middle" font-size="28">${s.icon}</text>`;o+=`<text x="${cx+cw/2}" y="78" text-anchor="middle" font-size="13" fill="${s.color}" font-weight="700">${s.label}</text>`;o+=`<line x1="${cx+15}" y1="90" x2="${cx+cw-15}" y2="90" stroke="${s.color}30"/>`;o+=`<text x="${cx+cw/2}" y="112" text-anchor="middle" font-size="10" fill="${s.color}bb" font-family="var(--mono)">${s.brief}</text>`;s.mech.split(' → ').forEach((m,mi)=>{o+=`<text x="${cx+cw/2}" y="${150+mi*28}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">${m}</text>`;if(mi<2)o+=`<text x="${cx+cw/2}" y="${163+mi*28}" text-anchor="middle" font-size="8" fill="${s.color}60">↓</text>`;});o+=`<text x="${cx+cw/2}" y="390" text-anchor="middle" font-size="9" fill="${s.color}" opacity=".5" font-family="var(--mono)">点击展开 →</text>`;o+=`</g>`;});}else{const s=ST[sel];o+=`<rect x="10" y="8" width="660" height="330" rx="8" fill="#faf9f6" stroke="${s.color}50"/>`;o+=`<g style="cursor:pointer" onclick="stSel=-1;renderStrat()"><text x="30" y="30" font-size="11" fill="${DIM}" font-family="var(--mono)">← 返回总览</text></g>`;o+=`<text x="340" y="35" text-anchor="middle" font-size="22">${s.icon}</text>`;o+=`<text x="340" y="60" text-anchor="middle" font-size="16" fill="${s.color}" font-weight="700">${s.label} · ${s.brief}</text>`;o+=`<line x1="60" y1="70" x2="620" y2="70" stroke="${s.color}25"/>`;const dl=[];let t='';s.detail.split('').forEach(c=>{t+=c;if(t.length>=36||('。，'.includes(c)&&t.length>18)){dl.push(t);t='';}});if(t)dl.push(t);dl.forEach((l,i)=>{o+=`<text x="30" y="${90+i*20}" font-size="11" fill="var(--ink)">${l}</text>`;});const my=90+dl.length*20+10;o+=`<text x="30" y="${my}" font-size="9" fill="${s.color}" font-weight="600" font-family="var(--mono)">神经机制</text>`;let mx=30;s.mech.split(' → ').forEach((mp,mi)=>{const tw=mp.length*7+16;o+=`<rect x="${mx}" y="${my+6}" width="${tw}" height="22" rx="4" fill="${s.color}10" stroke="${s.color}30"/>`;o+=`<text x="${mx+tw/2}" y="${my+21}" text-anchor="middle" font-size="8" fill="${s.color}" font-family="var(--mono)">${mp}</text>`;mx+=tw+4;if(mi<2){o+=`<text x="${mx-2}" y="${my+21}" font-size="9" fill="${s.color}80">→</text>`;mx+=12;}});o+=`<rect x="30" y="270" width="620" height="50" rx="4" fill="${s.color}08" stroke="${s.color}20"/>`;o+=`<text x="40" y="288" font-size="9" fill="${s.color}" font-weight="600" font-family="var(--mono)">研究证据</text>`;const el=[];let et='';s.ex.split('').forEach(c=>{et+=c;if(et.length>=50||('。，'.includes(c)&&et.length>25)){el.push(et);et='';}});if(et)el.push(et);el.forEach((l,i)=>{o+=`<text x="40" y="${303+i*16}" font-size="10" fill="${s.color}bb">${l}</text>`;});let bi=0;ST.forEach((os,i)=>{if(i===sel)return;const bx=10+bi*220+15;o+=`<g style="cursor:pointer" opacity=".25" onclick="stSel=${i};renderStrat()">`;o+=`<rect x="${bx}" y="350" width="140" height="60" rx="6" fill="#faf9f6" stroke="${os.color}40"/>`;o+=`<text x="${bx+70}" y="375" text-anchor="middle" font-size="14">${os.icon}</text>`;o+=`<text x="${bx+70}" y="395" text-anchor="middle" font-size="10" fill="${os.color}" font-family="var(--mono)">${os.label}</text>`;o+=`</g>`;bi++;});}document.getElementById('stratSvg').innerHTML=o;document.getElementById('stratCap').innerHTML=sel>=0?`<strong style="color:${ST[sel].color}">${ST[sel].label}</strong>——${ST[sel].brief}`:'四种经过实证检验的自控策略。点击任意卡片查看详情。';}
+
+// ── Init ──
+renderMarsh();buildSysTabs();renderSys();renderDisc();renderDep();renderStrat();
+</script>
+</body>
+</html>
