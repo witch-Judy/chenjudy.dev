@@ -1,0 +1,41 @@
+{
+  "cli_version": "0.4.9",
+  "checkpoint_id": "b628d0f9ae02",
+  "session_id": "86027eca-e884-4928-85ae-3cb8eacc72f3",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-06T09:29:10.976426Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "public/admin/config.yml",
+    "src/components/Card.astro",
+    "src/components/Tag.astro",
+    "src/content.config.ts",
+    "src/layouts/PostDetails.astro",
+    "src/pages/archives/index.astro",
+    "src/pages/posts/[...page].astro",
+    "src/pages/posts/[...slug]/index.astro",
+    "src/pages/posts/[...slug]/index.png.ts",
+    "src/pages/tags/[tag]/[...page].astro",
+    "src/pages/tags/index.astro",
+    "src/utils/getPath.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "4d792ff85623",
+  "token_usage": {
+    "input_tokens": 214,
+    "cache_creation_tokens": 209963,
+    "cache_read_tokens": 2830743,
+    "output_tokens": 22503,
+    "api_call_count": 28
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-06T09:29:10.931193Z",
+    "agent_lines": 163,
+    "human_added": 0,
+    "human_modified": 55,
+    "human_removed": 159,
+    "total_committed": 218,
+    "agent_percentage": 74.77064220183486
+  }
+}
