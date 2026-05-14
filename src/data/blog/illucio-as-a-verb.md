@@ -33,9 +33,9 @@ Scientists study patterns, write papers, and let peers replicate them. AI founde
 
 ---
 
-## 2. What Is ILLUCIO Researching?
+## 2. What Is IRIS Researching?
 
-Our product is called ILLUCIO. On the surface, it's an AI reading companion that helps people understand complex texts.
+Our product is called IRIS. On the surface, it's an AI reading companion that helps people understand complex texts.
 
 But at its core, we're running a scientific experiment on **"how humans understand and learn information."** We focus on extremely granular cognitive struggles:
 

@@ -6,7 +6,7 @@ My personal website, built with [Astro](https://astro.build/) and deployed on Gi
 
 ## About
 
-I'm Chen Judy (陈小爷) — builder, influencer, and co-founder of ILLUCIO. I live at the intersection of technology, product, and growth.
+I'm Chen Judy (陈小爷) — builder, influencer, and co-founder of IRIS. I live at the intersection of technology, product, and growth.
 
 This website hosts my portfolio, creative works, and blog.
 

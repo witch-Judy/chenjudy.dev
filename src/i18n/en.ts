@@ -1,14 +1,14 @@
 export const en = {
   // Hero
   heroGreeting: "Chen Judy",
-  heroSubtitle: "Founder of ILLUCIO",
+  heroSubtitle: "Founder of IRIS",
   heroEducation: "Harbin Institute of Technology (BEng) · National University of Singapore (MSc) · Computer Science",
   heroTagline: "Exploring AI, technology, art and the humanities — always shipping.",
   heroCta: "Get in touch",
 
   // About
   aboutTitle: "About Me",
-  aboutBio: `Founder of ILLUCIO — turning complex texts into interactive, explorable essays with AI. Not just reading, but hands-on playing. CS from HIT, MS from NUS. Full-stack builder: code, product, growth, personal brand, swordsmanship. I believe in fun as a philosophy.`,
+  aboutBio: `Founder of IRIS — turning complex texts into interactive, explorable essays with AI. Not just reading, but hands-on playing. CS from HIT, MS from NUS. Full-stack builder: code, product, growth, personal brand, swordsmanship. I believe in fun as a philosophy.`,
 
   // Projects
   projectsTitle: "Featured Projects",
@@ -29,7 +29,7 @@ export const en = {
 
   // About page
   aboutPageTitle: "About",
-  aboutPageBio: `I'm Chen Judy — builder, influencer, and co-founder of ILLUCIO. I live at the intersection of technology, product, and growth.
+  aboutPageBio: `I'm Chen Judy — builder, influencer, and co-founder of IRIS. I live at the intersection of technology, product, and growth.
 
 I don't just write code — I design products, build them end-to-end, and bring them to market. From AI-powered tools to community-driven content, I believe the best builders understand the full stack: tech, product, and people.
 

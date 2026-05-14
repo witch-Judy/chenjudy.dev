@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://chenjudy.vercel.app/",
   author: "Chen Judy",
   profile: "https://github.com/witch-Judy",
-  desc: "Co-founder & CTO of ILLUCIO",
+  desc: "Co-founder & CTO of IRIS",
   title: "Chen Judy | 陈小爷",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
