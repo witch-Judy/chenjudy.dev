@@ -1,0 +1,43 @@
+{
+  "cli_version": "0.4.9",
+  "checkpoint_id": "df95d5c1c149",
+  "session_id": "16bccccc-0786-4a55-8eb2-72fa0ffc2eaf",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-14T13:32:12.406224Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "README.md",
+    "public/illucio-onboarding.html",
+    "public/pricing-part1.html",
+    "src/components/Projects.astro",
+    "src/config.ts",
+    "src/data/blog/illucio-as-a-verb.md",
+    "src/data/blog/illucio-as-a-verb.zh.md",
+    "src/data/blog/illucio-onboarding.md",
+    "src/data/blog/illucio-onboarding.zh.md",
+    "src/data/blog/illucio-v2-demo.md",
+    "src/i18n/en.ts",
+    "src/i18n/zh.ts",
+    "src/pages/about.astro",
+    "src/pages/index.astro"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "5b192cb5ed78",
+  "token_usage": {
+    "input_tokens": 44,
+    "cache_creation_tokens": 34156,
+    "cache_read_tokens": 712550,
+    "output_tokens": 14002,
+    "api_call_count": 19
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-14T13:32:12.371819Z",
+    "agent_lines": 30,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 30,
+    "agent_percentage": 100
+  }
+}
