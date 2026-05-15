@@ -1,26 +1,24 @@
 # Session Context
 
 Session ID: 3ba0fad3-e687-4edf-9173-4d3466de72d1
-Commit Message: 然后就是iris founder也加上
+Commit Message: [Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-
 
 ## Prompts
 
 ### Prompt 1
 
-然后就是iris founder也加上
+[Image #1] 左边不需要写全栈好玩儿主义 陈朱迪下面Judy Chen就可以，不需要再加Judy IRIS 的网址放上去
+
+### Prompt 2
+
+[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/1.png]
 
 ## Summary
 
-全部处理完。
+改完了：
 
-**名片更新**
-- 顶部右侧改成 `BASED IN 新加坡 / SG`（原来的 NUS · HIT 让位给当下的坐标）
-- 名字下方新增一行清晰职称：**`IRIS · Founder`**（IRIS 用紫色等宽字 logo 风，Founder 用思源宋体常规，紫色圆点分隔）
-- 顶部左侧改成 `全栈 · 好玩儿主义`，原来的 "CO-FOUNDER & CTO" 拿掉，避免和新的 Founder 行重复
+- **顶部左侧** "全栈 · 好玩儿主义" 移除，只留一个紫色小圆点作为版面锚点
+- **名字**去掉 JUDY 印章，下面 "Judy Chen" 仍在
+- **IRIS 网址** `iris-wonderland.vercel.app` 加到了 "IRIS · Founder" 同一行后面，用细竖线分隔，等宽字小号灰色——视觉上从属于 Founder 这个 title，像 GitHub 名片那种 "title @ domain" 的感觉
 
-**记忆更新（长期记忆 / 所有相关文件）**
-- `MEMORY.md` 索引行：改为 "IRIS Founder (NOT co-founder)"，名字补全四种叫法，base 新加坡
-- `user_profile.md`：明确写 "Founder" 替换所有 "Co-founder" 出现；新增置顶 framing 声明「User is **Founder** of IRIS, *not* Co-founder」+ base location + 主邮箱 + 小红书 handle；把所有 ILLUCIO 引用更新成 "IRIS (formerly ILLUCIO)"
-- `project_illucio_status.md`：标题/正文都更新为 IRIS，明确写 "Founder & CTO (not 'co-founder' — user has explicitly corrected this; confirmed 2026-05-15)"
-
-以后任何场合（简历、bio、portfolio、社交介绍）都会用 Founder。Cmd+R 刷新看新版名片。
+Cmd+R 看一下，如果想换成单独一行放下面或者放到底部联系区里，告诉我。
