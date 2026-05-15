@@ -1,14 +1,19 @@
 # Session Context
 
 Session ID: 3ba0fad3-e687-4edf-9173-4d3466de72d1
-Commit Message: 名片上的地址：bihanchen1123@gmail.com 再放一个主页地址，剩下的两个不用放
+Commit Message: 可以加上：在技术与人文的边界 名字叫：陈朱迪 Judy
 
 ## Prompts
 
 ### Prompt 1
 
-名片上的地址：bihanchen1123@gmail.com 再放一个主页地址，剩下的两个不用放
+可以加上：在技术与人文的边界 名字叫：陈朱迪 Judy
 
 ## Summary
 
-改好了——邮箱换成 `bihanchen1123@gmail.com`，主页保留 `chenjudy.vercel.app`，GitHub 和 LinkedIn 已去掉。现在底部联系栏是左邮箱、右主页两列对齐。浏览器已重开，Cmd+R 刷新即可看到。
+改完了：
+- 名字换成 **陈朱迪**，印章「JUDY」（等宽字体小写转大写，紫色印章保留）
+- 英文名简化为 **Judy Chen**
+- 原来的「全栈 / 好玩儿主义者 / 认知交互研究」三段 tag 替换成宋体一行 **「在技术与人文的边界」**，前面加了一道紫色短横线作为引导线，更安静、更像一句"自我位置"
+
+浏览器已重开，Cmd+R 刷新看看。

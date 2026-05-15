@@ -100,17 +100,18 @@
 
   .name-zh .stamp {
     display: inline-block;
-    margin-left: 2mm;
-    padding: 0.6mm 1.4mm 0.8mm;
+    margin-left: 2.4mm;
+    padding: 0.6mm 1.6mm 0.8mm;
     background: var(--iris);
     color: var(--paper);
-    font-family: "Songti SC", "STSong", "SimSun", serif;
-    font-size: 3.4mm;
-    font-weight: 500;
-    letter-spacing: 0.3em;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 3mm;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     vertical-align: middle;
     transform: translateY(-2mm);
     border-radius: 0.6mm;
+    text-transform: uppercase;
   }
 
   .name-en {
@@ -122,17 +123,25 @@
     text-transform: uppercase;
   }
 
-  .tags {
-    margin-top: 2.4mm;
-    font-size: 2.7mm;
-    color: var(--ink);
-    letter-spacing: 0.08em;
+  .tagline {
+    margin-top: 3mm;
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 3.4mm;
+    color: var(--iris);
+    letter-spacing: 0.34em;
+    padding-left: 0.34em;
   }
 
-  .tags .sep {
-    color: var(--iris);
-    margin: 0 1.4mm;
-    font-weight: 700;
+  .tagline::before {
+    content: "";
+    display: inline-block;
+    width: 6mm;
+    height: 0.25mm;
+    background: var(--iris);
+    vertical-align: middle;
+    margin-right: 2mm;
+    margin-left: -0.34em;
+    transform: translateY(-0.5mm);
   }
 
   .contact {
@@ -270,9 +279,9 @@
           </div>
 
           <div class="name-block">
-            <div class="name-zh">陈小爷<span class="stamp">小爷</span></div>
-            <div class="name-en">Bihan Chen &nbsp;·&nbsp; Judy Chen</div>
-            <div class="tags">全栈开发者<span class="sep">/</span>好玩儿主义者<span class="sep">/</span>认知交互研究</div>
+            <div class="name-zh">陈朱迪<span class="stamp">Judy</span></div>
+            <div class="name-en">Judy Chen</div>
+            <div class="tagline">在技术与人文的边界</div>
           </div>
 
           <div class="contact">
