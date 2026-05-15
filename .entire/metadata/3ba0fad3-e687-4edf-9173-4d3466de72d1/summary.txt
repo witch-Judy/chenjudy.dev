@@ -1,1 +1,1 @@
-名片已落在 `public/mingpian.html`，浏览器打开即可看到正反两面；想打印就 Cmd+P，CSS 已经做好 90×54mm 出血设定。要调字体、颜色、印章、加微信号或转 PNG/PDF 都告诉我。
+改好了——邮箱换成 `bihanchen1123@gmail.com`，主页保留 `chenjudy.vercel.app`，GitHub 和 LinkedIn 已去掉。现在底部联系栏是左邮箱、右主页两列对齐。浏览器已重开，Cmd+R 刷新即可看到。
