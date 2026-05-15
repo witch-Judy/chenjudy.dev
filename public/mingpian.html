@@ -156,25 +156,46 @@
     border-left: 0.2mm solid rgba(91, 75, 138, 0.35);
   }
 
-  .tagline {
-    margin-top: 2.4mm;
-    font-family: "Songti SC", "STSong", "SimSun", serif;
-    font-size: 3.4mm;
-    color: var(--iris);
-    letter-spacing: 0.34em;
-    padding-left: 0.34em;
+  .services {
+    margin-top: 3mm;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.8mm;
   }
 
-  .tagline::before {
-    content: "";
-    display: inline-block;
-    width: 6mm;
-    height: 0.25mm;
-    background: var(--iris);
-    vertical-align: middle;
-    margin-right: 2mm;
-    margin-left: -0.34em;
-    transform: translateY(-0.5mm);
+  .services-label {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 2.8mm;
+    color: var(--ink);
+    letter-spacing: 0.18em;
+    margin-right: 1mm;
+    position: relative;
+    padding-right: 2.4mm;
+  }
+
+  .services-label::after {
+    content: "→";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--iris);
+    font-family: "SF Mono", ui-monospace, monospace;
+    font-size: 2.4mm;
+  }
+
+  .services .chip {
+    font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+    font-size: 2.5mm;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--iris);
+    border: 0.2mm solid var(--iris);
+    border-radius: 1.4mm;
+    padding: 0.8mm 2mm 1mm;
+    background: rgba(91, 75, 138, 0.06);
+    white-space: nowrap;
   }
 
   .contact {
@@ -339,7 +360,12 @@
             <div class="name-zh">陈朱迪</div>
             <div class="name-en">Judy Chen</div>
             <div class="role"><span class="brand">IRIS</span><span class="dot-sep">·</span>Founder<span class="role-link">iris-wonderland.vercel.app</span></div>
-            <div class="tagline">在技术与人文的边界</div>
+            <div class="services">
+              <span class="services-label">找我做</span>
+              <span class="chip">AI 软件</span>
+              <span class="chip">AI 可视化交互</span>
+              <span class="chip">AI 文化出海</span>
+            </div>
           </div>
 
           <div class="contact">
