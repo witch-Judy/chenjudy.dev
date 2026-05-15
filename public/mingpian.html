@@ -156,94 +156,63 @@
     border-left: 0.2mm solid rgba(91, 75, 138, 0.35);
   }
 
-  .services {
-    margin-top: 3mm;
+  .biz {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 0 5mm;
+    padding-top: 2.8mm;
+    border-top: 0.15mm solid var(--hair);
+    align-self: end;
+  }
+
+  .biz-col.right {
+    padding-left: 5mm;
+    border-left: 0.15mm dashed rgba(91, 75, 138, 0.35);
+  }
+
+  .biz-label {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 2.7mm;
+    letter-spacing: 0.32em;
+    color: var(--iris);
+    margin-bottom: 1.8mm;
+    padding-left: 0.32em;
+  }
+
+  .case-url {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1.8mm;
-  }
-
-  .services-label {
-    font-family: "Songti SC", "STSong", "SimSun", serif;
-    font-size: 2.8mm;
-    color: var(--ink);
-    letter-spacing: 0.18em;
-    margin-right: 1mm;
-    position: relative;
-    padding-right: 2.4mm;
-  }
-
-  .services-label::after {
-    content: "→";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--iris);
-    font-family: "SF Mono", ui-monospace, monospace;
+    gap: 1.6mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
     font-size: 2.4mm;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
-  .services .chip {
+  .case-url .key {
+    color: var(--iris);
+    font-weight: 700;
+  }
+
+  .services-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2mm;
+    align-items: flex-start;
+  }
+
+  .chip {
     font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
-    font-size: 2.5mm;
+    font-size: 2.4mm;
     font-weight: 500;
     letter-spacing: 0.06em;
     color: var(--iris);
     border: 0.2mm solid var(--iris);
     border-radius: 1.4mm;
-    padding: 0.8mm 2mm 1mm;
+    padding: 0.6mm 2mm 0.8mm;
     background: rgba(91, 75, 138, 0.06);
     white-space: nowrap;
-  }
-
-  .contact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1mm 4mm;
-    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
-    font-size: 2.4mm;
-    color: var(--ink);
-    letter-spacing: 0.02em;
-    padding-top: 3mm;
-    border-top: 0.15mm solid var(--hair);
-  }
-
-  .contact .row.solo {
-    grid-column: 1 / -1;
-    justify-content: center;
-  }
-
-  .contact .row {
-    display: flex;
-    align-items: center;
-    gap: 1.6mm;
-    white-space: nowrap;
-  }
-
-  .contact .key {
-    color: var(--iris);
-    font-weight: 700;
-  }
-
-  .contact .row.span {
-    grid-column: 1 / -1;
-    justify-content: center;
-    margin-top: 0.6mm;
-    padding-top: 1.4mm;
-    border-top: 0.1mm dashed rgba(91, 75, 138, 0.35);
-  }
-
-  .contact .key.xhs {
-    font-family: "PingFang SC", "Hiragino Sans GB", sans-serif;
-    font-size: 2mm;
-    font-weight: 600;
-    background: var(--iris);
-    color: var(--paper);
-    padding: 0.4mm 1.2mm;
-    border-radius: 0.5mm;
-    letter-spacing: 0.1em;
   }
 
   /* ---------- BACK ---------- */
@@ -360,16 +329,21 @@
             <div class="name-zh">陈朱迪</div>
             <div class="name-en">Judy Chen</div>
             <div class="role"><span class="brand">IRIS</span><span class="dot-sep">·</span>Founder<span class="role-link">iris-wonderland.vercel.app</span></div>
-            <div class="services">
-              <span class="services-label">找我做</span>
-              <span class="chip">AI 软件</span>
-              <span class="chip">AI 可视化交互</span>
-              <span class="chip">AI 文化出海</span>
-            </div>
           </div>
 
-          <div class="contact">
-            <div class="row solo"><span class="key">◉</span>chenjudy.vercel.app</div>
+          <div class="biz">
+            <div class="biz-col">
+              <div class="biz-label">以往案例库</div>
+              <div class="case-url"><span class="key">◉</span>chenjudy.vercel.app</div>
+            </div>
+            <div class="biz-col right">
+              <div class="biz-label">解决方案</div>
+              <div class="services-stack">
+                <span class="chip">AI 软件</span>
+                <span class="chip">AI 可视化交互</span>
+                <span class="chip">AI 文化出海</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

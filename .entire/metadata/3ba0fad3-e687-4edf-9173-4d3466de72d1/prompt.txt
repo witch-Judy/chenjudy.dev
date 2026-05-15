@@ -1,5 +1,5 @@
-[Image #3] 我需要有种这个名片是我的业务展示，就是大家一看就知道找我做什么。比如找我做ai软件，ai可视化交互，ai文化出海
+[Image #4] 我可以做的解决方案放在右边 左边就说以往案例库在chenjudy.vercel.app
 
 ---
 
-[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/3.png]
+[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/4.png]
