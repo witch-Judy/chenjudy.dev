@@ -7,20 +7,18 @@ Commit Message: [Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e6
 
 ### Prompt 1
 
-[Image #5] 左边把我微信加进去
+[Image #6] 这里图片没加载上
 
 ### Prompt 2
 
-[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/5.png]
+[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/6.png]
 
 ## Summary
 
-微信二维码加好了：
+三处都改完了：
 
-- 二维码图复制到 `public/assets/card/wechat-qr.png`（项目内，浏览器走 `/assets/card/wechat-qr.png` 加载）
-- 左栏布局：14mm × 14mm 二维码靠左，右侧两段标签纵向堆叠：
-  1. 「微信 · WECHAT」
-  2. 「以往案例库」+ `◉ chenjudy.vercel.app`
-- 二维码白底紫色细描边圆角，与紫色 chip 视觉呼应
+1. **二维码路径**：改成相对路径 `assets/card/wechat-qr.png`，本地 `file://` 直接打开也能加载
+2. **右栏**：去掉"解决方案"标签，三个 chip 直接呈现；"AI 文化出海"改为 **"AI 品牌出海"**
+3. **背面**：中间的"好玩儿主义"slogan 移除，右上角 `EST. 好玩儿` 换成 `JUDY · 朱迪`，与左上 `CHEN · 陈` 形成对称的名字签印
 
-Cmd+R 刷新看一下。如果二维码挤了或者排得不平衡，告诉我调大小或换位置。
+Cmd+R 刷新。
