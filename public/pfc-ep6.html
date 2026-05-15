@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>轮班制大脑 · 前额叶探索之旅 第六期</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f6f1;--paper:#fff;--ink:#1a1a1a;--mid:#555;--dim:#999;--faint:#ccc;--rule:#e4e0d8;--old:#b84c4c;--new:#4a8f5c;--mono:'Menlo','Consolas',monospace;--tpn:#4a7fb5;--dmn:#c06040;--sensory:#6a9955;--motor:#b8860b}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:18px/1.8 'Noto Serif SC',Georgia,serif;-webkit-font-smoothing:antialiased}.page{max-width:720px;margin:0 auto;padding:60px 24px 120px}h1{font-size:32px;line-height:1.3;font-weight:700;margin-bottom:6px;letter-spacing:-.5px}h2{font-size:22px;font-weight:600;margin:48px 0 12px;line-height:1.4}.byline{font-size:13px;color:var(--dim);margin-bottom:32px;font-family:var(--mono)}.lead{font-size:19px;line-height:1.9;color:var(--mid);margin-bottom:36px;border-left:3px solid var(--rule);padding-left:16px}p{margin-bottom:18px}strong{font-weight:600}.section-num{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:4px;margin-top:56px;letter-spacing:1px}.fig{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 16px 12px;margin:24px 0}.fig-body{position:relative}.fig-cap{font-size:13px;color:var(--mid);margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);line-height:1.6}.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}.tab{background:none;border:1.5px solid var(--faint);border-radius:20px;padding:5px 14px;font-size:12px;font-family:var(--mono);cursor:pointer;transition:all .2s;color:var(--dim)}.tab.active{border-color:currentColor;font-weight:600}.tab:hover:not(.active){border-color:var(--dim)}.btn{background:none;border:1.5px solid var(--faint);border-radius:6px;padding:4px 12px;font-size:12px;font-family:var(--mono);cursor:pointer;color:var(--ink);transition:all .15s}.btn:hover{border-color:var(--ink)}.btn.dim{opacity:.3;pointer-events:none}.ctrl{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px}input[type=range]{width:100%;accent-color:var(--ink);margin:8px 0}.fn{font-size:12px;color:var(--dim);margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);line-height:1.7}svg{display:block;width:100%;height:auto}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>轮班制大脑</h1>
+<p class="byline">前额叶探索之旅 · 第六期 · 真正的休息是什么 · 2025</p>
+<p class="lead">你工作了一整天，精疲力竭。回到家，瘫在沙发上刷了一小时短视频，但站起来的时候感觉更累了。第二天你改成去公园散步了半小时——奇怪，明明也没"休息"，脑子反而清醒了。这不是错觉。神经科学的答案是：<strong>真正的休息不是让大脑关机，而是让不同的值班组轮换上岗。</strong>你刷短视频时，前额叶还在加班；你散步时，它终于下班了。</p>
+
+<p class="section-num">第一部分</p>
+<h2>大脑从不关机</h2>
+<p>我们直觉上以为"休息"就是大脑停下来，像关掉电脑一样。但脑扫描技术（fMRI，能实时观察大脑哪些区域在活动）揭示了一个令人惊讶的事实：即使你闭上眼睛什么都不做，大脑的能量消耗也只下降了大约 5%。占你体重 2% 的大脑，消耗着全身 20% 的能量——休息时和工作时几乎一样多。</p>
+<p><strong>拖动下面的滑块</strong>，从"高强度工作"到"深度睡眠"，看看大脑在每种状态下的实际能耗：</p>
+<div class="fig"><div class="fig-body"><svg id="energySvg" viewBox="0 0 680 380"></svg><input type="range" id="energySlider" min="0" max="4" step="1" value="0" oninput="renderEnergy()"></div><div class="fig-cap" id="energyCap"></div></div>
+<p>注意到了吗？从高强度工作到闭眼休息，能耗只从 20% 降到了 19%。即使深度睡眠时也有 15%。大脑不是关机了，它只是<strong>换了一组人在值班</strong>。那么，是哪些"人"在换班？</p>
+
+<p class="section-num">第二部分</p>
+<h2>两套值班系统</h2>
+<p>2005 年，华盛顿大学的 Marcus Raichle 发现了一件改写神经科学教科书的事：大脑里有两套大型网络在做跷跷板——一套亮起来时另一套就暗下去，几乎从不同时全力运转。他把它们叫做"任务正网络"和"默认模式网络"。</p>
+<p><strong>点击三个标签</strong>切换视角，看看工作时、放空时、以及两者切换的瞬间，大脑里哪些区域在亮：</p>
+<div class="fig"><div class="fig-body"><div class="tabs" id="netTabs"></div><svg id="netSvg" viewBox="0 0 680 420"></svg></div><div class="fig-cap" id="netCap"></div></div>
+<p>这个跷跷板关系是理解"休息"的钥匙：你不可能让整个大脑停下来，但你可以<strong>让正在值班的那组换下来</strong>。工作时是任务网络（前额叶主导）在值班；放空时是默认网络（内侧 PFC + 后扣带皮层）接管。还记得第二期说的 Beta 波维持工作记忆的代价吗？Beta 不能 24 小时不停——它需要下班。</p>
+
+<p class="section-num">第三部分</p>
+<h2>默认网络不是在摸鱼</h2>
+<p>"放空"听起来像是大脑在偷懒，但默认模式网络其实在做四件极其重要的"后台任务"——它们不紧急，但对你的长期表现至关重要。就像一家公司，白天员工做项目（任务网络），晚上保洁和安保（默认网络）在做维护。</p>
+<p><strong>点击四张卡片</strong>，看看默认网络在"你不用脑"的时候到底在忙什么：</p>
+<div class="fig"><div class="fig-body"><svg id="dmnSvg" viewBox="0 0 680 420"></svg></div><div class="fig-cap" id="dmnCap"></div></div>
+<p>这解释了为什么很多人在洗澡时灵感爆发——那是默认网络终于有机会运转了。它把白天碎片化的信息重新整合，建立远距离的关联。<strong>你觉得是"突然想到的"，其实是默认网络在后台算了很久。</strong>第三期我们讨论过意志力"损耗"的争议——轮班视角给出了第三种解释：不是燃料耗尽，也不只是信念问题，而是同一个网络值班太久，效率断崖式下降。</p>
+
+<p class="section-num">第四部分</p>
+<h2>为什么刷手机不算休息</h2>
+<p>同样是"不工作"的 15 分钟，散步和刷短视频对大脑的效果天差地别。这不是因为散步更"健康"——而是因为两种活动动用了完全不同的脑区组合。</p>
+<p><strong>比较下面左右两幅图</strong>——左边是散步 15 分钟后的大脑状态，右边是刷短视频 15 分钟后。注意前额叶和感知网络的活动差异：</p>
+<div class="fig"><div class="fig-body"><svg id="restSvg" viewBox="0 0 680 440"></svg></div><div class="fig-cap" id="restCap">同样 15 分钟的"休息"，对前额叶的效果截然不同。</div></div>
+<p>关键差异一目了然：散步时前额叶终于下班了——感知网络（视觉、听觉、本体感觉）和运动网络接管了值班，默认网络也有机会做后台整理。而刷短视频时，前额叶仍在做注意力切换、内容评估和决策——<strong>它换了一种加班方式，但还是在加班。</strong>这就是为什么刷完手机你觉得更累：指挥官一直没下班。</p>
+
+<p class="section-num">第五部分</p>
+<h2>一天的轮班时间表</h2>
+<p>知道了轮班原理，接下来的问题很实际：一天之中，什么时候该让哪个网络值班？如何安排"换班"才能保持高强度输出又不至于精神枯竭？</p>
+<p><strong>点击"下一步"按钮</strong>，走过一天中前额叶的负荷曲线和最佳换班策略：</p>
+<div class="fig"><div class="fig-body"><svg id="schSvg" viewBox="0 0 680 400"></svg><div class="ctrl"><button class="btn" id="schPrev" onclick="schNav(-1)">←</button><span id="schStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);">1/5</span><button class="btn" id="schNext" onclick="schNav(1)">下一步 →</button></div></div><div class="fig-cap" id="schCap"></div></div>
+<p>核心原则只有一个：<strong>当你想让前额叶休息时，去做不需要前额叶的事</strong>——散步、做饭、伸展、听音乐、园艺——任何让感知和运动系统接管的活动。而不是切换到另一种需要前额叶的活动（社交媒体、新闻、回消息）。这就是"轮作"的智慧：不是让土地闲着，是种不同的作物。</p>
+
+<h2 style="margin-top:56px;">下一站</h2>
+<p>现在你知道了：大脑从不关机，真正的休息是网络轮换；默认模式网络在"放空"时做着关键的后台工作；刷手机不算休息因为前额叶还在加班。你也有了一份可以立即使用的轮班时间表。</p>
+<p>我们已经走过了前额叶的六个维度——认识、工作记忆、自控、情绪、发育和休息。最后一期，让我们把所有线索汇集起来：如何系统地训练你的指挥官？</p>
+<p><strong>下一期：「训练你的指挥官 —— 从神经科学到日常实践」。</strong></p>
+<p class="fn">参考文献：Raichle, M.E. (2015). The brain's default mode network. <em>Annual Review of Neuroscience</em>, 38, 433–447 · Fox, M.D. et al. (2005). The human brain is intrinsically organized into dynamic, anticorrelated functional networks. <em>PNAS</em>, 102(27), 9673–9678 · Immordino-Yang, M.H. et al. (2012). Rest is not idleness. <em>Perspectives on Psychological Science</em>, 7(4), 352–364 · Kaplan, S. (1995). The restorative benefits of nature. <em>Journal of Environmental Psychology</em>, 15(3), 169–182 · Kross, E. et al. (2021). Social media and well-being. <em>Trends in Cognitive Sciences</em>, 25(1), 55–66</p>
+</div>
+
+<script>
+const INK='#1a1a1a',DIM='#999',FAINT='#ccc',OLD='#b84c4c',NEW='#4a8f5c',TPN='#4a7fb5',DMN='#c06040',SENS='#6a9955',MOT='#b8860b';
+
+// ── SECTION 1: Energy (Slider) ──
+const STATES=[
+{label:'高强度工作',pct:20.0,sub:'写代码/做报告/学新东西',pfc:'⚡⚡⚡',dmn:'○',sens:'○',note:'任务网络全开，前额叶满负荷'},
+{label:'轻松对话',pct:19.5,sub:'和朋友聊天/开轻松会议',pfc:'⚡⚡',dmn:'◐',sens:'⚡',note:'任务网络中等，社交脑区活跃'},
+{label:'闭眼放空',pct:19.0,sub:'安静坐着，什么都不想',pfc:'○',dmn:'⚡⚡⚡',sens:'○',note:'默认网络接管，前额叶下班'},
+{label:'冥想',pct:18.5,sub:'专注呼吸/正念练习',pfc:'⚡',dmn:'◐',sens:'⚡⚡',note:'注意力网络+感知网络轮替'},
+{label:'深度睡眠',pct:15.0,sub:'非 REM 慢波睡眠',pfc:'○',dmn:'○',sens:'○',note:'全脑低功耗，清除代谢废物'}
+];
+function renderEnergy(){const lv=+document.getElementById('energySlider').value;const s=STATES[lv];let o=`<rect x="10" y="5" width="660" height="370" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+o+=`<text x="340" y="28" text-anchor="middle" font-size="11" fill="${DIM}" font-family="var(--mono)">当前状态：${s.label}</text>`;
+// Energy bar (big)
+const barX=60,barY=50,barW=460,barH=40;
+o+=`<rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" rx="8" fill="#eee"/>`;
+const fillW=barW*(s.pct/25);
+o+=`<rect x="${barX}" y="${barY}" width="${fillW}" height="${barH}" rx="8" fill="${TPN}"/>`;
+o+=`<text x="${barX+fillW+10}" y="${barY+26}" font-size="14" fill="${TPN}" font-weight="700">${s.pct}%</text>`;
+o+=`<text x="${barX}" y="${barY-8}" font-size="8" fill="${DIM}" font-family="var(--mono)">大脑能耗占全身比例</text>`;
+o+=`<text x="${barX+barW}" y="${barY-8}" text-anchor="end" font-size="8" fill="${DIM}" font-family="var(--mono)">体重占比仅 2%</text>`;
+// Reference line at 20%
+o+=`<line x1="${barX+barW*(20/25)}" y1="${barY-3}" x2="${barX+barW*(20/25)}" y2="${barY+barH+3}" stroke="${OLD}" stroke-width="1" stroke-dasharray="3 2"/>`;
+o+=`<text x="${barX+barW*(20/25)+5}" y="${barY+barH+15}" font-size="7" fill="${OLD}" font-family="var(--mono)">工作基线 20%</text>`;
+
+// Network activity panel
+const px=60,py=120;
+o+=`<text x="${px}" y="${py}" font-size="9" fill="${INK}" font-weight="600" font-family="var(--mono)">各网络活跃度</text>`;
+const nets=[
+{label:'任务正网络 (TPN)',icon:s.pfc,color:TPN,desc:'前额叶 · dlPFC · 顶叶'},
+{label:'默认模式网络 (DMN)',icon:s.dmn,color:DMN,desc:'内侧PFC · 后扣带 · 角回'},
+{label:'感知/运动网络',icon:s.sens,color:SENS,desc:'视觉·听觉·运动皮层'}
+];
+nets.forEach((n,i)=>{
+const ny=py+18+i*60;
+o+=`<rect x="${px}" y="${ny}" width="560" height="46" rx="6" fill="${n.color}06" stroke="${n.color}20"/>`;
+o+=`<text x="${px+15}" y="${ny+18}" font-size="10" fill="${n.color}" font-weight="600" font-family="var(--mono)">${n.label}</text>`;
+o+=`<text x="${px+15}" y="${ny+35}" font-size="8" fill="${DIM}" font-family="var(--mono)">${n.desc}</text>`;
+o+=`<text x="${px+520}" y="${ny+28}" text-anchor="end" font-size="18" fill="${n.color}">${n.icon}</text>`;
+});
+
+// Bottom insight
+o+=`<rect x="60" y="315" width="560" height="40" rx="6" fill="${lv>=2?DMN:TPN}08" stroke="${lv>=2?DMN:TPN}25"/>`;
+o+=`<text x="340" y="340" text-anchor="middle" font-size="10" fill="${lv>=2?DMN:TPN}" font-weight="600">${s.note}</text>`;
+
+document.getElementById('energySvg').innerHTML=o;
+document.getElementById('energyCap').innerHTML=`<strong>${s.label}</strong>（${s.sub}）· 大脑能耗 ${s.pct}% · ${lv===0?'和"休息"时只差 1%——大脑从不关机。':lv===2?'前额叶下班了，但默认网络正在全力运转。':lv===4?'全脑最低功耗模式，胶质细胞在清除代谢废物。':s.note}`;}
+
+// ── SECTION 2: TPN vs DMN (Lens Tabs) ──
+const NL=[{l:'工作中 (TPN)',c:TPN,cap:'<strong style="color:#4a7fb5">任务正网络</strong>亮起：前额叶 dlPFC、顶叶 IPS、前扣带 ACC 全部激活。你在做需要专注和控制的事。默认网络几乎完全沉默。'},{l:'放空时 (DMN)',c:DMN,cap:'<strong style="color:#c06040">默认模式网络</strong>接管：内侧前额叶 mPFC、后扣带皮层 PCC、角回全部亮起。TPN 安静了。你在走神、回忆、想未来。'},{l:'跷跷板',c:'#7b68ae',cap:'<strong style="color:#7b68ae">反相关关系</strong>：TPN 和 DMN 像跷跷板——一个上来另一个就下去。它们几乎从不同时全力运转。能灵活切换的人，认知表现更好。'}];
+let curN=0;
+function buildNetTabs(){const el=document.getElementById('netTabs');NL.forEach((n,i)=>{const b=document.createElement('button');b.className='tab'+(i===0?' active':'');b.textContent=n.l;b.style.color=i===0?n.c:'';b.onclick=()=>{curN=i;renderNet();document.querySelectorAll('#netTabs .tab').forEach((t,j)=>{t.classList.toggle('active',j===i);t.style.color=j===i?NL[j].c:'';});};el.appendChild(b);});}
+function renderNet(){const lens=curN;let o=`<rect x="10" y="5" width="660" height="410" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+// Brain outline
+o+=`<ellipse cx="240" cy="200" rx="170" ry="120" fill="#ece8e0" stroke="#ddd" opacity=".35"/>`;
+// TPN regions
+const tpnOp=lens===1?.12:(lens===0?1:.6);
+o+=`<rect x="70" y="120" width="70" height="80" rx="14" fill="${TPN}${lens===0?'30':'10'}" stroke="${TPN}" stroke-width="${lens===0?2.5:1}" opacity="${tpnOp}"/>`;o+=`<text x="105" y="155" text-anchor="middle" font-size="8" fill="${TPN}" font-family="var(--mono)" opacity="${tpnOp}">dlPFC</text>`;o+=`<text x="105" y="170" text-anchor="middle" font-size="7" fill="${TPN}" font-family="var(--mono)" opacity="${tpnOp}">${lens===0?'⚡ 激活':'○ 静默'}</text>`;
+o+=`<rect x="220" y="95" width="65" height="50" rx="10" fill="${TPN}${lens===0?'25':'08'}" stroke="${TPN}" stroke-width="${lens===0?2:1}" opacity="${tpnOp}"/>`;o+=`<text x="252" y="123" text-anchor="middle" font-size="7" fill="${TPN}" font-family="var(--mono)" opacity="${tpnOp}">顶叶 IPS</text>`;
+o+=`<rect x="150" y="108" width="55" height="40" rx="8" fill="${TPN}${lens===0?'20':'08'}" stroke="${TPN}" stroke-width="${lens===0?1.5:1}" opacity="${tpnOp}"/>`;o+=`<text x="177" y="132" text-anchor="middle" font-size="7" fill="${TPN}" font-family="var(--mono)" opacity="${tpnOp}">ACC</text>`;
+
+// DMN regions
+const dmnOp=lens===0?.12:(lens===1?1:.6);
+o+=`<rect x="115" y="155" width="55" height="55" rx="12" fill="${DMN}${lens===1?'30':'10'}" stroke="${DMN}" stroke-width="${lens===1?2.5:1}" opacity="${dmnOp}"/>`;o+=`<text x="142" y="180" text-anchor="middle" font-size="7" fill="${DMN}" font-family="var(--mono)" opacity="${dmnOp}">mPFC</text>`;o+=`<text x="142" y="193" text-anchor="middle" font-size="6" fill="${DMN}" font-family="var(--mono)" opacity="${dmnOp}">${lens===1?'⚡ 激活':'○ 静默'}</text>`;
+o+=`<rect x="280" y="155" width="60" height="50" rx="12" fill="${DMN}${lens===1?'30':'10'}" stroke="${DMN}" stroke-width="${lens===1?2.5:1}" opacity="${dmnOp}"/>`;o+=`<text x="310" y="178" text-anchor="middle" font-size="7" fill="${DMN}" font-family="var(--mono)" opacity="${dmnOp}">PCC</text>`;o+=`<text x="310" y="191" text-anchor="middle" font-size="6" fill="${DMN}" font-family="var(--mono)" opacity="${dmnOp}">后扣带</text>`;
+o+=`<rect x="255" y="220" width="55" height="40" rx="10" fill="${DMN}${lens===1?'25':'08'}" stroke="${DMN}" stroke-width="${lens===1?1.5:1}" opacity="${dmnOp}"/>`;o+=`<text x="282" y="244" text-anchor="middle" font-size="7" fill="${DMN}" font-family="var(--mono)" opacity="${dmnOp}">角回</text>`;
+
+// Seesaw visualization (right side)
+const sx=440,sy=100;
+o+=`<text x="${sx+100}" y="${sy}" text-anchor="middle" font-size="10" fill="${DIM}" font-family="var(--mono)">跷跷板关系</text>`;
+// Seesaw base
+o+=`<polygon points="${sx+100},${sy+160} ${sx+90},${sy+175} ${sx+110},${sy+175}" fill="${DIM}"/>`;
+// Seesaw plank - tilts based on which network is active
+const tilt=lens===0?-12:(lens===1?12:0);
+o+=`<line x1="${sx+30}" y1="${sy+150+tilt}" x2="${sx+170}" y2="${sy+150-tilt}" stroke="${DIM}" stroke-width="3" stroke-linecap="round"/>`;// TPN weight (left)
+o+=`<circle cx="${sx+40}" cy="${sy+130+tilt}" r="22" fill="${TPN}${lens===0?'40':'15'}" stroke="${TPN}" stroke-width="${lens===0?2:1}"/>`;o+=`<text x="${sx+40}" y="${sy+133+tilt}" text-anchor="middle" font-size="8" fill="${TPN}" font-weight="600">TPN</text>`;
+// DMN weight (right)
+o+=`<circle cx="${sx+160}" cy="${sy+130-tilt}" r="22" fill="${DMN}${lens===1?'40':'15'}" stroke="${DMN}" stroke-width="${lens===1?2:1}"/>`;o+=`<text x="${sx+160}" y="${sy+133-tilt}" text-anchor="middle" font-size="8" fill="${DMN}" font-weight="600">DMN</text>`;
+
+// Activity bars
+const by=sy+200;
+o+=`<text x="${sx}" y="${by}" font-size="8" fill="${TPN}" font-family="var(--mono)">TPN 活跃度</text>`;o+=`<rect x="${sx}" y="${by+6}" width="200" height="8" rx="4" fill="#eee"/>`;o+=`<rect x="${sx}" y="${by+6}" width="${200*(lens===0?0.9:lens===1?0.1:0.5)}" height="8" rx="4" fill="${TPN}"/>`;
+o+=`<text x="${sx}" y="${by+32}" font-size="8" fill="${DMN}" font-family="var(--mono)">DMN 活跃度</text>`;o+=`<rect x="${sx}" y="${by+38}" width="200" height="8" rx="4" fill="#eee"/>`;o+=`<rect x="${sx}" y="${by+38}" width="${200*(lens===1?0.9:lens===0?0.1:0.5)}" height="8" rx="4" fill="${DMN}"/>`;
+
+// Fox 2005 citation
+if(lens===2){o+=`<rect x="${sx}" y="${by+60}" width="210" height="40" rx="4" fill="#7b68ae08" stroke="#7b68ae25"/>`;o+=`<text x="${sx+105}" y="${by+78}" text-anchor="middle" font-size="8" fill="#7b68ae" font-family="var(--mono)">Fox et al. (2005)</text>`;o+=`<text x="${sx+105}" y="${by+93}" text-anchor="middle" font-size="7" fill="#7b68ae" font-family="var(--mono)">反相关系数 r = -0.75</text>`;}
+
+document.getElementById('netSvg').innerHTML=o;document.getElementById('netCap').innerHTML=NL[curN].cap;}
+
+// ── SECTION 3: DMN Tasks (Expandable Cards) ──
+let dmnSel=-1;
+const DMNT=[
+{label:'自我反思',icon:'🪞',color:'#c06040',brief:'你是谁？你想成为谁？',detail:'mPFC 在你"走神"时最常做的事就是回到"我"——回顾自己的行为、评价自己的状态、思考自己的身份。这不是自恋，是维护"自我模型"的必要过程。如果这个过程被持续打断（比如一直盯着任务），你会逐渐感到"不知道自己在干什么"的迷失感。',mech:'mPFC 主导 → 自传体记忆提取 → 自我模型更新',ex:'研究发现长期冥想者的 mPFC 和自传体记忆回路连接更强，他们报告更清晰的"自我感"和人生方向感。'},
+{label:'未来模拟',icon:'🔮',color:'#7b68ae',brief:'如果……会怎样？',detail:'默认网络不只回顾过去，也在"预演"未来。当你走神时，大脑在跑"如果-那么"的模拟：如果我接了那个项目会怎样？如果明天下雨怎么安排？这种前瞻性思维对规划和准备至关重要。Schacter 称之为"建设性情景模拟"。',mech:'海马体提供素材 → mPFC + PCC 重组 → 未来场景模拟',ex:'DMN 活跃度高的人在"想象未来场景的细节丰富度"测试中得分显著更高。'},
+{label:'社会认知',icon:'🤝',color:'#4a7fb5',brief:'TA 在想什么？',detail:'理解他人的想法和感受（心智理论）几乎完全依赖默认模式网络。当你试图揣摩同事的意图、理解朋友的情绪时，DMN 在全力运转。长期压制 DMN（不断做任务）会降低共情能力和社交敏感度。',mech:'TPJ（颞顶联合区）+ mPFC → 心理模拟他人视角',ex:'自闭症谱系个体的 DMN 内部连接性显著低于对照组，且与社交困难程度相关。'},
+{label:'记忆整合',icon:'🧩',color:'#6a9955',brief:'把碎片拼成图案',detail:'白天学到的零散信息需要被"编织"进已有的知识网络——这就是记忆巩固。DMN 的后扣带皮层（PCC）和海马体在你放空时做着这项工作。这就是为什么"学完休息一下"比"学完继续学"记得更牢。',mech:'海马体短期存储 → PCC 介导 → 整合进新皮层长期记忆',ex:'学习后进行 10 分钟"安静休息"的被试，一周后的记忆测试成绩比立即开始新任务的高 20%。'}
+];
+function renderDmn(){const sel=dmnSel;let o='';
+if(sel<0){const cw=155,gap=10,sx=12;DMNT.forEach((d,i)=>{const cx=sx+i*(cw+gap);
+o+=`<g style="cursor:pointer" onclick="dmnSel=${i};renderDmn()">`;o+=`<rect x="${cx}" y="8" width="${cw}" height="400" rx="8" fill="#faf9f6" stroke="${d.color}40" stroke-width="1.5"/>`;
+o+=`<text x="${cx+cw/2}" y="52" text-anchor="middle" font-size="28">${d.icon}</text>`;o+=`<text x="${cx+cw/2}" y="78" text-anchor="middle" font-size="13" fill="${d.color}" font-weight="700">${d.label}</text>`;o+=`<line x1="${cx+15}" y1="90" x2="${cx+cw-15}" y2="90" stroke="${d.color}30"/>`;o+=`<text x="${cx+cw/2}" y="112" text-anchor="middle" font-size="10" fill="${d.color}bb" font-family="var(--mono)">${d.brief}</text>`;
+d.mech.split(' → ').forEach((m,mi)=>{o+=`<text x="${cx+cw/2}" y="${150+mi*30}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">${m}</text>`;if(mi<2)o+=`<text x="${cx+cw/2}" y="${163+mi*30}" text-anchor="middle" font-size="8" fill="${d.color}60">↓</text>`;});
+o+=`<text x="${cx+cw/2}" y="390" text-anchor="middle" font-size="9" fill="${d.color}" opacity=".5" font-family="var(--mono)">点击展开 →</text>`;o+=`</g>`;});}
+else{const d=DMNT[sel];o+=`<rect x="10" y="8" width="660" height="330" rx="8" fill="#faf9f6" stroke="${d.color}50"/>`;o+=`<g style="cursor:pointer" onclick="dmnSel=-1;renderDmn()"><text x="30" y="30" font-size="11" fill="${DIM}" font-family="var(--mono)">← 返回总览</text></g>`;o+=`<text x="340" y="35" text-anchor="middle" font-size="22">${d.icon}</text>`;o+=`<text x="340" y="60" text-anchor="middle" font-size="16" fill="${d.color}" font-weight="700">${d.label} · ${d.brief}</text>`;o+=`<line x1="60" y1="70" x2="620" y2="70" stroke="${d.color}25"/>`;
+const dl=[];let t='';d.detail.split('').forEach(c=>{t+=c;if(t.length>=36||('。，'.includes(c)&&t.length>18)){dl.push(t);t='';}});if(t)dl.push(t);dl.forEach((l,i)=>{o+=`<text x="30" y="${90+i*20}" font-size="11" fill="var(--ink)">${l}</text>`;});
+const my=90+dl.length*20+10;o+=`<text x="30" y="${my}" font-size="9" fill="${d.color}" font-weight="600" font-family="var(--mono)">神经机制</text>`;let mx=30;d.mech.split(' → ').forEach((mp,mi)=>{const tw=mp.length*7+16;o+=`<rect x="${mx}" y="${my+6}" width="${tw}" height="22" rx="4" fill="${d.color}10" stroke="${d.color}30"/>`;o+=`<text x="${mx+tw/2}" y="${my+21}" text-anchor="middle" font-size="8" fill="${d.color}" font-family="var(--mono)">${mp}</text>`;mx+=tw+4;if(mi<2){o+=`<text x="${mx-2}" y="${my+21}" font-size="9" fill="${d.color}80">→</text>`;mx+=12;}});
+o+=`<rect x="30" y="270" width="620" height="50" rx="4" fill="${d.color}08" stroke="${d.color}20"/>`;o+=`<text x="40" y="288" font-size="9" fill="${d.color}" font-weight="600" font-family="var(--mono)">研究证据</text>`;const el=[];let et='';d.ex.split('').forEach(c=>{et+=c;if(et.length>=55||('。，'.includes(c)&&et.length>25)){el.push(et);et='';}});if(et)el.push(et);el.forEach((l,i)=>{o+=`<text x="40" y="${303+i*16}" font-size="10" fill="${d.color}bb">${l}</text>`;});
+let bi=0;DMNT.forEach((od,i)=>{if(i===sel)return;const bx=10+bi*220+15;o+=`<g style="cursor:pointer" opacity=".25" onclick="dmnSel=${i};renderDmn()"><rect x="${bx}" y="340" width="150" height="60" rx="6" fill="#faf9f6" stroke="${od.color}40"/>`;o+=`<text x="${bx+75}" y="365" text-anchor="middle" font-size="14">${od.icon}</text>`;o+=`<text x="${bx+75}" y="385" text-anchor="middle" font-size="10" fill="${od.color}" font-family="var(--mono)">${od.label}</text></g>`;bi++;});}
+document.getElementById('dmnSvg').innerHTML=o;document.getElementById('dmnCap').innerHTML=sel>=0?`<strong style="color:${DMNT[sel].color}">${DMNT[sel].label}</strong>——${DMNT[sel].brief}`:'默认网络的四项"后台任务"。点击卡片查看详情。';}
+
+// ── SECTION 4: Walk vs Scroll (Before/After) ──
+function renderRest(){let o='';const lw=318,rw=318,lx=12,rx=350,y0=8,h=420;
+// Left: Walk
+o+=`<rect x="${lx}" y="${y0}" width="${lw}" height="${h}" rx="6" fill="#f4faf6" stroke="${NEW}30"/>`;o+=`<text x="${lx+lw/2}" y="${y0+24}" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="600">🌳 散步 15 分钟</text>`;o+=`<text x="${lx+lw/2}" y="${y0+42}" text-anchor="middle" font-size="8" fill="${NEW}90" font-family="var(--mono)">公园 · 自然环境 · 不带手机</text>`;
+// Network states
+const netL=[{label:'前额叶 (TPN)',state:'🛌 下班休息',pct:15,color:TPN,bar:NEW},{label:'默认网络 (DMN)',state:'⚡ 自由运转',pct:85,color:DMN,bar:DMN},{label:'感知网络',state:'⚡ 全开',pct:90,color:SENS,bar:SENS},{label:'运动网络',state:'⚡ 全开',pct:88,color:MOT,bar:MOT}];
+netL.forEach((n,i)=>{const ny=y0+60+i*55;
+o+=`<text x="${lx+20}" y="${ny+12}" font-size="9" fill="${n.color}" font-weight="600" font-family="var(--mono)">${n.label}</text>`;
+o+=`<text x="${lx+lw-20}" y="${ny+12}" text-anchor="end" font-size="9" fill="${n.color}" font-family="var(--mono)">${n.state}</text>`;
+o+=`<rect x="${lx+20}" y="${ny+18}" width="${lw-40}" height="8" rx="4" fill="#eee"/>`;o+=`<rect x="${lx+20}" y="${ny+18}" width="${(lw-40)*n.pct/100}" height="8" rx="4" fill="${n.bar}"/>`;
+o+=`<text x="${lx+lw-20}" y="${ny+36}" text-anchor="end" font-size="7" fill="${DIM}" font-family="var(--mono)">${n.pct}%</text>`;});
+// Benefits
+o+=`<rect x="${lx+15}" y="${y0+295}" width="${lw-30}" height="105" rx="6" fill="${NEW}08" stroke="${NEW}25"/>`;o+=`<text x="${lx+lw/2}" y="${y0+315}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600" font-family="var(--mono)">效果</text>`;
+['✓ 前额叶得到真正休息','✓ 默认网络完成后台整理','✓ 自然环境降低皮质醇','✓ 注意力恢复（Kaplan 1995）'].forEach((b,i)=>{o+=`<text x="${lx+30}" y="${y0+335+i*18}" font-size="9" fill="${NEW}" font-family="var(--mono)">${b}</text>`;});
+
+// Right: Scroll
+o+=`<rect x="${rx}" y="${y0}" width="${rw}" height="${h}" rx="6" fill="#fdf6f4" stroke="${OLD}30"/>`;o+=`<text x="${rx+rw/2}" y="${y0+24}" text-anchor="middle" font-size="11" fill="${OLD}" font-weight="600">📱 刷短视频 15 分钟</text>`;o+=`<text x="${rx+rw/2}" y="${y0+42}" text-anchor="middle" font-size="8" fill="${OLD}90" font-family="var(--mono)">沙发 · 算法推荐 · 无限滚动</text>`;
+const netR=[{label:'前额叶 (TPN)',state:'🔥 还在加班',pct:70,color:TPN,bar:OLD},{label:'默认网络 (DMN)',state:'🚫 被压制',pct:20,color:DMN,bar:OLD},{label:'感知网络',state:'◐ 仅视听',pct:45,color:SENS,bar:DIM},{label:'运动网络',state:'○ 几乎关闭',pct:8,color:MOT,bar:DIM}];
+netR.forEach((n,i)=>{const ny=y0+60+i*55;
+o+=`<text x="${rx+20}" y="${ny+12}" font-size="9" fill="${n.color}" font-weight="600" font-family="var(--mono)">${n.label}</text>`;
+o+=`<text x="${rx+rw-20}" y="${ny+12}" text-anchor="end" font-size="9" fill="${n.label.includes('前额')?OLD:n.color}" font-family="var(--mono)">${n.state}</text>`;
+o+=`<rect x="${rx+20}" y="${ny+18}" width="${rw-40}" height="8" rx="4" fill="#eee"/>`;o+=`<rect x="${rx+20}" y="${ny+18}" width="${(rw-40)*n.pct/100}" height="8" rx="4" fill="${n.bar}"/>`;
+o+=`<text x="${rx+rw-20}" y="${ny+36}" text-anchor="end" font-size="7" fill="${DIM}" font-family="var(--mono)">${n.pct}%</text>`;});
+o+=`<rect x="${rx+15}" y="${y0+295}" width="${rw-30}" height="105" rx="6" fill="${OLD}08" stroke="${OLD}25"/>`;o+=`<text x="${rx+rw/2}" y="${y0+315}" text-anchor="middle" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">效果</text>`;
+['✕ 前额叶做注意力切换 · 还在加班','✕ 默认网络无法运转 · 后台任务积压','✕ 多巴胺微刺激 → 更难集中注意力','✕ 15 分钟后反而更疲惫'].forEach((b,i)=>{o+=`<text x="${rx+30}" y="${y0+335+i*18}" font-size="9" fill="${OLD}" font-family="var(--mono)">${b}</text>`;});
+
+o+=`<text x="340" y="${y0+h/2-30}" text-anchor="middle" font-size="16" fill="${DIM}">vs</text>`;
+document.getElementById('restSvg').innerHTML=o;}
+
+// ── SECTION 5: Schedule (Step Navigator) ──
+const SCH=[
+{t:'早晨 6-9',cap:'前额叶经过一夜睡眠完全充能。这是认知峰值期——最适合做需要深度思考、创造力和困难决策的工作。不要浪费在回邮件上。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="80" text-anchor="middle" font-size="12" fill="${TPN}" font-weight="700">⚡ 黄金时段 · 6:00-9:00</text>`;
+o+=`<rect x="60" y="100" width="250" height="40" rx="6" fill="${TPN}15" stroke="${TPN}40"/>`;o+=`<text x="185" y="125" text-anchor="middle" font-size="10" fill="${TPN}" font-weight="600">前额叶：满电 🔋 100%</text>`;
+o+=`<text x="60" y="170" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ 适合做的事</text>`;
+['写作 · 编程 · 战略思考','学习新概念 · 困难决策','创造性工作 · 复杂沟通'].forEach((s,i)=>{o+=`<text x="80" y="${195+i*25}" font-size="10" fill="${INK}" font-family="var(--mono)">${s}</text>`;});
+o+=`<text x="380" y="170" font-size="10" fill="${OLD}" font-family="var(--mono)">✕ 不要浪费在</text>`;
+['回复常规邮件','刷新闻/社交媒体','行政杂务'].forEach((s,i)=>{o+=`<text x="400" y="${195+i*25}" font-size="10" fill="${DIM}" font-family="var(--mono)">${s}</text>`;});
+o+=`<rect x="60" y="290" width="540" height="30" rx="4" fill="${TPN}08" stroke="${TPN}20"/>`;o+=`<text x="340" y="310" text-anchor="middle" font-size="9" fill="${TPN}" font-family="var(--mono)">原则：把最难的任务放在前额叶最清醒的时候</text>`;
+return o;}},
+{t:'上午 9-12',cap:'前额叶仍然强劲但开始消耗。每 90 分钟插入一次 10 分钟的"感知休息"（离开屏幕、走动、看远处），让任务网络短暂换班。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="80" text-anchor="middle" font-size="12" fill="${TPN}" font-weight="700">📊 高效期 · 9:00-12:00</text>`;
+// 90-min cycle diagram
+o+=`<text x="340" y="110" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">90 分钟工作周期 × 2</text>`;
+const cx=[120,260,400,540];const labels=['深度工作\n90 分钟','感知休息\n10 分钟','深度工作\n90 分钟','感知休息\n10 分钟'];const colors=[TPN,SENS,TPN,SENS];
+cx.forEach((x,i)=>{o+=`<rect x="${x-45}" y="125" width="90" height="70" rx="8" fill="${colors[i]}12" stroke="${colors[i]}40"/>`;const ls=labels[i].split('\n');o+=`<text x="${x}" y="155" text-anchor="middle" font-size="9" fill="${colors[i]}" font-weight="600" font-family="var(--mono)">${ls[0]}</text>`;o+=`<text x="${x}" y="172" text-anchor="middle" font-size="8" fill="${colors[i]}aa" font-family="var(--mono)">${ls[1]}</text>`;if(i<3)o+=`<text x="${x+55}" y="162" text-anchor="middle" font-size="12" fill="${DIM}">→</text>`;});
+o+=`<rect x="60" y="215" width="250" height="30" rx="4" fill="${TPN}08" stroke="${TPN}20"/>`;o+=`<text x="185" y="235" text-anchor="middle" font-size="9" fill="${TPN}" font-family="var(--mono)">前额叶：80% → 60%</text>`;
+o+=`<rect x="60" y="260" width="540" height="55" rx="6" fill="${SENS}08" stroke="${SENS}25"/>`;o+=`<text x="80" y="280" font-size="9" fill="${SENS}" font-weight="600" font-family="var(--mono)">感知休息 = 不用前额叶的活动</text>`;o+=`<text x="80" y="300" font-size="9" fill="${DIM}" font-family="var(--mono)">走到窗边看远处 · 伸展 · 倒杯水 · 和同事闲聊（不聊工作）</text>`;
+return o;}},
+{t:'午间 12-14',cap:'前额叶进入低谷期（午后低落）。这是最佳的"完整换班"窗口——午餐+散步+轻度社交，让默认网络和感知网络充分运转。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="80" text-anchor="middle" font-size="12" fill="${DMN}" font-weight="700">🔄 完整换班 · 12:00-14:00</text>`;
+o+=`<rect x="60" y="100" width="250" height="40" rx="6" fill="${OLD}10" stroke="${OLD}30"/>`;o+=`<text x="185" y="125" text-anchor="middle" font-size="10" fill="${OLD}">前额叶：低谷 🪫 40%</text>`;
+o+=`<text x="340" y="165" text-anchor="middle" font-size="10" fill="${DMN}" font-weight="600">轮班策略：让所有其他网络上岗</text>`;
+const acts=[{icon:'🍜',act:'午餐（专注味觉）',net:'感知网络',c:SENS},{icon:'🚶',act:'散步 20 分钟',net:'运动+感知+DMN',c:NEW},{icon:'💬',act:'轻松社交',net:'DMN 社会认知',c:DMN},{icon:'😴',act:'Power nap 20 分钟',net:'全脑低功耗模式',c:'#7b68ae'}];
+acts.forEach((a,i)=>{const ay=185+i*40;o+=`<text x="80" y="${ay}" font-size="16">${a.icon}</text>`;o+=`<text x="110" y="${ay}" font-size="10" fill="${INK}">${a.act}</text>`;o+=`<rect x="380" y="${ay-13}" width="180" height="20" rx="4" fill="${a.c}10" stroke="${a.c}30"/>`;o+=`<text x="470" y="${ay+1}" text-anchor="middle" font-size="8" fill="${a.c}" font-family="var(--mono)">${a.net}</text>`;});
+return o;}},
+{t:'下午 14-18',cap:'午休后前额叶恢复到 60-70%，但不如早晨。适合做协作性工作、会议、邮件等中等认知负荷的任务。仍然每 90 分钟换班一次。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="80" text-anchor="middle" font-size="12" fill="${TPN}" font-weight="700">📋 协作期 · 14:00-18:00</text>`;
+o+=`<rect x="60" y="100" width="250" height="40" rx="6" fill="${TPN}15" stroke="${TPN}40"/>`;o+=`<text x="185" y="125" text-anchor="middle" font-size="10" fill="${TPN}">前额叶：恢复到 60-70%</text>`;
+o+=`<text x="60" y="170" font-size="10" fill="${NEW}" font-family="var(--mono)">✓ 适合</text>`;
+['开会 · 协作 · 讨论','回复邮件和消息','代码审查 · 文档整理','轻度创意工作'].forEach((s,i)=>{o+=`<text x="80" y="${195+i*25}" font-size="10" fill="${INK}" font-family="var(--mono)">${s}</text>`;});
+o+=`<text x="380" y="170" font-size="10" fill="${OLD}" font-family="var(--mono)">✕ 避免</text>`;
+['需要深度专注的新任务','重大决策（推到明早）','学习全新的复杂概念'].forEach((s,i)=>{o+=`<text x="400" y="${195+i*25}" font-size="10" fill="${DIM}" font-family="var(--mono)">${s}</text>`;});
+o+=`<rect x="60" y="295" width="540" height="30" rx="4" fill="${NEW}08" stroke="${NEW}20"/>`;o+=`<text x="340" y="315" text-anchor="middle" font-size="9" fill="${NEW}" font-family="var(--mono)">关键：重大决策和深度学习留到明天早晨的黄金时段</text>`;
+return o;}},
+{t:'晚间 18+',cap:'下班后让前额叶彻底交接。做饭、运动、和家人在一起、听音乐——任何让感知和运动网络主导的活动。避免继续"用脑"的伪休息。',draw(o){
+o+=`<rect x="30" y="55" width="620" height="280" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;o+=`<text x="340" y="80" text-anchor="middle" font-size="12" fill="${SENS}" font-weight="700">🌙 彻底换班 · 18:00+</text>`;
+o+=`<rect x="60" y="100" width="250" height="40" rx="6" fill="${SENS}15" stroke="${SENS}40"/>`;o+=`<text x="185" y="125" text-anchor="middle" font-size="10" fill="${SENS}">前额叶：交接下班 → 明早充能</text>`;
+o+=`<text x="340" y="165" text-anchor="middle" font-size="10" fill="${INK}" font-weight="600">轮作原则：种不同的作物，而非让土地闲着</text>`;
+const good=[{icon:'🏃',act:'运动（跑步/瑜伽/游泳）',c:SENS},{icon:'🍳',act:'做饭（手+鼻+眼协作）',c:MOT},{icon:'🎵',act:'听音乐/演奏乐器',c:SENS},{icon:'🌿',act:'园艺/手工/散步',c:NEW}];
+const bad=[{icon:'📱',act:'刷社交媒体',c:OLD},{icon:'💻',act:'继续"处理事情"',c:OLD},{icon:'📺',act:'一直盯着屏幕',c:OLD}];
+o+=`<text x="60" y="195" font-size="9" fill="${NEW}" font-weight="600" font-family="var(--mono)">✓ 真正的休息</text>`;
+good.forEach((g,i)=>{o+=`<text x="80" y="${218+i*24}" font-size="10" fill="${INK}"><tspan fill="${g.c}">${g.icon}</tspan> ${g.act}</text>`;});
+o+=`<text x="380" y="195" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">✕ 伪休息</text>`;
+bad.forEach((b,i)=>{o+=`<text x="400" y="${218+i*24}" font-size="10" fill="${DIM}"><tspan fill="${b.c}">${b.icon}</tspan> ${b.act}</text>`;});
+return o;}}
+];
+let curSch=0;
+function renderSch(){const s=SCH[curSch];let o='';SCH.forEach((_,i)=>{const cx=140+(i-2)*100;o+=`<circle cx="${cx}" cy="18" r="${i===curSch?6:3.5}" fill="${i<=curSch?INK:'#ddd'}"/>`;o+=`<text x="${cx}" y="38" text-anchor="middle" font-size="7" fill="${i===curSch?INK:DIM}" font-family="var(--mono)">${_.t}</text>`;});o=s.draw(o);document.getElementById('schSvg').innerHTML=o;document.getElementById('schStep').textContent=`${curSch+1}/${SCH.length}`;document.getElementById('schCap').innerHTML=s.cap;document.getElementById('schPrev').classList.toggle('dim',curSch<=0);document.getElementById('schNext').classList.toggle('dim',curSch>=SCH.length-1);}
+function schNav(d){const n=curSch+d;if(n>=0&&n<SCH.length){curSch=n;renderSch();}}
+
+// ── Init ──
+renderEnergy();buildNetTabs();renderNet();renderDmn();renderRest();renderSch();
+</script>
+</body>
+</html>

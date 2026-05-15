@@ -1,0 +1,150 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Main from "@/layouts/Main.astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPostsForLang } from "@/utils/langUtils";
+import { SITE } from "@/config";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage });
+}) satisfies GetStaticPaths;
+
+// Get ALL posts for category + language filtering
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedAll = getSortedPosts(allPosts);
+
+const enPosts = getPostsForLang(sortedAll, "en");
+const zhPosts = getPostsForLang(sortedAll, "zh");
+
+const enNotes = enPosts.filter(p => (p.data.category || "notes") === "notes");
+const enCollections = enPosts.filter(p => p.data.category === "collections");
+const zhNotes = zhPosts.filter(p => (p.data.category || "notes") === "notes");
+const zhCollections = zhPosts.filter(p => p.data.category === "collections");
+---
+
+<Layout title={`Posts | ${SITE.title}`}>
+  <Header />
+  <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
+    <!-- English content -->
+    <div data-lang-list="en">
+      <div class="mb-6 flex gap-4 border-b border-border category-tabs">
+        <button
+          class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
+          data-tab="notes"
+        >
+          {`Notes (${enNotes.length})`}
+        </button>
+        <button
+          class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
+          data-tab="collections"
+        >
+          {`Collections (${enCollections.length})`}
+        </button>
+      </div>
+
+      <ul data-category="notes">
+        {enNotes.length > 0 ? (
+          enNotes.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">No notes yet.</p>
+        )}
+      </ul>
+
+      <ul data-category="collections" class="hidden">
+        {enCollections.length > 0 ? (
+          enCollections.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">No collections yet.</p>
+        )}
+      </ul>
+    </div>
+
+    <!-- Chinese content -->
+    <div data-lang-list="zh" class="hidden">
+      <div class="mb-6 flex gap-4 border-b border-border category-tabs">
+        <button
+          class="category-tab active-tab pb-2 font-medium text-accent border-b-2 border-accent"
+          data-tab="notes"
+        >
+          {`手记 (${zhNotes.length})`}
+        </button>
+        <button
+          class="category-tab pb-2 font-medium text-foreground/50 hover:text-foreground/80"
+          data-tab="collections"
+        >
+          {`收藏 (${zhCollections.length})`}
+        </button>
+      </div>
+
+      <ul data-category="notes">
+        {zhNotes.length > 0 ? (
+          zhNotes.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">还没有手记。</p>
+        )}
+      </ul>
+
+      <ul data-category="collections" class="hidden">
+        {zhCollections.length > 0 ? (
+          zhCollections.map(data => <Card {...data} />)
+        ) : (
+          <p class="text-foreground/50 italic">还没有收藏。</p>
+        )}
+      </ul>
+    </div>
+  </Main>
+
+  <Footer />
+</Layout>
+
+<script>
+  function initPostsPage() {
+    const lang = localStorage.getItem("lang") || "en";
+    applyLangFilter(lang);
+    initAllTabs();
+  }
+
+  function applyLangFilter(lang: string) {
+    document.querySelectorAll<HTMLElement>("[data-lang-list]").forEach(el => {
+      el.classList.toggle("hidden", el.dataset.langList !== lang);
+    });
+  }
+
+  function initAllTabs() {
+    document.querySelectorAll<HTMLElement>(".category-tabs").forEach(tabContainer => {
+      const tabs = tabContainer.querySelectorAll<HTMLButtonElement>(".category-tab");
+      const parent = tabContainer.parentElement;
+      if (!parent) return;
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.tab;
+
+          tabs.forEach(t => {
+            t.classList.remove("active-tab", "text-accent", "border-b-2", "border-accent");
+            t.classList.add("text-foreground/50");
+          });
+          tab.classList.add("active-tab", "text-accent", "border-b-2", "border-accent");
+          tab.classList.remove("text-foreground/50");
+
+          parent.querySelectorAll<HTMLElement>("[data-category]").forEach(list => {
+            list.classList.toggle("hidden", list.dataset.category !== target);
+          });
+        });
+      });
+    });
+  }
+
+  window.addEventListener("lang-change", ((e: CustomEvent) => {
+    applyLangFilter(e.detail.lang);
+  }) as EventListener);
+
+  initPostsPage();
+  document.addEventListener("astro:after-swap", initPostsPage);
+</script>

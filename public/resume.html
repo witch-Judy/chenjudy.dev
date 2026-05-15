@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Judy Chen — Portfolio & Résumé</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ═══════════════════════════════════════════════════
+     EDITORIAL MAGAZINE · PALETTE
+     Paper cream · warm ink · hairline rule · print blue
+     ═══════════════════════════════════════════════════ */
+  :root {
+    --paper:     #FBF8F2;
+    --paper-2:   #F3EFE5;
+    --ink:       #1A1814;
+    --ink-mid:   #4A4640;
+    --ink-soft:  #7A736A;
+    --rule:      #CDC6B8;
+    --rule-soft: #E2DCD0;
+    --accent:    #006CAC;
+    --tbd-bg:    #F8DD6A;
+    --tbd-ink:   #5B4A0A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #E6E3DC;
+    color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 10.5pt;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    font-feature-settings: "ss01", "cv02", "cv11";
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 24px auto;
+    padding: 16mm 17mm;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,253,246,0.45), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 85% 90%, rgba(205,198,184,0.18), transparent 60%);
+    box-shadow:
+      0 1px 2px rgba(30,28,22,0.04),
+      0 20px 48px rgba(30,28,22,0.12);
+    position: relative;
+  }
+
+  /* ─── Type helpers ──────────────────────────────── */
+  .serif   { font-family: "Newsreader", "Source Serif Pro", Georgia, serif; font-feature-settings: "ss01", "onum"; }
+  .mono    { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  .caps    { text-transform: uppercase; letter-spacing: 0.18em; }
+  .italic  { font-style: italic; }
+  .ink-soft{ color: var(--ink-soft); }
+  .ink-mid { color: var(--ink-mid); }
+  .accent  { color: var(--accent); }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  /* ═══════════════════════════════════════════════════
+     MASTHEAD
+     ═══════════════════════════════════════════════════ */
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 6mm;
+    padding-bottom: 4mm;
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  .masthead-name {
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    font-size: 46pt;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+    color: var(--ink);
+  }
+  .masthead-name .zh {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-left: 4px;
+    font-size: 26pt;
+    letter-spacing: -0.01em;
+  }
+
+  .masthead-meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.2pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-align: right;
+    line-height: 1.6;
+  }
+  .masthead-meta .dot { opacity: 0.4; margin: 0 3px; }
+
+  .tagline {
+    margin-top: 5mm;
+    display: grid;
+    grid-template-columns: 10mm 1fr;
+    gap: 4mm;
+    align-items: start;
+  }
+  .tagline::before {
+    content: "";
+    display: block;
+    height: 1px;
+    background: var(--ink);
+    margin-top: 9pt;
+  }
+  .tagline-text {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13pt;
+    line-height: 1.4;
+    color: var(--ink);
+    max-width: 155mm;
+    text-wrap: pretty;
+  }
+  .tagline-text .drop {
+    font-weight: 500;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .contact {
+    margin-top: 4mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.8pt;
+    letter-spacing: 0.05em;
+    color: var(--ink-mid);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4mm;
+    padding-top: 3mm;
+    border-top: 0.5px solid var(--rule-soft);
+  }
+  .contact a { color: var(--ink-mid); }
+  .contact a:hover { color: var(--accent); }
+  .contact-divider { color: var(--rule); }
+
+  /* ═══════════════════════════════════════════════════
+     SECTION CHROME
+     ═══════════════════════════════════════════════════ */
+  section { margin-top: 7mm; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 4mm;
+    margin-bottom: 3.5mm;
+  }
+  .section-mark {
+    font-family: "Newsreader", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16pt;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .section-title {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-size: 11pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    margin-left: 2mm;
+    position: relative;
+    top: -3px;
+  }
+  .section-byline {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.2pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     § CURRENT OBSESSIONS
+     ═══════════════════════════════════════════════════ */
+  .obsessions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6mm;
+    border-top: 0.5px solid var(--rule-soft);
+    border-bottom: 0.5px solid var(--rule-soft);
+    padding: 4mm 0;
+  }
+  .obsession .label {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11pt;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+    display: block;
+  }
+  .obsession .label::before {
+    content: "—  ";
+    color: var(--ink-soft);
+    font-style: normal;
+  }
+  .obsession p {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     § PORTFOLIO
+     ═══════════════════════════════════════════════════ */
+  .feature {
+    display: grid;
+    grid-template-columns: 70mm 1fr;
+    gap: 6mm;
+    padding: 4mm 0;
+    border-bottom: 0.5px solid var(--rule-soft);
+    align-items: start;
+  }
+  .feature.flip { grid-template-columns: 1fr 70mm; }
+  .feature.flip .feature-image { order: 2; }
+  .feature.flip .feature-body { order: 1; }
+
+  .feature-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--paper-2);
+    border: 0.5px solid var(--rule-soft);
+    position: relative;
+  }
+  .feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.02);
+  }
+
+  .feature-num {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .feature-name {
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    font-size: 17pt;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 1.2mm 0 1.5mm;
+  }
+  .feature-name a:hover { color: var(--accent); }
+  .feature-kicker {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    margin-bottom: 2mm;
+  }
+  .feature-desc {
+    font-size: 9.8pt;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 90mm;
+    text-wrap: pretty;
+  }
+  .feature-meta {
+    margin-top: 2.5mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.4pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    display: flex;
+    gap: 3mm;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .feature-meta .tech { color: var(--accent); }
+  .feature-meta .dot { color: var(--rule); }
+
+  /* Grid of smaller projects */
+  .thumbs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5mm;
+    padding-top: 4mm;
+  }
+  .thumb .thumb-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--paper-2);
+    border: 0.5px solid var(--rule-soft);
+    margin-bottom: 1.8mm;
+  }
+  .thumb .thumb-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.02);
+  }
+  .thumb-num {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 9.5pt;
+    color: var(--accent);
+  }
+  .thumb-name {
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    font-size: 11pt;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0.5mm 0 1mm;
+  }
+  .thumb-desc {
+    font-size: 8.6pt;
+    line-height: 1.4;
+    color: var(--ink-mid);
+    margin-bottom: 1.5mm;
+  }
+  .thumb-meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 6.6pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .thumb-meta .tech { color: var(--accent); }
+
+  /* ═══════════════════════════════════════════════════
+     § EXPERIENCE
+     ═══════════════════════════════════════════════════ */
+  .job {
+    display: grid;
+    grid-template-columns: 46mm 1fr;
+    gap: 6mm;
+    padding: 3mm 0;
+    border-top: 0.5px solid var(--rule-soft);
+  }
+  .job:last-child { border-bottom: 0.5px solid var(--rule-soft); }
+  .job-when {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.2pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    padding-top: 1mm;
+  }
+  .job-when .where {
+    display: block;
+    color: var(--ink-soft);
+    margin-top: 1mm;
+    letter-spacing: 0.12em;
+  }
+  .job-role {
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .job-role .at {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-mid);
+  }
+  .job-role .org { color: var(--accent); font-weight: 600; }
+  .job-bullets {
+    margin-top: 1.5mm;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .job-bullets p { margin-bottom: 1mm; text-wrap: pretty; }
+  .job-bullets strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     § FORMATION & STUDIO
+     ═══════════════════════════════════════════════════ */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10mm;
+    padding-top: 3mm;
+  }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3mm;
+    padding: 1.5mm 0;
+    border-bottom: 0.5px dotted var(--rule);
+    align-items: baseline;
+  }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-school {
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    font-size: 10.5pt;
+    color: var(--ink);
+  }
+  .edu-degree {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 9.2pt;
+    color: var(--ink-mid);
+    text-align: right;
+  }
+
+  .studio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5mm 2.5mm;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 7.8pt;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+  }
+  .studio-tags .tag {
+    padding: 0.8mm 2.2mm;
+    background: var(--paper-2);
+    border: 0.5px solid var(--rule-soft);
+    border-radius: 1px;
+  }
+  .studio-tags .tag:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ═══════════════════════════════════════════════════
+     COLOPHON (footer)
+     ═══════════════════════════════════════════════════ */
+  .colophon {
+    margin-top: 8mm;
+    padding-top: 3mm;
+    border-top: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 6.8pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .colophon .serif-mark {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 11pt;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--accent);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     TBD (visible on screen, invisible in print)
+     ═══════════════════════════════════════════════════ */
+  .tbd {
+    background: var(--tbd-bg);
+    color: var(--tbd-ink);
+    padding: 0 4px;
+    border-radius: 1px;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     PRINT
+     ═══════════════════════════════════════════════════ */
+  @page { size: A4; margin: 0; }
+
+  @media print {
+    html, body { background: white; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 210mm;
+      min-height: 297mm;
+    }
+    .tbd {
+      background: transparent;
+      color: var(--ink-mid);
+      font-style: italic;
+      font-weight: 400;
+    }
+    a { color: inherit !important; }
+    section, .feature, .job { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<article class="page">
+
+  <!-- ═══════════════════════════════════════════════
+       MASTHEAD
+       ═══════════════════════════════════════════════ -->
+  <header class="masthead-wrap">
+    <div class="masthead">
+      <h1 class="masthead-name">
+        Judy&nbsp;Chen<span class="zh">陈小爷</span>
+      </h1>
+      <div class="masthead-meta">
+        Issue N<sup>o</sup> 01 &nbsp;·&nbsp; MMXXVI<br>
+        Singapore &nbsp;·&nbsp; Portfolio &amp; Résumé
+      </div>
+    </div>
+
+    <div class="tagline">
+      <div class="tagline-text">
+        Full-stack builder at the intersection of
+        <span class="drop">tech, AI, and the humanities.</span>
+        Playfulness-first — I build what I can't stop thinking about.
+      </div>
+    </div>
+
+    <div class="contact">
+      <a href="mailto:e1124242@u.nus.edu">e1124242@u.nus.edu</a>
+      <span class="contact-divider">/</span>
+      <a href="https://github.com/witch-Judy">github.com/witch-Judy</a>
+      <span class="contact-divider">/</span>
+      <a href="https://chenjudy.vercel.app/">chenjudy.vercel.app</a>
+      <span class="contact-divider">/</span>
+      <a href="https://www.linkedin.com/in/bihan-chen-bb2ab428a/">linkedin/bihan-chen</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       § CURRENT OBSESSIONS
+       ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="section-head">
+      <span class="section-mark">§</span>
+      <span class="section-title">Current Obsessions</span>
+      <span class="section-rule"></span>
+      <span class="section-byline">Editor's Note · Spring 2026</span>
+    </div>
+
+    <div class="obsessions">
+      <div class="obsession">
+        <span class="label">AI &amp; Play</span>
+        <p><span class="tbd">One vivid sentence — what you're prototyping right now, e.g. "hand-crafting interactive AI characters that improvise alongside the reader in real time."</span></p>
+      </div>
+      <div class="obsession">
+        <span class="label">Games, generated</span>
+        <p><span class="tbd">One vivid sentence — the games you're making and tools you're learning, e.g. "narrative games where every NPC line is generated live via LLM tool-use."</span></p>
+      </div>
+      <div class="obsession">
+        <span class="label">Mind &amp; Interface</span>
+        <p><span class="tbd">One vivid sentence — cognitive-science thread into product, e.g. "turning working-memory research into reading primitives inside IRIS."</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       § PORTFOLIO
+       ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="section-head">
+      <span class="section-mark">§</span>
+      <span class="section-title">Portfolio</span>
+      <span class="section-rule"></span>
+      <span class="section-byline">Six works · Live demos throughout</span>
+    </div>
+
+    <!-- 01 SIGINT  (image left) -->
+    <article class="feature">
+      <div class="feature-image">
+        <img src="assets/projects/sigint-system.png" alt="SIGINT system screenshot">
+      </div>
+      <div class="feature-body">
+        <div class="feature-num">N<sup>o</sup> 01</div>
+        <h3 class="feature-name">
+          <a href="https://sigint-system.vercel.app/">SIGINT · Global AI Intelligence System</a>
+        </h3>
+        <p class="feature-kicker">A god-view fog map of an industry in motion.</p>
+        <p class="feature-desc">Real-time global signals distilled into a game-like HUD — company links reveal collaborations, rivalries and palace-intrigue; executive reshuffles surface before the news cycle; market sentiment moves sync live with stock ticks, so the intel arrives before the price does.</p>
+        <div class="feature-meta">
+          <span class="tech">Next.js · Real-time Intel</span>
+          <span class="dot">·</span>
+          <span>Demo login on site</span>
+          <span class="dot">·</span>
+          <span>sigint-system.vercel.app</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 IRIS  (image right / flipped) -->
+    <article class="feature flip">
+      <div class="feature-body">
+        <div class="feature-num">N<sup>o</sup> 02</div>
+        <h3 class="feature-name">
+          <a href="https://iris-wonderland.vercel.app/">IRIS v2 · AI Reading Companion</a>
+        </h3>
+        <p class="feature-kicker">Read a paper three times — then drag the vector yourself.</p>
+        <p class="feature-desc">A custom reader that turns complex text into interactive, dimensional articles. Not animation for show, but a full methodology grounded in cognitive-interaction research. Drag a vector, watch the weights shift in real time, and realise you never really understood that paper until now. <strong>6,000+ users.</strong></p>
+        <div class="feature-meta">
+          <span class="tech">AI · Interactive Reader</span>
+          <span class="dot">·</span>
+          <span>Co-founder &amp; CTO</span>
+          <span class="dot">·</span>
+          <span>iris-wonderland.vercel.app</span>
+        </div>
+      </div>
+      <div class="feature-image">
+        <img src="assets/projects/illucio.png" alt="IRIS v2 screenshot">
+      </div>
+    </article>
+
+    <!-- Small grid: 03 / 04 / 05 / 06 -->
+    <div class="thumbs">
+
+      <div class="thumb">
+        <div class="thumb-image">
+          <a href="https://tgz2aaft2fllu.ok.kimi.link/">
+            <img src="assets/projects/sushi-moon.webp" alt="Su Shi · Moon Phases of a Life">
+          </a>
+        </div>
+        <div class="thumb-num">N<sup>o</sup> 03</div>
+        <h4 class="thumb-name">Su Shi · Moon Phases of a Life</h4>
+        <p class="thumb-desc">An interactive literary animation — a poet's life traced through seven moon phases, from crescent ambition to the full moon of transcendence.</p>
+        <div class="thumb-meta"><span class="tech">React · GSAP</span></div>
+      </div>
+
+      <div class="thumb">
+        <div class="thumb-image">
+          <a href="https://edzfn7n5wmih6.ok.kimi.link/">
+            <img src="assets/projects/monkey-king.webp" alt="Monkey King · Havoc in Heaven">
+          </a>
+        </div>
+        <div class="thumb-num">N<sup>o</sup> 04</div>
+        <h4 class="thumb-name">Monkey King · Havoc in Heaven</h4>
+        <p class="thumb-desc">Storm the Southern Gate, shatter the Jade Palace — then choose to go home. 5,000 saves overnight on day one.</p>
+        <div class="thumb-meta"><span class="tech">React · Animation</span></div>
+      </div>
+
+      <div class="thumb">
+        <div class="thumb-image">
+          <a href="https://github.com/witch-Judy/BuzzScope">
+            <img src="assets/projects/buzzscope.webp" alt="BuzzScope">
+          </a>
+        </div>
+        <div class="thumb-num">N<sup>o</sup> 05</div>
+        <h4 class="thumb-name">BuzzScope</h4>
+        <p class="thumb-desc">Keyword tracking across HN, Reddit, YouTube and Discord — a daily briefing distilled from 7.6 M+ posts before the coffee gets cold.</p>
+        <div class="thumb-meta"><span class="tech">Python · ★ 16 OSS</span></div>
+      </div>
+
+      <div class="thumb">
+        <div class="thumb-image">
+          <a href="https://github.com/witch-Judy/UNS-Semantic-Space-Explorer">
+            <img src="assets/projects/uns-explorer.webp" alt="UNS Semantic Space Explorer">
+          </a>
+        </div>
+        <div class="thumb-num">N<sup>o</sup> 06</div>
+        <h4 class="thumb-name">UNS Semantic Space Explorer</h4>
+        <p class="thumb-desc">A 3D visualization for the industrial Unified Namespace — semantic metadata modeling that makes IIoT topologies legible at a glance.</p>
+        <div class="thumb-meta"><span class="tech">Python · 3D Viz · OSS</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       § EXPERIENCE
+       ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="section-head">
+      <span class="section-mark">§</span>
+      <span class="section-title">Experience</span>
+      <span class="section-rule"></span>
+      <span class="section-byline">Selected, reverse chronological</span>
+    </div>
+
+    <div class="job">
+      <div class="job-when">
+        <span class="tbd">[start]</span> — Present
+        <span class="where">Remote · Global</span>
+      </div>
+      <div>
+        <h4 class="job-role"><span class="org">IRIS</span> <span class="at">·  Co-founder &amp; CTO</span></h4>
+        <div class="job-bullets">
+          <p>Shipped an AI reading companion to <strong>6,000+ users</strong> built on a cognitive-interaction methodology — treating reading as cognitive play rather than summarization. Own the full stack from interaction design through AI pipeline.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-when">
+        Jul — Dec 2024
+        <span class="where">Singapore · On-site</span>
+      </div>
+      <div>
+        <h4 class="job-role"><span class="org">Univers</span> <span class="at">·  AI Innovation Research Intern, Centre of Excellence</span></h4>
+        <div class="job-bullets">
+          <p>Proposed and shipped a novel multi-agent architecture automating IoT data onboarding — a challenge the team had failed to solve through conventional approaches. <strong>Pioneered agentic AI workflows in the org in early 2024</strong>, before the approach went mainstream.</p>
+          <p>LLM-driven orchestration + custom data-modeling layers → <strong>75%+</strong> reduction in manual processing time and errors. Built an internal AI toolkit (cleaning, viz, auto-report, python-pptx slide gen) adopted across teams, saving 1+ day per delivery cycle.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-when">
+        Jan — Jul 2024
+        <span class="where">Singapore · Hybrid</span>
+      </div>
+      <div>
+        <h4 class="job-role"><span class="org">Institute of High Performance Computing (A*STAR)</span> <span class="at">·  Software Developer &amp; PM Intern</span></h4>
+        <div class="job-bullets">
+          <p>Led a priority-based task-scheduling + node-management simulator, integrated into <strong>A*STAR's National Quantum Computing platform</strong> — <strong>95%</strong> improvement in scheduling efficiency. Managed 3 interns, ran weekly requirements sessions with hardware scientists, shipped functional code weekly via Agile + GitHub Kanban.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       § FORMATION  &  STUDIO
+       ═══════════════════════════════════════════════ -->
+  <section>
+    <div class="two-col">
+      <div>
+        <div class="section-head">
+          <span class="section-mark">§</span>
+          <span class="section-title">Formation</span>
+          <span class="section-rule"></span>
+        </div>
+        <div class="edu-item">
+          <span class="edu-school">National University of Singapore</span>
+          <span class="edu-degree">M.S., i4: Computing &amp; Data Science</span>
+        </div>
+        <div class="edu-item">
+          <span class="edu-school">Harbin Institute of Technology</span>
+          <span class="edu-degree">B.S., Computer Science</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-head">
+          <span class="section-mark">§</span>
+          <span class="section-title">Studio</span>
+          <span class="section-rule"></span>
+        </div>
+        <div class="studio-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">React</span>
+          <span class="tag">Astro</span>
+          <span class="tag">GSAP</span>
+          <span class="tag">Python</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">InfluxDB</span>
+          <span class="tag">LLMs &amp; Multi-agent</span>
+          <span class="tag">python-pptx</span>
+          <span class="tag">3D / WebGL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       COLOPHON
+       ═══════════════════════════════════════════════ -->
+  <footer class="colophon">
+    <span>Set in Newsreader · Inter · JetBrains Mono</span>
+    <span class="serif-mark">— fin —</span>
+    <span>Printed on warm paper · 2026</span>
+  </footer>
+
+</article>
+</body>
+</html>

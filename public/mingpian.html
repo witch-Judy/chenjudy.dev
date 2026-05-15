@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>陈小爷 · 名片</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --ink: #1a1614;
+    --cream: #f5f1e8;
+    --paper: #faf7f0;
+    --iris: #5b4b8a;
+    --iris-soft: #d8d2e6;
+    --muted: #7a6f66;
+    --hair: #1a1614;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ece6d8;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 28px;
+    padding: 48px 24px;
+  }
+
+  .deck {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    width: 90mm;
+    height: 54mm;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.04),
+      0 12px 28px rgba(40, 30, 20, 0.18),
+      0 28px 60px rgba(40, 30, 20, 0.10);
+    border-radius: 2.2mm;
+  }
+
+  /* ---------- FRONT ---------- */
+  .card.front {
+    padding: 6mm 7mm;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .brand-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.1mm;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .brand-strip .dot {
+    width: 1.6mm;
+    height: 1.6mm;
+    background: var(--iris);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1.6mm;
+    vertical-align: middle;
+  }
+
+  .name-block {
+    align-self: center;
+    margin-top: -2mm;
+  }
+
+  .name-zh {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-weight: 600;
+    font-size: 11.5mm;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .name-zh .stamp {
+    display: inline-block;
+    margin-left: 2mm;
+    padding: 0.6mm 1.4mm 0.8mm;
+    background: var(--iris);
+    color: var(--paper);
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 3.4mm;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    vertical-align: middle;
+    transform: translateY(-2mm);
+    border-radius: 0.6mm;
+  }
+
+  .name-en {
+    margin-top: 2mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.6mm;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .tags {
+    margin-top: 2.4mm;
+    font-size: 2.7mm;
+    color: var(--ink);
+    letter-spacing: 0.08em;
+  }
+
+  .tags .sep {
+    color: var(--iris);
+    margin: 0 1.4mm;
+    font-weight: 700;
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1mm 4mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.4mm;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    padding-top: 3mm;
+    border-top: 0.15mm solid var(--hair);
+  }
+
+  .contact .row {
+    display: flex;
+    align-items: center;
+    gap: 1.6mm;
+    white-space: nowrap;
+  }
+
+  .contact .key {
+    color: var(--iris);
+    font-weight: 700;
+  }
+
+  /* ---------- BACK ---------- */
+  .card.back {
+    padding: 7mm;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .card.back::before {
+    content: "";
+    position: absolute;
+    inset: 3mm;
+    border: 0.2mm solid rgba(245, 241, 232, 0.18);
+    border-radius: 1.4mm;
+    pointer-events: none;
+  }
+
+  .back-inner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .back-corner {
+    position: absolute;
+    top: 5mm;
+    left: 5mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.1mm;
+    letter-spacing: 0.28em;
+    color: rgba(245, 241, 232, 0.55);
+    text-transform: uppercase;
+  }
+
+  .back-corner.r {
+    left: auto;
+    right: 5mm;
+    text-align: right;
+  }
+
+  .back-axis {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 6.2mm;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+    color: var(--paper);
+  }
+
+  .back-axis .x {
+    color: var(--iris-soft);
+    margin: 0 1.4mm;
+    font-family: "SF Mono", monospace;
+    font-size: 5mm;
+    font-weight: 300;
+  }
+
+  .back-quote {
+    margin-top: 5mm;
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 3.4mm;
+    letter-spacing: 0.4em;
+    color: var(--iris-soft);
+  }
+
+  .back-quote::before,
+  .back-quote::after {
+    content: "——";
+    color: rgba(216, 210, 230, 0.45);
+    margin: 0 1.6mm;
+    letter-spacing: 0;
+  }
+
+  /* ---------- LABELS ---------- */
+  .label {
+    font-family: "SF Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: #7a6f66;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: -14px;
+  }
+
+  /* ---------- PRINT ---------- */
+  @page { size: 90mm 54mm; margin: 0; }
+
+  @media print {
+    body { background: white; }
+    .stage { padding: 0; gap: 0; min-height: 0; }
+    .label { display: none; }
+    .deck { gap: 0; flex-direction: column; }
+    .card { box-shadow: none; border-radius: 0; page-break-after: always; }
+    .card.back { background: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="deck">
+      <div>
+        <div class="label">FRONT · 正面</div>
+        <div class="card front">
+          <div class="brand-strip">
+            <span><span class="dot"></span>IRIS · CO-FOUNDER &amp; CTO</span>
+            <span>NUS · HIT</span>
+          </div>
+
+          <div class="name-block">
+            <div class="name-zh">陈小爷<span class="stamp">小爷</span></div>
+            <div class="name-en">Bihan Chen &nbsp;·&nbsp; Judy Chen</div>
+            <div class="tags">全栈开发者<span class="sep">/</span>好玩儿主义者<span class="sep">/</span>认知交互研究</div>
+          </div>
+
+          <div class="contact">
+            <div class="row"><span class="key">✉</span>e1124242@u.nus.edu</div>
+            <div class="row"><span class="key">◉</span>chenjudy.vercel.app</div>
+            <div class="row"><span class="key">⌥</span>github.com/witch-Judy</div>
+            <div class="row"><span class="key">in</span>bihan-chen-bb2ab428a</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">BACK · 背面</div>
+        <div class="card back">
+          <div class="back-corner">CHEN · 陈</div>
+          <div class="back-corner r">EST. 好玩儿</div>
+
+          <div class="back-inner">
+            <div class="back-axis">
+              技术<span class="x">×</span>AI<span class="x">×</span>人文
+            </div>
+            <div class="back-axis" style="font-size:3.2mm; letter-spacing:0.3em; margin-top:2mm; color: rgba(245,241,232,0.7);">
+              的交界地带
+            </div>
+            <div class="back-quote">好玩儿主义</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

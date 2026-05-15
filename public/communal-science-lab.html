@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社区科学实验室 · 交互式导读</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
+  :root {
+    --bg:#f8f6f1;--paper:#fff;--ink:#1a1a1a;--mid:#555;--dim:#999;
+    --faint:#ccc;--rule:#e4e0d8;--aside:#f2efea;
+    --vis:#c07b20;--age:#4a8f5c;--phy:#4a7ab8;--col:#8f4a8f;
+    --old:#b84c4c;--new:#4a8f5c;
+    --mono:'Menlo','Consolas',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Serif SC','Georgia',serif;background:var(--bg);color:var(--ink);line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .page{max-width:720px;margin:0 auto;padding:72px 24px 120px;}
+  h1{font-size:28px;font-weight:700;margin-bottom:4px;line-height:1.3;}
+  .byline{font-size:11px;color:var(--dim);font-family:var(--mono);margin-bottom:48px;line-height:1.6;}
+  h2{font-size:18px;font-weight:700;margin:56px 0 14px;padding-top:28px;border-top:1px solid var(--rule);}
+  p{margin-bottom:15px;font-size:15px;}
+  .lead{font-size:16px;color:var(--mid);line-height:2;margin-bottom:32px;}
+  strong{font-weight:600;}
+  blockquote{margin:20px 0;padding:12px 18px;background:var(--aside);border-left:3px solid var(--rule);font-size:14px;color:var(--mid);line-height:1.8;border-radius:0 4px 4px 0;}
+
+  .fig{margin:24px 0 28px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
+  .fig-body{padding:16px;}
+  .fig-cap{padding:8px 16px;background:var(--aside);border-top:1px solid var(--rule);font-size:12px;color:var(--mid);line-height:1.6;}
+
+  /* Inline mini figures - sit alongside text */
+  .mini{margin:16px 0 20px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;overflow:hidden;}
+  .mini svg{display:block;width:100%;}
+  .mini-cap{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5;}
+
+  .tabs{display:flex;gap:2px;background:var(--aside);padding:3px;border-radius:6px;width:fit-content;flex-wrap:wrap;}
+  .tab{padding:5px 13px;border:none;background:transparent;font-family:inherit;font-size:12px;color:var(--dim);cursor:pointer;border-radius:4px;transition:all .15s;}
+  .tab.active{background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.08);font-weight:600;}
+  .btn{padding:5px 13px;border-radius:4px;border:1px solid var(--rule);background:var(--paper);font-family:var(--mono);font-size:11px;color:var(--ink);cursor:pointer;transition:all .15s;user-select:none;}
+  .btn:hover{background:var(--aside);}
+  .btn.dim{opacity:.3;pointer-events:none;}
+  .ctrl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+  .fn{font-size:12px;color:var(--dim);line-height:1.7;margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);}
+  .section-num{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.05em;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>社区科学实验室</h1>
+<p class="byline">
+  Bret Victor, Luke Iannini & Shawn Douglas · Dynamicland Foundation, 2024<br>
+  交互式导读 · 用我们的方法论呈现他们的愿景
+</p>
+
+<p class="lead">
+我们用电脑做一切：写邮件、看视频、控制飞船。很自然地，我们假设电脑也在帮科学家做他们最好的工作。
+</p>
+
+<p>
+这篇论文说：不一定。它提出一个令人不安的论点——尽管计算无处不在，它碰巧演化成的样子实际上在<strong>阻碍</strong>科学家。不是计算本身有问题，而是计算的<em>形态</em>有问题：一切都被困在小小的发光矩形里。
+</p>
+
+<p>
+这个论点很抽象。所以我们不会直接讲它。我们会带你<strong>看到</strong>它。
+</p>
+
+<!-- ═══════════════════════════════════════ -->
+<p class="section-num">第一部分</p>
+<h2>四个隐藏的问题</h2>
+
+<p>
+如果你走进一间科学实验室，第一印象大概是「一切运转正常」——有电脑、有仪器、有人在工作。问题不在表面。问题藏在表面之下，而且藏得很深。
+</p>
+
+<p>
+下面是一间典型实验室的俯视图。现在它看起来很正常。但我们准备了四副透镜，每一副会让你看到同一间实验室里一个不同的隐藏问题。<strong>点击上方的四个透镜标签</strong>——注意每次切换后，实验室的哪些部分亮起来了，哪些暗下去了。
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <div class="tabs" id="lensTabs"></div>
+    <svg id="labSvg" viewBox="0 0 680 400" style="width:100%;display:block;margin-top:10px;"></svg>
+  </div>
+  <div class="fig-cap" id="lensCap"></div>
+</div>
+
+<!-- Problem 1: Visibility with iceberg slider -->
+<h2 style="border:none;padding:0;margin-top:32px;color:var(--vis);">问题一：可见性</h2>
+
+<p>
+想象你在读一本书，但每一页上只能看到三行字。其余的内容存在，但是被遮住了。你必须记住看不见的部分，同时理解看得见的部分。这就是科学家在电脑上工作时面对的状况。
+</p>
+
+<p>
+一个研究者写程序模拟分子行为。她屏幕上显示 60 行代码。这些代码是她能看见的全部。但它们只是冰山一角。<strong>拖动下面的滑块</strong>，从左到右，看看冰山水面下藏着多少东西：
+</p>
+
+<div class="mini">
+  <svg id="icebergSvg" viewBox="0 0 600 330"></svg>
+  <input type="range" id="iceSlider" min="0" max="3" step="1" value="0" style="width:100%;accent-color:var(--vis);margin-top:4px;" oninput="renderIceberg()">
+  <div class="mini-cap" id="iceCap"></div>
+</div>
+
+<p>
+注意到了吗？当你把滑块拉到最右边，水面下的部分是水面上的几百倍。60 行她自己写的代码，底下压着操作系统、编译器、几十个库——每一层都是她看不见、无法理解、更无法修改的黑箱。
+</p>
+
+<p>
+而且不只是代码。走进湿实验室：透明液体里的 DNA 分子不可见——肉眼看去只是一管清水。冰箱里试管的项目历史不可见——这管液体是谁配的？什么时候？用了什么参数？同事屏幕上的工作不可见——坐在三米外的人在做什么，她完全不知道。
+</p>
+
+<p>
+你刚才在冰山图里拖出来的那种隐藏，<strong>在这间实验室里无处不在</strong>。科学家在一层又一层的不可见之上工作。
+</p>
+
+<!-- Problem 2: Agency with code mountain -->
+<h2 style="border:none;padding:0;margin-top:32px;color:var(--age);">问题二：能动性</h2>
+
+<p>
+想象你在用一把螺丝刀。螺丝刀的把手不顺手——太粗了。如果螺丝刀是木头做的，你可以用小刀削一削。但如果螺丝刀是从工厂里出来的一体成型塑料件呢？你没有任何办法修改它。你只能将就用，或者换一把。
+</p>
+
+<p>
+科学软件就是这种一体成型的工具。她用一个叫 Cadnano 的开源程序设计 DNA 纳米结构。程序能做它设计者想到的事情，但她的研究需要一个设计者没想到的功能。理论上，Cadnano 是开源的——任何人都可以修改它。实践上呢？<strong>看看下面这个对比</strong>：
+</p>
+
+<div class="mini">
+  <svg id="codeSvg" viewBox="0 0 600 180"></svg>
+  <div class="mini-cap">左边是传统科学软件的代码量。右边是 Realtalk 中同等功能工具的代码量。同一个尺度。</div>
+</div>
+
+<p>
+左边那根高柱子是 Cadnano 的十万行代码。右边那个几乎看不见的小矩形是 Realtalk 中同等功能工具的代码量——一两页纸。同一个尺度。
+</p>
+
+<p>
+十万行代码，名义上开源，实际上没有一个科学家能修改它。它需要专业软件工程师花几周时间理解代码结构，然后才能改一个小功能。更深层的问题是：她每天使用这个程序八个小时，但学会<em>使用</em>它并没有让她学会<em>修改</em>它。使用和修改是两个完全不同的世界，中间隔着十万行代码的鸿沟。<strong>学会使用 ≠ 学会修改</strong>。
+</p>
+
+<!-- Problem 3: Physical reality with toggle -->
+<h2 style="border:none;padding:0;margin-top:32px;color:var(--phy);">问题三：物理性</h2>
+
+<p>
+想象你是一个建筑师，但你从来不被允许走进你设计的建筑。你只能在屏幕上看平面图和渲染图。你永远不知道走廊是不是太窄、楼梯拐角会不会让人迷路、阳光在下午三点照到哪面墙。你失去了所有身体能告诉你的信息。
+</p>
+
+<p>
+这就是分子生物学家的处境。她设计的 DNA 纳米结构是一个真实的、有形状的三维物理对象——几十纳米长，有弯折、有孔洞、有力学特性。但她从未用手触摸过这个形状。她只在屏幕上见过它。<strong>点击下面的「切换视角」按钮</strong>，看同一个结构在两个世界里是什么样子：
+</p>
+
+<div class="mini">
+  <svg id="physSvg" viewBox="0 0 600 180"></svg>
+  <div style="text-align:center;margin-top:6px;"><button class="btn" id="physBtn" onclick="togglePhys()">切换视角</button></div>
+  <div class="mini-cap" id="physCap">当前：屏幕上的线条。点击切换到物理形状。</div>
+</div>
+
+<p>
+注意两次点击之间的差异。屏幕上的线条——扁平、抽象、只有视觉信息。物理模型——有体积、有力学、可以被翻转和挤压。你的手指在屏幕上只能点击，但在物理对象上可以感受刚性、弯曲和脆弱。
+</p>
+
+<p>
+科学从根本上是关于理解物理世界的。但电脑把科学家困在了数字世界里——设计分子、模拟细胞、分析粒子，全部隔着一层屏幕玻璃。她的手指知道的事情——这个结构是不是太脆弱了？这个弯折是不是力学上不合理？——永远没有机会参与进来。<strong>身体被排除在思考之外。</strong>
+</p>
+
+<!-- Problem 4: Collaboration - static pair -->
+<h2 style="border:none;padding:0;margin-top:32px;color:var(--col);">问题四：协作性</h2>
+
+<p>
+想象两个人修理一辆自行车。他们蹲在地上，一个人扶着车架，另一个人调整链条。他们的手在同一个东西上，眼睛可以看到彼此的动作，随时可以说话。理解通过共享的物理空间自然发生。
+</p>
+
+<p>
+现在想象同样两个人，各自坐在自己的电脑前，通过屏幕共享「一起」修理自行车。<strong>看看下面两个场景，注意视线方向和中间的虚线</strong>：
+</p>
+
+<div class="mini">
+  <svg id="collabSvg" viewBox="0 0 600 160"></svg>
+  <div class="mini-cap">左边：两人各对一块屏幕，中间隔着虚线。右边：两人隔着桌子对视，手能碰到同一个东西。</div>
+</div>
+
+<p>
+左边的两个人面朝各自的屏幕，中间隔着一条虚线——他们的注意力被各自的屏幕吸走了。他们不能对视，不能把手放在同一个东西上。要讨论一个问题？得离开电脑走到白板前画图。但离开电脑后又看不到数据了。想回去查数据？又失去了面对面的讨论。他们在两个模式之间来回切换，永远不能同时拥有两者。
+</p>
+
+<p>
+右边的两个人面朝彼此，手可以碰到同一个东西。讨论和数据在同一个空间里。
+</p>
+
+<p>
+现在回头看这四个问题：不可见、不可改、不可触、不可共。它们看起来是四个独立的问题，但如果你退一步看，它们有一个共同的根因——<strong>计算被困在屏幕里</strong>。屏幕是私密的（所以不可见、不可共），屏幕是扁平的（所以不可触），屏幕背后是复杂的软件工程（所以不可改）。如果问题的根源是同一个，那么解决方案也许也是同一个。
+</p>
+
+<!-- ═══════════════════════════════════════ -->
+<p class="section-num">第二部分</p>
+<h2>把计算从屏幕里解放出来</h2>
+
+<p>
+如果计算被困在屏幕里是问题的根源，那么解决方案的方向就很清楚了：<strong>把计算从屏幕里放出来</strong>。让计算发生在物理空间中——在桌子上、在墙上、在人和人之间。
+</p>
+
+<p>
+这不是一个比喻。论文的作者 Bret Victor 和他的团队用了近十年时间，真的建造了这样一个系统。它叫 <strong>Realtalk</strong>，是一个操作系统——但不是电脑的操作系统，而是整栋建筑的操作系统。没有屏幕，没有鼠标，没有 app。
+</p>
+
+<p>
+下面是它的硬件结构示意图。<strong>点击图中的各个组件</strong>——摄像头、投影仪、桌面、纸张——看看每个部分是做什么的：
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="rtSvg" viewBox="0 0 680 320" style="width:100%;display:block;"></svg>
+  </div>
+  <div class="fig-cap" id="rtCap">点击组件查看详情。</div>
+</div>
+
+<p>
+你可能注意到了最关键的组件——纸。在 Realtalk 里，<strong>程序本身是物理对象</strong>。用笔在纸上写几行代码，摄像头读取纸面内容，投影仪把程序的输出投射回纸上。一个有用的科学工具通常只有一两页纸（还记得第一部分那根十万行的柱子吗？把它和一两页纸放在一起想想）。
+</p>
+
+<p>
+这意味着什么？意味着学会使用一个工具和学会修改它不再是两个世界——因为你面前就是全部代码，一两页纸，用笔划掉一行、写上新的一行就好了。意味着编程发生在公开场所——你同事走过你的桌子时可以看到你在做什么，你也可以看到她在做什么。意味着两个人可以把各自的程序纸页推到一起，让两个程序交互。
+</p>
+
+<p>
+现在让我们回到第一部分的四个透镜。还记得四种颜色吗——黄色的可见性、绿色的能动性、蓝色的物理性、紫色的协作性？<strong>看看同样四种颜色现在意味着什么</strong>：
+</p>
+
+<div class="mini">
+  <svg id="solSvg" viewBox="0 0 600 100"></svg>
+</div>
+
+<p>
+上图中，每一列展示了一个问题如何被转化。迷雾变成了铺在桌上的卡片（可见了）。锁变成了一两页纸（可改了）。隔离变成了融合（物理空间中人和计算在一起了）。孤岛变成了围坐（协作自然发生了）。
+</p>
+
+<p>
+注意：不是四个独立的解决方案分别修复了四个问题。是<strong>同一个操作</strong>——把计算从屏幕里搬到物理空间——让四个问题同时消失。这正印证了我们之前的猜测：四个问题本来就是同一个问题的四种表现。把根因移除了，四种症状一起消失。
+</p>
+
+<!-- ═══════════════════════════════════════ -->
+<p class="section-num">第三部分</p>
+<h2>一个项目，六个阶段</h2>
+
+<p>
+到目前为止，我们讲的都是「问题」和「方案」——仍然是抽象的。一个真正有说服力的论证不能停留在抽象层面。它需要带你走进一个<strong>具体的故事</strong>，看一群具体的人，用这个方案做一件具体的事情，然后让你自己判断它是否有效。
+</p>
+
+<p>
+论文正是这样做的。它用一个真实的科学项目——从构想到传播的全过程——展示了每个阶段发生了什么变化。在进入六个阶段之前，你需要知道这个项目是什么。
+</p>
+
+<h3 style="color:var(--mid);">项目：设计一种新型生物芯片</h3>
+
+<p>
+生物芯片是一个硬币大小的装置，上面刻有微小的通道和传感器，用来研究活细胞的行为。想象一个微缩的实验室：把几个细胞放进去，芯片上的通道输送不同的化学物质，传感器实时监测细胞的反应。你可以用它来筛选药物、研究疾病机制、测试治疗方案。
+</p>
+
+<p>
+这个芯片的创新之处在于<strong>基底是用 DNA 搭建的</strong>。DNA 不只是遗传物质——科学家发现可以把 DNA 当积木用。取一条长链 DNA（约 7000 个碱基），加入几百条短链 DNA（「订书钉」），混合加热再冷却，短链就像折纸一样把长链折成预设的三维形状。这叫 <strong>DNA origami</strong>（DNA 折纸术）。一滴液体里可以产生一万亿个完全相同的纳米结构。
+</p>
+
+<p>
+为什么用 DNA 做基底？因为它的精度到达原子级别——每个位置都可以精确地挂载传感器或捕获分子。但设计这种结构需要同时理解生物学、电子学和纳米科学。没有一个人能独自完成。
+</p>
+
+<div class="fig" id="teamFig">
+  <div class="fig-body">
+    <svg id="teamSvg" viewBox="0 0 680 480" style="width:100%;display:block;"></svg>
+  </div>
+  <div class="fig-cap" id="teamCap">点击任意一个专家卡片，看看她/他的世界长什么样——以及他们之间有什么看不见。</div>
+</div>
+
+<p>
+下面六个阶段展示的就是这三个人如何从互不相识到共同完成这个项目。
+</p>
+
+<p>
+每个阶段有两幅并排的场景画——左边是用传统方式做这件事，右边是用 Realtalk 做同一件事。<strong>点击 → 箭头逐步浏览</strong>。每一步的文字会告诉你具体看左图和右图的什么位置。试着对比每个阶段里两边的差异——不只是画面不同，而是<em>做事方式</em>不同。
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <div class="ctrl" style="margin-bottom:8px;justify-content:space-between;">
+      <button class="btn" id="sPrev" onclick="stgNav(-1)">←</button>
+      <span id="stgLabel" style="font-family:var(--mono);font-size:12px;color:var(--dim);"></span>
+      <button class="btn" id="sNext" onclick="stgNav(1)">→</button>
+    </div>
+    <svg id="stgSvg" viewBox="0 0 680 340" style="width:100%;display:block;"></svg>
+  </div>
+  <div class="fig-cap" id="stgCap"></div>
+</div>
+
+<div id="stgText" style="font-size:14px;color:var(--mid);line-height:1.8;"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<p class="section-num">第四部分</p>
+<h2>桌游盒</h2>
+
+<p>
+六个阶段中，最后一个值得单独展开。因为它改变的不只是「怎么做科学」，而是「怎么传播科学」。
+</p>
+
+<p>
+想想你上一次参加学术报告的经历。一个人站在讲台上，投影仪打出 30 张幻灯片。你坐在台下，一边听一边走神。结束后提了两个问题，客气地鼓掌。三天后你忘了大部分内容。一个月后你忘了几乎所有内容。这不是你的问题——<strong>这是媒介的问题</strong>。被动观看是人类大脑最低效的学习方式。
+</p>
+
+<p>
+论文描述了一种完全不同的方式。三位研究者没有做幻灯片。他们把整个项目的数月经验——从最初的构想、实验失败、替代方案发现，到最终的数据分析——提炼成了一个「桌游盒」。不是教材，不是说明书，而是一套<strong>可操作的动态模型和工具</strong>。观众不是听讲。观众拆开盒子，用自己的手<strong>重走</strong>实验过程。
+</p>
+
+<p>
+下面我们模拟了这个过程。<strong>点击「下一步 →」</strong>，逐步打开这个桌游盒，看看里面有什么，以及拿到盒子的人经历了什么：
+</p>
+
+<div class="fig" id="boxFig">
+  <div class="fig-body" style="min-height:280px;">
+    <svg id="boxSvg" viewBox="0 0 640 320" style="width:100%;display:block;"></svg>
+    <div class="ctrl" style="justify-content:center;margin-top:8px;">
+      <button class="btn" id="boxPrev" onclick="boxNav(-1)">←</button>
+      <span id="boxStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);padding:0 12px;"></span>
+      <button class="btn" id="boxNext" onclick="boxNav(1)">下一步 →</button>
+    </div>
+  </div>
+  <div class="fig-cap" id="boxCap"></div>
+</div>
+
+<div id="boxText" style="font-size:14px;color:var(--mid);line-height:1.8;"></div>
+
+<p>
+如果你一步步点完了六个阶段，停下来想一想你刚才做的事情。你没有被告知「桌游盒比幻灯片好」——你<em>体验了</em>从密封到打开到操作到带走的全过程。你的理解不是来自被说服，而是来自亲手走了一遍。
+</p>
+
+<p>
+事实上，你正在阅读的这篇交互文章<strong>本身就是一个数字桌游盒</strong>。你在第一部分拖了冰山滑块——亲眼看到了隐藏的代码层。你在第三部分逐步点过六个阶段——亲眼看到了面朝屏幕和面朝彼此的区别。你刚才打开了桌游盒——亲手经历了从密封到传播的全过程。你不是在「读」论点，你是在交互中<strong>确认</strong>论点。每个论点，你都有自己的视觉证据。
+</p>
+
+<p>
+这就是桌游盒的力量：<strong>知识通过主动重建传播，不是通过被动观看</strong>。理解是具身的——你的手记住了，你的眼睛记住了——不只是你的语言中枢记住了一句话。
+</p>
+
+<!-- ═══════════════════════════════════════ -->
+<p class="section-num">第五部分</p>
+<h2>从一间房到整个世界</h2>
+
+<p>
+我们已经看到了 Realtalk 在一间房间里能做什么。但一间房间是一个实验室。论文的野心不止于此——它描绘了一条 25 年的路径，从一间房到一栋楼，从一栋楼到一个社区，从一个社区到整个世界。
+</p>
+
+<p>
+下面的图展示了这条路径的四个尺度。<strong>拖动滑块</strong>从左到右——每一层比上一层更大、更远、更抽象。注意每个尺度里的人数和场景是怎么变化的：
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="zoomSvg" viewBox="0 0 680 360" style="width:100%;display:block;"></svg>
+    <div class="ctrl" style="justify-content:center;margin-top:8px;">
+      <span style="font-size:11px;color:var(--dim);font-family:var(--mono);">2024</span>
+      <input type="range" id="zoomSlider" min="0" max="3" step="1" value="0" style="width:220px;accent-color:var(--ink);" oninput="renderZoom()">
+      <span style="font-size:11px;color:var(--dim);font-family:var(--mono);">2050</span>
+    </div>
+  </div>
+  <div class="fig-cap" id="zoomCap"></div>
+</div>
+
+<p>
+当你把滑块拉到最右边，你看到的不只是「更大的实验室」。2050 年的愿景是一个根本性的变化：科学不再只发生在大学和研究所里。社区图书馆里，居民用动态模型解决本地问题——用降雨数据规划雨水收集，用土壤化学知识设计种植方案，用空气质量数据评估工厂搬迁计划。然后他们把自己的方案做成桌游盒，贡献回图书馆，让下一个人继续探索和改进。
+</p>
+
+<p>
+目标不是「科学教育」——不是让更多人学会科学知识。目标是<strong>普遍的科学能动性</strong>——让每个人都能<em>做</em>科学，用科学方法解决自己关心的问题。知识不是从权威流向公众的单向管道，而是在社区中生长和进化的活物。
+</p>
+
+<p>
+这是一个令人振奋但也遥远的愿景。天花板投影仪不会明天就出现在每个图书馆里。但在那一天到来之前，有一个更近的可能性——一个今天就存在的媒介，已经触达了几十亿人。
+</p>
+
+<!-- ═══════════════════════════════════════ -->
+<p class="section-num">第六部分</p>
+<h2>同构</h2>
+
+<p>
+你刚才在这篇文章里做了一些事情。拖了滑块，点了按钮，打开了盒子。这些动作看起来很普通——毕竟这只是一个网页。
+</p>
+
+<p>
+但现在回头想一想：这些动作和 Realtalk 里的科学家做的事情，有什么不同吗？下面四个步骤，每一步都有两列。左边是<strong>你刚才做的</strong>，右边是<strong>他们在 Realtalk 里做的</strong>。<strong>点击每一步</strong>，看看对应关系：
+</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="isoSvg" viewBox="0 0 680 420" style="width:100%;display:block;"></svg>
+  </div>
+  <div class="fig-cap" id="isoCap">点击四个步骤，看看你的体验和 Realtalk 的体验之间的对应关系。</div>
+</div>
+
+<p>
+表面上完全不同——你在屏幕前点击，他们在桌子上移动积木。但底层结构完全一致：<strong>抽象知识 → 具身化 → 探索 → 理解</strong>。Victor 的 Realtalk 是这个模式的最高形态——物理空间给你触觉、空间感、面对面协作。浏览器是一个受限的近似——没有触觉、没有三维，但它有一样 Realtalk 没有的东西：<strong>今天就能触达几十亿人</strong>。
+</p>
+
+<p>
+这篇论文有一层反讽：一篇呼吁「让计算可见、可触、可交互」的论文，自己是一个 27 页的 PDF。静态的文字。不可操作的图片。它描述的那个未来，没有出现在它自己身上。
+</p>
+
+<p>
+你刚才做的事——用交互文章重构这篇论文——本身就是对它愿景的一种回应。一种不完美但真实的回应。你拖过的每一个滑块，点过的每一个按钮，都是在用今天的工具实践明天的愿景。
+</p>
+
+<p class="fn">
+原论文：Bret Victor, Luke Iannini & Shawn Douglas,《The communal science lab》, Dynamicland Foundation, 2024。所有观点归属原作者。
+</p>
+
+</div>
+
+<script>
+const VIS='#c07b20',AGE='#4a8f5c',PHY='#4a7ab8',COL='#8f4a8f';
+const OLD='#b84c4c',NEW='#4a8f5c',INK='#1a1a1a',DIM='#999',FAINT='#ddd',RULE='#e4e0d8';
+
+// ── Drawing ──
+function P(x,y,a,c=INK,op=1,sc=1){
+  let g=`<g transform="translate(${x},${y}) rotate(${a-90})" opacity="${op}">`;
+  g+=`<line x1="0" y1="0" x2="${14*sc}" y2="0" stroke="${c}" stroke-width="${2.5*sc}" stroke-linecap="round"/>`;
+  g+=`<circle cx="${16*sc}" cy="0" r="${5.5*sc}" fill="${c}"/>`;
+  g+=`<line x1="${4*sc}" y1="${-7*sc}" x2="${4*sc}" y2="${7*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${-6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  return g+`</g>`;
+}
+function fog(x,y,rx,ry,c,op){return `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${c}" opacity="${op}" filter="url(#fog)"/>`;}
+function lock(x,y,c,s=1){return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-2" width="12" height="10" rx="2" fill="${c}" opacity="0.8"/><path d="M-3.5,-2 L-3.5,-5 A3.5,3.5 0 0,1 3.5,-5 L3.5,-2" fill="none" stroke="${c}" stroke-width="1.8" opacity="0.8"/></g>`;}
+function isoBox(x,y,w,h,c){return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="none" stroke="${c}" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.45"/>`;}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// LAB SCENE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const LENSES=[
+  {l:'全景',c:INK,cap:'一间实验室。看起来一切正常。选择透镜看到问题。'},
+  {l:'可见性',c:VIS,cap:'<strong style="color:#c07b20">橙色迷雾</strong>覆盖了看不见的东西。这间实验室里几乎所有重要的东西都是隐藏的。'},
+  {l:'能动性',c:AGE,cap:'<strong style="color:#4a8f5c">绿色锁头</strong>标记了改不了的东西。十万行代码、黑箱仪器。'},
+  {l:'物理性',c:PHY,cap:'<strong style="color:#4a7ab8">蓝色裂缝</strong>隔开了屏幕和物理世界。科学对象在下面，工具在上面。'},
+  {l:'协作性',c:COL,cap:'<strong style="color:#8f4a8f">紫色虚线</strong>是每个人的孤岛。所有人面朝屏幕背对彼此。'},
+];
+let curL=0;
+function buildLT(){const el=document.getElementById('lensTabs');LENSES.forEach((l,i)=>{const b=document.createElement('button');b.className='tab'+(i===0?' active':'');b.textContent=l.l;b.style.color=i===0?l.c:'';b.onclick=()=>{curL=i;rLab();document.querySelectorAll('#lensTabs .tab').forEach((t,j)=>{t.classList.toggle('active',j===i);t.style.color=j===i?LENSES[j].c:'';});};el.appendChild(b);});}
+function rLab(){
+  const isV=curL===1,isA=curL===2,isP=curL===3,isC=curL===4,c=LENSES[curL].c;
+  let o=`<defs><filter id="fog"><feGaussianBlur stdDeviation="8"/></filter></defs>`;
+  o+=`<rect x="20" y="10" width="640" height="380" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+  o+=`<rect x="30" y="18" width="400" height="8" rx="2" fill="#ece9e2"/>`;
+  const D=[{x:50,y:30},{x:180,y:30},{x:310,y:30}];
+  D.forEach(d=>{o+=`<rect x="${d.x}" y="${d.y}" width="100" height="50" rx="3" fill="#f0ede6" stroke="#ddd"/>`;o+=`<rect x="${d.x+15}" y="${d.y+5}" width="45" height="28" rx="2" fill="#e4e4e0" stroke="#ccc"/>`;o+=P(d.x+50,d.y+72,0,isC?COL:'#888',isC?.9:.6);});
+  if(isV) D.forEach(d=>{o+=fog(d.x+38,d.y+18,30,16,VIS,.3);});
+  if(isA) D.forEach(d=>{o+=lock(d.x+38,d.y+16,AGE,1);});
+  if(isC){D.forEach(d=>{o+=isoBox(d.x+5,d.y-2,90,90,COL);o+=`<line x1="${d.x+50}" y1="${d.y+64}" x2="${d.x+50}" y2="${d.y+33}" stroke="${COL}" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>`;});}
+  // Wet bench
+  o+=`<rect x="50" y="190" width="200" height="45" rx="3" fill="#f0ede6" stroke="#ddd"/>`;
+  for(let i=0;i<8;i++){const tx=62+i*16;o+=`<rect x="${tx}" y="197" width="5" height="14" rx="2.5" fill="#dde8dd" stroke="#bbc8bb" stroke-width=".5"/>`;o+=`<rect x="${tx+.5}" y="202" width="4" height="8" rx="2" fill="#c0d8c0" opacity=".5"/>`;}
+  o+=P(120,255,0,(isV||isP)?c:'#777',.85);
+  if(isV) o+=fog(110,205,70,16,VIS,.35);
+  // Instrument
+  o+=`<rect x="290" y="200" width="65" height="40" rx="4" fill="#eee" stroke="#ccc"/>`;o+=`<circle cx="335" cy="215" r="5" fill="none" stroke="#bbb" stroke-width="1.5"/>`;
+  o+=P(320,262,0,isA?AGE:'#777',.85);
+  if(isA) o+=lock(322,205,AGE,1.2);
+  // Freezer
+  o+=`<rect x="580" y="30" width="55" height="90" rx="3" fill="#f5f5f5" stroke="#ccc"/>`;
+  for(let r=0;r<3;r++){for(let i=0;i<5;i++)o+=`<rect x="${593+i*7}" y="${38+r*27}" width="4" height="16" rx="2" fill="#d8e8f0" stroke="#bcc8d0" stroke-width=".3"/>`;}
+  if(isV) o+=fog(607,75,28,42,VIS,.4);
+  // Meeting
+  o+=`<ellipse cx="520" cy="280" rx="42" ry="32" fill="#f0ede6" stroke="#ddd"/>`;
+  [{x:480,y:260,a:45},{x:560,y:260,a:315},{x:495,y:315,a:25},{x:545,y:315,a:335}].forEach(p=>{o+=P(p.x,p.y,p.a,isC?COL:'#777',.7,.85);});
+  if(isC)[{x:480,y:260},{x:560,y:260},{x:495,y:315},{x:545,y:315}].forEach(p=>{o+=isoBox(p.x-16,p.y-22,32,44,COL);});
+  // Presentation screen
+  o+=`<rect x="580" y="155" width="55" height="35" rx="2" fill="#e8e8e4" stroke="#ccc"/>`;
+  if(isP){const dy=155;let path=`M20,${dy-5}`;for(let x=20;x<=660;x+=20)path+=` L${x+10},${dy-5+(Math.random()-.5)*10}`;o+=`<path d="${path}" fill="none" stroke="${PHY}" stroke-width="2" opacity=".35" stroke-dasharray="8 4"/>`;o+=`<text x="40" y="${dy-14}" font-size="9" fill="${PHY}" opacity=".7" font-family="var(--mono)">↑ 屏幕世界</text>`;o+=`<text x="40" y="${dy+10}" font-size="9" fill="${PHY}" opacity=".7" font-family="var(--mono)">↓ 物理世界</text>`;}
+  // Area labels (always visible, dim)
+  o+=`<text x="200" y="26" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">计算区 · 三台电脑</text>`;
+  o+=`<text x="150" y="185" font-size="8" fill="${DIM}" font-family="var(--mono)">湿实验台 · 试管和移液器</text>`;
+  o+=`<text x="290" y="195" font-size="8" fill="${DIM}" font-family="var(--mono)">仪器</text>`;
+  o+=`<text x="607" y="25" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">冰箱</text>`;
+  o+=`<text x="520" y="245" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">讨论区</text>`;
+  o+=`<text x="607" y="150" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">大屏幕</text>`;
+  document.getElementById('labSvg').innerHTML=o;
+  document.getElementById('lensCap').innerHTML=LENSES[curL].cap;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ICEBERG (Visibility)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const ICE_LEVELS=[
+  {lines:'60',label:'屏幕上可见的代码',h:10,color:VIS+'40'},
+  {lines:'1,000',label:'她自己程序的全部',h:28,color:VIS+'50'},
+  {lines:'1,000,000',label:'依赖的库和框架',h:90,color:VIS+'60'},
+  {lines:'100,000,000',label:'操作系统和底层代码',h:150,color:VIS+'70'},
+];
+function renderIceberg(){
+  const lv=+document.getElementById('iceSlider').value;
+  let o='';const cx=300,waterY=55;
+  // Water line
+  o+=`<line x1="40" y1="${waterY}" x2="560" y2="${waterY}" stroke="${VIS}" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>`;
+  o+=`<text x="570" y="${waterY+4}" font-size="9" fill="${VIS}" font-family="var(--mono)" opacity=".6">可见线</text>`;
+  // Above water: always show 60 lines
+  o+=`<rect x="${cx-30}" y="${waterY-ICE_LEVELS[0].h}" width="60" height="${ICE_LEVELS[0].h}" rx="3" fill="${VIS}30" stroke="${VIS}" stroke-width="1.5"/>`;
+  o+=`<text x="${cx}" y="${waterY-1}" text-anchor="middle" font-size="10" fill="${VIS}" font-weight="600">60 行</text>`;
+  // Below water: progressive reveal
+  let curY=waterY;
+  for(let i=1;i<=lv;i++){
+    const d=ICE_LEVELS[i];
+    const w=60+i*30;
+    o+=`<rect x="${cx-w/2}" y="${curY}" width="${w}" height="${d.h}" rx="3" fill="${d.color}" stroke="${VIS}40" stroke-width="1"/>`;
+    o+=`<text x="${cx}" y="${curY+d.h/2+4}" text-anchor="middle" font-size="10" fill="${VIS}" font-weight="${i===lv?'600':'400'}">${d.lines} 行</text>`;
+    curY+=d.h;
+  }
+  // Label below
+  if(lv>0){
+    o+=`<text x="${cx}" y="${curY+16}" text-anchor="middle" font-size="10" fill="${DIM}">${ICE_LEVELS[lv].label}</text>`;
+    o+=`<text x="${cx}" y="${curY+30}" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">没有人看过全部</text>`;
+  }
+  document.getElementById('icebergSvg').innerHTML=o;
+  document.getElementById('iceCap').innerHTML=lv===0?'拖动滑块，看看水面下有多少不可见的代码。':
+    `她能看到的 60 行只占全部 ${ICE_LEVELS[lv].lines} 行的 ${lv===1?'6%':lv===2?'0.006%':'0.00006%'}。`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CODE MOUNTAIN (Agency)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderCode(){
+  let o='';const base=170;
+  // Traditional: tall tower
+  const towerH=140,towerW=80,tx=140;
+  o+=`<rect x="${tx}" y="${base-towerH}" width="${towerW}" height="${towerH}" rx="3" fill="${OLD}12" stroke="${OLD}" stroke-width="1.5"/>`;
+  for(let i=0;i<20;i++){
+    const ly=base-towerH+8+i*6.5;
+    const widths=[45,30,55,25,48,38,52,28,43,35,50,22,47,32,55,40,33,50,28,42];
+    o+=`<line x1="${tx+8}" y1="${ly}" x2="${tx+8+widths[i]}" y2="${ly}" stroke="${OLD}25" stroke-width="1.5"/>`;
+  }
+  o+=`<text x="${tx+towerW/2}" y="${base-towerH-10}" text-anchor="middle" font-size="13" fill="${OLD}" font-weight="700">100,000 行</text>`;
+  o+=`<text x="${tx+towerW/2}" y="${base+16}" text-anchor="middle" font-size="10" fill="${DIM}">Cadnano</text>`;
+
+  // Realtalk: small card (proportional: 2 pages ≈ 100 lines ≈ 0.1% of 100K)
+  const cardH=18,cardW=55,cx2=400;
+  o+=`<rect x="${cx2}" y="${base-cardH}" width="${cardW}" height="${cardH}" rx="2" fill="${NEW}18" stroke="${NEW}" stroke-width="1.5"/>`;
+  o+=`<line x1="${cx2+6}" y1="${base-cardH+5}" x2="${cx2+38}" y2="${base-cardH+5}" stroke="${NEW}50" stroke-width="1"/>`;
+  o+=`<line x1="${cx2+6}" y1="${base-cardH+10}" x2="${cx2+28}" y2="${base-cardH+10}" stroke="${NEW}40" stroke-width="1"/>`;
+  o+=`<text x="${cx2+cardW/2}" y="${base-cardH-10}" text-anchor="middle" font-size="13" fill="${NEW}" font-weight="700">1-2 页</text>`;
+  o+=`<text x="${cx2+cardW/2}" y="${base+16}" text-anchor="middle" font-size="10" fill="${DIM}">Realtalk 工具</text>`;
+
+  // Baseline
+  o+=`<line x1="${tx-10}" y1="${base}" x2="${cx2+cardW+10}" y2="${base}" stroke="${FAINT}" stroke-width="1"/>`;
+
+  // Contrast annotation
+  o+=`<path d="M${tx+towerW+8},${base-towerH+10} L${tx+towerW+18},${base-towerH+10} L${tx+towerW+18},${base-10} L${tx+towerW+8},${base-10}" fill="none" stroke="${DIM}" stroke-width="1" opacity=".3"/>`;
+  o+=`<text x="${tx+towerW+24}" y="${base-towerH/2+5}" font-size="9" fill="${DIM}" font-family="var(--mono)">~1000×</text>`;
+
+  document.getElementById('codeSvg').innerHTML=o;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PHYSICAL TOGGLE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let physMode=0;
+function togglePhys(){physMode=1-physMode;renderPhys();}
+function renderPhys(){
+  let o='';const cx=300;
+  if(physMode===0){
+    // Screen view: flat, grey, lifeless
+    o+=`<rect x="120" y="20" width="360" height="140" rx="4" fill="#f5f5f5" stroke="#ccc"/>`;
+    o+=`<rect x="120" y="20" width="360" height="18" rx="4" fill="#e8e8e4"/>`;
+    o+=`<circle cx="134" cy="29" r="3" fill="#ddd"/>`;o+=`<circle cx="144" cy="29" r="3" fill="#ddd"/>`;o+=`<circle cx="154" cy="29" r="3" fill="#ddd"/>`;
+    // Deterministic code lines
+    const widths=[180,120,200,90,160,140,110,170];
+    for(let i=0;i<8;i++){
+      o+=`<line x1="140" y1="${48+i*13}" x2="${140+widths[i]}" y2="${48+i*13}" stroke="#d0d0d0" stroke-width="1.5"/>`;
+    }
+    // 2D wireframe - flat, no depth
+    o+=`<rect x="380" y="60" width="80" height="80" rx="2" fill="#f0f0f0" stroke="#ddd"/>`;
+    o+=`<line x1="400" y1="75" x2="440" y2="95" stroke="#bbb" stroke-width="1.5"/>`;
+    o+=`<line x1="440" y1="95" x2="420" y2="125" stroke="#bbb" stroke-width="1.5"/>`;
+    o+=`<line x1="420" y1="125" x2="400" y2="75" stroke="#bbb" stroke-width="1.5"/>`;
+    o+=`<text x="${cx}" y="176" text-anchor="middle" font-size="10" fill="${DIM}">屏幕上的线条和坐标 —— 她从未触摸过这个形状</text>`;
+    document.getElementById('physCap').innerHTML='当前：屏幕视角。纳米结构被简化为二维线条。点击切换。';
+  } else {
+    // Physical view: 3D-ish shape, hands, tangible
+    o+=`<rect x="120" y="20" width="360" height="140" rx="4" fill="#f0f4f8" stroke="${PHY}40"/>`;
+    // 3D structure with depth
+    const shapes=[[260,80],[300,60],[340,90],[280,110],[320,100]];
+    // Connections
+    for(let i=0;i<shapes.length;i++){
+      const j=(i+1)%shapes.length;
+      o+=`<line x1="${shapes[i][0]}" y1="${shapes[i][1]}" x2="${shapes[j][0]}" y2="${shapes[j][1]}" stroke="${PHY}" stroke-width="2" opacity=".4"/>`;
+    }
+    // Nodes
+    shapes.forEach(([sx,sy],i)=>{
+      const r=8+i*2;
+      o+=`<circle cx="${sx}" cy="${sy}" r="${r}" fill="${PHY}${15+i*5}" stroke="${PHY}" stroke-width="1.5"/>`;
+    });
+    // Shadow for depth
+    o+=`<ellipse cx="300" cy="140" rx="50" ry="8" fill="${PHY}08"/>`;
+    // Hands
+    o+=`<text x="210" y="105" font-size="20" opacity=".5">🤲</text>`;
+    // Projection glow around structure
+    o+=`<ellipse cx="300" cy="88" rx="60" ry="40" fill="${PHY}05" stroke="${PHY}15"/>`;
+    o+=`<text x="${cx}" y="176" text-anchor="middle" font-size="10" fill="${PHY}">物理模型——用手触摸形状，投影显示力学性能</text>`;
+    document.getElementById('physCap').innerHTML='当前：物理视角。同一个纳米结构变成了可触摸的模型。点击切换。';
+  }
+  document.getElementById('physBtn').textContent=physMode===0?'切换到物理视角':'切换到屏幕视角';
+  document.getElementById('physSvg').innerHTML=o;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// COLLABORATION (static)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderCollab(){
+  let o='';
+  // Left: two separate workstations, people back to back
+  o+=`<rect x="20" y="10" width="260" height="140" rx="6" fill="#fdf8f4" stroke="${OLD}30"/>`;
+  o+=`<text x="150" y="28" text-anchor="middle" font-size="10" fill="${OLD}" font-weight="600">在电脑前</text>`;
+  // Person A facing left screen
+  o+=`<rect x="40" y="48" width="55" height="35" rx="3" fill="#e8e6e2" stroke="#ccc"/>`;
+  for(let i=0;i<3;i++)o+=`<line x1="48" y1="${56+i*8}" x2="${48+20+i*8}" y2="${56+i*8}" stroke="#ddd" stroke-width="1.5"/>`;
+  o+=P(68,105,0,OLD,.8,.85);
+  o+=`<line x1="68" y1="97" x2="68" y2="86" stroke="${OLD}" stroke-width="1" stroke-dasharray="3 2" opacity=".4"/>`;
+  // Person B facing right screen (back to A)
+  o+=`<rect x="170" y="48" width="55" height="35" rx="3" fill="#e8e6e2" stroke="#ccc"/>`;
+  for(let i=0;i<3;i++)o+=`<line x1="178" y1="${56+i*8}" x2="${178+20+i*8}" y2="${56+i*8}" stroke="#ddd" stroke-width="1.5"/>`;
+  o+=P(198,105,0,OLD,.8,.85);
+  o+=`<line x1="198" y1="97" x2="198" y2="86" stroke="${OLD}" stroke-width="1" stroke-dasharray="3 2" opacity=".4"/>`;
+  // Isolation dash between them
+  o+=`<line x1="133" y1="45" x2="133" y2="120" stroke="${OLD}" stroke-width="1.5" stroke-dasharray="4 3" opacity=".2"/>`;
+  o+=`<text x="150" y="135" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">各自 → 各自的屏幕</text>`;
+
+  // Right: at table
+  o+=`<rect x="320" y="10" width="260" height="140" rx="6" fill="#f4faf4" stroke="${NEW}30"/>`;
+  o+=`<text x="450" y="28" text-anchor="middle" font-size="10" fill="${NEW}" font-weight="600">在桌子前</text>`;
+  o+=`<ellipse cx="450" cy="85" rx="45" ry="25" fill="#e6f2e8" stroke="${NEW}40"/>`;
+  // Objects on table
+  o+=`<rect x="435" y="78" width="12" height="8" rx="1.5" fill="${NEW}25" stroke="${NEW}50" stroke-width=".5"/>`;
+  o+=`<circle cx="460" cy="82" r="4" fill="${NEW}15" stroke="${NEW}40"/>`;
+  // Two people facing each other across table
+  o+=P(405,80,80,NEW,.8,.9);
+  o+=P(495,80,280,NEW,.8,.9);
+  // Gaze arrows: toward each other
+  o+=`<line x1="415" y1="74" x2="440" y2="80" stroke="${NEW}" stroke-width="1" stroke-dasharray="3 2" opacity=".4"/>`;
+  o+=`<line x1="485" y1="74" x2="460" y2="80" stroke="${NEW}" stroke-width="1" stroke-dasharray="3 2" opacity=".4"/>`;
+  // Connection
+  o+=`<line x1="420" y1="70" x2="480" y2="70" stroke="${NEW}" stroke-width=".8" opacity=".15"/>`;
+  o+=`<text x="450" y="130" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">视线 → 彼此</text>`;
+
+  document.getElementById('collabSvg').innerHTML=o;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// REALTALK HARDWARE (click version)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let rtSel=-1;
+const RT=[
+  {l:'摄像头',d:'天花板上的眼睛。实时识别桌上所有物体的位置、朝向和标记。'},
+  {l:'投影仪',d:'天花板上的聪明聚光灯。把信息和可视化精确投射到物体和桌面上。'},
+  {l:'物理对象',d:'卡片、纸张、3D 模型就是程序。用笔写代码，摆卡片构建逻辑。一两页纸就能做有用的工具。'},
+  {l:'桌面',d:'不是触摸屏。直接用手移动真实物体，投影仪在上面显示信息。整个房间都是计算机。'},
+];
+function rRT(){
+  let o='';
+  o+=`<rect x="100" y="20" width="480" height="280" rx="8" fill="#faf9f6" stroke="${RULE}" stroke-width="1.5"/>`;
+  o+=`<rect x="100" y="20" width="480" height="28" rx="8" fill="#eee" stroke="${RULE}"/>`;
+  o+=`<text x="340" y="38" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">天花板</text>`;
+
+  // Camera (clickable)
+  const camA=rtSel===0;
+  o+=`<g style="cursor:pointer" onclick="rtSel=rtSel===0?-1:0;rRT()"><circle cx="200" cy="34" r="9" fill="${camA?VIS+'30':'#ddd'}" stroke="${camA?VIS:'#bbb'}" stroke-width="${camA?2:1}"/><circle cx="200" cy="34" r="3.5" fill="${camA?VIS:'#aaa'}"/><text x="200" y="60" text-anchor="middle" font-size="9" fill="${camA?VIS:DIM}" font-weight="${camA?600:400}">📷 摄像头</text></g>`;
+  if(camA){o+=`<line x1="200" y1="46" x2="160" y2="120" stroke="${VIS}" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>`;o+=`<line x1="200" y1="46" x2="240" y2="120" stroke="${VIS}" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>`;}
+
+  // Projector
+  const pA=rtSel===1;
+  o+=`<g style="cursor:pointer" onclick="rtSel=rtSel===1?-1:1;rRT()"><rect x="448" y="28" width="18" height="12" rx="3" fill="${pA?PHY+'30':'#ddd'}" stroke="${pA?PHY:'#bbb'}" stroke-width="${pA?2:1}"/><text x="457" y="60" text-anchor="middle" font-size="9" fill="${pA?PHY:DIM}" font-weight="${pA?600:400}">💡 投影仪</text></g>`;
+  if(pA){o+=`<line x1="457" y1="42" x2="420" y2="160" stroke="${PHY}" stroke-width="1.5" opacity=".2"/>`;o+=`<line x1="457" y1="42" x2="490" y2="160" stroke="${PHY}" stroke-width="1.5" opacity=".2"/>`;o+=`<ellipse cx="455" cy="160" rx="40" ry="18" fill="${PHY}08" stroke="${PHY}20"/>`;}
+
+  // Table
+  o+=`<rect x="200" y="120" width="280" height="110" rx="6" fill="#f0ede6" stroke="#ddd"/>`;
+
+  // Physical objects (clickable)
+  const oA=rtSel===2;
+  o+=`<g style="cursor:pointer" onclick="rtSel=rtSel===2?-1:2;rRT()">`;
+  [[220,135,10],[260,140,-5],[300,132,15],[340,138,-8],[380,142,5],[420,135,12]].forEach(([cx,cy,rot])=>{
+    o+=`<rect x="${cx-10}" y="${cy-6}" width="20" height="12" rx="2" fill="${oA?AGE+'20':'#fff'}" stroke="${oA?AGE:'#ccc'}" stroke-width="${oA?1.5:1}" transform="rotate(${rot},${cx},${cy})"/>`;
+    o+=`<line x1="${cx-6}" y1="${cy-1}" x2="${cx+6}" y2="${cy-1}" stroke="${oA?AGE+'50':'#ddd'}" stroke-width="1" transform="rotate(${rot},${cx},${cy})"/>`;
+  });
+  o+=`<text x="340" y="168" text-anchor="middle" font-size="9" fill="${oA?AGE:DIM}" font-weight="${oA?600:400}">📄 物理对象</text>`;
+  o+=`</g>`;
+
+  // Table surface (clickable)
+  const tA=rtSel===3;
+  o+=`<g style="cursor:pointer" onclick="rtSel=rtSel===3?-1:3;rRT()"><rect x="200" y="177" width="280" height="50" rx="3" fill="${tA?COL+'06':'transparent'}" stroke="${tA?COL:'transparent'}" stroke-width="1.5" stroke-dasharray="${tA?'':'5 3'}"/><text x="340" y="200" text-anchor="middle" font-size="9" fill="${tA?COL:DIM}" font-weight="${tA?600:400}">🖐️ 桌面 = 界面</text></g>`;
+
+  // People
+  o+=P(175,185,80,'#777',.6,.85);o+=P(505,185,280,'#777',.6,.85);o+=P(300,255,0,'#777',.6,.85);o+=P(380,255,0,'#777',.6,.85);
+
+  // Projection highlight on objects when projector selected
+  if(pA)[[220,135],[260,140],[300,132],[340,138],[380,142],[420,135]].forEach(([cx,cy])=>{o+=`<ellipse cx="${cx}" cy="${cy}" rx="14" ry="8" fill="${PHY}12"/>`;});
+
+  document.getElementById('rtSvg').innerHTML=o;
+  document.getElementById('rtCap').innerHTML=rtSel>=0?`<strong>${RT[rtSel].l}</strong>：${RT[rtSel].d}`:'点击图中的组件查看详情。';
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SIX STAGES (differentiated both sides)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const STG=[
+  {t:'定向',en:'Orientation',
+   cap:'看左图：演讲者面朝屏幕，三个听众被动坐着。看右图：五个人围着散落的卡片。',
+   text:'<p>三个人第一次见面。细胞生物学家不知道 DNA 折纸术是什么，电气工程师不知道细胞信号怎么传导，纳米科学家不知道芯片传感器怎么工作。</p><p><strong>左图</strong>：各做一套幻灯片。生物学家讲了 20 分钟细胞膜电位，其他两人一知半解地点头。轮流三遍后大家客气地说「很有意思」，但没有产生任何交叉想法。</p><p><strong>右图</strong>：桌上铺开动态时间线——手写「DNA origami」，相关论文、视频自动浮现在卡片周围。生物学家创建了所有人都能用手推拉的细胞膜模型——纳米科学家第一次「看到」离子通道打开的样子。工程师发现信号模式像她做过的电路，当场用卡片搭了对比模型。到凌晨两点还在互玩。<strong>结果</strong>：三人构想出用 DNA 折纸搭建生物芯片基底的方案——知识在触摸中融合了。</p>'},
+  {t:'建模',en:'Modeling',
+   cap:'看左图：三台屏幕上三种不同颜色的界面。看右图：一张桌上的统一工具。',
+   text:'<p>有了大致方案：DNA 折纸基底 + 细胞捕获区 + 电信号传感。但每个人脑中的画面不同，需要精确仿真来对齐。</p><p><strong>左图三种颜色</strong>代表三种不兼容的软件——生物学家用 Python 模拟基因电路，工程师用 MATLAB 模拟电信号，纳米科学家用 Cadnano 设计 DNA 结构。三种软件数据格式互不兼容。三周后才发现方案不可行——DNA 基底力学性能撑不住传感器重量。</p><p><strong>右图</strong>：中央桌上，三人的草图立即变成可仿真组件。生物学家画一个细胞，它开始模拟信号传导；工程师画电路，它响应信号；纳米科学家摆 DNA 结构，力学仿真叠加上去。三个组件推到一起——看到结构会断裂。<strong>几小时</strong>就发现了问题，不是三周。而且他们<strong>看到了为什么断</strong>，让他们快速找到替代方案。</p>'},
+  {t:'设计',en:'Design',
+   cap:'看左图：一个人独占大屏幕，另外两个困惑旁观（注意问号）。看右图：五人一起拼积木。',
+   text:'<p>需要设计 DNA origami 的具体形状——几百条「订书钉」DNA 的序列和排列，让长链折叠成能承载传感器的三维结构。</p><p><strong>左图的问号</strong>是关键：设计 DNA origami 需要用 Cadnano，只有纳米科学家会用。另外两人完全无法参与，只能等他设计好再看结果。需要修改 Cadnano？那是十万行代码——还记得第一部分的代码量对比吗？</p><p><strong>右图</strong>：物理积木拼装 DNA 结构的比例模型。每块积木代表一段 DNA 双螺旋，拼在一起时投影仪立即显示力学仿真。从未接触过 DNA 的生物学家和工程师在手中操作几分钟就建立了直觉——「这里太脆弱」「这里需要加固」。有个计算工具差一点就够用——生物学家<strong>用笔在工具的纸页上写了两行代码修改了它</strong>。只有两页纸的好处。</p>'},
+  {t:'制造',en:'Fabrication',
+   cap:'看左图：试管上方有模糊迷雾——内容物不可见。看右图：试管上方有发光气泡——分子被可视化了。',
+   text:'<p>到了湿实验室——用真实的 DNA、细胞和化学试剂制造芯片。混合 DNA 长链和几百条订书钉，加热到 65°C 再慢慢冷却，让 DNA 折叠成设计好的形状。</p><p><strong>左图的迷雾</strong>：她把透明液体从一支试管移到另一支。看不见任何东西——DNA 太小了，肉眼完全不可见。从冰箱取出试管，不知道是哪个项目的、谁用过、做了什么。</p><p><strong>右图的发光气泡</strong>：走进实验室的瞬间整个房间为这个项目亮起来。冰箱引导取出正确的 DNA 样品，试管上方展开完整历史。<strong>每支试管上方浮现内容物的分子结构可视化</strong>——她第一次「看见」DNA 折纸在溶液中组装的过程。需要做光密度测量但没合适仪器？从架子上拿零件，用和搭计算模型完全相同的方法即兴拼出一台。</p>'},
+  {t:'分析',en:'Analysis',
+   cap:'看左图：一个小屏幕上的密集点阵。看右图：一大片数据景观覆盖整个桌面，人们站在其中。',
+   text:'<p>制造出的 DNA 折纸结构需要用电子显微镜验证——用电子束成像，分辨率可以看到单个纳米结构。</p><p><strong>左图小屏幕里的点</strong>：电子显微镜拍到大量图像，每张里有上百个纳米粒子。在标准实验室里，研究者在 15 英寸屏幕上手动点击测量每个粒子尺寸。数据太大，只能看一小片。</p><p><strong>右图</strong>：<strong>地板亮了起来，他们被投入纳米尺度</strong>。整个房间变成了电子显微镜数据——他们站在真实拍摄的 DNA 折纸结构之间，每个结构和人一样高。纳米科学家拿「纳米卷尺」测量。生物学家和工程师在一簇粒子旁坐下来，用卡片写识别程序——训练机器自动分类哪些折叠成功、哪些失败。<strong>在自己分析的数据之中写分析程序</strong>。接下来几天，他们在纳米景观里吃午饭。</p>'},
+  {t:'展示',en:'Presentation',
+   cap:'看左图：讲台上一人，台下四人坐成一排。看右图：桌上一个桌游盒。',
+   text:'<p>经过多轮迭代，他们发现某些细胞在 DNA 折纸基底上展现出异常信号模式，暗示了一种新的治疗思路。现在要把这个发现分享出去。</p><p><strong>左图</strong>：标准做法。30 张幻灯片，讲 20 分钟。观众看到图表和要点，提几个问题。三天后大部分人忘了细节。</p><p><strong>右图的桌游盒</strong>：每组观众收到一个盒子，里面是整个项目的微缩版——DNA 折叠积木、细胞信号卡片、电路组件、纳米景观地图。引导者说：「现在你们自己做一遍。」观众从拼装 DNA 结构开始，经历建模、发现失败、找到替代方案、制造、分析……几小时内重走了数月的实验旅程。<strong>每个人抱着盒子回家</strong>。</p>'},
+];
+let curS=0;
+
+function drawOldScene(x0,y0,w,h,idx){
+  let s=`<rect x="${x0}" y="${y0}" width="${w}" height="${h}" rx="6" fill="#fdf8f4" stroke="${OLD}30" stroke-width="1.5"/>`;
+  s+=`<text x="${x0+w/2}" y="${y0+16}" text-anchor="middle" font-size="9" fill="${OLD}" font-weight="600">标准实验室</text>`;
+  const cxL=x0+w/2;
+  if(idx===0){// Orientation: slides on screen, passive audience
+    // Screen with slides
+    s+=`<rect x="${x0+20}" y="${y0+35}" width="80" height="50" rx="3" fill="#e8e6e2" stroke="#ccc"/>`;
+    for(let i=0;i<4;i++)s+=`<rect x="${x0+28}" y="${y0+43+i*10}" width="${20+Math.random()*30}" height="4" rx="1" fill="#ddd"/>`;
+    s+=`<text x="${x0+60}" y="${y0+30}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">幻灯片</text>`;
+    // Presenter facing screen
+    s+=P(x0+60,y0+105,180,OLD,.6,.8);
+    s+=`<text x="${x0+60}" y="${y0+120}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">讲者 · 面朝屏幕</text>`;
+    // Passive audience in a row
+    s+=P(x0+160,y0+80,270,OLD,.4,.7);s+=P(x0+160,y0+100,270,OLD,.4,.7);s+=P(x0+160,y0+120,270,OLD,.4,.7);
+    s+=`<text x="${x0+180}" y="${y0+140}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">被动听众</text>`;
+    // Dashed arrow: one-way information flow
+    s+=`<line x1="${x0+100}" y1="${y0+100}" x2="${x0+145}" y2="${y0+100}" stroke="${OLD}" stroke-width="1" stroke-dasharray="3 2" opacity=".3" marker-end="url(#arrG)"/>`;
+    s+=`<text x="${x0+122}" y="${y0+95}" text-anchor="middle" font-size="6" fill="${OLD}" opacity=".5">单向</text>`;
+    // Time label
+    s+=`<text x="${x0+w/2}" y="${y0+h-22}" text-anchor="middle" font-size="8" fill="${OLD}" opacity=".5" font-family="var(--mono)">× 3 轮 = 60 分钟</text>`;
+  } else if(idx===1){// Modeling: 3 different screens
+    const softNames=['Python','MATLAB','Cadnano'];
+    const softColors=['#e88','#8b8','#88e'];
+    for(let i=0;i<3;i++){
+      const sx=x0+15+i*68;
+      s+=`<rect x="${sx}" y="${y0+38}" width="55" height="32" rx="2" fill="#e8e6e2" stroke="#ccc"/>`;
+      // Color-coded interface bar
+      s+=`<rect x="${sx+3}" y="${y0+41}" width="49" height="5" rx="1" fill="${softColors[i]}40"/>`;
+      // Code lines
+      for(let j=0;j<3;j++)s+=`<rect x="${sx+5}" y="${y0+49+j*6}" width="${15+Math.random()*20}" height="2.5" rx=".5" fill="${softColors[i]}25"/>`;
+      s+=P(sx+28,y0+88,0,OLD,.55,.7);
+      // Software name label
+      s+=`<text x="${sx+28}" y="${y0+34}" text-anchor="middle" font-size="7" fill="${softColors[i]}" font-weight="500" font-family="var(--mono)">${softNames[i]}</text>`;
+    }
+    // Incompatible arrows between screens
+    s+=`<line x1="${x0+70}" y1="${y0+54}" x2="${x0+83}" y2="${y0+54}" stroke="${OLD}" stroke-width="1.5" opacity=".3"/>`;
+    s+=`<text x="${x0+76}" y="${y0+52}" text-anchor="middle" font-size="10" fill="${OLD}" opacity=".4">✕</text>`;
+    s+=`<line x1="${x0+138}" y1="${y0+54}" x2="${x0+151}" y2="${y0+54}" stroke="${OLD}" stroke-width="1.5" opacity=".3"/>`;
+    s+=`<text x="${x0+144}" y="${y0+52}" text-anchor="middle" font-size="10" fill="${OLD}" opacity=".4">✕</text>`;
+    // Time and failure label
+    s+=`<text x="${cxL}" y="${y0+110}" text-anchor="middle" font-size="8" fill="${OLD}" opacity=".6" font-family="var(--mono)">数据不互通 · 三周后发现失败</text>`;
+  } else if(idx===2){// Design: one person at CAD screen, others excluded
+    // Big CAD screen
+    s+=`<rect x="${x0+45}" y="${y0+30}" width="110" height="60" rx="3" fill="#e8e6e2" stroke="#ccc"/>`;
+    s+=`<text x="${x0+100}" y="${y0+28}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">Cadnano · 100,000 行代码</text>`;
+    // Lines of code on screen
+    for(let i=0;i<5;i++){const ly=y0+38+i*10;s+=`<line x1="${x0+53}" y1="${ly}" x2="${x0+53+30+Math.random()*40}" y2="${ly}" stroke="#ddd" stroke-width="1.5"/>`;}
+    // Main user at screen
+    s+=P(x0+100,y0+110,0,OLD,.8,.9);
+    s+=`<text x="${x0+100}" y="${y0+125}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">纳米科学家</text>`;
+    // Excluded others with question marks
+    s+=P(x0+30,y0+95,0,OLD,.3,.7);s+=P(x0+170,y0+95,0,OLD,.3,.7);
+    s+=`<text x="${x0+30}" y="${y0+82}" text-anchor="middle" font-size="14" opacity=".35">❓</text>`;
+    s+=`<text x="${x0+170}" y="${y0+82}" text-anchor="middle" font-size="14" opacity=".35">❓</text>`;
+    s+=`<text x="${x0+30}" y="${y0+110}" text-anchor="middle" font-size="6" fill="${DIM}">生物学家</text>`;
+    s+=`<text x="${x0+170}" y="${y0+110}" text-anchor="middle" font-size="6" fill="${DIM}">工程师</text>`;
+    // Barrier label
+    s+=`<text x="${cxL}" y="${y0+142}" text-anchor="middle" font-size="7" fill="${OLD}" opacity=".5" font-family="var(--mono)">只有一个人能参与设计</text>`;
+  } else if(idx===3){// Fabrication: tubes with fog
+    // Bench
+    s+=`<rect x="${x0+30}" y="${y0+45}" width="140" height="30" rx="3" fill="#f0ede6" stroke="#ddd"/>`;
+    s+=`<text x="${x0+100}" y="${y0+40}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">湿实验台</text>`;
+    // Tubes
+    for(let i=0;i<8;i++){const tx=x0+38+i*14;s+=`<rect x="${tx}" y="${y0+50}" width="5" height="16" rx="2.5" fill="#e8e8e8" stroke="#ccc" stroke-width=".5"/>`;}
+    // Fog over tubes
+    s+=fog(x0+100,y0+58,70,16,OLD,.25);
+    s+=`<text x="${x0+100}" y="${y0+58}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">看不见内容物</text>`;
+    // Researcher
+    s+=P(x0+100,y0+100,0,OLD,.7,.85);
+    // Freezer icon
+    s+=`<rect x="${x0+180}" y="${y0+35}" width="22" height="35" rx="2" fill="#f0f0f0" stroke="#ccc"/>`;
+    s+=`<text x="${x0+191}" y="${y0+56}" text-anchor="middle" font-size="6" fill="${DIM}">冰箱</text>`;
+    s+=`<text x="${x0+191}" y="${y0+70}" text-anchor="middle" font-size="6" fill="${OLD}" opacity=".5">不知谁的</text>`;
+    // Time label
+    s+=`<text x="${cxL}" y="${y0+125}" text-anchor="middle" font-size="7" fill="${OLD}" opacity=".5" font-family="var(--mono)">肉眼不可见 · 历史不可查</text>`;
+  } else if(idx===4){// Analysis: small screen with dots
+    // Small screen
+    s+=`<rect x="${x0+50}" y="${y0+30}" width="100" height="60" rx="3" fill="#e8e6e2" stroke="#ccc"/>`;
+    s+=`<text x="${x0+100}" y="${y0+28}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">15 英寸屏幕</text>`;
+    // Dense dots (nanoparticles in EM image)
+    for(let i=0;i<20;i++){s+=`<circle cx="${x0+60+Math.random()*80}" cy="${y0+38+Math.random()*44}" r="${.8+Math.random()*2}" fill="#bbb"/>`;}
+    // Person clicking manually
+    s+=P(x0+100,y0+112,0,OLD,.7,.85);
+    // Tiny magnifier cursor
+    s+=`<circle cx="${x0+85}" cy="${y0+55}" r="4" fill="none" stroke="${OLD}" stroke-width=".8" opacity=".4"/>`;
+    s+=`<line x1="${x0+88}" y1="${y0+58}" x2="${x0+92}" y2="${y0+62}" stroke="${OLD}" stroke-width=".8" opacity=".4"/>`;
+    // Label
+    s+=`<text x="${cxL}" y="${y0+130}" text-anchor="middle" font-size="7" fill="${OLD}" opacity=".5" font-family="var(--mono)">手动逐个测量 · 数据太大看不完</text>`;
+  } else {// Presentation: lecture hall
+    // Screen with bar chart
+    s+=`<rect x="${x0+40}" y="${y0+28}" width="120" height="55" rx="3" fill="#e8e6e2" stroke="#ccc"/>`;
+    s+=`<text x="${x0+100}" y="${y0+26}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">30 张幻灯片</text>`;
+    for(let i=0;i<3;i++){const bh=8+Math.random()*25;s+=`<rect x="${x0+55+i*28}" y="${y0+73-bh}" width="18" height="${bh}" rx="1" fill="#ddd"/>`;}
+    // Presenter
+    s+=P(x0+100,y0+100,180,OLD,.7,.8);
+    s+=`<text x="${x0+100}" y="${y0+116}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">20 分钟</text>`;
+    // Audience in a row
+    s+=P(x0+35,y0+130,0,OLD,.3,.6);s+=P(x0+75,y0+130,0,OLD,.3,.6);s+=P(x0+115,y0+130,0,OLD,.3,.6);s+=P(x0+155,y0+130,0,OLD,.3,.6);
+    // Forgetting indicator
+    s+=`<text x="${cxL}" y="${y0+150}" text-anchor="middle" font-size="7" fill="${OLD}" opacity=".5" font-family="var(--mono)">三天后忘了大部分</text>`;
+  }
+  s+=`<text x="${x0+w/2}" y="${y0+h-6}" text-anchor="middle" font-size="8" fill="${OLD}" font-weight="500">面朝屏幕</text>`;
+  return s;
+}
+
+function drawNewScene(x0,y0,w,h,idx){
+  let s=`<rect x="${x0}" y="${y0}" width="${w}" height="${h}" rx="6" fill="#f4faf4" stroke="${NEW}30" stroke-width="1.5"/>`;
+  s+=`<text x="${x0+w/2}" y="${y0+16}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600">社区实验室</text>`;
+  const tcx=x0+w/2,tcy=y0+90;
+  s+=`<ellipse cx="${tcx}" cy="${tcy}" rx="55" ry="35" fill="#e6f2e8" stroke="${NEW}40"/>`;
+  if(idx===0){// Timeline cards + interactive models
+    // Cards scattered on table
+    for(let i=0;i<6;i++){const a=i/6*Math.PI*2,ix=tcx+28*Math.cos(a),iy=tcy+18*Math.sin(a);s+=`<rect x="${ix-9}" y="${iy-6}" width="18" height="12" rx="1.5" fill="${NEW}20" stroke="${NEW}40" stroke-width=".5" transform="rotate(${i*15},${ix},${iy})"/>`;}
+    // Label on table
+    s+=`<text x="${tcx}" y="${tcy+5}" text-anchor="middle" font-size="7" fill="${NEW}" font-weight="500">动态模型卡片</text>`;
+    // Highlight: active exploration
+    s+=`<text x="${tcx}" y="${tcy+48}" text-anchor="middle" font-size="7" fill="${NEW}" opacity=".6" font-family="var(--mono)">手写关键词 → 自动浮现资料</text>`;
+    // Time label
+    s+=`<text x="${x0+w/2}" y="${y0+h-22}" text-anchor="middle" font-size="8" fill="${NEW}" opacity=".5" font-family="var(--mono)">到凌晨两点还在互玩</text>`;
+  } else if(idx===1){// Unified simulation table
+    // Central simulation with merged components
+    s+=`<ellipse cx="${tcx}" cy="${tcy}" rx="30" ry="18" fill="${NEW}08"/>`;
+    // Three colored modules that can be pushed together
+    const mods=[{dx:-18,c:'#e88',l:'生物'},{dx:0,c:'#8b8',l:'电路'},{dx:18,c:'#88e',l:'DNA'}];
+    mods.forEach(m=>{
+      s+=`<rect x="${tcx+m.dx-8}" y="${tcy-7}" width="16" height="14" rx="2" fill="${m.c}25" stroke="${m.c}60" stroke-width=".8"/>`;
+      s+=`<text x="${tcx+m.dx}" y="${tcy+18}" text-anchor="middle" font-size="6" fill="${m.c}" font-family="var(--mono)">${m.l}</text>`;
+    });
+    // Merge arrows
+    s+=`<text x="${tcx-8}" y="${tcy-10}" text-anchor="middle" font-size="7" fill="${NEW}" opacity=".4">→</text>`;
+    s+=`<text x="${tcx+10}" y="${tcy-10}" text-anchor="middle" font-size="7" fill="${NEW}" opacity=".4">←</text>`;
+    // Result label
+    s+=`<text x="${tcx}" y="${tcy+40}" text-anchor="middle" font-size="7" fill="${NEW}" font-weight="500" font-family="var(--mono)">推到一起 → 发现断裂</text>`;
+    s+=`<text x="${tcx}" y="${tcy+52}" text-anchor="middle" font-size="7" fill="${NEW}" opacity=".5" font-family="var(--mono)">几小时，不是三周</text>`;
+  } else if(idx===2){// Physical building blocks with pen
+    // DNA blocks
+    for(let i=0;i<5;i++){s+=`<rect x="${tcx-22+i*11}" y="${tcy-10}" width="9" height="14" rx="1" fill="${NEW}30" stroke="${NEW}50" stroke-width=".5"/>`;s+=`<rect x="${tcx-22+i*11}" y="${tcy+6}" width="9" height="3" rx=".5" fill="${NEW}15"/>`;}
+    s+=`<text x="${tcx}" y="${tcy-14}" text-anchor="middle" font-size="7" fill="${NEW}" font-weight="500">DNA 折纸积木</text>`;
+    // Projection glow on blocks
+    s+=`<ellipse cx="${tcx}" cy="${tcy}" rx="32" ry="14" fill="${NEW}06" stroke="${NEW}10"/>`;
+    s+=`<text x="${tcx}" y="${tcy+25}" text-anchor="middle" font-size="6" fill="${NEW}" opacity=".5">投影 = 力学仿真</text>`;
+    // Pen icon
+    s+=`<text x="${tcx+42}" y="${tcy-2}" font-size="11" fill="${NEW}" opacity=".6">✏️</text>`;
+    s+=`<text x="${tcx+42}" y="${tcy+12}" text-anchor="middle" font-size="6" fill="${NEW}" font-family="var(--mono)">改代码</text>`;
+    // Label
+    s+=`<text x="${tcx}" y="${tcy+48}" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">所有人都能拼 · 都能改</text>`;
+  } else if(idx===3){// Tubes with molecular glow
+    // Tubes with visible glowing molecular visualization above each
+    for(let i=0;i<5;i++){const tx=tcx-16+i*8;
+      s+=`<rect x="${tx}" y="${tcy-8}" width="5" height="16" rx="2.5" fill="#c0e8c0" stroke="${NEW}60" stroke-width=".5"/>`;
+      s+=`<ellipse cx="${tx+2.5}" cy="${tcy-14}" rx="6" ry="5" fill="${NEW}12" stroke="${NEW}30" stroke-width=".5"/>`;
+      // Tiny molecule inside glow
+      s+=`<circle cx="${tx+2.5}" cy="${tcy-14}" r="1.5" fill="${NEW}40"/>`;
+    }
+    s+=`<text x="${tcx}" y="${tcy-22}" text-anchor="middle" font-size="6" fill="${NEW}" font-weight="500">分子结构可视化</text>`;
+    // Freezer with guidance
+    s+=`<rect x="${tcx+38}" y="${tcy-15}" width="16" height="25" rx="2" fill="#e8f4e8" stroke="${NEW}40"/>`;
+    s+=`<text x="${tcx+46}" y="${tcy+18}" text-anchor="middle" font-size="5" fill="${NEW}" font-family="var(--mono)">智能冰箱</text>`;
+    // Arrow from freezer to tube
+    s+=`<line x1="${tcx+38}" y1="${tcy-2}" x2="${tcx+24}" y2="${tcy-2}" stroke="${NEW}" stroke-width=".8" stroke-dasharray="2 2" opacity=".3"/>`;
+    // Label
+    s+=`<text x="${tcx}" y="${tcy+48}" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">看得见内容 · 查得到历史</text>`;
+  } else if(idx===4){// Floor data landscape - immersive
+    // Large floor area with data
+    s+=`<rect x="${tcx-48}" y="${tcy-25}" width="96" height="50" rx="3" fill="${NEW}08" stroke="${NEW}20"/>`;
+    // Larger particles (human-scale)
+    for(let i=0;i<12;i++){const r=2+Math.random()*3;s+=`<circle cx="${tcx-40+Math.random()*80}" cy="${tcy-20+Math.random()*40}" r="${r}" fill="${NEW}${15+Math.floor(Math.random()*20)}" stroke="${NEW}30" stroke-width=".3"/>`;}
+    // Person INSIDE the data
+    s+=`<text x="${tcx}" y="${tcy-28}" text-anchor="middle" font-size="7" fill="${NEW}" font-weight="500">纳米尺度 · 人在数据中</text>`;
+    // Card being written inside landscape
+    s+=`<rect x="${tcx+20}" y="${tcy+5}" width="14" height="10" rx="1" fill="#fff" stroke="${NEW}50"/>`;
+    s+=`<text x="${tcx+27}" y="${tcy+12}" text-anchor="middle" font-size="5" fill="${NEW}" font-family="var(--mono)">写程序</text>`;
+    // Label
+    s+=`<text x="${tcx}" y="${tcy+48}" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">在数据之中分析数据</text>`;
+  } else {// Game box
+    s+=`<rect x="${tcx-16}" y="${tcy-14}" width="32" height="28" rx="3" fill="#fff" stroke="${NEW}" stroke-width="1.5"/>`;
+    s+=`<text x="${tcx}" y="${tcy+4}" text-anchor="middle" font-size="12" fill="${NEW}">🎲</text>`;
+    s+=`<text x="${tcx}" y="${tcy-18}" text-anchor="middle" font-size="7" fill="${NEW}" font-weight="500">桌游盒</text>`;
+    // Take-home arrows
+    s+=`<line x1="${tcx-25}" y1="${tcy}" x2="${tcx-45}" y2="${tcy-15}" stroke="${NEW}" stroke-width=".8" stroke-dasharray="3 2" opacity=".3"/>`;
+    s+=`<line x1="${tcx+25}" y1="${tcy}" x2="${tcx+45}" y2="${tcy-15}" stroke="${NEW}" stroke-width=".8" stroke-dasharray="3 2" opacity=".3"/>`;
+    s+=`<text x="${tcx}" y="${tcy+40}" text-anchor="middle" font-size="7" fill="${NEW}" font-family="var(--mono)">带走 → 打开 → 再传播</text>`;
+  }
+  // People facing center
+  const pp=[[x0+30,tcy-18,80],[x0+w-30,tcy-18,280],[x0+40,tcy+35,50],[x0+w-40,tcy+35,310],[x0+w/2,tcy-55,180]];
+  pp.forEach(([px,py,a])=>{s+=P(px,py,a,NEW,.7,.8);});
+  s+=`<text x="${x0+w/2}" y="${y0+h-6}" text-anchor="middle" font-size="8" fill="${NEW}" font-weight="500">面朝彼此</text>`;
+  return s;
+}
+function rStg(){
+  const s=STG[curS];let o='';
+  o+=`<defs><filter id="fog2"><feGaussianBlur stdDeviation="6"/></filter><marker id="arrG" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="${DIM}"/></marker></defs>`;
+  STG.forEach((_,i)=>{const cx=340+(i-2.5)*40;o+=`<circle cx="${cx}" cy="14" r="${i===curS?6:3.5}" fill="${i<=curS?INK:'#ddd'}"/>`;o+=`<text x="${cx}" y="30" text-anchor="middle" font-size="8" fill="${i===curS?INK:DIM}">${_.t}</text>`;});
+  o+=drawOldScene(20,42,300,260,curS);
+  o+=drawNewScene(360,42,300,260,curS);
+  o+=`<line x1="326" y1="170" x2="354" y2="170" stroke="${DIM}" stroke-width="1.5" marker-end="url(#arrG)"/>`;
+  document.getElementById('stgSvg').innerHTML=o;
+  document.getElementById('stgLabel').textContent=`${curS+1}/6 ${s.t} ${s.en}`;
+  document.getElementById('stgCap').innerHTML=s.cap;
+  document.getElementById('stgText').innerHTML=s.text;
+  document.getElementById('sPrev').classList.toggle('dim',curS<=0);
+  document.getElementById('sNext').classList.toggle('dim',curS>=5);
+}
+function stgNav(d){const n=curS+d;if(n>=0&&n<6){curS=n;rStg();}}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// BOARD GAME BOX (multi-layer)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let boxLv=0;
+const BOX_STEPS=[
+  {label:'盒子',
+   cap:'一个密封的桌游盒。每组观众收到一个。',
+   text:'<p>工作坊开始前，三位研究者带观众步行导览——穿过他们搭建的动态模型空间。观众走过纳米尺度的 DNA 折纸结构，看到细胞在芯片基底上发出信号，站在电子显微镜数据构成的粒子景观里。这不是讲座，是沉浸。</p><p>然后回到桌子前。每组四五个人面前放着一个密封的盒子。盒面上写着「DNA 折纸生物芯片探索盒」。</p>'},
+  {label:'打开',
+   cap:'揭开盒盖。六个隔层，对应项目的六个阶段。',
+   text:'<p>打开盒盖，六个隔层整齐排列。每个隔层里不是说明书，而是<strong>可操作的动态模型</strong>：放到桌上，天花板上的 Realtalk 摄像头识别它，投影仪给它赋予生命。整个盒子是三个人数月探索经验的压缩包——而你接下来几个小时将要把这些经验解压出来。</p>'},
+  {label:'取出组件',
+   cap:'六个隔层里有不同的组件。每组都对应一个阶段。',
+   text:'<p><strong>第一层 · 定向</strong>：细胞膜模型积木和领域卡片——和生物学家当初构建的一模一样。把卡片放到桌上，写上关键词，就能浮现论文、视频、概念图。</p><p><strong>第二层 · 建模</strong>：仿真积木和参数旋钮。三种颜色的组件分别代表生物模块、电路模块、DNA 结构模块。推到一起就能看到它们如何交互。</p><p><strong>第三层 · 设计</strong>：DNA origami 折叠积木。每块积木是一段 DNA 双螺旋的比例模型，拼装时投影显示力学性能。还有一支特殊的笔——用来在工具上写代码修改它。</p><p><strong>第四层 · 制造</strong>：制造协议卡和分子视镜。把试管放到桌上就能看到内容物的分子结构浮现在上方。</p><p><strong>第五层 · 分析</strong>：纳米景观地图和测量卡片。铺开地图，电子显微镜数据覆盖桌面——你可以走进数据。</p><p><strong>第六层 · 展示</strong>：两页纸的操作指南、空白卡片和分享贴纸——为你以后自己做桌游盒准备的。</p>'},
+  {label:'重走实验',
+   cap:'观众用组件重走六个阶段。几个小时获得数月直觉。',
+   text:'<p>引导者说：「现在你们来做一遍。」</p><p>小组拿出第一层积木，拼装细胞膜模型。投影仪照亮模型，显示离子通道打开的动画。一个观众把电路卡片推过来——信号模式叠加上去。另一个人用 DNA 积木搭建基底，力学仿真立即显示承重极限。</p><p>然后是关键时刻：小组把三个模块推到一起，发现了和原始研究者相同的问题——<strong>DNA 基底的力学性能撑不住传感器</strong>。结构会断裂。他们不是被告知这个结论，而是亲手发现的。然后他们开始尝试替代方案，最终找到了和原始研究者相同的解决路径。</p><p>他们不是被告知结论，而是<strong>自己重新发现了结论</strong>。这种理解是用手获得的，和被讲述的理解完全不同。</p>'},
+  {label:'自由探索',
+   cap:'引导结束。每个人从自己的专业角度钻研模型。新想法产生了。',
+   text:'<p>引导阶段结束，但没有人离开。观众开始从自己的专长角度撕开模型。</p><p>一个化学家把 DNA 折叠积木重新排列，发现了一种原始研究者没有尝试过的构型——它可能更稳定。一个物理学家把力学仿真的参数推到极端区域，在基底上看到了有趣的相变行为。两个人蹲在纳米景观地图前，发现了一簇粒子的排列模式——原始研究者没有注意到这个。</p><p>「他们不一定理解每个细节，但在操作动态模型的过程中，<strong>一种无言的直觉在手中生长</strong>。」这种直觉不是概念性的——它是肌肉记忆般的。你的手指记住了 DNA 结构在哪里会断，你的眼睛记住了成功折叠和失败折叠的区别。</p>'},
+  {label:'带回家',
+   cap:'每个人抱着盒子回家。在自己的实验室打开。知识开始传播。',
+   text:'<p>工作坊结束。每个人把盒子装好，抱着它离开。</p><p>那个化学家回到自己的实验室，打开盒子，叫来两个同事：「你看看这个。」同事拿起一块 DNA 折叠积木放到桌上，投影仪照亮了它——力学仿真浮现在积木上方。他们开始玩。</p><p>两个小时后，其中一个同事说：<strong>「这给了我一个项目的想法——如果我们用类似的 DNA 基底来做药物递送载体……」</strong></p><p>知识不是通过被动演示传播的，而是通过主动重建。桌游盒到达了第二间实验室，第三间、第四间……每到一处，新的人用自己的专长重新发现，产生新想法。这不是论文引用，这是<strong>知识的有丝分裂</strong>。</p>'},
+];
+
+function renderBox(){
+  const lv=boxLv,cx=320,cy=150;let o='';
+  o+=`<defs><filter id="bshadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".1"/></filter><marker id="arrB" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5" fill="${DIM}"/></marker></defs>`;
+
+  if(lv===0){
+    // Closed box - 3D perspective
+    const bw=180,bh=100,bx=cx-bw/2,by=cy-bh/2+10;
+    // Box body
+    o+=`<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="6" fill="#f0ede6" stroke="${NEW}" stroke-width="2" filter="url(#bshadow)"/>`;
+    // Lid (closed, slight 3D)
+    o+=`<rect x="${bx-4}" y="${by-8}" width="${bw+8}" height="16" rx="4" fill="#e8f4e8" stroke="${NEW}" stroke-width="2"/>`;
+    // Label on lid
+    o+=`<text x="${cx}" y="${by+3}" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="700">🎲 生物芯片探索盒</text>`;
+    // Ribbon
+    o+=`<line x1="${cx}" y1="${by-8}" x2="${cx}" y2="${by+bh}" stroke="${NEW}" stroke-width="1.5" stroke-dasharray="6 3" opacity=".3"/>`;
+    // Shadow
+    o+=`<ellipse cx="${cx}" cy="${by+bh+15}" rx="${bw/2+10}" ry="6" fill="#0001"/>`;
+  }
+  else if(lv===1){
+    // Lid lifted - see 6 compartments
+    const bw=240,bh=150,bx=cx-bw/2,by=65;
+    // Box body
+    o+=`<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="4" fill="#faf9f6" stroke="${NEW}" stroke-width="2" filter="url(#bshadow)"/>`;
+    // 6 compartments (2x3 grid)
+    const stNames=['定向','建模','设计','制造','分析','展示'];
+    const stIcons=['📋','📐','🧬','🧪','🔬','🎲'];
+    for(let r=0;r<2;r++){for(let c=0;c<3;c++){
+      const i=r*3+c,sx=bx+8+c*78,sy=by+8+r*72;
+      o+=`<rect x="${sx}" y="${sy}" width="70" height="64" rx="3" fill="${NEW}06" stroke="${NEW}30" stroke-width="1"/>`;
+      o+=`<text x="${sx+35}" y="${sy+30}" text-anchor="middle" font-size="20">${stIcons[i]}</text>`;
+      o+=`<text x="${sx+35}" y="${sy+50}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600">${stNames[i]}</text>`;
+      o+=`<text x="${sx+35}" y="${sy+60}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">第${i+1}层</text>`;
+    }}
+    // Lifted lid floating above
+    o+=`<rect x="${bx-4}" y="${by-32}" width="${bw+8}" height="16" rx="4" fill="#e8f4e8" stroke="${NEW}" stroke-width="1.5" opacity=".5"/>`;
+    o+=`<line x1="${bx-4}" y1="${by-16}" x2="${bx-4}" y2="${by}" stroke="${NEW}" stroke-width="1" stroke-dasharray="3 2" opacity=".3"/>`;
+    o+=`<line x1="${bx+bw+4}" y1="${by-16}" x2="${bx+bw+4}" y2="${by}" stroke="${NEW}" stroke-width="1" stroke-dasharray="3 2" opacity=".3"/>`;
+  }
+  else if(lv===2){
+    // Components extracted - show items from each compartment
+    const items=[
+      {icon:'📋',parts:['时间线卡片','百科触发器','领域模型'],y:55},
+      {icon:'📐',parts:['仿真积木','参数旋钮','轨迹叠层'],y:55},
+      {icon:'🧬',parts:['DNA 折叠块','力学探针','手写修改笔'],y:55},
+      {icon:'🧪',parts:['制造协议卡','分子视镜','零件盒'],y:175},
+      {icon:'🔬',parts:['纳米地图','测量尺','识别卡'],y:175},
+      {icon:'🎲',parts:['操作指南','空白卡','分享贴纸'],y:175},
+    ];
+    items.forEach((item,i)=>{
+      const ix=80+((i%3))*200,iy=item.y;
+      o+=`<text x="${ix}" y="${iy}" font-size="18">${item.icon}</text>`;
+      item.parts.forEach((p,j)=>{
+        const px=ix+28,py=iy-8+j*16;
+        o+=`<rect x="${px}" y="${py}" width="${p.length*8+12}" height="14" rx="3" fill="${NEW}08" stroke="${NEW}25"/>`;
+        o+=`<text x="${px+6}" y="${py+10}" font-size="9" fill="${NEW}">${p}</text>`;
+      });
+    });
+    // Dotted box outline behind everything
+    o+=`<rect x="40" y="35" width="560" height="240" rx="6" fill="none" stroke="${NEW}" stroke-width="1" stroke-dasharray="6 4" opacity=".15"/>`;
+  }
+  else if(lv===3){
+    // Playing through - timeline with stages
+    const stageX=[80,170,260,350,440,530];
+    const stNames=['定向','建模','设计','制造','分析','展示'];
+    // Progress bar
+    o+=`<line x1="80" y1="50" x2="530" y2="50" stroke="${FAINT}" stroke-width="2"/>`;
+    o+=`<line x1="80" y1="50" x2="530" y2="50" stroke="${NEW}" stroke-width="2"/>`;
+    stageX.forEach((sx,i)=>{
+      o+=`<circle cx="${sx}" cy="50" r="8" fill="${NEW}" stroke="#fff" stroke-width="2"/>`;
+      o+=`<text x="${sx}" y="54" text-anchor="middle" font-size="7" fill="#fff" font-weight="700">${i+1}</text>`;
+      o+=`<text x="${sx}" y="70" text-anchor="middle" font-size="9" fill="${INK}" font-weight="500">${stNames[i]}</text>`;
+    });
+    // Central scene: people around table with model
+    const tcx=320,tcy=170;
+    o+=`<ellipse cx="${tcx}" cy="${tcy}" rx="65" ry="42" fill="#e6f2e8" stroke="${NEW}50"/>`;
+    // Active model pieces on table
+    for(let i=0;i<8;i++){const a=i/8*Math.PI*2;const ix=tcx+30*Math.cos(a),iy=tcy+18*Math.sin(a);
+      o+=`<rect x="${ix-6}" y="${iy-4}" width="12" height="8" rx="1.5" fill="${NEW}30" stroke="${NEW}60" stroke-width=".5" transform="rotate(${i*20},${ix},${iy})"/>`;
+    }
+    // Projection glow
+    o+=`<ellipse cx="${tcx}" cy="${tcy}" rx="35" ry="22" fill="${NEW}08" stroke="${NEW}15"/>`;
+    // People actively engaged
+    const pp=[[tcx-80,tcy-20,75],[tcx+80,tcy-20,285],[tcx-60,tcy+40,50],[tcx+60,tcy+40,310],[tcx,tcy-58,180]];
+    pp.forEach(([px,py,a])=>{o+=P(px,py,a,NEW,.8,.85);});
+    // Speech bubble: "方案不可行！"
+    o+=`<rect x="${tcx+50}" y="${tcy-65}" width="80" height="22" rx="6" fill="#fff" stroke="${NEW}" stroke-width="1"/>`;
+    o+=`<text x="${tcx+90}" y="${tcy-50}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600">方案不可行！</text>`;
+    // Arrow to next insight
+    o+=`<line x1="${tcx+90}" y1="${tcy-42}" x2="${tcx+90}" y2="${tcy-30}" stroke="${NEW}" stroke-width="1" marker-end="url(#arrB)"/>`;
+    o+=`<rect x="${tcx+55}" y="${tcy-30}" width="70" height="22" rx="6" fill="${NEW}10" stroke="${NEW}" stroke-width="1"/>`;
+    o+=`<text x="${tcx+90}" y="${tcy-15}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600">找到新路径</text>`;
+    // Time indicator
+    o+=`<text x="${tcx}" y="265" text-anchor="middle" font-size="10" fill="${DIM}" font-family="var(--mono)">⏱ 3-4 小时 ≈ 数月实验直觉</text>`;
+  }
+  else if(lv===4){
+    // Free exploration - people scattered with different pieces
+    const scenes=[
+      {x:100,y:100,angle:90,label:'化学家发现\n新构型',emoji:'🧬',c:'#8B5CF6'},
+      {x:320,y:80,angle:0,label:'物理学家推\n到极端区域',emoji:'⚡',c:'#F59E0B'},
+      {x:540,y:100,angle:270,label:'两人发现未\n注意的模式',emoji:'🔍',c:'#3B82F6'},
+    ];
+    // Scattered components across the whole room
+    for(let i=0;i<20;i++){
+      const rx=60+Math.random()*520,ry=160+Math.random()*100;
+      o+=`<rect x="${rx}" y="${ry}" width="${8+Math.random()*8}" height="${6+Math.random()*6}" rx="1.5" fill="${NEW}${10+Math.floor(Math.random()*20)}" stroke="${NEW}30" transform="rotate(${Math.random()*60-30},${rx+6},${ry+4})"/>`;
+    }
+    scenes.forEach(sc=>{
+      o+=P(sc.x,sc.y,sc.angle,sc.c,.8,.9);
+      // Bubble
+      const bx=sc.x+(sc.angle<180?20:-70),by=sc.y-30;
+      o+=`<rect x="${bx}" y="${by}" width="60" height="28" rx="5" fill="#fff" stroke="${sc.c}50" stroke-width="1"/>`;
+      const lines=sc.label.split('\n');
+      lines.forEach((l,li)=>{
+        o+=`<text x="${bx+30}" y="${by+12+li*12}" text-anchor="middle" font-size="8" fill="${sc.c}" font-weight="500">${l}</text>`;
+      });
+    });
+    // Quote
+    o+=`<rect x="100" y="260" width="440" height="30" rx="6" fill="var(--aside)" stroke="${RULE}"/>`;
+    o+=`<text x="320" y="280" text-anchor="middle" font-size="11" fill="${INK}" font-style="italic">「一种无言的直觉在手中生长。」</text>`;
+  }
+  else if(lv===5){
+    // Take home - box closes, travels, opens in new lab
+    // Original lab (small)
+    o+=`<rect x="30" y="60" width="120" height="90" rx="4" fill="#f4faf4" stroke="${NEW}40"/>`;
+    o+=`<text x="90" y="52" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600">工作坊</text>`;
+    o+=`<ellipse cx="90" cy="100" rx="25" ry="15" fill="#e6f2e8" stroke="${NEW}30"/>`;
+    for(let i=0;i<3;i++){const a=i/3*Math.PI*2-Math.PI/2;o+=P(90+18*Math.cos(a),100+12*Math.sin(a),(a*180/Math.PI+90+180)%360,NEW,.5,.5);}
+    // Box traveling (small box with dotted path)
+    o+=`<path d="M155,100 C200,50 280,50 320,100 C360,150 440,150 485,100" fill="none" stroke="${NEW}" stroke-width="1.5" stroke-dasharray="6 4" opacity=".4"/>`;
+    // Small box on path
+    o+=`<rect x="305" y="68" width="30" height="22" rx="3" fill="#e8f4e8" stroke="${NEW}" stroke-width="1.5"/>`;
+    o+=`<text x="320" y="83" text-anchor="middle" font-size="10">🎲</text>`;
+    // New lab (right)
+    o+=`<rect x="490" y="60" width="120" height="90" rx="4" fill="#faf9f6" stroke="${DIM}" stroke-dasharray="4 3"/>`;
+    o+=`<text x="550" y="52" text-anchor="middle" font-size="9" fill="${DIM}" font-weight="600">另一间实验室</text>`;
+    o+=`<ellipse cx="550" cy="100" rx="25" ry="15" fill="#f0ede6" stroke="#ddd"/>`;
+    for(let i=0;i<3;i++){const a=i/3*Math.PI*2-Math.PI/2;o+=P(550+18*Math.cos(a),100+12*Math.sin(a),(a*180/Math.PI+90+180)%360,'#999',.5,.5);}
+    // Opened box in new lab
+    o+=`<rect x="530" y="125" width="25" height="18" rx="2" fill="#e8f4e8" stroke="${NEW}" stroke-width="1"/>`;
+    // Speech bubble in new lab
+    o+=`<rect x="470" y="170" width="170" height="28" rx="6" fill="#fff" stroke="${NEW}" stroke-width="1.5"/>`;
+    o+=`<text x="555" y="189" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="700">「这给了我一个项目的想法……」</text>`;
+    // Arrow from new lab to more labs
+    o+=`<line x1="550" y1="220" x2="550" y2="250" stroke="${NEW}" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>`;
+    // Multiple small boxes spreading
+    const spread=[[420,260],[480,270],[550,255],[490,290],[560,285]];
+    spread.forEach(([sx,sy],i)=>{
+      o+=`<rect x="${sx}" y="${sy}" width="16" height="12" rx="2" fill="#e8f4e8" stroke="${NEW}" stroke-width=".8" opacity="${.3+i*.12}"/>`;
+    });
+    o+=`<text x="490" y="310" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">知识通过主动重建传播</text>`;
+  }
+
+  document.getElementById('boxSvg').innerHTML=o;
+  document.getElementById('boxStep').textContent=`${lv+1}/6 ${BOX_STEPS[lv].label}`;
+  document.getElementById('boxCap').innerHTML=BOX_STEPS[lv].cap;
+  document.getElementById('boxText').innerHTML=BOX_STEPS[lv].text;
+  document.getElementById('boxPrev').classList.toggle('dim',lv<=0);
+  document.getElementById('boxNext').classList.toggle('dim',lv>=5);
+  document.getElementById('boxNext').textContent=lv>=5?'':'下一步 →';
+}
+function boxNav(d){const n=boxLv+d;if(n>=0&&n<=5){boxLv=n;renderBox();}}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ZOOM TIMELINE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const ZD=[
+  {y:'2024',l:'一间实验室',s:'第一个真实科学项目在社区计算环境中完成',i:'🔬'},
+  {y:'2030',l:'分子创客空间',s:'科学家短期驻留，合作跨学科项目',i:'🏛'},
+  {y:'2040',l:'动态知识网络',s:'全球节点网络，如 ARPANET → Internet',i:'🌐'},
+  {y:'2050',l:'普遍科学能动性',s:'社区图书馆用动态模型解决本地问题',i:'🌍'},
+];
+function renderZoom(){
+  const lv=+document.getElementById('zoomSlider').value;const cx=340,cy=175;let o='';
+  const R=[35,75,125,168];
+  for(let i=3;i>=0;i--){const r=R[i],a=i<=lv,cu=i===lv;
+    o+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${cu?NEW+'10':'transparent'}" stroke="${a?NEW:FAINT}" stroke-width="${cu?2:.8}" opacity="${cu?1:(a?.25:.06)}"/>`;
+    if(i>=2&&a){const n=i===2?6:12;for(let j=0;j<n;j++){const a2=j/n*Math.PI*2-Math.PI/2,nx=cx+r*.72*Math.cos(a2),ny=cy+r*.72*Math.sin(a2);o+=`<circle cx="${nx}" cy="${ny}" r="${cu?3:1.5}" fill="${NEW}" opacity="${cu?.4:.15}"/>`;if(cu)o+=`<line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${NEW}" stroke-width=".4" opacity=".2"/>`;}}
+    if(a)o+=`<text x="${cx}" y="${cy-r-6}" text-anchor="middle" font-size="${cu?12:9}" fill="${cu?INK:DIM}" font-weight="${cu?700:400}" font-family="var(--mono)">${ZD[i].y}</text>`;
+  }
+  o+=`<text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="28">${ZD[lv].i}</text>`;
+  o+=`<text x="${cx}" y="${cy+22}" text-anchor="middle" font-size="14" fill="${INK}" font-weight="700">${ZD[lv].l}</text>`;
+  if(lv===0){o+=`<rect x="${cx-18}" y="${cy-28}" width="36" height="24" rx="3" fill="none" stroke="${NEW}" stroke-width="1.5" opacity=".5"/>`;for(let i=0;i<3;i++)o+=`<circle cx="${cx-8+i*8}" cy="${cy-18}" r="2" fill="${NEW}" opacity=".5"/>`;}
+  if(lv===1){o+=`<rect x="${cx-20}" y="${cy-32}" width="40" height="28" rx="2" fill="none" stroke="${NEW}" stroke-width="1" opacity=".4"/>`;for(let r=0;r<2;r++)for(let c=0;c<3;c++)o+=`<rect x="${cx-14+c*12}" y="${cy-28+r*12}" width="8" height="8" rx="1" fill="${NEW}15" stroke="${NEW}30" stroke-width=".5"/>`;}
+  document.getElementById('zoomSvg').innerHTML=o;
+  document.getElementById('zoomCap').innerHTML=`<strong>${ZD[lv].y}：${ZD[lv].l}</strong> — ${ZD[lv].s}`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ISOMORPHISM
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let isoSel=-1;
+const ISO_STEPS=[
+  {label:'抽象知识',
+   you:'你读了一段描述「可见性问题」的文字。文字是抽象的——你知道了信息，但没有感受。',
+   them:'科学家读了一篇关于 DNA 折纸的论文。',
+   youIcon:'读到「代码冰山」这个概念',
+   themIcon:'读到 DNA origami 技术论文'},
+  {label:'具身化',
+   you:'你看到了冰山图——60 行代码浮在水面上，下面的层级用矩形表示。抽象概念变成了可操作的视觉对象。',
+   them:'科学家在桌上看到 DNA 折叠积木——每块代表一段双螺旋。抽象结构变成了可触摸的物理对象。',
+   youIcon:'冰山图 · 滑块 · 色块',
+   themIcon:'积木 · 卡片 · 投影'},
+  {label:'探索',
+   you:'你拖动了滑块。你亲手拉出了水面下的层级——1000 行，100 万行，1 亿行。你自己控制了揭示的节奏。',
+   them:'科学家用手拼装积木。她推动两个模块到一起，看到力学仿真叠加上去。她自己控制了探索的方向。',
+   youIcon:'拖动 → 揭示 → 再拖动',
+   themIcon:'拼装 → 观察 → 再拼装'},
+  {label:'理解',
+   you:'你现在知道「60 行只占全部的 0.00006%」不是一个数字——它是一种直觉。你的手记住了拉开那四层冰山的感觉。',
+   them:'她现在知道「这个位置的结构会断」不是一个计算结果——它是手指记住的力学直觉。',
+   youIcon:'直觉：冰山深不见底',
+   themIcon:'直觉：这里会断裂'},
+];
+function rIso(){
+  let o='';
+  const sel=isoSel;
+  const W=680, colL=20, colR=350, colW=300, rowH=82;
+
+  // ── Column headers ──
+  o+=`<text x="${colL+colW/2}" y="22" text-anchor="middle" font-size="11" fill="${PHY}" font-weight="700">你刚才做的</text>`;
+  o+=`<text x="${colL+colW/2}" y="36" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">在这篇交互文章里</text>`;
+  o+=`<text x="${colR+colW/2}" y="22" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="700">他们在 Realtalk 里做的</text>`;
+  o+=`<text x="${colR+colW/2}" y="36" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">在物理空间里</text>`;
+
+  // ── Equals sign between columns ──
+  o+=`<text x="${340}" y="26" text-anchor="middle" font-size="18" fill="${INK}" font-weight="700">≅</text>`;
+
+  // ── Four step rows ──
+  ISO_STEPS.forEach((step,i)=>{
+    const ry=50+i*rowH;
+    const active=sel===i;
+    const dimmed=sel>=0&&sel!==i;
+    const op=dimmed?.3:1;
+
+    o+=`<g style="cursor:pointer" opacity="${op}" onclick="isoSel=isoSel===${i}?-1:${i};rIso()">`;
+
+    // Step number + label
+    o+=`<rect x="0" y="${ry}" width="16" height="${rowH-6}" rx="3" fill="${active?INK:FAINT}"/>`;
+    o+=`<text x="8" y="${ry+rowH/2}" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="${active?'#fff':DIM}" font-weight="600">${i+1}</text>`;
+
+    // Left card (you)
+    o+=`<rect x="${colL}" y="${ry}" width="${colW}" height="${rowH-6}" rx="6" fill="${active?PHY+'08':'#faf9f6'}" stroke="${active?PHY:FAINT}" stroke-width="${active?1.5:1}"/>`;
+    if(!active){
+      // Compact view
+      o+=`<text x="${colL+15}" y="${ry+20}" font-size="9" fill="${INK}" font-weight="600">${step.label}</text>`;
+      o+=`<text x="${colL+15}" y="${ry+38}" font-size="8" fill="${DIM}" font-family="var(--mono)">${step.youIcon}</text>`;
+
+      // Mini icon for each step
+      if(i===0){// Text lines
+        for(let j=0;j<3;j++)o+=`<rect x="${colL+colW-60+j*5}" y="${ry+18}" width="${12+j*4}" height="3" rx="1" fill="${PHY}20"/>`;
+      } else if(i===1){// Mini iceberg
+        o+=`<rect x="${colL+colW-50}" y="${ry+12}" width="20" height="8" rx="2" fill="${PHY}20" stroke="${PHY}40" stroke-width=".5"/>`;
+        o+=`<rect x="${colL+colW-55}" y="${ry+20}" width="30" height="18" rx="2" fill="${PHY}12"/>`;
+      } else if(i===2){// Mini slider
+        o+=`<line x1="${colL+colW-65}" y1="${ry+25}" x2="${colL+colW-25}" y2="${ry+25}" stroke="${PHY}30" stroke-width="2"/>`;
+        o+=`<circle cx="${colL+colW-40}" cy="${ry+25}" r="4" fill="${PHY}40"/>`;
+      } else {// Lightbulb
+        o+=`<text x="${colL+colW-40}" y="${ry+28}" text-anchor="middle" font-size="16" opacity=".3">💡</text>`;
+      }
+    } else {
+      // Expanded view
+      o+=`<text x="${colL+12}" y="${ry+16}" font-size="10" fill="${PHY}" font-weight="700">${step.label}</text>`;
+      // Wrap text manually (rough)
+      const words=step.you;
+      const lines=[];let cur='';
+      words.split('').forEach(ch=>{cur+=ch;if(cur.length>18&&(ch==='。'||ch==='，'||ch==='——'||ch==='。')){lines.push(cur);cur='';}});
+      if(cur)lines.push(cur);
+      // Simple line breaking
+      const maxChars=22;
+      const textLines=[];
+      for(let ci=0;ci<words.length;ci+=maxChars){textLines.push(words.slice(ci,ci+maxChars));}
+      textLines.forEach((tl,ti)=>{
+        if(ti<4) o+=`<text x="${colL+12}" y="${ry+30+ti*13}" font-size="8" fill="${DIM}">${tl}</text>`;
+      });
+    }
+
+    // Right card (them)
+    o+=`<rect x="${colR}" y="${ry}" width="${colW}" height="${rowH-6}" rx="6" fill="${active?NEW+'08':'#faf9f6'}" stroke="${active?NEW:FAINT}" stroke-width="${active?1.5:1}"/>`;
+    if(!active){
+      o+=`<text x="${colR+15}" y="${ry+20}" font-size="9" fill="${INK}" font-weight="600">${step.label}</text>`;
+      o+=`<text x="${colR+15}" y="${ry+38}" font-size="8" fill="${DIM}" font-family="var(--mono)">${step.themIcon}</text>`;
+
+      if(i===0){
+        for(let j=0;j<3;j++)o+=`<rect x="${colR+colW-60+j*5}" y="${ry+18}" width="${12+j*4}" height="3" rx="1" fill="${NEW}20"/>`;
+      } else if(i===1){// Mini blocks
+        for(let j=0;j<3;j++)o+=`<rect x="${colR+colW-58+j*12}" y="${ry+14}" width="9" height="12" rx="1" fill="${NEW}20" stroke="${NEW}40" stroke-width=".5"/>`;
+      } else if(i===2){// Mini hand moving
+        o+=`<text x="${colR+colW-42}" y="${ry+28}" text-anchor="middle" font-size="14" opacity=".25">🖐️</text>`;
+      } else {
+        o+=`<text x="${colR+colW-40}" y="${ry+28}" text-anchor="middle" font-size="16" opacity=".3">💡</text>`;
+      }
+    } else {
+      o+=`<text x="${colR+12}" y="${ry+16}" font-size="10" fill="${NEW}" font-weight="700">${step.label}</text>`;
+      const maxChars=22;
+      const textLines=[];
+      for(let ci=0;ci<step.them.length;ci+=maxChars){textLines.push(step.them.slice(ci,ci+maxChars));}
+      textLines.forEach((tl,ti)=>{
+        if(ti<4) o+=`<text x="${colR+12}" y="${ry+30+ti*13}" font-size="8" fill="${DIM}">${tl}</text>`;
+      });
+    }
+
+    // Connecting line between cards
+    o+=`<line x1="${colL+colW+2}" y1="${ry+rowH/2-3}" x2="${colR-2}" y2="${ry+rowH/2-3}" stroke="${active?INK:FAINT}" stroke-width="${active?2:1}" stroke-dasharray="${active?'':'3 3'}"/>`;
+    if(active){
+      o+=`<text x="340" y="${ry+rowH/2}" text-anchor="middle" font-size="12" fill="${INK}" font-weight="700">＝</text>`;
+    }
+
+    // Arrow down to next step
+    if(i<3){
+      o+=`<line x1="8" y1="${ry+rowH-4}" x2="8" y2="${ry+rowH+2}" stroke="${FAINT}" stroke-width="1"/>`;
+    }
+
+    o+=`</g>`;
+  });
+
+  // ── Bottom pipeline summary ──
+  const by=50+4*rowH+10;
+  o+=`<rect x="80" y="${by}" width="520" height="36" rx="18" fill="var(--aside)" stroke="${FAINT}"/>`;
+  ['抽象知识','具身化','探索','理解'].forEach((s,i)=>{
+    const sx=160+i*110;
+    const isActive=sel===i;
+    o+=`<text x="${sx}" y="${by+22}" text-anchor="middle" font-size="10" fill="${isActive?INK:DIM}" font-weight="${isActive?700:400}">${s}</text>`;
+    if(isActive){
+      o+=`<rect x="${sx-30}" y="${by+26}" width="60" height="3" rx="1.5" fill="${INK}"/>`;
+    }
+    if(i<3) o+=`<text x="${sx+55}" y="${by+22}" text-anchor="middle" font-size="10" fill="${FAINT}">→</text>`;
+  });
+
+  // ── Labels at bottom ──
+  o+=`<text x="160" y="${by+50}" text-anchor="middle" font-size="8" fill="${PHY}" font-family="var(--mono)">屏幕 · 点击 · 拖动</text>`;
+  o+=`<text x="520" y="${by+50}" text-anchor="middle" font-size="8" fill="${NEW}" font-family="var(--mono)">桌面 · 触摸 · 移动</text>`;
+  o+=`<text x="340" y="${by+50}" text-anchor="middle" font-size="9" fill="${INK}" font-weight="600">同一个结构</text>`;
+
+  document.getElementById('isoSvg').innerHTML=o;
+  if(sel>=0){
+    document.getElementById('isoCap').innerHTML=`<strong>步骤 ${sel+1}：${ISO_STEPS[sel].label}</strong>——你在屏幕上做的事和他们在桌上做的事，结构完全相同。${sel<3?'点击下一步继续。':''}`;
+  } else {
+    document.getElementById('isoCap').innerHTML='点击任意一步，展开看<strong>你的体验</strong>和<strong>Realtalk 体验</strong>之间的精确对应。';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FOUR SOLUTIONS (visual callback)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderSol(){
+  let o='';
+  const dims=[
+    {label:'可见性',c:VIS,prob:'迷雾',sol:'铺在桌上',probIcon:()=>{let s='';s+=`<ellipse cx="0" cy="0" rx="16" ry="12" fill="${VIS}25" filter="url(#sfog)"/>`;return s;},solIcon:()=>{let s='';for(let i=0;i<3;i++)s+=`<rect x="${-10+i*8}" y="${-6}" width="6" height="10" rx="1" fill="${VIS}30" stroke="${VIS}" stroke-width=".8"/>`;return s;}},
+    {label:'能动性',c:AGE,prob:'锁',sol:'1-2 页纸',probIcon:()=>lock(0,0,AGE,.8),solIcon:()=>{let s='';s+=`<rect x="-8" y="-5" width="16" height="10" rx="1.5" fill="${AGE}20" stroke="${AGE}" stroke-width="1"/>`;s+=`<line x1="-4" y1="0" x2="4" y2="0" stroke="${AGE}60" stroke-width="1"/>`;return s;}},
+    {label:'物理性',c:PHY,prob:'隔离',sol:'融合',probIcon:()=>`<line x1="-14" y1="0" x2="14" y2="0" stroke="${PHY}" stroke-width="2" stroke-dasharray="4 3"/>`,solIcon:()=>{let s='';s+=`<circle cx="-6" cy="0" r="5" fill="${PHY}15" stroke="${PHY}" stroke-width="1"/>`;s+=`<circle cx="6" cy="0" r="5" fill="${PHY}15" stroke="${PHY}" stroke-width="1"/>`;s+=`<ellipse cx="0" cy="0" rx="3" ry="4" fill="${PHY}20"/>`;return s;}},
+    {label:'协作性',c:COL,prob:'孤岛',sol:'围坐',probIcon:()=>{let s='';s+=isoBox(-10,-8,9,16,COL);s+=isoBox(1,-8,9,16,COL);return s;},solIcon:()=>{let s='';s+=`<ellipse cx="0" cy="0" rx="12" ry="7" fill="${COL}10" stroke="${COL}" stroke-width=".8"/>`;for(let i=0;i<3;i++){const a=i/3*Math.PI*2-Math.PI/2;s+=`<circle cx="${8*Math.cos(a)}" cy="${5*Math.sin(a)}" r="2.5" fill="${COL}"/>`;}return s;}},
+  ];
+  o+=`<defs><filter id="sfog"><feGaussianBlur stdDeviation="4"/></filter></defs>`;
+  dims.forEach((d,i)=>{
+    const cx=75+i*145,py=30,sy=72;
+    // Label
+    o+=`<text x="${cx}" y="14" text-anchor="middle" font-size="10" fill="${d.c}" font-weight="600">${d.label}</text>`;
+    // Problem icon
+    o+=`<g transform="translate(${cx},${py})">${d.probIcon()}</g>`;
+    o+=`<text x="${cx+20}" y="${py+4}" font-size="8" fill="${DIM}">${d.prob}</text>`;
+    // Arrow down
+    o+=`<line x1="${cx}" y1="${py+14}" x2="${cx}" y2="${sy-12}" stroke="${d.c}" stroke-width="1" marker-end="url(#arrS)"/>`;
+    // Solution icon
+    o+=`<g transform="translate(${cx},${sy})">${d.solIcon()}</g>`;
+    o+=`<text x="${cx+20}" y="${sy+4}" font-size="8" fill="${d.c}" font-weight="500">${d.sol}</text>`;
+  });
+  o+=`<defs><marker id="arrS" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5" fill="${DIM}"/></marker></defs>`;
+  document.getElementById('solSvg').innerHTML=o;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// TEAM DIAGRAM (interactive workspaces)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// TEAM DIAGRAM (expanded card layout)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let teamSel=-1;
+const TEAM=[
+  {label:'细胞生物学家',color:'#E07040',icon:'🔬',
+   knows:['细胞膜如何传递信号','离子通道何时打开','信号如何级联放大'],
+   blind:['DNA 怎么折叠成三维结构','传感器电路怎么设计']},
+  {label:'电气工程师',color:'#4080C0',icon:'⚡',
+   knows:['怎么放大微弱电信号','怎么设计滤波器去噪','怎么布局传感器阵列'],
+   blind:['细胞信号长什么样','纳米结构怎么自组装']},
+  {label:'纳米科学家',color:'#50A060',icon:'🧬',
+   knows:['DNA 碱基配对规则','怎么设计折叠路径','结构力学：哪里会断'],
+   blind:['细胞放上去会怎样','怎么把信号读出来']},
+];
+
+function drawBioWorkspace(x,y,w,h,c,detail){
+  let s='';
+  // Cell membrane cross-section
+  const mx=x+w/2, my=y+h*0.35, mw=w*0.7;
+  // Lipid bilayer
+  const n=Math.floor(mw/14);
+  for(let i=0;i<n;i++){
+    const lx=x+(w-mw)/2+i*14+7;
+    // Top leaflet (heads + tails)
+    s+=`<circle cx="${lx}" cy="${my-8}" r="${detail?4:2.5}" fill="${c}25" stroke="${c}" stroke-width="${detail?1:.6}"/>`;
+    s+=`<line x1="${lx}" y1="${my-4}" x2="${lx}" y2="${my+2}" stroke="${c}50" stroke-width="${detail?1.5:1}"/>`;
+    // Bottom leaflet
+    s+=`<circle cx="${lx}" cy="${my+14}" r="${detail?4:2.5}" fill="${c}25" stroke="${c}" stroke-width="${detail?1:.6}"/>`;
+    s+=`<line x1="${lx}" y1="${my+10}" x2="${lx}" y2="${my+4}" stroke="${c}50" stroke-width="${detail?1.5:1}"/>`;
+  }
+  // Ion channel in center
+  const chx=mx-6, chy=my-12;
+  s+=`<rect x="${chx}" y="${chy}" width="12" height="${detail?30:24}" rx="3" fill="${c}12" stroke="${c}" stroke-width="${detail?1.5:1}"/>`;
+  if(detail){
+    // Na+ ions flowing through
+    s+=`<circle cx="${mx}" cy="${chy+5}" r="3" fill="${c}40"/>`;
+    s+=`<text x="${mx}" y="${chy+8}" text-anchor="middle" font-size="5" fill="${c}" font-weight="700">Na⁺</text>`;
+    s+=`<circle cx="${mx}" cy="${chy+16}" r="3" fill="${c}50"/>`;
+    s+=`<text x="${mx}" y="${chy+19}" text-anchor="middle" font-size="5" fill="${c}" font-weight="700">Na⁺</text>`;
+    // Flow arrow
+    s+=`<line x1="${mx}" y1="${chy+22}" x2="${mx}" y2="${chy+32}" stroke="${c}" stroke-width="1.5"/>`;
+    s+=`<polygon points="${mx-3},${chy+30} ${mx+3},${chy+30} ${mx},${chy+35}" fill="${c}"/>`;
+    // Signal cascade label
+    s+=`<text x="${mx}" y="${my+36}" text-anchor="middle" font-size="9" fill="${c}" font-weight="600">信号级联 →</text>`;
+    // Downstream signal wave
+    const wy=my+46;
+    let wave=`M${x+20},${wy}`;
+    for(let i=0;i<8;i++){const wx=x+30+i*22;wave+=` Q${wx},${wy-10} ${wx+11},${wy} Q${wx+22},${wy+10} ${wx+33},${wy}`;}
+    s+=`<path d="${wave}" fill="none" stroke="${c}" stroke-width="1.5" opacity=".5"/>`;
+    s+=`<text x="${mx}" y="${wy+16}" text-anchor="middle" font-size="8" fill="${c}" opacity=".6" font-family="var(--mono)">膜电位变化 → 触发下游反应</text>`;
+  }
+  // Label
+  s+=`<text x="${mx}" y="${my-20}" text-anchor="middle" font-size="${detail?10:8}" fill="${c}" font-weight="600">细胞膜截面</text>`;
+  return s;
+}
+
+function drawEngWorkspace(x,y,w,h,c,detail){
+  let s='';
+  const mx=x+w/2, my=y+h*0.35;
+  // Op-amp
+  const ax=mx-w*0.3, ay=my-15;
+  const triW=detail?40:25, triH=detail?30:20;
+  s+=`<polygon points="${ax},${ay} ${ax},${ay+triH} ${ax+triW},${ay+triH/2}" fill="none" stroke="${c}" stroke-width="${detail?1.5:1}"/>`;
+  if(detail) s+=`<text x="${ax+triW*0.35}" y="${ay+triH*0.55}" text-anchor="middle" font-size="8" fill="${c}" font-weight="600">Amp</text>`;
+  // Input lines
+  s+=`<line x1="${ax-20}" y1="${ay+triH*0.25}" x2="${ax}" y2="${ay+triH*0.25}" stroke="${c}70" stroke-width="${detail?1.5:1}"/>`;
+  s+=`<line x1="${ax-20}" y1="${ay+triH*0.75}" x2="${ax}" y2="${ay+triH*0.75}" stroke="${c}70" stroke-width="${detail?1.5:1}"/>`;
+  if(detail){s+=`<text x="${ax-22}" y="${ay+triH*0.25+3}" text-anchor="end" font-size="7" fill="${c}">+</text>`;s+=`<text x="${ax-22}" y="${ay+triH*0.75+3}" text-anchor="end" font-size="7" fill="${c}">−</text>`;}
+  // Output to filter
+  s+=`<line x1="${ax+triW}" y1="${ay+triH/2}" x2="${ax+triW+15}" y2="${ay+triH/2}" stroke="${c}70" stroke-width="${detail?1.5:1}"/>`;
+  // Filter box
+  const fx=ax+triW+15, fy=ay+triH/2-10;
+  s+=`<rect x="${fx}" y="${fy}" width="${detail?45:25}" height="20" rx="3" fill="${c}08" stroke="${c}" stroke-width="${detail?1.5:1}"/>`;
+  if(detail) s+=`<text x="${fx+22}" y="${fy+13}" text-anchor="middle" font-size="7" fill="${c}" font-family="var(--mono)">滤波器</text>`;
+  // Output wave
+  const ox=fx+(detail?50:28), oy=ay+triH/2;
+  s+=`<line x1="${fx+(detail?45:25)}" y1="${oy}" x2="${ox}" y2="${oy}" stroke="${c}70" stroke-width="${detail?1.5:1}"/>`;
+  let wave=`M${ox},${oy}`;
+  const wn=detail?6:3;
+  for(let i=0;i<wn;i++){wave+=` Q${ox+5+i*12},${oy-8} ${ox+11+i*12},${oy} Q${ox+17+i*12},${oy+8} ${ox+23+i*12},${oy}`;}
+  s+=`<path d="${wave}" fill="none" stroke="${c}" stroke-width="${detail?2:1}"/>`;
+  if(detail){
+    s+=`<text x="${mx}" y="${my+30}" text-anchor="middle" font-size="9" fill="${c}" font-weight="600">信号路径：传感器 → 放大 → 滤波 → 输出</text>`;
+    // Noise illustration
+    s+=`<text x="${ax-25}" y="${ay-8}" text-anchor="middle" font-size="8" fill="${c}" opacity=".5">微弱信号</text>`;
+    let noisy=`M${ax-40},${ay+triH*0.25}`;
+    for(let i=0;i<6;i++)noisy+=` l3,${(Math.random()-.5)*6}`;
+    s+=`<path d="${noisy}" fill="none" stroke="${c}" stroke-width="1" opacity=".4"/>`;
+    s+=`<text x="${ox+wn*12+15}" y="${oy-8}" text-anchor="middle" font-size="8" fill="${c}" opacity=".5">干净信号</text>`;
+  }
+  s+=`<text x="${mx}" y="${my-25}" text-anchor="middle" font-size="${detail?10:8}" fill="${c}" font-weight="600">传感器电路</text>`;
+  return s;
+}
+
+function drawNanoWorkspace(x,y,w,h,c,detail){
+  let s='';
+  const mx=x+w/2, my=y+h*0.3;
+  // DNA double helix
+  const hx=mx-w*0.3, hy=my-10, hw=w*0.6;
+  const segs=detail?12:6;
+  for(let i=0;i<segs;i++){
+    const sx=hx+i*(hw/segs), t=i/segs*Math.PI*3;
+    const nx=hx+(i+1)*(hw/segs);
+    const amp=detail?8:5;
+    // Two strands weaving
+    s+=`<line x1="${sx}" y1="${hy+amp*Math.sin(t)}" x2="${nx}" y2="${hy+amp*Math.sin(t+Math.PI*3/segs)}" stroke="${c}" stroke-width="${detail?2:1}" opacity=".6"/>`;
+    s+=`<line x1="${sx}" y1="${hy+16-amp*Math.sin(t)}" x2="${nx}" y2="${hy+16-amp*Math.sin(t+Math.PI*3/segs)}" stroke="${c}" stroke-width="${detail?2:1}" opacity=".6"/>`;
+    // Base pair rungs
+    if(i%2===0){
+      const ry=hy+8;
+      s+=`<line x1="${sx+3}" y1="${hy+amp*Math.sin(t)+2}" x2="${sx+3}" y2="${hy+16-amp*Math.sin(t)-2}" stroke="${c}30" stroke-width="${detail?3:1.5}"/>`;
+      if(detail){const bp=['A-T','G-C','T-A','C-G'];s+=`<text x="${sx+3}" y="${ry+3}" text-anchor="middle" font-size="5" fill="${c}" opacity=".5">${bp[i/2%4]}</text>`;}
+    }
+  }
+  s+=`<text x="${mx}" y="${my-18}" text-anchor="middle" font-size="${detail?10:8}" fill="${c}" font-weight="600">DNA 双螺旋</text>`;
+  if(detail){
+    // Folding arrow
+    s+=`<text x="${mx}" y="${my+18}" text-anchor="middle" font-size="9" fill="${c}">↓ 加热 + 冷却 = 折叠 ↓</text>`;
+    // Folded 3D structure
+    const fy=my+30;
+    // L-shaped origami
+    s+=`<rect x="${mx-35}" y="${fy}" width="30" height="20" rx="2" fill="${c}15" stroke="${c}" stroke-width="1.5"/>`;
+    s+=`<rect x="${mx-5}" y="${fy}" width="20" height="35" rx="2" fill="${c}10" stroke="${c}" stroke-width="1.5"/>`;
+    s+=`<rect x="${mx+20}" y="${fy+8}" width="25" height="25" rx="2" fill="${c}08" stroke="${c}" stroke-width="1"/>`;
+    // Connection
+    s+=`<line x1="${mx-5}" y1="${fy+10}" x2="${mx-5}" y2="${fy+10}" stroke="${c}" stroke-width="1"/>`;
+    // Force arrows showing stress
+    s+=`<line x1="${mx-20}" y1="${fy+22}" x2="${mx-20}" y2="${fy+30}" stroke="#e44" stroke-width="1"/>`;
+    s+=`<text x="${mx-20}" y="${fy+38}" text-anchor="middle" font-size="6" fill="#e44" font-family="var(--mono)">应力</text>`;
+    s+=`<text x="${mx+8}" y="${fy+44}" text-anchor="middle" font-size="9" fill="${c}" font-weight="600">折叠后的纳米结构</text>`;
+    s+=`<text x="${mx+8}" y="${fy+56}" text-anchor="middle" font-size="8" fill="${c}" opacity=".6" font-family="var(--mono)">尺寸 ≈ 50-100 纳米 · 肉眼不可见</text>`;
+  }
+  return s;
+}
+
+function renderTeam(){
+  let o='';
+  const sel=teamSel;
+  const B='#E07040',E='#4080C0',N='#50A060';
+  o+=`<defs><filter id="tfog"><feGaussianBlur stdDeviation="6"/></filter></defs>`;
+
+  if(sel<0){
+    // ═══ OVERVIEW MODE: three cards + chip ═══
+    const cards=[
+      {x:10,c:B,icon:'🔬',label:'细胞生物学家',sub:'细胞膜 · 信号传导 · 离子通道',draw:drawBioWorkspace},
+      {x:235,c:E,icon:'⚡',label:'电气工程师',sub:'传感器 · 信号处理 · 电路设计',draw:drawEngWorkspace},
+      {x:460,c:N,icon:'🧬',label:'纳米科学家',sub:'DNA 折纸 · 自组装 · 分子力学',draw:drawNanoWorkspace},
+    ];
+    cards.forEach((cd,i)=>{
+      o+=`<g style="cursor:pointer" onclick="teamSel=${i};renderTeam()">`;
+      o+=`<rect x="${cd.x}" y="5" width="210" height="200" rx="8" fill="#faf9f6" stroke="${cd.c}40" stroke-width="1.5"/>`;
+      // Hover hint
+      o+=`<rect x="${cd.x}" y="5" width="210" height="200" rx="8" fill="${cd.c}" opacity="0" style="transition:opacity .2s;" onmouseover="this.setAttribute('opacity','0.03')" onmouseout="this.setAttribute('opacity','0')"/>`;
+      // Icon + name
+      o+=`<text x="${cd.x+105}" y="30" text-anchor="middle" font-size="14">${cd.icon}</text>`;
+      o+=`<text x="${cd.x+105}" y="48" text-anchor="middle" font-size="12" fill="${cd.c}" font-weight="700">${cd.label}</text>`;
+      // Mini workspace drawing
+      o+=cd.draw(cd.x+10,52,190,110,cd.c,false);
+      // Subtitle
+      o+=`<text x="${cd.x+105}" y="182" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">${cd.sub}</text>`;
+      o+=`<text x="${cd.x+105}" y="196" text-anchor="middle" font-size="8" fill="${cd.c}" opacity=".5">点击展开 →</text>`;
+      o+=`</g>`;
+    });
+
+    // Gap indicators
+    o+=`<text x="225" y="110" text-anchor="middle" font-size="22" fill="${OLD}" opacity=".25">？</text>`;
+    o+=`<text x="450" y="110" text-anchor="middle" font-size="22" fill="${OLD}" opacity=".25">？</text>`;
+
+    // ── Chip assembly diagram ──
+    o+=`<rect x="80" y="225" width="520" height="110" rx="8" fill="#faf9f6" stroke="${FAINT}" stroke-width="1.5"/>`;
+    o+=`<text x="340" y="248" text-anchor="middle" font-size="11" fill="${INK}" font-weight="700">目标产物：DNA 折纸生物芯片</text>`;
+    o+=`<text x="340" y="262" text-anchor="middle" font-size="8" fill="${DIM}">三个领域的知识必须组合在一起才能工作</text>`;
+
+    // Three chip parts side by side
+    // DNA base
+    o+=`<rect x="110" y="275" width="140" height="40" rx="4" fill="${N}10" stroke="${N}" stroke-width="1.5"/>`;
+    for(let j=0;j<7;j++){const jx=120+j*17;o+=`<line x1="${jx}" y1="282" x2="${jx+10}" y2="290" stroke="${N}35" stroke-width="1.5"/>`;o+=`<line x1="${jx}" y1="298" x2="${jx+10}" y2="290" stroke="${N}35" stroke-width="1.5"/>`;}
+    o+=`<text x="180" y="325" text-anchor="middle" font-size="8" fill="${N}" font-weight="600">DNA 折纸基底</text>`;
+
+    // Cells on top
+    o+=`<rect x="280" y="275" width="120" height="40" rx="4" fill="${B}10" stroke="${B}" stroke-width="1.5"/>`;
+    for(let j=0;j<5;j++){o+=`<circle cx="${295+j*22}" cy="295" r="7" fill="${B}15" stroke="${B}60"/>`;o+=`<circle cx="${295+j*22}" cy="295" r="2.5" fill="${B}30"/>`;}
+    o+=`<text x="340" y="325" text-anchor="middle" font-size="8" fill="${B}" font-weight="600">细胞捕获 + 信号</text>`;
+
+    // Circuit
+    o+=`<rect x="430" y="275" width="140" height="40" rx="4" fill="${E}10" stroke="${E}" stroke-width="1.5"/>`;
+    o+=`<line x1="445" y1="290" x2="470" y2="290" stroke="${E}60" stroke-width="1.5"/>`;
+    o+=`<polygon points="470,282 470,298 488,290" fill="none" stroke="${E}" stroke-width="1"/>`;
+    o+=`<line x1="488" y1="290" x2="510" y2="290" stroke="${E}60" stroke-width="1.5"/>`;
+    o+=`<rect x="510" y="285" width="20" height="10" rx="2" fill="${E}15" stroke="${E}60"/>`;
+    o+=`<line x1="530" y1="290" x2="555" y2="290" stroke="${E}60" stroke-width="1.5"/>`;
+    o+=`<text x="500" y="325" text-anchor="middle" font-size="8" fill="${E}" font-weight="600">传感器电路</text>`;
+
+    // Arrows connecting chip parts
+    o+=`<line x1="250" y1="295" x2="278" y2="295" stroke="${DIM}" stroke-width="1" stroke-dasharray="3 2" opacity=".3"/>`;
+    o+=`<line x1="400" y1="295" x2="428" y2="295" stroke="${DIM}" stroke-width="1" stroke-dasharray="3 2" opacity=".3"/>`;
+
+    // Bottom label
+    o+=`<text x="340" y="350" text-anchor="middle" font-size="9" fill="${DIM}">任何一个领域缺席 → 芯片无法被设计出来</text>`;
+
+  } else {
+    // ═══ EXPANDED MODE: one expert fills the space ═══
+    const expert=TEAM[sel];
+    const drawFns=[drawBioWorkspace,drawEngWorkspace,drawNanoWorkspace];
+
+    // Main expanded workspace
+    o+=`<rect x="10" y="5" width="660" height="290" rx="8" fill="${expert.color}04" stroke="${expert.color}" stroke-width="2"/>`;
+    o+=`<text x="340" y="32" text-anchor="middle" font-size="16">${expert.icon}</text>`;
+    o+=`<text x="340" y="52" text-anchor="middle" font-size="14" fill="${expert.color}" font-weight="700">${expert.label}的世界</text>`;
+
+    // Big workspace drawing
+    drawFns[sel] && (o+=drawFns[sel](30,55,620,180,expert.color,true));
+
+    // Knowledge list (left)
+    o+=`<text x="60" y="255" font-size="10" fill="${INK}" font-weight="600">她/他理解：</text>`;
+    expert.knows.forEach((k,i)=>{
+      o+=`<text x="75" y="${270+i*16}" font-size="9" fill="${DIM}">✓ ${k}</text>`;
+    });
+
+    // Blind spots (right) with red
+    o+=`<text x="400" y="255" font-size="10" fill="${OLD}" font-weight="600">但她/他完全不懂：</text>`;
+    expert.blind.forEach((b,i)=>{
+      o+=`<text x="415" y="${270+i*16}" font-size="9" fill="${OLD}" opacity=".7">✕ ${b}</text>`;
+    });
+
+    // The other two experts as tiny fogged cards
+    const others=TEAM.filter((_,i)=>i!==sel);
+    const otherDraws=drawFns.filter((_,i)=>i!==sel);
+    const otherColors=[others[0].color,others[1].color];
+
+    others.forEach((ot,i)=>{
+      const ox=50+i*340, oy=320;
+      o+=`<g style="cursor:pointer" onclick="teamSel=${TEAM.indexOf(ot)};renderTeam()">`;
+      o+=`<rect x="${ox}" y="${oy}" width="280" height="80" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+      // Fog overlay
+      o+=`<rect x="${ox}" y="${oy}" width="280" height="80" rx="6" fill="#fff" opacity=".6"/>`;
+      // Dimmed workspace preview
+      o+=`<g opacity=".2">${otherDraws[i](ox+5,oy+5,130,65,ot.color,false)}</g>`;
+      // Name
+      o+=`<text x="${ox+200}" y="${oy+30}" text-anchor="middle" font-size="10" fill="${ot.color}" opacity=".5">${ot.icon} ${ot.label}</text>`;
+      o+=`<text x="${ox+200}" y="${oy+48}" text-anchor="middle" font-size="8" fill="${OLD}" opacity=".4" font-family="var(--mono)">她/他看不懂这个领域</text>`;
+      o+=`<text x="${ox+200}" y="${oy+65}" text-anchor="middle" font-size="8" fill="${DIM}">点击切换 →</text>`;
+      o+=`</g>`;
+    });
+
+    // Back button
+    o+=`<g style="cursor:pointer" onclick="teamSel=-1;renderTeam()">`;
+    o+=`<rect x="10" y="420" width="80" height="28" rx="4" fill="#faf9f6" stroke="${FAINT}"/>`;
+    o+=`<text x="50" y="439" text-anchor="middle" font-size="10" fill="${DIM}">← 返回总览</text>`;
+    o+=`</g>`;
+
+    // Chip at bottom with highlight
+    o+=`<rect x="120" y="420" width="440" height="50" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+    o+=`<text x="340" y="440" text-anchor="middle" font-size="9" fill="${INK}" font-weight="600">DNA 折纸生物芯片</text>`;
+    // Highlight which part this expert contributes
+    const chipLabels=['细胞捕获区','传感器电路','DNA 折纸基底'];
+    const chipColors=[B,E,N];
+    o+=`<text x="340" y="458" text-anchor="middle" font-size="8" fill="${expert.color}" font-family="var(--mono)">负责：${chipLabels[sel]}</text>`;
+    // Colored bar
+    const barX=[150,280,410];
+    [0,1,2].forEach(i=>{
+      o+=`<rect x="${barX[i]}" y="462" width="100" height="4" rx="2" fill="${i===sel?chipColors[i]:FAINT}"/>`;
+    });
+  }
+
+  document.getElementById('teamSvg').innerHTML=o;
+  if(sel>=0){
+    document.getElementById('teamCap').innerHTML=`<strong style="color:${TEAM[sel].color}">${TEAM[sel].label}</strong>：${TEAM[sel].knows[0]}，${TEAM[sel].knows[1]}——但 <span style="color:${OLD}">${TEAM[sel].blind[0]}</span>，也<span style="color:${OLD}">${TEAM[sel].blind[1]}</span>。`;
+  } else {
+    document.getElementById('teamCap').innerHTML='<strong>点击任意一个专家卡片</strong>，看看她/他的世界长什么样。三个人之间的 <span style="color:#b84c4c">？</span> 代表他们互相看不见的知识鸿沟。';
+  }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INIT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+buildLT();rLab();renderIceberg();renderCode();renderPhys();renderCollab();rRT();renderSol();renderTeam();rStg();renderBox();renderZoom();rIso();
+</script>
+</body>
+</html>
