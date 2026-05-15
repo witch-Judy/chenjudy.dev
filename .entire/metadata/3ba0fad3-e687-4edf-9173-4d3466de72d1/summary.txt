@@ -1,7 +1,14 @@
-改完了：
+已去掉紫点和小红书行。现在版面结构：
 
-- **顶部左侧** "全栈 · 好玩儿主义" 移除，只留一个紫色小圆点作为版面锚点
-- **名字**去掉 JUDY 印章，下面 "Judy Chen" 仍在
-- **IRIS 网址** `iris-wonderland.vercel.app` 加到了 "IRIS · Founder" 同一行后面，用细竖线分隔，等宽字小号灰色——视觉上从属于 Founder 这个 title，像 GitHub 名片那种 "title @ domain" 的感觉
+```
+                                BASED IN  新加坡 / SG
 
-Cmd+R 看一下，如果想换成单独一行放下面或者放到底部联系区里，告诉我。
+陈朱迪
+JUDY CHEN
+IRIS · Founder │ iris-wonderland.vercel.app
+── 在技术与人文的边界
+
+✉ bihanchen1123@gmail.com    ◉ chenjudy.vercel.app
+```
+
+更干净了——顶部右上一行坐标、中间一组身份信息、底部一行联系方式，三段层级明确。Cmd+R 看看，需要再微调间距或者把哪一行换字号就告诉我。
