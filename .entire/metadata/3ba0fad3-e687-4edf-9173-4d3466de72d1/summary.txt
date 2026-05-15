@@ -1,14 +1,1 @@
-已去掉紫点和小红书行。现在版面结构：
-
-```
-                                BASED IN  新加坡 / SG
-
-陈朱迪
-JUDY CHEN
-IRIS · Founder │ iris-wonderland.vercel.app
-── 在技术与人文的边界
-
-✉ bihanchen1123@gmail.com    ◉ chenjudy.vercel.app
-```
-
-更干净了——顶部右上一行坐标、中间一组身份信息、底部一行联系方式，三段层级明确。Cmd+R 看看，需要再微调间距或者把哪一行换字号就告诉我。
+邮箱已去掉。剩下的 `chenjudy.vercel.app` 改为跨列居中——避免单条信息孤零零靠左。Cmd+R 看看。
