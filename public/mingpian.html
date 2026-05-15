@@ -179,15 +179,55 @@
     padding-left: 0.32em;
   }
 
+  .left-stack {
+    display: flex;
+    align-items: stretch;
+    gap: 2.4mm;
+  }
+
+  .qr {
+    width: 14mm;
+    height: 14mm;
+    object-fit: contain;
+    border: 0.2mm solid rgba(91, 75, 138, 0.35);
+    border-radius: 0.8mm;
+    padding: 0.4mm;
+    background: white;
+    flex-shrink: 0;
+  }
+
+  .left-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6mm;
+    min-width: 0;
+  }
+
+  .mini-label {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 2.3mm;
+    letter-spacing: 0.24em;
+    color: var(--iris);
+    padding-left: 0.24em;
+  }
+
+  .mini-sep {
+    height: 0.1mm;
+    background: rgba(91, 75, 138, 0.35);
+    margin: 1mm 0 1mm;
+  }
+
   .case-url {
     display: flex;
     align-items: center;
-    gap: 1.6mm;
+    gap: 1.2mm;
     font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
-    font-size: 2.4mm;
+    font-size: 2.1mm;
     color: var(--ink);
     letter-spacing: 0.02em;
     white-space: nowrap;
+    margin-top: 0.4mm;
   }
 
   .case-url .key {
@@ -333,8 +373,15 @@
 
           <div class="biz">
             <div class="biz-col">
-              <div class="biz-label">以往案例库</div>
-              <div class="case-url"><span class="key">◉</span>chenjudy.vercel.app</div>
+              <div class="left-stack">
+                <img class="qr" src="/assets/card/wechat-qr.png" alt="WeChat QR" />
+                <div class="left-text">
+                  <div class="mini-label">微信 · WECHAT</div>
+                  <div class="mini-sep"></div>
+                  <div class="mini-label">以往案例库</div>
+                  <div class="case-url"><span class="key">◉</span>chenjudy.vercel.app</div>
+                </div>
+              </div>
             </div>
             <div class="biz-col right">
               <div class="biz-label">解决方案</div>
