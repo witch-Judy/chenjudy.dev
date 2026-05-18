@@ -1,8 +1,20 @@
-确认了：唯一改动是 `src/components/Projects.astro` 里第 102–112 行那个对象的字段替换，纯数据改动，没动任何 className、grid、CSS、template 结构。其他文件一律未碰——包括首页 `src/pages/index.astro`（图里这个 hero 区域的来源）、layout、global CSS 都是原样。
+还没推。当前状态：
 
-页面看起来"比例变了"可能是：
-- 浏览器 zoom 不一样（Cmd+0 重置看看）
-- 你看的是 `localhost:4321`（dev 服务器）而不是部署后的 `chenjudy.vercel.app`，两个地方可能小细节有差
-- 截图分辨率/窗口宽度跟之前不同，hero 区域内容（字体大小、行高）会随响应式 breakpoint 跳档
+- 改动都在本地，没 commit 也没 push
+- `git status` 显示 1 个 modified（`Projects.astro`）+ 一堆 untracked 文件
+- chenjudy.vercel.app 走 GitHub main 分支自动部署，意思是 push 了才会上线
 
-如果你截图的页面是 `localhost:4321`，把它和线上 `chenjudy.vercel.app` 同一窗口宽度对比一下，应该完全一样。需要我跑个截图对比吗？
+**问题是 untracked 里有几个不该公开的**，得挑着 commit，不能 `git add .`。我先列一下，你告诉我哪些要推：
+
+| 文件 | 建议 | 原因 |
+|---|---|---|
+| `src/components/Projects.astro` | ✅ 推 | 这次的核心改动 |
+| `public/assets/projects/scibot.png` | ✅ 推 | SciBot 卡片图，缺它项目卡片会破图 |
+| `public/mingpian.html` | ⚠️ 你决定 | 名片 HTML，推上去 = 公开访问 `chenjudy.vercel.app/mingpian.html` |
+| `public/assets/card/wechat-qr.png` | ⚠️ 你决定 | 你的微信二维码，推 = 任何人能扫码加你 |
+| `public/Bihan_Chen_Resume_ZH.docx` | ❌ 不建议 | 简历放静态目录会被搜索/抓取 |
+| `public/resume.html` | ⚠️ 你决定 | 看你想不想公开个人简历页 |
+| `public/assets/projects/illucio-onboarding.png` | 看情况 | 旧素材，可能已经不用了 |
+| `.claude/`, `.entire/` | ❌ 加 .gitignore | 本地配置 / 备份目录 |
+
+最简版（只推 SciBot 上线）：commit `Projects.astro` + `scibot.png` 两个就够，告诉我"推 SciBot"我就执行。如果名片也要公开（带二维码），单独说一声。
