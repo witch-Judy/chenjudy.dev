@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>陈小爷 · 名片</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --ink: #1a1614;
+    --cream: #f5f1e8;
+    --paper: #faf7f0;
+    --iris: #5b4b8a;
+    --iris-soft: #d8d2e6;
+    --muted: #7a6f66;
+    --hair: #1a1614;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ece6d8;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 28px;
+    padding: 48px 24px;
+  }
+
+  .deck {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    width: 90mm;
+    height: 54mm;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.04),
+      0 12px 28px rgba(40, 30, 20, 0.18),
+      0 28px 60px rgba(40, 30, 20, 0.10);
+    border-radius: 2.2mm;
+  }
+
+  /* ---------- FRONT ---------- */
+  .card.front {
+    padding: 6mm 7mm;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .brand-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.1mm;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .brand-strip .dot {
+    width: 1.6mm;
+    height: 1.6mm;
+    background: var(--iris);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1.6mm;
+    vertical-align: middle;
+  }
+
+  .name-block {
+    align-self: center;
+    margin-top: -2mm;
+  }
+
+  .name-zh {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-weight: 600;
+    font-size: 11.5mm;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .name-zh .stamp {
+    display: inline-block;
+    margin-left: 2.4mm;
+    padding: 0.6mm 1.6mm 0.8mm;
+    background: var(--iris);
+    color: var(--paper);
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 3mm;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    vertical-align: middle;
+    transform: translateY(-2mm);
+    border-radius: 0.6mm;
+    text-transform: uppercase;
+  }
+
+  .name-en {
+    margin-top: 2mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.6mm;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .role {
+    margin-top: 2.2mm;
+    font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+    font-size: 2.9mm;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+  }
+
+  .role .brand {
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 700;
+    color: var(--iris);
+    letter-spacing: 0.22em;
+    font-size: 2.8mm;
+  }
+
+  .role .dot-sep {
+    color: var(--iris);
+    margin: 0 1.6mm;
+    font-weight: 700;
+  }
+
+  .role .role-link {
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.3mm;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-left: 3mm;
+    padding-left: 3mm;
+    border-left: 0.2mm solid rgba(91, 75, 138, 0.35);
+  }
+
+  .biz {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 0 5mm;
+    padding-top: 2.8mm;
+    border-top: 0.15mm solid var(--hair);
+    align-self: end;
+  }
+
+  .biz-col.right {
+    padding-left: 5mm;
+    border-left: 0.15mm dashed rgba(91, 75, 138, 0.35);
+  }
+
+  .biz-label {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 2.7mm;
+    letter-spacing: 0.32em;
+    color: var(--iris);
+    margin-bottom: 1.8mm;
+    padding-left: 0.32em;
+  }
+
+  .left-stack {
+    display: flex;
+    align-items: stretch;
+    gap: 2.4mm;
+  }
+
+  .qr {
+    width: 14mm;
+    height: 14mm;
+    object-fit: contain;
+    border: 0.2mm solid rgba(91, 75, 138, 0.35);
+    border-radius: 0.8mm;
+    padding: 0.4mm;
+    background: white;
+    flex-shrink: 0;
+  }
+
+  .left-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6mm;
+    min-width: 0;
+  }
+
+  .mini-label {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 2.3mm;
+    letter-spacing: 0.24em;
+    color: var(--iris);
+    padding-left: 0.24em;
+  }
+
+  .mini-sep {
+    height: 0.1mm;
+    background: rgba(91, 75, 138, 0.35);
+    margin: 1mm 0 1mm;
+  }
+
+  .case-url {
+    display: flex;
+    align-items: center;
+    gap: 1.2mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.1mm;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    margin-top: 0.4mm;
+  }
+
+  .case-url .key {
+    color: var(--iris);
+    font-weight: 700;
+  }
+
+  .services-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2mm;
+    align-items: flex-start;
+  }
+
+  .chip {
+    font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+    font-size: 2.4mm;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--iris);
+    border: 0.2mm solid var(--iris);
+    border-radius: 1.4mm;
+    padding: 0.6mm 2mm 0.8mm;
+    background: rgba(91, 75, 138, 0.06);
+    white-space: nowrap;
+  }
+
+  /* ---------- BACK ---------- */
+  .card.back {
+    padding: 7mm;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .card.back::before {
+    content: "";
+    position: absolute;
+    inset: 3mm;
+    border: 0.2mm solid rgba(245, 241, 232, 0.18);
+    border-radius: 1.4mm;
+    pointer-events: none;
+  }
+
+  .back-inner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .back-corner {
+    position: absolute;
+    top: 5mm;
+    left: 5mm;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 2.1mm;
+    letter-spacing: 0.28em;
+    color: rgba(245, 241, 232, 0.55);
+    text-transform: uppercase;
+  }
+
+  .back-corner.r {
+    left: auto;
+    right: 5mm;
+    text-align: right;
+  }
+
+  .back-axis {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 6.2mm;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+    color: var(--paper);
+  }
+
+  .back-axis .x {
+    color: var(--iris-soft);
+    margin: 0 1.4mm;
+    font-family: "SF Mono", monospace;
+    font-size: 5mm;
+    font-weight: 300;
+  }
+
+  .back-quote {
+    margin-top: 5mm;
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 3.4mm;
+    letter-spacing: 0.4em;
+    color: var(--iris-soft);
+  }
+
+  .back-quote::before,
+  .back-quote::after {
+    content: "——";
+    color: rgba(216, 210, 230, 0.45);
+    margin: 0 1.6mm;
+    letter-spacing: 0;
+  }
+
+  /* ---------- LABELS ---------- */
+  .label {
+    font-family: "SF Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: #7a6f66;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: -14px;
+  }
+
+  /* ---------- PRINT ---------- */
+  @page { size: 90mm 54mm; margin: 0; }
+
+  @media print {
+    body { background: white; }
+    .stage { padding: 0; gap: 0; min-height: 0; }
+    .label { display: none; }
+    .deck { gap: 0; flex-direction: column; }
+    .card { box-shadow: none; border-radius: 0; page-break-after: always; }
+    .card.back { background: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="deck">
+      <div>
+        <div class="label">FRONT · 正面</div>
+        <div class="card front">
+          <div class="brand-strip">
+            <span></span>
+            <span>BASED IN&nbsp;&nbsp;新加坡 / SG</span>
+          </div>
+
+          <div class="name-block">
+            <div class="name-zh">陈朱迪</div>
+            <div class="name-en">Judy Chen</div>
+            <div class="role"><span class="brand">IRIS</span><span class="dot-sep">·</span>Founder<span class="role-link">iris-wonderland.vercel.app</span></div>
+          </div>
+
+          <div class="biz">
+            <div class="biz-col">
+              <div class="left-stack">
+                <img class="qr" src="assets/card/wechat-qr.png" alt="" />
+                <div class="left-text">
+                  <div class="mini-label">微信 · WECHAT</div>
+                  <div class="mini-sep"></div>
+                  <div class="mini-label">以往案例库</div>
+                  <div class="case-url"><span class="key">◉</span>chenjudy.vercel.app</div>
+                </div>
+              </div>
+            </div>
+            <div class="biz-col right">
+              <div class="services-stack">
+                <span class="chip">AI 软件</span>
+                <span class="chip">AI 可视化交互</span>
+                <span class="chip">AI 品牌出海</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">BACK · 背面</div>
+        <div class="card back">
+          <div class="back-corner">CHEN · 陈</div>
+          <div class="back-corner r">JUDY · 朱迪</div>
+
+          <div class="back-inner">
+            <div class="back-axis">
+              技术<span class="x">×</span>AI<span class="x">×</span>人文
+            </div>
+            <div class="back-axis" style="font-size:3.2mm; letter-spacing:0.3em; margin-top:2mm; color: rgba(245,241,232,0.7);">
+              的交界地带
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

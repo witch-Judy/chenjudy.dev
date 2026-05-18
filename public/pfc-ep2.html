@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心智白板 · 前额叶探索之旅 第二期</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f6f1;--paper:#fff;--ink:#1a1a1a;--mid:#555;--dim:#999;
+  --faint:#ccc;--rule:#e4e0d8;--aside:#f2efea;
+  --old:#b84c4c;--new:#4a8f5c;
+  --mono:'Menlo','Consolas',monospace;
+  --gamma:#d4880f;--beta:#4a7fb5;--alpha:#7b68ae;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:18px/1.8 'Noto Serif SC',Georgia,serif;-webkit-font-smoothing:antialiased}
+.page{max-width:720px;margin:0 auto;padding:60px 24px 120px}
+h1{font-size:32px;line-height:1.3;font-weight:700;margin-bottom:6px;letter-spacing:-.5px}
+h2{font-size:22px;font-weight:600;margin:48px 0 12px;color:var(--ink);line-height:1.4}
+.byline{font-size:13px;color:var(--dim);margin-bottom:32px;font-family:var(--mono)}
+.lead{font-size:19px;line-height:1.9;color:var(--mid);margin-bottom:36px;border-left:3px solid var(--rule);padding-left:16px}
+p{margin-bottom:18px}
+strong{font-weight:600}
+.section-num{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:4px;margin-top:56px;letter-spacing:1px;text-transform:uppercase}
+.fig{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 16px 12px;margin:24px 0}
+.fig-body{position:relative}
+.fig-cap{font-size:13px;color:var(--mid);margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);line-height:1.6}
+.mini{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:14px 14px 10px;margin:20px 0}
+.mini-cap{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5}
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tab{background:none;border:1.5px solid var(--faint);border-radius:20px;padding:5px 14px;font-size:12px;font-family:var(--mono);cursor:pointer;transition:all .2s;color:var(--dim)}
+.tab.active{border-color:currentColor;background:currentColor;color:#fff !important;font-weight:600}
+.tab:hover:not(.active){border-color:var(--dim)}
+.btn{background:none;border:1.5px solid var(--faint);border-radius:6px;padding:4px 12px;font-size:12px;font-family:var(--mono);cursor:pointer;color:var(--ink);transition:all .15s}
+.btn:hover{border-color:var(--ink)}
+.btn.dim{opacity:.3;pointer-events:none}
+.ctrl{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px}
+input[type=range]{width:100%;accent-color:var(--ink);margin:8px 0}
+.fn{font-size:12px;color:var(--dim);margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);line-height:1.7}
+svg{display:block;width:100%;height:auto}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.9}}
+@keyframes flowRight{0%{stroke-dashoffset:16}100%{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>心智白板</h1>
+<p class="byline">前额叶探索之旅 · 第二期 · 工作记忆的秘密 · 2025</p>
+
+<p class="lead">
+试试这个：记住数字 7、3、9、1，然后把它们从大到小排列。你刚才做的事情——同时存储和操作信息——就是工作记忆。它是你大脑里最忙碌的系统，也是最容易崩溃的。上一期我们认识了前额叶这个"指挥官"。今天我们走进指挥官的办公室，看看那块白板上到底在写什么。
+</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 1: Three Types of Memory (Lens Tabs) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第一部分</p>
+<h2>三种记忆，三个房间</h2>
+
+<p>人们常把"记性好不好"当成一件事来聊，但大脑里其实有至少三套截然不同的记忆系统。它们的关系不是"短期变长期"那么简单——更像是一栋楼里的三个房间，各有各的用途和规矩。</p>
+
+<p><strong>点击下面的三个标签</strong>，切换查看三种记忆系统。注意每种记忆的容量、持续时间和脑区位置的差异：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <div class="tabs" id="memTabs"></div>
+    <svg id="memSvg" viewBox="0 0 680 360"></svg>
+  </div>
+  <div class="fig-cap" id="memCap">三种记忆系统各有各的"房间规则"。</div>
+</div>
+
+<p>注意到了吗？当你切换到「工作记忆」标签时，前额叶区域亮了起来——而另外两种记忆的主角分别是海马体和整个大脑皮层。工作记忆的独特之处在于：它不只是"暂时记住"，而是<strong>一边记住一边加工</strong>。你刚才排序 7、3、9、1 的时候，就在用这个系统。</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 2: Capacity Limit (Progressive Slider) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第二部分</p>
+<h2>四个球的极限</h2>
+
+<p>1956 年，心理学家 George Miller 发表了一篇著名论文，标题就叫《神奇的数字七，加减二》。他发现人的短期记忆容量大约是 7±2 个项目。但后来的研究修正了这个数字——工作记忆的真实容量更接近 <strong>4±1 个</strong>。不是你不够聪明，是前额叶的"白板"真的只有这么大。</p>
+
+<p><strong>拖动下面的滑块，从 1 到 6</strong>，增加同时需要记住的物体数量。注意观察大脑网络连接线的变化——什么时候开始出现红色警告：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="loadSvg" viewBox="0 0 680 380"></svg>
+    <input type="range" id="loadSlider" min="1" max="6" step="1" value="1" oninput="renderLoad()">
+  </div>
+  <div class="fig-cap" id="loadCap">拖动滑块增加记忆负载。</div>
+</div>
+
+<p>当你把滑块拉到 5 的时候，连接线开始变红、变虚，前额叶标注从「稳定维持」变成「过载警告」。到了 6，网络开始丢失连接——<strong>这不是比喻，是真实的神经现象</strong>。fMRI 研究显示，当记忆负载超过 4 个项目时，前额叶-顶叶网络的同步性显著下降。你日常感受到的"脑子不够用"，就是这条线的崩塌。</p>
+
+<p>但人类不会坐以待毙。既然白板只有 4 格，那就把小东西打包成大东西——这就是「组块」（Chunking）策略。</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 2.5: Chunking Strategy -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第二·五部分</p>
+<h2>打包的艺术 —— 组块策略</h2>
+
+<p>想象你要记住这串数字：1-0-2-4-2-0-4-8。8 个数字远超白板容量，几乎不可能直接记住。但如果你发现「1024」是 1KB 的字节数（程序员都知道），「2048」是那个经典小游戏——8 个数字瞬间压缩成 2 个有意义的"块"，白板轻松容纳。</p>
+
+<p>这不是投机取巧，而是工作记忆最核心的运作机制之一：<strong>用长期记忆中已有的模式，来压缩工作记忆中的新信息。</strong>国际象棋大师能一眼记住整盘棋，不是因为白板更大，而是因为他们把"意大利开局"当作一个块来存储——一个块里打包了十几颗棋子的信息。</p>
+
+<p><strong>点击下面的「组块」按钮</strong>，观察 8 个散装数字如何被压缩为 2 个块——特别注意白板容量条的变化：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="chunkSvg" viewBox="0 0 680 420"></svg>
+    <div class="ctrl">
+      <button class="btn" id="chunkBtn" onclick="toggleChunk()">点击组块 →</button>
+    </div>
+  </div>
+  <div class="fig-cap" id="chunkCap">组块的本质：用长期记忆的"指针"替代原始数据，释放白板空间。</div>
+</div>
+
+<p>注意到了吗？组块前后，原始信息量没有减少——8 个数字还是 8 个数字。改变的是白板上的<strong>表征方式</strong>：从 8 个独立项目变成了 2 个"指针"，每个指针指向长期记忆中的一个已有模式。这就像把文件夹里的 100 张照片压缩成一个 zip——信息没丢，占用空间变小了。</p>
+
+<p>这也解释了一个有趣的现象：老年人虽然工作记忆容量在下降（白板变小了），但如果使用组块策略，差距能从少 1 个项目缩小到只少 0.3 个。<strong>因为他们有更丰富的长期记忆可以调用——更多的"zip 模板"。</strong></p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 3: Brainwave Orchestra (Step Navigator) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第三部分</p>
+<h2>脑波协奏曲</h2>
+
+<p>前额叶怎么在这块小白板上又写又擦又排序？2018 年，MIT 的 Earl Miller 提出了一个优雅的模型：工作记忆靠两种脑波的配合来运转——高频的 Gamma 波（30-100 Hz）负责写入新信息，低频的 Alpha/Beta 波（10-30 Hz）负责保护和控制。就像一间教室里，Gamma 是学生举手发言，Beta 是老师说"安静，现在轮到我讲"。</p>
+
+<p><strong>点击"下一步"按钮</strong>，一步步走过一条信息从进入工作记忆到被提取使用的全过程。注意 Gamma 和 Beta 波在每个阶段的此消彼长：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="waveSvg" viewBox="0 0 680 380"></svg>
+    <div class="ctrl">
+      <button class="btn" id="wavePrev" onclick="waveNav(-1)">←</button>
+      <span id="waveStep" style="font-family:var(--mono);font-size:11px;color:var(--dim);">1/5</span>
+      <button class="btn" id="waveNext" onclick="waveNav(1)">下一步 →</button>
+    </div>
+  </div>
+  <div class="fig-cap" id="waveCap">Gamma 和 Beta 波在工作记忆的不同阶段扮演不同角色。</div>
+</div>
+
+<p>走完五步你会发现一个精妙的模式：<strong>Gamma 和 Beta 从不同时全力运转。</strong>当 Gamma 爆发写入新信息时，Beta 安静让路；当 Beta 强势维持已有内容时，Gamma 被压制。Miller 把这叫做"自上而下的控制"——深层皮层的 Beta 波（代表你的目标和规则）在调节浅层的 Gamma 波（代表新涌入的感觉信息）。还记得第一期那个蛋糕店的例子吗？那个"偏置信号"在脑波层面就是 Beta 波。</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 4: Focus vs Distraction (Before/After) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第四部分</p>
+<h2>专注与走神的脑内风景</h2>
+
+<p>你正在读一本书，突然发现自己的眼睛滑过了一整页但什么都没记住——你走神了。走神的那一刻，你的工作记忆发生了什么？不是它"关机"了，而是<strong>白板被别的东西占满了</strong>。</p>
+
+<p><strong>比较下面左右两幅图</strong>——左边是专注状态的工作记忆网络，右边是走神状态。注意脑波颜色、连接线粗细和前额叶标注的差异：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="focusSvg" viewBox="0 0 680 380"></svg>
+  </div>
+  <div class="fig-cap" id="focusCap">同一个大脑，两种完全不同的工作状态。</div>
+</div>
+
+<p>看到差异了吗？左图中前额叶的 Beta 波强势运行，把 Gamma 通道集中在任务相关信息上，连接线粗而稳定。右图中 Beta 控制失效，Gamma 被不相关的杂念劫持——前额叶还在工作，但白板上写的不是你的书，而是"晚饭吃什么"和"刚才那条消息是什么意思"。<strong>走神不是大脑偷懒，是控制权的转移。</strong></p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SECTION 5: Failure Modes (Expandable Cards) -->
+<!-- ════════════════════════════════════════ -->
+<p class="section-num">第五部分</p>
+<h2>白板崩溃的四种方式</h2>
+
+<p>既然工作记忆这么脆弱——只能装 4 个东西，还容易被劫持——那它都有哪些常见的"崩溃模式"？理解这些模式不只是学术趣味，它能帮你在日常中识别"啊，我的前额叶又顶不住了"的信号。</p>
+
+<p><strong>点击下面四张卡片中的任何一张</strong>，展开查看每种崩溃模式的神经机制和日常表现：</p>
+
+<div class="fig">
+  <div class="fig-body">
+    <svg id="failSvg" viewBox="0 0 680 420"></svg>
+  </div>
+  <div class="fig-cap" id="failCap">四种常见的工作记忆失败模式。点击查看详情。</div>
+</div>
+
+<p>注意这四种模式有一个共同点：<strong>每一种都不是"能力"问题，而是"条件"问题。</strong>睡眠不足、情绪波动、信息过载、年龄变化——它们都在改变前额叶维持 Beta 控制的能力。好消息是，既然是条件问题，就意味着可以通过改变条件来改善。</p>
+
+<!-- ════════════════════════════════════════ -->
+<!-- CLOSING -->
+<!-- ════════════════════════════════════════ -->
+<h2 style="margin-top:56px;">下一站</h2>
+
+<p>现在你知道了工作记忆的运行原理：一块容量只有 4±1 个项目的"白板"，靠 Gamma 写入、Beta 保护的脑波协奏来维持运转。你也看到了它的脆弱——超载会崩溃，走神会被劫持，疲劳会降低信噪比。</p>
+
+<p>但有一个更深的问题还没回答：既然工作记忆这么容易被干扰，那当一块巧克力蛋糕摆在你面前的时候，你是怎么做到"忍住不吃"的？从工作记忆的角度看，自控力到底是什么？它为什么有时候会"用完"？</p>
+
+<p><strong>这将是我们下一期的故事：「棉花糖与股市 —— 自控力的神经经济学」。</strong></p>
+
+<p class="fn">
+参考文献：Miller, E.K. & Cohen, J.D. (2001). An integrative theory of prefrontal cortex function. <em>Annual Review of Neuroscience</em>, 24, 167–202 ·
+Miller, E.K., Lundqvist, M. & Bastos, A.M. (2018). Working Memory 2.0. <em>Neuron</em>, 100(2), 463–475 ·
+Cowan, N. (2001). The magical number 4 in short-term memory. <em>Behavioral and Brain Sciences</em>, 24(1), 87–114 ·
+Lundqvist, M. et al. (2016). Gamma and Beta Bursts Underlie Working Memory. <em>Neuron</em>, 90(4), 853–864 ·
+Miller, G.A. (1956). The magical number seven, plus or minus two. <em>Psychological Review</em>, 63(2), 81–97
+</p>
+
+</div><!-- .page -->
+
+<script>
+// ── 颜色常量 ──
+const INK='#1a1a1a',DIM='#999',FAINT='#ccc',RULE='#e4e0d8';
+const OLD='#b84c4c',NEW='#4a8f5c';
+const GAMMA='#d4880f',BETA='#4a7fb5',ALPHA='#7b68ae',PFC='#4a7fb5';
+
+// ── 绘图基元 ──
+function P(x,y,a,c=INK,op=1,sc=1){
+  let g=`<g transform="translate(${x},${y}) rotate(${a-90})" opacity="${op}">`;
+  g+=`<line x1="0" y1="0" x2="${14*sc}" y2="0" stroke="${c}" stroke-width="${2.5*sc}" stroke-linecap="round"/>`;
+  g+=`<circle cx="${16*sc}" cy="0" r="${5.5*sc}" fill="${c}"/>`;
+  g+=`<line x1="${4*sc}" y1="${-7*sc}" x2="${4*sc}" y2="${7*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  g+=`<line x1="0" y1="0" x2="${-8*sc}" y2="${-6*sc}" stroke="${c}" stroke-width="${2*sc}" stroke-linecap="round"/>`;
+  return g+`</g>`;
+}
+
+// Simple waveform drawing
+function wave(x,y,w,h,freq,c,op=1,sw=2){
+  let d=`M${x},${y}`;
+  for(let i=0;i<=w;i+=2){
+    const val=Math.sin(i*freq*0.05)*h;
+    d+=` L${x+i},${y+val}`;
+  }
+  return `<path d="${d}" fill="none" stroke="${c}" stroke-width="${sw}" opacity="${op}"/>`;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 1: Three Memory Types (Lens Tabs)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const MEM_LENSES=[
+  {l:'感觉记忆',c:'#c47a2a',
+   cap:'<strong style="color:#c47a2a">感觉记忆</strong>：像相机闪光灯的余像，持续不到 1 秒。容量极大但转瞬即逝。不需要前额叶参与。',
+   dur:'< 1 秒',capacity:'几乎无限',region:'感觉皮层',icon:'📸'},
+  {l:'工作记忆',c:PFC,
+   cap:'<strong style="color:#4a7fb5">工作记忆</strong>：你的"心智白板"。能同时存储和操作 4±1 个项目，持续约 15-30 秒。前额叶是主角。',
+   dur:'15-30 秒',capacity:'4 ± 1 项',region:'前额叶 (dlPFC)',icon:'📝'},
+  {l:'长期记忆',c:'#6a9955',
+   cap:'<strong style="color:#6a9955">长期记忆</strong>：你的"硬盘"。容量几乎无限，可持续一生。海马体负责写入，大脑皮层负责存储。',
+   dur:'数天 → 一生',capacity:'几乎无限',region:'海马体 + 皮层',icon:'💾'}
+];
+let curMem=0;
+
+function buildMemTabs(){
+  const el=document.getElementById('memTabs');
+  MEM_LENSES.forEach((m,i)=>{
+    const b=document.createElement('button');
+    b.className='tab'+(i===0?' active':'');
+    b.textContent=m.l;
+    b.style.color=i===0?m.c:'';
+    b.onclick=()=>{
+      curMem=i;renderMem();
+      document.querySelectorAll('#memTabs .tab').forEach((t,j)=>{
+        t.classList.toggle('active',j===i);
+        t.style.color=j===i?MEM_LENSES[j].c:'';
+      });
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderMem(){
+  const m=MEM_LENSES[curMem];
+  let o=`<rect x="10" y="5" width="660" height="350" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+
+  // Left: brain diagram showing active region
+  o+=`<text x="30" y="30" font-size="9" fill="${DIM}" font-family="var(--mono)">活跃脑区</text>`;
+
+  // Simplified brain outline
+  o+=`<ellipse cx="170" cy="170" rx="130" ry="100" fill="#ece8e0" stroke="#ddd8d0" stroke-width="1.5" opacity=".3"/>`;
+
+  // Brain regions (simplified)
+  const regions=[
+    {label:'前额叶',x:65,y:100,w:70,h:90,color:PFC,active:curMem===1},
+    {label:'顶叶',x:165,y:80,w:75,h:60,color:'#8b6fb0',active:false},
+    {label:'枕叶',x:255,y:100,w:50,h:60,color:'#c47a2a',active:curMem===0},
+    {label:'颞叶',x:140,y:185,w:110,h:45,color:'#c25a7a',active:false},
+    {label:'海马体',x:175,y:155,w:50,h:30,color:'#6a9955',active:curMem===2},
+  ];
+
+  regions.forEach(r=>{
+    const fill=r.active?r.color+'35':r.color+'10';
+    const sw=r.active?2.5:1;
+    const op=r.active?1:.3;
+    o+=`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="10" fill="${fill}" stroke="${r.color}" stroke-width="${sw}" opacity="${op}"/>`;
+    o+=`<text x="${r.x+r.w/2}" y="${r.y+r.h/2+4}" text-anchor="middle" font-size="8" fill="${r.color}" font-family="var(--mono)" opacity="${r.active?1:.4}">${r.label}</text>`;
+  });
+
+  // Right: info panel
+  const px=350,py=25,pw=300,ph=310;
+  o+=`<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="8" fill="${m.c}06" stroke="${m.c}25"/>`;
+
+  // Icon
+  o+=`<text x="${px+pw/2}" y="${py+50}" text-anchor="middle" font-size="40">${m.icon}</text>`;
+  // Title
+  o+=`<text x="${px+pw/2}" y="${py+80}" text-anchor="middle" font-size="16" fill="${m.c}" font-weight="700">${m.l}</text>`;
+  o+=`<line x1="${px+30}" y1="${py+90}" x2="${px+pw-30}" y2="${py+90}" stroke="${m.c}20"/>`;
+
+  // Stats
+  const stats=[
+    {label:'持续时间',val:m.dur},
+    {label:'容量',val:m.capacity},
+    {label:'主要脑区',val:m.region}
+  ];
+  stats.forEach((s,i)=>{
+    const sy=py+115+i*55;
+    o+=`<text x="${px+30}" y="${sy}" font-size="9" fill="${DIM}" font-family="var(--mono)">${s.label}</text>`;
+    o+=`<text x="${px+30}" y="${sy+20}" font-size="14" fill="${m.c}" font-weight="600">${s.val}</text>`;
+  });
+
+  // Comparison bar at bottom
+  const barY=py+ph-30;
+  o+=`<text x="${px+pw/2}" y="${barY}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">容量 vs 持久性：${curMem===1?'容量最小，但能加工信息':curMem===0?'容量最大，但几乎瞬间消失':'持久性最强，但写入需要时间'}</text>`;
+
+  document.getElementById('memSvg').innerHTML=o;
+  document.getElementById('memCap').innerHTML=m.cap;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 2: Capacity Limit (Progressive Slider)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderLoad(){
+  const n=+document.getElementById('loadSlider').value;
+  let o=`<rect x="10" y="5" width="660" height="370" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+
+  // Title
+  o+=`<text x="340" y="28" text-anchor="middle" font-size="11" fill="${DIM}" font-family="var(--mono)">同时记忆 ${n} 个项目</text>`;
+
+  // PFC node (center top)
+  const pfcX=340,pfcY=80;
+  const overload=n>=5;
+  const critical=n>=6;
+  const pfcColor=critical?OLD:overload?'#c07b20':PFC;
+  const pfcLabel=critical?'过载崩溃!':overload?'过载警告':'稳定维持';
+
+  o+=`<circle cx="${pfcX}" cy="${pfcY}" r="40" fill="${pfcColor}15" stroke="${pfcColor}" stroke-width="${overload?3:2}"/>`;
+  o+=`<text x="${pfcX}" y="${pfcY-6}" text-anchor="middle" font-size="10" fill="${pfcColor}" font-weight="600" font-family="var(--mono)">前额叶 dlPFC</text>`;
+  o+=`<text x="${pfcX}" y="${pfcY+10}" text-anchor="middle" font-size="8" fill="${pfcColor}" font-family="var(--mono)">${pfcLabel}</text>`;
+
+  // Supporting nodes
+  const supportNodes=[
+    {label:'顶叶 IPS',x:150,y:160,role:'空间索引'},
+    {label:'颞叶',x:540,y:160,role:'物体识别'},
+    {label:'基底节',x:200,y:280,role:'门控更新'},
+    {label:'丘脑',x:480,y:280,role:'信号中继'}
+  ];
+
+  supportNodes.forEach(nd=>{
+    const nColor=critical?OLD+'80':DIM;
+    o+=`<circle cx="${nd.x}" cy="${nd.y}" r="28" fill="#f4f2ed" stroke="${nColor}" stroke-width="1"/>`;
+    o+=`<text x="${nd.x}" y="${nd.y-4}" text-anchor="middle" font-size="8" fill="${nColor}" font-family="var(--mono)">${nd.label}</text>`;
+    o+=`<text x="${nd.x}" y="${nd.y+10}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">${nd.role}</text>`;
+
+    // Connection lines to PFC
+    const dx=pfcX-nd.x,dy=pfcY-nd.y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    const nx=dx/dist,ny=dy/dist;
+    const x1=nd.x+nx*30,y1=nd.y+ny*30;
+    const x2=pfcX-nx*42,y2=pfcY-ny*42;
+
+    if(critical){
+      // Broken connections
+      const mx=(x1+x2)/2,my=(y1+y2)/2;
+      o+=`<line x1="${x1}" y1="${y1}" x2="${mx-5}" y2="${my-3}" stroke="${OLD}" stroke-width="1" stroke-dasharray="4 4" opacity=".4"/>`;
+      o+=`<text x="${mx}" y="${my}" text-anchor="middle" font-size="10" fill="${OLD}">✕</text>`;
+    } else if(overload){
+      o+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#c07b20" stroke-width="1.2" stroke-dasharray="6 4" opacity=".5"/>`;
+    } else {
+      const sw=Math.max(1,2.5-n*0.3);
+      o+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${PFC}" stroke-width="${sw}" opacity="${Math.max(.3,1-n*0.12)}"/>`;
+    }
+  });
+
+  // Memory items — horizontal row between network and meter
+  const itemColors=['#e07050','#50a878','#5080c0','#c0a050','#a060a0','#60b0b0'];
+  const itemLabels=['苹果','汽车','雨伞','钥匙','猫咪','手机'];
+  const itemEmoji=['🍎','🚗','☂️','🔑','🐱','📱'];
+  const rowY=195, rowStartX=340-(n*40)/2;
+  o+=`<text x="30" y="${rowY-5}" font-size="8" fill="${DIM}" font-family="var(--mono)">白板上的项目</text>`;
+  for(let i=0;i<n;i++){
+    const ix=rowStartX+i*40+20;
+    const lost=critical&&i>=4;
+
+    o+=`<rect x="${ix-16}" y="${rowY}" width="32" height="38" rx="6" fill="${lost?'#f5f0f0':itemColors[i]+'12'}" stroke="${lost?OLD+'50':itemColors[i]}" stroke-width="${lost?1:1.5}" ${lost?'stroke-dasharray="3 3"':''}/>`;
+    o+=`<text x="${ix}" y="${rowY+18}" text-anchor="middle" font-size="14">${lost?'❌':itemEmoji[i]}</text>`;
+    o+=`<text x="${ix}" y="${rowY+33}" text-anchor="middle" font-size="7" fill="${lost?OLD+'60':itemColors[i]}" font-family="var(--mono)">${lost?'丢失':itemLabels[i]}</text>`;
+  }
+
+  // Capacity meter
+  const meterX=30,meterY=340,meterW=300;
+  o+=`<text x="${meterX}" y="${meterY-8}" font-size="8" fill="${DIM}" font-family="var(--mono)">容量占用</text>`;
+  o+=`<rect x="${meterX}" y="${meterY}" width="${meterW}" height="8" rx="4" fill="#eee"/>`;
+  const fillW=Math.min(1,n/4)*meterW;
+  const overW=n>4?Math.min(1,(n-4)/2)*meterW*0.5:0;
+  o+=`<rect x="${meterX}" y="${meterY}" width="${fillW}" height="8" rx="4" fill="${PFC}"/>`;
+  if(overW>0){
+    o+=`<rect x="${meterX+fillW}" y="${meterY}" width="${overW}" height="8" rx="0 4 4 0" fill="${OLD}aa"/>`;
+  }
+  o+=`<text x="${meterX+meterW+10}" y="${meterY+8}" font-size="9" fill="${n>4?OLD:PFC}" font-weight="600" font-family="var(--mono)">${n}/4</text>`;
+
+  // George Miller quote
+  o+=`<text x="${meterX}" y="${meterY+28}" font-size="7" fill="${DIM}" font-family="var(--mono)">Cowan (2001)：真实容量 ≈ 4 个独立项目，非 Miller 的 7±2</text>`;
+
+  // Right side: signal quality indicator
+  const sqX=450,sqY=320;
+  const quality=n<=3?'高':n<=4?'中':n<=5?'低':'崩溃';
+  const sqColor=n<=3?NEW:n<=4?PFC:n<=5?'#c07b20':OLD;
+  o+=`<text x="${sqX}" y="${sqY}" font-size="9" fill="${DIM}" font-family="var(--mono)">网络同步性</text>`;
+  o+=`<text x="${sqX}" y="${sqY+20}" font-size="16" fill="${sqColor}" font-weight="700">${quality}</text>`;
+  o+=`<text x="${sqX}" y="${sqY+36}" font-size="8" fill="${sqColor}bb" font-family="var(--mono)">${n<=4?'前额叶-顶叶 同步':'同步性下降 · 信息丢失'}</text>`;
+
+  document.getElementById('loadSvg').innerHTML=o;
+  document.getElementById('loadCap').innerHTML=n<=3
+    ?`${n} 个项目——前额叶轻松维持，网络连接稳定。`
+    :n===4?'4 个项目——接近容量极限，但还能勉强维持所有连接。'
+    :n===5?'<strong style="color:#c07b20">5 个项目——过载！</strong>前额叶-顶叶同步性开始下降，连接变得不稳定。'
+    :'<strong style="color:#b84c4c">6 个项目——崩溃。</strong>网络连接断裂，超出容量的项目被丢弃。这就是你记不住长串号码的原因。';
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 2.5: Chunking Strategy
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let chunked=false;
+
+function toggleChunk(){
+  chunked=!chunked;
+  renderChunk();
+  document.getElementById('chunkBtn').textContent=chunked?'← 还原散装':'点击组块 →';
+}
+
+function renderChunk(){
+  let o=`<rect x="10" y="5" width="660" height="410" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+
+  const rawDigits=['1','0','2','4','2','0','4','8'];
+  const chunks=[{label:'1024',sub:'1KB · 程序员都懂',color:'#c06040'},{label:'2048',sub:'经典小游戏',color:'#4a7fb5'}];
+
+  // Title
+  o+=`<text x="340" y="28" text-anchor="middle" font-size="11" fill="${DIM}" font-family="var(--mono)">记忆任务：记住 1-0-2-4-2-0-4-8</text>`;
+
+  // ── Top area: the digits / chunks ──
+  const topY=50;
+
+  if(!chunked){
+    // Raw mode: 8 scattered digit cards
+    o+=`<text x="30" y="${topY+12}" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">散装模式：8 个独立数字</text>`;
+
+    const startX=65;
+    rawDigits.forEach((d,i)=>{
+      const dx=startX+i*75;
+      const shake=Math.sin(i*1.7)*2; // slight visual chaos
+      o+=`<rect x="${dx}" y="${topY+25+shake}" width="52" height="60" rx="8" fill="${OLD}08" stroke="${OLD}50" stroke-width="1.5"/>`;
+      o+=`<text x="${dx+26}" y="${topY+58+shake}" text-anchor="middle" font-size="24" fill="${OLD}" font-weight="700">${d}</text>`;
+      o+=`<text x="${dx+26}" y="${topY+78+shake}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">第${i+1}项</text>`;
+    });
+
+    // Visual overload indicators
+    o+=`<text x="340" y="${topY+108}" text-anchor="middle" font-size="9" fill="${OLD}" font-family="var(--mono)">⚠ 8 个项目 → 远超白板容量（4±1）</text>`;
+
+  } else {
+    // Chunked mode: 2 grouped blocks
+    o+=`<text x="30" y="${topY+12}" font-size="9" fill="${NEW}" font-weight="600" font-family="var(--mono)">组块模式：2 个有意义的块</text>`;
+
+    chunks.forEach((ck,i)=>{
+      const cx=120+i*300;
+      // Outer chunk container
+      o+=`<rect x="${cx}" y="${topY+22}" width="200" height="82" rx="12" fill="${ck.color}10" stroke="${ck.color}" stroke-width="2"/>`;
+      // The 4 digits inside, showing they're grouped
+      const digits=ck.label.split('');
+      digits.forEach((d,di)=>{
+        o+=`<text x="${cx+32+di*40}" y="${topY+58}" text-anchor="middle" font-size="20" fill="${ck.color}" font-weight="600">${d}</text>`;
+      });
+      // Chunk label
+      o+=`<text x="${cx+100}" y="${topY+85}" text-anchor="middle" font-size="10" fill="${ck.color}" font-weight="600" font-family="var(--mono)">「${ck.sub}」</text>`;
+      // Arrow to long-term memory
+      o+=`<line x1="${cx+100}" y1="${topY+105}" x2="${cx+100}" y2="${topY+130}" stroke="${ck.color}" stroke-width="1.2" stroke-dasharray="4 2"/>`;
+      o+=`<text x="${cx+100}" y="${topY+115}" text-anchor="middle" font-size="6" fill="${ck.color}" font-family="var(--mono)">↓ 长期记忆指针</text>`;
+    });
+
+    o+=`<text x="340" y="${topY+108}" text-anchor="middle" font-size="9" fill="${NEW}" font-family="var(--mono)">✓ 2 个块 → 轻松在白板容量内</text>`;
+  }
+
+  // ── Middle: white board visualization ──
+  const boardY=170;
+  o+=`<text x="30" y="${boardY}" font-size="9" fill="${INK}" font-weight="600" font-family="var(--mono)">前额叶白板</text>`;
+  // 4 slots
+  const slotW=140,slotH=55,slotGap=12;
+  const slotStartX=35;
+  for(let i=0;i<4;i++){
+    const sx=slotStartX+i*(slotW+slotGap);
+    const filled=chunked?(i<2):(i<4);
+    const overflow=!chunked&&i<4; // all 4 filled + more
+
+    o+=`<rect x="${sx}" y="${boardY+10}" width="${slotW}" height="${slotH}" rx="6" fill="${filled?(chunked?NEW+'10':OLD+'10'):'#f5f4f0'}" stroke="${filled?(chunked?NEW+'60':OLD+'60'):FAINT}" stroke-width="${filled?1.5:1}" ${!filled&&!chunked?'stroke-dasharray="4 3"':''}/>`;
+
+    if(chunked&&i<2){
+      o+=`<text x="${sx+slotW/2}" y="${boardY+32}" text-anchor="middle" font-size="14" fill="${chunks[i].color}" font-weight="700">${chunks[i].label}</text>`;
+      o+=`<text x="${sx+slotW/2}" y="${boardY+50}" text-anchor="middle" font-size="8" fill="${chunks[i].color}" font-family="var(--mono)">「${chunks[i].sub}」</text>`;
+    } else if(chunked&&i>=2){
+      o+=`<text x="${sx+slotW/2}" y="${boardY+42}" text-anchor="middle" font-size="9" fill="${NEW}60" font-family="var(--mono)">空闲</text>`;
+    } else if(!chunked){
+      // Overstuffed - show 2 digits crammed per slot
+      const d1=rawDigits[i*2],d2=rawDigits[i*2+1];
+      o+=`<text x="${sx+slotW*0.33}" y="${boardY+38}" text-anchor="middle" font-size="16" fill="${OLD}cc">${d1||''}</text>`;
+      o+=`<text x="${sx+slotW*0.67}" y="${boardY+38}" text-anchor="middle" font-size="16" fill="${OLD}cc">${d2||''}</text>`;
+      o+=`<text x="${sx+slotW/2}" y="${boardY+56}" text-anchor="middle" font-size="6" fill="${OLD}" font-family="var(--mono)">挤压 · 互相干扰</text>`;
+    }
+
+    // Slot number
+    o+=`<text x="${sx+slotW/2}" y="${boardY+slotH+22}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">槽位 ${i+1}</text>`;
+  }
+
+  // Overflow indicator for raw mode
+  if(!chunked){
+    o+=`<text x="340" y="${boardY+slotH+40}" text-anchor="middle" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">⚠ 4 个槽位硬塞 8 个数字 → 互相干扰 → 记忆出错</text>`;
+  } else {
+    o+=`<text x="340" y="${boardY+slotH+40}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600" font-family="var(--mono)">✓ 2 个槽位装 2 个块 → 还剩 2 个空槽 → 游刃有余</text>`;
+  }
+
+  // ── Bottom: capacity comparison bar ──
+  const barY=310;
+  o+=`<text x="30" y="${barY}" font-size="8" fill="${DIM}" font-family="var(--mono)">白板容量占用对比</text>`;
+
+  // Raw bar
+  o+=`<text x="30" y="${barY+20}" font-size="8" fill="${!chunked?OLD:DIM}" font-family="var(--mono)">散装</text>`;
+  o+=`<rect x="80" y="${barY+12}" width="400" height="12" rx="6" fill="#eee"/>`;
+  const rawFill=Math.min(400,8/4*400);
+  o+=`<rect x="80" y="${barY+12}" width="${rawFill}" height="12" rx="6" fill="${OLD}" opacity="${!chunked?'.8':'.25'}"/>`;
+  o+=`<rect x="80" y="${barY+12}" width="${400/4*4}" height="12" rx="0" fill="none" stroke="${DIM}30" stroke-dasharray="0 ${400/4}" stroke-width="12"/>`;
+  o+=`<text x="490" y="${barY+22}" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">8/4 = 200%</text>`;
+
+  // Chunked bar
+  o+=`<text x="30" y="${barY+48}" font-size="8" fill="${chunked?NEW:DIM}" font-family="var(--mono)">组块</text>`;
+  o+=`<rect x="80" y="${barY+40}" width="400" height="12" rx="6" fill="#eee"/>`;
+  const chunkFill=2/4*400;
+  o+=`<rect x="80" y="${barY+40}" width="${chunkFill}" height="12" rx="6" fill="${NEW}" opacity="${chunked?'.8':'.25'}"/>`;
+  o+=`<text x="490" y="${barY+50}" font-size="9" fill="${NEW}" font-weight="600" font-family="var(--mono)">2/4 = 50%</text>`;
+
+  // Savings callout
+  if(chunked){
+    o+=`<text x="340" y="${barY+76}" text-anchor="middle" font-size="10" fill="${NEW}" font-weight="700">节省 75% 白板空间</text>`;
+    o+=`<text x="340" y="${barY+92}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">秘诀：每个"块"只占 1 个槽位，但通过长期记忆指针包含大量信息</text>`;
+  } else {
+    o+=`<text x="340" y="${barY+76}" text-anchor="middle" font-size="10" fill="${OLD}" font-weight="700">溢出 100% —— 白板崩溃</text>`;
+    o+=`<text x="340" y="${barY+92}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">8 个独立数字各占 1 格，白板只有 4 格 → 后面的覆盖前面的</text>`;
+  }
+
+  document.getElementById('chunkSvg').innerHTML=o;
+  document.getElementById('chunkCap').innerHTML=chunked
+    ?'<strong style="color:#4a8f5c">组块后</strong>：8 个数字被压缩为 2 个有意义的块。每个块只占 1 个白板槽位，但通过"指针"指向长期记忆中的完整信息。'
+    :'<strong style="color:#b84c4c">散装状态</strong>：8 个数字各自独立，白板只有 4 格，后面的数字不断覆盖前面的。点击「组块」按钮体验打包的魔力。';
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 3: Brainwave Orchestra (Step Navigator)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const WAVE_STEPS=[
+  {t:'感觉输入',
+   cap:'新信息到达——你听到一个电话号码。感觉皮层首先响应。',
+   gammaStr:0.2,betaStr:0.3,phase:'等待写入'},
+  {t:'Gamma 爆发',
+   cap:'浅层皮层（2/3 层）的 Gamma 波短暂爆发，把电话号码"写入"工作记忆。这是一次快速的突触权重变化。',
+   gammaStr:1.0,betaStr:0.1,phase:'写入中 ✦'},
+  {t:'Beta 接管',
+   cap:'深层皮层（5/6 层）的 Beta 波增强，"锁住"刚写入的内容，防止新信息覆盖。Gamma 被压制。',
+   gammaStr:0.15,betaStr:1.0,phase:'维持保护'},
+  {t:'维持循环',
+   cap:'Gamma 和 Beta 交替脉动——每次 Gamma 短暂爆发刷新记忆痕迹，Beta 随即恢复保护。这个循环以约 200ms 为周期重复。',
+   gammaStr:0.5,betaStr:0.6,phase:'循环刷新 ↻'},
+  {t:'提取使用',
+   cap:'需要用到这个号码时——Beta 有控制地放松，允许 Gamma 读出存储的信息。提取完毕后 Beta 可以再次锁定或释放。',
+   gammaStr:0.7,betaStr:0.3,phase:'读取输出 →'}
+];
+let curWave=0;
+
+function renderWave(){
+  const s=WAVE_STEPS[curWave];
+  let o=`<rect x="10" y="5" width="660" height="370" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+
+  // Progress dots
+  WAVE_STEPS.forEach((_,i)=>{
+    const cx=180+(i-2)*80;
+    o+=`<circle cx="${cx}" cy="22" r="${i===curWave?6:3.5}" fill="${i<=curWave?INK:'#ddd'}"/>`;
+    o+=`<text x="${cx}" y="38" text-anchor="middle" font-size="7" fill="${i===curWave?INK:DIM}" font-family="var(--mono)">${_.t}</text>`;
+  });
+
+  // Left panel: PFC layer diagram
+  const lx=30,ly=60,lw=280,lh=250;
+  o+=`<rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+  o+=`<text x="${lx+lw/2}" y="${ly+18}" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">前额叶皮层 · 分层结构</text>`;
+
+  // Superficial layers (Gamma)
+  const gammaY=ly+35,gammaH=90;
+  const gammaOp=0.1+s.gammaStr*0.5;
+  o+=`<rect x="${lx+15}" y="${gammaY}" width="${lw-30}" height="${gammaH}" rx="4" fill="${GAMMA}${Math.round(gammaOp*255).toString(16).padStart(2,'0')}" stroke="${GAMMA}${s.gammaStr>.5?'':'40'}" stroke-width="${s.gammaStr>.5?1.5:1}"/>`;
+  o+=`<text x="${lx+25}" y="${gammaY+16}" font-size="8" fill="${GAMMA}" font-family="var(--mono)" font-weight="600">浅层 · 2/3 层</text>`;
+  o+=`<text x="${lx+lw-25}" y="${gammaY+16}" text-anchor="end" font-size="8" fill="${GAMMA}" font-family="var(--mono)">Gamma 30-100Hz</text>`;
+  // Gamma wave
+  o+=wave(lx+20,gammaY+55,lw-40,15*s.gammaStr,8,GAMMA,Math.max(.2,s.gammaStr),s.gammaStr>0.5?2.5:1.5);
+  // Gamma intensity label
+  o+=`<text x="${lx+lw/2}" y="${gammaY+gammaH-8}" text-anchor="middle" font-size="8" fill="${GAMMA}${s.gammaStr>.5?'':'80'}" font-family="var(--mono)">${s.gammaStr>=0.7?'⚡ 强烈活跃':s.gammaStr>=0.4?'◐ 中等活跃':'○ 安静'}</text>`;
+
+  // Arrow between layers
+  o+=`<text x="${lx+lw/2}" y="${gammaY+gammaH+14}" text-anchor="middle" font-size="8" fill="${DIM}">↕ 层间通信</text>`;
+
+  // Deep layers (Beta)
+  const betaY=gammaY+gammaH+22,betaH=90;
+  const betaOp=0.1+s.betaStr*0.5;
+  o+=`<rect x="${lx+15}" y="${betaY}" width="${lw-30}" height="${betaH}" rx="4" fill="${BETA}${Math.round(betaOp*255).toString(16).padStart(2,'0')}" stroke="${BETA}${s.betaStr>.5?'':'40'}" stroke-width="${s.betaStr>.5?1.5:1}"/>`;
+  o+=`<text x="${lx+25}" y="${betaY+16}" font-size="8" fill="${BETA}" font-family="var(--mono)" font-weight="600">深层 · 5/6 层</text>`;
+  o+=`<text x="${lx+lw-25}" y="${betaY+16}" text-anchor="end" font-size="8" fill="${BETA}" font-family="var(--mono)">Beta 10-30Hz</text>`;
+  // Beta wave
+  o+=wave(lx+20,betaY+55,lw-40,15*s.betaStr,3,BETA,Math.max(.2,s.betaStr),s.betaStr>0.5?2.5:1.5);
+  o+=`<text x="${lx+lw/2}" y="${betaY+betaH-8}" text-anchor="middle" font-size="8" fill="${BETA}${s.betaStr>.5?'':'80'}" font-family="var(--mono)">${s.betaStr>=0.7?'⚡ 强势控制':s.betaStr>=0.4?'◐ 中等活跃':'○ 安静'}</text>`;
+
+  // Right panel: status summary
+  const rx=340,ry=60,rw=310,rh=250;
+  o+=`<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="6" fill="#faf9f6" stroke="${FAINT}"/>`;
+  o+=`<text x="${rx+rw/2}" y="${ry+22}" text-anchor="middle" font-size="10" fill="${INK}" font-weight="600">当前阶段：${s.t}</text>`;
+  o+=`<text x="${rx+rw/2}" y="${ry+42}" text-anchor="middle" font-size="9" fill="${DIM}" font-family="var(--mono)">${s.phase}</text>`;
+
+  // Gamma/Beta strength bars
+  const barX=rx+25,barW=rw-50;
+  // Gamma bar
+  o+=`<text x="${barX}" y="${ry+72}" font-size="8" fill="${GAMMA}" font-family="var(--mono)" font-weight="600">Gamma 写入力</text>`;
+  o+=`<rect x="${barX}" y="${ry+78}" width="${barW}" height="10" rx="5" fill="#eee"/>`;
+  o+=`<rect x="${barX}" y="${ry+78}" width="${barW*s.gammaStr}" height="10" rx="5" fill="${GAMMA}"/>`;
+  o+=`<text x="${barX+barW+8}" y="${ry+87}" font-size="9" fill="${GAMMA}" font-family="var(--mono)">${Math.round(s.gammaStr*100)}%</text>`;
+
+  // Beta bar
+  o+=`<text x="${barX}" y="${ry+112}" font-size="8" fill="${BETA}" font-family="var(--mono)" font-weight="600">Beta 保护力</text>`;
+  o+=`<rect x="${barX}" y="${ry+118}" width="${barW}" height="10" rx="5" fill="#eee"/>`;
+  o+=`<rect x="${barX}" y="${ry+118}" width="${barW*s.betaStr}" height="10" rx="5" fill="${BETA}"/>`;
+  o+=`<text x="${barX+barW+8}" y="${ry+127}" font-size="9" fill="${BETA}" font-family="var(--mono)">${Math.round(s.betaStr*100)}%</text>`;
+
+  // Balance indicator
+  const balY=ry+155;
+  o+=`<text x="${rx+rw/2}" y="${balY}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">谁在主导？</text>`;
+  const balPos=s.gammaStr/(s.gammaStr+s.betaStr+0.01);
+  const balX=barX+balPos*barW;
+  o+=`<rect x="${barX}" y="${balY+8}" width="${barW}" height="4" rx="2" fill="#eee"/>`;
+  o+=`<rect x="${barX}" y="${balY+8}" width="${barW*balPos}" height="4" rx="2" fill="${GAMMA}"/>`;
+  o+=`<rect x="${barX+barW*balPos}" y="${balY+8}" width="${barW*(1-balPos)}" height="4" rx="2" fill="${BETA}"/>`;
+  o+=`<text x="${barX}" y="${balY+26}" font-size="7" fill="${GAMMA}" font-family="var(--mono)">Gamma</text>`;
+  o+=`<text x="${barX+barW}" y="${balY+26}" text-anchor="end" font-size="7" fill="${BETA}" font-family="var(--mono)">Beta</text>`;
+
+  // Metaphor
+  const metaY=ry+205;
+  o+=`<line x1="${rx+20}" y1="${metaY}" x2="${rx+rw-20}" y2="${metaY}" stroke="${RULE}"/>`;
+  const metaphors=['教室里很安静，等待老师点名','学生激动举手：新信息涌入！','老师说"安静"——保护已有内容','学生和老师轮流发言，节奏稳定','老师允许学生念出答案'];
+  o+=`<text x="${rx+rw/2}" y="${metaY+20}" text-anchor="middle" font-size="9" fill="${DIM}">${metaphors[curWave]}</text>`;
+
+  document.getElementById('waveSvg').innerHTML=o;
+  document.getElementById('waveStep').textContent=`${curWave+1}/${WAVE_STEPS.length}`;
+  document.getElementById('waveCap').innerHTML=s.cap;
+  document.getElementById('wavePrev').classList.toggle('dim',curWave<=0);
+  document.getElementById('waveNext').classList.toggle('dim',curWave>=WAVE_STEPS.length-1);
+}
+function waveNav(d){const n=curWave+d;if(n>=0&&n<WAVE_STEPS.length){curWave=n;renderWave();}}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 4: Focus vs Distraction (Before/After)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderFocus(){
+  let o='';
+  const lw=318,rw=318,lx=12,rx=350,y0=8,h=360;
+
+  // ── Left: Focused state ──
+  o+=`<rect x="${lx}" y="${y0}" width="${lw}" height="${h}" rx="6" fill="#f4faf6" stroke="${NEW}30"/>`;
+  o+=`<text x="${lx+lw/2}" y="${y0+22}" text-anchor="middle" font-size="11" fill="${NEW}" font-weight="600">专注状态</text>`;
+
+  // PFC
+  o+=`<circle cx="${lx+100}" cy="${y0+80}" r="35" fill="${BETA}20" stroke="${BETA}" stroke-width="2.5"/>`;
+  o+=`<text x="${lx+100}" y="${y0+76}" text-anchor="middle" font-size="8" fill="${BETA}" font-weight="600" font-family="var(--mono)">dlPFC</text>`;
+  o+=`<text x="${lx+100}" y="${y0+89}" text-anchor="middle" font-size="7" fill="${BETA}" font-family="var(--mono)">Beta ⚡ 强势</text>`;
+
+  // Task info (book content)
+  o+=`<rect x="${lx+180}" y="${y0+55}" width="110" height="50" rx="6" fill="${GAMMA}15" stroke="${GAMMA}60"/>`;
+  o+=`<text x="${lx+235}" y="${y0+76}" text-anchor="middle" font-size="8" fill="${GAMMA}" font-family="var(--mono)">Gamma 通道</text>`;
+  o+=`<text x="${lx+235}" y="${y0+93}" text-anchor="middle" font-size="7" fill="${GAMMA}" font-family="var(--mono)">📖 书的内容</text>`;
+
+  // Strong connection
+  o+=`<line x1="${lx+135}" y1="${y0+78}" x2="${lx+178}" y2="${y0+78}" stroke="${PFC}" stroke-width="2.5"/>`;
+  o+=`<polygon points="${lx+176},${y0+74} ${lx+182},${y0+78} ${lx+176},${y0+82}" fill="${PFC}"/>`;
+
+  // Distractors blocked
+  const distractors=['晚饭?','消息?','噪音?'];
+  distractors.forEach((d,i)=>{
+    const dy=y0+150+i*45;
+    o+=`<rect x="${lx+190}" y="${dy}" width="80" height="28" rx="4" fill="#eee" stroke="${FAINT}" opacity=".5"/>`;
+    o+=`<text x="${lx+230}" y="${dy+18}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)" opacity=".4">${d}</text>`;
+    // Block indicator
+    o+=`<text x="${lx+170}" y="${dy+18}" text-anchor="middle" font-size="10" fill="${BETA}" opacity=".6">🛡</text>`;
+    o+=`<text x="${lx+160}" y="${dy+32}" font-size="6" fill="${BETA}" font-family="var(--mono)" opacity=".5">Beta 屏蔽</text>`;
+  });
+
+  // Brainwave visualization
+  o+=wave(lx+20,y0+310,lw-40,8,3,BETA,.8,2);
+  o+=`<text x="${lx+20}" y="${y0+340}" font-size="7" fill="${BETA}" font-family="var(--mono)">Beta 主导 · 稳定 · 高信噪比</text>`;
+
+  // Result
+  o+=`<text x="${lx+lw/2}" y="${y0+h-8}" text-anchor="middle" font-size="9" fill="${NEW}" font-weight="600" font-family="var(--mono)">✓ 白板清晰 · 任务信息稳定</text>`;
+
+  // ── Right: Distracted state ──
+  o+=`<rect x="${rx}" y="${y0}" width="${rw}" height="${h}" rx="6" fill="#fdf6f4" stroke="${OLD}30"/>`;
+  o+=`<text x="${rx+rw/2}" y="${y0+22}" text-anchor="middle" font-size="11" fill="${OLD}" font-weight="600">走神状态</text>`;
+
+  // PFC weakened
+  o+=`<circle cx="${rx+100}" cy="${y0+80}" r="35" fill="${BETA}08" stroke="${BETA}50" stroke-width="1" stroke-dasharray="4 3"/>`;
+  o+=`<text x="${rx+100}" y="${y0+76}" text-anchor="middle" font-size="8" fill="${BETA}70" font-family="var(--mono)">dlPFC</text>`;
+  o+=`<text x="${rx+100}" y="${y0+89}" text-anchor="middle" font-size="7" fill="${OLD}" font-family="var(--mono)">Beta ↓ 失控</text>`;
+
+  // Task info fading
+  o+=`<rect x="${rx+180}" y="${y0+55}" width="110" height="50" rx="6" fill="${GAMMA}05" stroke="${GAMMA}25" stroke-dasharray="4 3"/>`;
+  o+=`<text x="${rx+235}" y="${y0+76}" text-anchor="middle" font-size="8" fill="${GAMMA}50" font-family="var(--mono)">Gamma 通道</text>`;
+  o+=`<text x="${rx+235}" y="${y0+93}" text-anchor="middle" font-size="7" fill="${DIM}" font-family="var(--mono)">📖 …什么来着?</text>`;
+
+  // Weak connection
+  o+=`<line x1="${rx+135}" y1="${y0+78}" x2="${rx+178}" y2="${y0+78}" stroke="${DIM}" stroke-width="1" stroke-dasharray="4 4" opacity=".4"/>`;
+
+  // Distractors breaking through!
+  const dist2=['🍜 晚饭吃啥?','💬 那条消息…','🎵 隔壁歌声'];
+  dist2.forEach((d,i)=>{
+    const dy=y0+150+i*45;
+    o+=`<rect x="${rx+170}" y="${dy}" width="120" height="28" rx="4" fill="${OLD}12" stroke="${OLD}40"/>`;
+    o+=`<text x="${rx+230}" y="${dy+18}" text-anchor="middle" font-size="8" fill="${OLD}" font-family="var(--mono)">${d}</text>`;
+    // Breakthrough arrow
+    o+=`<line x1="${rx+160}" y1="${dy+14}" x2="${rx+100}" y2="${y0+100}" stroke="${OLD}" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>`;
+  });
+  o+=`<text x="${rx+140}" y="${y0+150}" font-size="7" fill="${OLD}" font-family="var(--mono)">杂念涌入前额叶 →</text>`;
+
+  // Chaotic brainwave
+  o+=wave(rx+20,y0+310,rw-40,12,7,OLD,.6,1.5);
+  o+=wave(rx+20,y0+310,rw-40,6,3,BETA,.3,1);
+  o+=`<text x="${rx+20}" y="${y0+340}" font-size="7" fill="${OLD}" font-family="var(--mono)">Gamma 杂乱 · Beta 失守 · 低信噪比</text>`;
+
+  // Result
+  o+=`<text x="${rx+rw/2}" y="${y0+h-8}" text-anchor="middle" font-size="9" fill="${OLD}" font-weight="600" font-family="var(--mono)">✕ 白板被覆写 · 任务信息丢失</text>`;
+
+  // Center divider
+  o+=`<text x="340" y="${y0+h/2}" text-anchor="middle" font-size="16" fill="${DIM}">vs</text>`;
+
+  document.getElementById('focusSvg').innerHTML=o;
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION 5: Failure Modes (Expandable Cards)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+let failSel=-1;
+const FAILS=[
+  {label:'睡眠不足',icon:'😴',color:'#6a5acd',
+   brief:'前额叶最先"掉线"',
+   detail:'前额叶是大脑中对睡眠债务最敏感的区域。仅 24 小时不睡，dlPFC 的代谢活动下降 11-14%。表现为：反应变慢、判断失误、注意力涣散。你的"指挥官"在打瞌睡。',
+   example:'研究发现：清醒 17 小时后的认知表现，等同于血液酒精浓度 0.05% —— 已达部分国家的酒驾标准。',
+   mechanism:'皮质醇节律紊乱 → 前额叶葡萄糖代谢 ↓ → Beta 波功率 ↓ → 自上而下控制减弱'},
+  {label:'信息过载',icon:'🤯',color:'#c07b20',
+   brief:'白板写满了还在写',
+   detail:'当同时处理的信息超过 4 个，前额叶-顶叶网络的同步性断裂。大脑不会优雅地"拒绝新信息"——它会随机丢弃已有内容。就像一个写满的白板，新写的字覆盖了旧的。',
+   example:'心理学实验：让被试同时追踪屏幕上移动的物体。3 个以内追踪准确率 > 95%，5 个以上跌破 60%。',
+   mechanism:'记忆项 > 4 → Gamma 编码互相干扰 → 突触权重混淆 → 信息不可逆丢失'},
+  {label:'情绪劫持',icon:'😰',color:'#c25a7a',
+   brief:'杏仁核抢了方向盘',
+   detail:'强烈情绪（焦虑、愤怒、恐惧）会激活杏仁核，而杏仁核的活动会抑制 dlPFC。这就是你"气到说不出话"的神经基础——工作记忆被情绪系统劫持了，白板上全是威胁信号。',
+   example:'考试焦虑研究：焦虑状态下工作记忆容量平均减少 1-2 个项目，相当于损失了 25-50% 的认知资源。',
+   mechanism:'杏仁核过度激活 → 抑制 dlPFC → Beta 控制失效 → 工作记忆容量缩减'},
+  {label:'年龄变化',icon:'🧓',color:'#7b8a56',
+   brief:'白板在缓慢变小',
+   detail:'前额叶是衰老过程中最早开始萎缩的脑区——从 30 岁起，每十年体积缩小约 5%。多巴胺受体密度也在下降，这意味着"门控"功能变弱：更难挡住无关信息。但好消息是，经验和策略可以部分补偿。',
+   example:'纵向研究：60 岁健康成年人的工作记忆跨度比 25 岁平均少 1 个项目，但使用组块策略后差距缩小到 0.3 个。',
+   mechanism:'灰质体积 ↓ + 多巴胺 D1 受体 ↓ → 门控选择性下降 → 无关信息更易侵入'}
+];
+
+function renderFail(){
+  const sel=failSel;
+  let o='';
+
+  if(sel<0){
+    // Overview: 4 cards
+    const cw=155,gap=10,sx=12;
+    FAILS.forEach((f,i)=>{
+      const cx=sx+i*(cw+gap);
+      o+=`<g style="cursor:pointer" onclick="failSel=${i};renderFail()">`;
+      o+=`<rect x="${cx}" y="8" width="${cw}" height="400" rx="8" fill="#faf9f6" stroke="${f.color}40" stroke-width="1.5"/>`;
+      o+=`<text x="${cx+cw/2}" y="52" text-anchor="middle" font-size="28">${f.icon}</text>`;
+      o+=`<text x="${cx+cw/2}" y="78" text-anchor="middle" font-size="13" fill="${f.color}" font-weight="700">${f.label}</text>`;
+      o+=`<line x1="${cx+15}" y1="90" x2="${cx+cw-15}" y2="90" stroke="${f.color}30"/>`;
+      o+=`<text x="${cx+cw/2}" y="112" text-anchor="middle" font-size="10" fill="${f.color}bb" font-family="var(--mono)">${f.brief}</text>`;
+      // Simple mechanism preview
+      const mech=f.mechanism.split(' → ');
+      mech.forEach((m,mi)=>{
+        o+=`<text x="${cx+cw/2}" y="${150+mi*30}" text-anchor="middle" font-size="8" fill="${DIM}" font-family="var(--mono)">${m}</text>`;
+        if(mi<mech.length-1) o+=`<text x="${cx+cw/2}" y="${165+mi*30}" text-anchor="middle" font-size="8" fill="${f.color}60">↓</text>`;
+      });
+      o+=`<text x="${cx+cw/2}" y="390" text-anchor="middle" font-size="9" fill="${f.color}" opacity=".5" font-family="var(--mono)">点击展开 →</text>`;
+      o+=`</g>`;
+    });
+  } else {
+    // Expanded
+    const f=FAILS[sel];
+    o+=`<rect x="10" y="8" width="660" height="330" rx="8" fill="#faf9f6" stroke="${f.color}50"/>`;
+    // Back
+    o+=`<g style="cursor:pointer" onclick="failSel=-1;renderFail()">`;
+    o+=`<text x="30" y="30" font-size="11" fill="${DIM}" font-family="var(--mono)">← 返回总览</text>`;
+    o+=`</g>`;
+    // Header
+    o+=`<text x="340" y="35" text-anchor="middle" font-size="22">${f.icon}</text>`;
+    o+=`<text x="340" y="60" text-anchor="middle" font-size="16" fill="${f.color}" font-weight="700">${f.label}</text>`;
+    o+=`<line x1="60" y1="70" x2="620" y2="70" stroke="${f.color}25"/>`;
+
+    // Left: detail text
+    const dLines=[];
+    let tmp='';
+    f.detail.split('').forEach(ch=>{
+      tmp+=ch;
+      if(tmp.length>=28||(ch==='。'||ch==='，'||ch==='；')&&tmp.length>14){
+        dLines.push(tmp);tmp='';
+      }
+    });
+    if(tmp) dLines.push(tmp);
+    dLines.forEach((l,li)=>{
+      o+=`<text x="30" y="${90+li*20}" font-size="11" fill="var(--ink)">${l}</text>`;
+    });
+
+    // Mechanism chain (bottom left)
+    const mechY=90+dLines.length*20+15;
+    o+=`<text x="30" y="${mechY}" font-size="9" fill="${f.color}" font-weight="600" font-family="var(--mono)">神经机制链</text>`;
+    const mParts=f.mechanism.split(' → ');
+    let mxPos=30;
+    mParts.forEach((mp,mi)=>{
+      const tw=mp.length*7+16;
+      o+=`<rect x="${mxPos}" y="${mechY+8}" width="${tw}" height="22" rx="4" fill="${f.color}10" stroke="${f.color}30"/>`;
+      o+=`<text x="${mxPos+tw/2}" y="${mechY+23}" text-anchor="middle" font-size="8" fill="${f.color}" font-family="var(--mono)">${mp}</text>`;
+      mxPos+=tw+4;
+      if(mi<mParts.length-1){
+        o+=`<text x="${mxPos-2}" y="${mechY+23}" font-size="9" fill="${f.color}80">→</text>`;
+        mxPos+=10;
+      }
+    });
+
+    // Right: example box
+    o+=`<rect x="30" y="270" width="620" height="60" rx="4" fill="${f.color}08" stroke="${f.color}20"/>`;
+    o+=`<text x="40" y="288" font-size="9" fill="${f.color}" font-weight="600" font-family="var(--mono)">研究证据</text>`;
+    const eLines=[];
+    let etmp='';
+    f.example.split('').forEach(ch=>{
+      etmp+=ch;
+      if(etmp.length>=45||(ch==='。'||ch==='，')&&etmp.length>20){
+        eLines.push(etmp);etmp='';
+      }
+    });
+    if(etmp) eLines.push(etmp);
+    eLines.forEach((l,li)=>{
+      o+=`<text x="40" y="${305+li*16}" font-size="10" fill="${f.color}bb">${l}</text>`;
+    });
+
+    // Bottom bar: other cards
+    const bw=140,by=350;
+    let bi=0;
+    FAILS.forEach((of,i)=>{
+      if(i===sel) return;
+      const bx=10+bi*220+15;
+      o+=`<g style="cursor:pointer" opacity=".25" onclick="failSel=${i};renderFail()">`;
+      o+=`<rect x="${bx}" y="${by}" width="${bw}" height="60" rx="6" fill="#faf9f6" stroke="${of.color}40"/>`;
+      o+=`<text x="${bx+bw/2}" y="${by+25}" text-anchor="middle" font-size="14">${of.icon}</text>`;
+      o+=`<text x="${bx+bw/2}" y="${by+45}" text-anchor="middle" font-size="10" fill="${of.color}" font-family="var(--mono)">${of.label}</text>`;
+      o+=`</g>`;
+      bi++;
+    });
+  }
+
+  document.getElementById('failSvg').innerHTML=o;
+  if(sel>=0){
+    document.getElementById('failCap').innerHTML=`<strong style="color:${FAILS[sel].color}">${FAILS[sel].label}</strong>——${FAILS[sel].brief}`;
+  } else {
+    document.getElementById('failCap').innerHTML='四种常见的工作记忆失败模式。点击任意卡片查看详情。';
+  }
+}
+
+// ── 初始化 ──
+buildMemTabs();
+renderMem();
+renderLoad();
+renderChunk();
+renderWave();
+renderFocus();
+renderFail();
+</script>
+</body>
+</html>
