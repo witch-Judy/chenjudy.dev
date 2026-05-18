@@ -27,3 +27,11 @@ pnpm-debug.log*
 
 public/pagefind
 .vercel
+
+# local-only personal artifacts (cards, resumes, WeChat QR — never publish)
+public/mingpian.html
+public/resume.html
+public/Bihan_Chen_Resume_ZH.docx
+public/assets/card/
+.entire/
+.claude/
