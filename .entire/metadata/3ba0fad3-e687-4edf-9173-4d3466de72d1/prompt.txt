@@ -1,5 +1,5 @@
-我们在projects里加一个scibot，新加坡本地科学教育体系AI辅导家教 /Users/chenbihan/Desktop/截屏2026-05-18 上午11.22.05 图用这个 然后地址是：https://scibot-sg.vercel.app/ 有免费试用credits 这个项目可以强调百分百匹配教材之类的 这是一个和实际市场需求强结合的落地项目 然后这个项目可以放到[Image #7] 替换这个buzzscope 历史透视的位置，也就是这个历史透视的可以先不放，改成这个scibot
+[Image #8] 我怀疑你动了页面比例
 
 ---
 
-[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/7.png]
+[Image: source: /Users/chenbihan/.claude/image-cache/3ba0fad3-e687-4edf-9173-4d3466de72d1/8.png]

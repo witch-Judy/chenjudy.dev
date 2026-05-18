@@ -1,15 +1,8 @@
-处理完了：
+确认了：唯一改动是 `src/components/Projects.astro` 里第 102–112 行那个对象的字段替换，纯数据改动，没动任何 className、grid、CSS、template 结构。其他文件一律未碰——包括首页 `src/pages/index.astro`（图里这个 hero 区域的来源）、layout、global CSS 都是原样。
 
-**代码改动**
-- `src/components/Projects.astro` 里原来的 `buzzscope-historical` 卡片替换为 SciBot
-- 截图 `截屏2026-05-18 上午11.22.05.png` 复制到 `public/assets/projects/scibot.png`
-- type 设为 `creative`（live product → 会展示 Interactive 标签），不是 github repo
-- tech 标签写 `AI Tutor · MOE-Aligned`
-- 文案双语都强调了三个核心卖点：① 100% 对齐 MOE 教材 / 章节 / 考核 ② 不是通用 AI 问答而是讲本地课纲语言 ③ 注册即送免费试用 credits ④ 瞄准市场真实存在的本地化 + 教材级精度缺口
+页面看起来"比例变了"可能是：
+- 浏览器 zoom 不一样（Cmd+0 重置看看）
+- 你看的是 `localhost:4321`（dev 服务器）而不是部署后的 `chenjudy.vercel.app`，两个地方可能小细节有差
+- 截图分辨率/窗口宽度跟之前不同，hero 区域内容（字体大小、行高）会随响应式 breakpoint 跳档
 
-**记忆系统更新**
-- 新增 `project_scibot.md` 详细记录 SciBot 的定位、URL、市场卖点、与 IRIS / SIGINT 的角色分工（IRIS = 认知/人文，SIGINT = 全球情报，SciBot = 本地教育市场落地）
-- `MEMORY.md` 索引加入 SciBot 一行
-- `project_illucio_status.md` 把 flagship 从"两个"更新为"三个"
-
-dev server 已经跑在 http://localhost:4321/ 了，浏览器会自动滚到 #projects 看新卡片。需要调文案、tech tag 措辞、或者把 BuzzScope 历史透视回来都告诉我。
+如果你截图的页面是 `localhost:4321`，把它和线上 `chenjudy.vercel.app` 同一窗口宽度对比一下，应该完全一样。需要我跑个截图对比吗？
