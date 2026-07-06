@@ -1,0 +1,21 @@
+已改好 `陈碧涵_Resume_ZH.docx`,格式、字体、bullet 样式和加粗关键词都保留了。原文件备份在 `陈碧涵_Resume_ZH.pre-aibiz.bak.docx`。
+
+改动总结:
+
+**个人简介**——SUPCON 那句从"担任技术布道者,以 GTM 工程视角搭建情报系统"换成"**负责 AI GTM 与 Business Systems——从官网、内容、情报到销售管道,独立搭建一整套获客系统,帮一家 AI 公司从「技术存在」走到「被市场理解和采用」**",后面 newsletter/IRIS 那些原样保留。
+
+**SUPCON 段落**:
+- 角色行:`技术布道 × GTM 工程` → **`AI GTM × Business Systems  Technology Evangelist`**
+- 开头句:收敛成"围绕『AI 公司如何获取客户』这条主线",并把你要的那句主线 tagline(**能理解 AI 技术,也能理解用户/商业/组织,并把它们连接起来**)嵌进去了
+- 5 条 bullet,每条都是 `[做的事] → [理解/连接了什么]`:
+  1. **官网与获客入口**(AI GTM)
+  2. **Lead 管理与销售 Pipeline**(官网→销售)——原"多渠道销售管道"已合并进来
+  3. **Whitepaper 与技术定位**(建立可信度)——Node-RED 社区 + 展会已折叠成这条的"可信度延伸"证据
+  4. **AI 数据平台维护**(理解业务流程)
+  5. **AI Agent 战略情报系统**(获客弹药)
+
+两点你可以再看一眼:
+- 角色行我保留了英文 `Technology Evangelist`(官方 title),如果你想彻底去掉、只留 `AI GTM × Business Systems`,我可以再删。
+- Node-RED 现在只作为第 3 条的一句证据。如果你觉得它在这个"AI Business System"叙事里反而是噪音,也可以整句拿掉。
+
+要调随时说。
