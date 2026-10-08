@@ -29,7 +29,7 @@ export const en = {
 
   // About page
   aboutPageTitle: "About",
-  aboutPageBio: `I'm Chen Judy — builder, influencer, and co-founder of IRIS. I live at the intersection of technology, product, and growth.
+  aboutPageBio: `I'm Chen Judy — builder, creator, and founder of Iriseed. I live at the intersection of technology, product, and growth.
 
 I don't just write code — I design products, build them end-to-end, and bring them to market. From AI-powered tools to community-driven content, I believe the best builders understand the full stack: tech, product, and people.
 

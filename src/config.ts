@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://chenjudy.vercel.app/",
   author: "Chen Judy",
   profile: "https://github.com/witch-Judy",
-  desc: "Co-founder & CTO of IRIS",
+  desc: "Builder of interactive AI products · Founder of Iriseed",
   title: "Chen Judy | 陈小爷",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
