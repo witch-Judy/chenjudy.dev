@@ -1,14 +1,14 @@
 export const zh = {
   // Hero
   heroGreeting: "嗨，我是 Judy。",
-  heroSubtitle: "IRIS 创始人",
+  heroSubtitle: "Iriseed 创始人",
   heroEducation: "哈尔滨工业大学本科 · 新加坡国立大学硕士 · 计算机",
   heroTagline: "持续探索 AI、技术、艺术与人文，持续 shipping。",
   heroCta: "找我聊聊",
 
   // About
   aboutTitle: "关于我",
-  aboutBio: `IRIS 创始人，用 AI 把复杂文本变成可交互的立体文章——不只是读，而是上手玩。哈工大 CS + NUS 硕士，全栈 builder。写代码、做产品、做增长、建个人 IP、练剑。信仰好玩儿主义。`,
+  aboutBio: `Iriseed 创始人，用 AI 把复杂文本变成可交互的立体文章——不只是读，而是上手玩。哈工大 CS + NUS 硕士，全栈 builder。写代码、做产品、做增长、建个人 IP、练剑。信仰好玩儿主义。`,
 
   // Projects
   projectsTitle: "精选项目",

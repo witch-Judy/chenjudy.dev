@@ -1,14 +1,14 @@
 export const en = {
   // Hero
   heroGreeting: "Chen Judy",
-  heroSubtitle: "Founder of IRIS",
+  heroSubtitle: "Founder of Iriseed",
   heroEducation: "Harbin Institute of Technology (BEng) · National University of Singapore (MSc) · Computer Science",
   heroTagline: "Exploring AI, technology, art and the humanities — always shipping.",
   heroCta: "Get in touch",
 
   // About
   aboutTitle: "About Me",
-  aboutBio: `Founder of IRIS — turning complex texts into interactive, explorable essays with AI. Not just reading, but hands-on playing. CS from HIT, MS from NUS. Full-stack builder: code, product, growth, personal brand, swordsmanship. I believe in fun as a philosophy.`,
+  aboutBio: `Founder of Iriseed — turning complex texts into interactive, explorable essays with AI. Not just reading, but hands-on playing. CS from HIT, MS from NUS. Full-stack builder: code, product, growth, personal brand, swordsmanship. I believe in fun as a philosophy.`,
 
   // Projects
   projectsTitle: "Featured Projects",
