@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>当技术如水一般廉价 · 小红书图文</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#5e1f24;        /* 深酒红 */
+    --wine-deep:#3f1417;   /* 更深 */
+    --amber:#c08a3e;       /* 琥珀金 */
+    --amber-soft:#d8a85a;
+    --cream:#f6efe2;       /* 米白纸 */
+    --cream-2:#efe6d4;
+    --ink:#2b2320;         /* 墨 */
+    --ink-soft:#5d524a;
+    --line:rgba(94,31,36,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#1c1715;}
+  body{
+    font-family:"Noto Serif SC",serif;
+    display:flex;flex-direction:column;align-items:center;
+    gap:34px;padding:54px 16px 90px;
+  }
+
+  /* ===== 屏幕提示，截图时不会出现在卡片里 ===== */
+  .hint{
+    color:#cbb89a;font-family:"Noto Sans SC",sans-serif;font-size:14px;
+    max-width:1080px;line-height:1.9;text-align:center;letter-spacing:.3px;
+    border:1px dashed rgba(203,184,154,.4);border-radius:14px;padding:18px 22px;
+  }
+  .hint b{color:var(--amber-soft);}
+
+  /* ===== 3:4 卡片 1080x1440 ===== */
+  .card{
+    width:1080px;height:1440px;flex:0 0 auto;
+    position:relative;overflow:hidden;
+    background:var(--cream);color:var(--ink);
+    display:flex;flex-direction:column;
+    padding:104px 96px 92px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
+  }
+  /* 纸张细噪点 + 边框 */
+  .card::after{
+    content:"";position:absolute;inset:30px;border:1px solid var(--line);
+    pointer-events:none;border-radius:2px;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(192,138,62,.10), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(94,31,36,.08), transparent 60%);
+  }
+
+  /* 顶部页眉 */
+  .head{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:"Noto Sans SC",sans-serif;font-size:21px;letter-spacing:3px;
+    color:var(--wine);position:relative;z-index:2;
+  }
+  .head .brand{font-weight:700;}
+  .head .pager{color:var(--amber);font-family:"Cormorant Garamond",serif;font-size:30px;letter-spacing:1px;}
+
+  /* 正文容器：垂直居中 */
+  .body{
+    flex:1;display:flex;flex-direction:column;justify-content:center;
+    gap:26px;position:relative;z-index:2;
+  }
+  .card p{font-size:38px;line-height:1.74;letter-spacing:.5px;font-weight:400;color:var(--ink);}
+  .card p.lead{font-size:34px;color:var(--ink-soft);}
+  .card .em{color:var(--wine);font-weight:600;}
+  .card .gold{color:var(--amber);font-weight:600;}
+  .note{font-family:"Noto Sans SC",sans-serif;font-size:24px;color:var(--ink-soft);opacity:.7;}
+
+  /* 列表式短句（铁匠/写代码 等） */
+  .stack{display:flex;flex-direction:column;gap:14px;}
+  .stack span{
+    font-size:40px;font-weight:500;color:var(--wine);letter-spacing:1px;
+    padding-left:30px;position:relative;
+  }
+  .stack span::before{content:"";position:absolute;left:0;top:.85em;width:14px;height:2px;background:var(--amber);}
+
+  /* 内联横向小标签组 */
+  .chips{display:flex;flex-wrap:wrap;gap:14px 18px;}
+  .chips span{
+    font-family:"Noto Sans SC",sans-serif;font-size:28px;color:var(--wine);
+    border:1px solid var(--line);border-radius:999px;padding:8px 22px;background:rgba(255,255,255,.4);
+  }
+
+  .quote{
+    font-size:42px;line-height:1.7;color:var(--wine);font-weight:600;
+    padding-left:34px;border-left:4px solid var(--amber);
+  }
+
+  .kicker{
+    font-family:"Noto Sans SC",sans-serif;font-weight:700;letter-spacing:2px;
+    color:var(--amber);font-size:26px;
+  }
+  .section-no{font-family:"Cormorant Garamond",serif;font-size:150px;line-height:.9;color:var(--wine);font-weight:600;}
+  .section-title{font-size:54px;font-weight:700;color:var(--ink);line-height:1.4;letter-spacing:1px;}
+
+  .foot{
+    position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:"Noto Sans SC",sans-serif;font-size:20px;color:var(--ink-soft);letter-spacing:2px;
+  }
+  .foot .sig{color:var(--wine);font-weight:700;}
+
+  /* 英文术语 */
+  .term{font-family:"Cormorant Garamond",serif;font-weight:600;font-style:italic;letter-spacing:.5px;}
+
+  /* ====== 封面 / 尾页：深酒红底 ====== */
+  .card.cover,.card.outro{
+    background:
+      radial-gradient(1000px 700px at 80% 0%, rgba(192,138,62,.22), transparent 60%),
+      linear-gradient(160deg,var(--wine) 0%, var(--wine-deep) 100%);
+    color:var(--cream);
+  }
+  .card.cover::after,.card.outro::after{border-color:rgba(216,168,90,.30);}
+  .card.cover .head,.card.outro .head{color:var(--amber-soft);}
+  .card.cover .head .pager,.card.outro .head .pager{color:var(--amber-soft);}
+  .cover .eyebrow{font-family:"Noto Sans SC",sans-serif;font-size:26px;letter-spacing:6px;color:var(--amber-soft);margin-bottom:8px;}
+  .cover h1{
+    font-size:88px;line-height:1.28;font-weight:900;color:var(--cream);letter-spacing:1px;
+  }
+  .cover h1 .hl{color:var(--amber-soft);}
+  .cover .sub{font-size:34px;line-height:1.7;color:rgba(246,239,226,.8);font-weight:400;margin-top:10px;}
+  .cover .rule{width:120px;height:3px;background:var(--amber-soft);margin:6px 0;}
+  .cover .seal{
+    font-family:"Cormorant Garamond",serif;font-style:italic;font-size:40px;color:var(--amber-soft);
+  }
+  .outro p{color:var(--cream);}
+  .outro .quote{color:var(--amber-soft);border-color:var(--amber-soft);}
+  .outro .stack span{color:var(--cream);}
+  .outro .stack span::before{background:var(--amber-soft);}
+  .outro .big{font-size:56px;font-weight:700;line-height:1.5;color:var(--cream);}
+  .outro .sig-final{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:46px;color:var(--amber-soft);text-align:right;}
+
+  @media print{
+    body{background:#fff;gap:0;padding:0;}
+    .hint{display:none;}
+    .card{box-shadow:none;page-break-after:always;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="hint">
+    每一张都是 <b>1080×1440（3:4）</b>，正好是小红书图文比例。<br>
+    导出方式 ① 浏览器逐张截图；② <b>Cmd/Ctrl + P → 另存为 PDF</b>（每页一张卡片）；③ 让我用脚本批量导出 PNG。<br>
+    文字与原文 <b>一字不差</b>，仅做断句排版。
+  </div>
+
+  <!-- 01 封面 -->
+  <section class="card cover">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">01</span></div>
+    <div class="body">
+      <div class="eyebrow">AI · 工程师 · 品味</div>
+      <h1>当技术如水一般廉价，<br>为什么未来的顶级工程师<br>必须是<span class="hl">“酿酒的人”</span></h1>
+      <div class="rule"></div>
+      <p class="sub">AI 语法泛滥时代，<br>为什么未来的顶级工程师更像爵士乐手？</p>
+    </div>
+    <div class="foot"><span class="seal">Keep loose, keep sharp.</span><span class="sig" style="color:var(--amber-soft)">— 我是陈小爷</span></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">02</span></div>
+    <div class="body">
+      <p class="lead">AI 语法泛滥时代，为什么未来的顶级工程师更像爵士乐手？</p>
+      <p>最近 Claude 最新模型的表现，让整个技术圈和独立开发圈陷入了一种复杂的集体情绪：</p>
+      <p class="quote">兴奋与焦虑并存。</p>
+    </div>
+    <div class="foot"><span>当技术如水一般廉价</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">03</span></div>
+    <div class="body">
+      <p>几年前。</p>
+      <p>如果一个工程师精通 React 的生命周期，能手撕 Kubernetes 的部署文件，调得好 AWS 的复杂网络，甚至能从 PostgreSQL 的死锁日志里找到问题根源。</p>
+      <p>那么这些技能本身就是<span class="em">护城河</span>。</p>
+      <p class="lead">因为掌握它们，需要无数个深夜，需要大量试错，也需要数年的积累。那时候的技术能力，更像是一种<span class="em">手艺</span>。</p>
+      <div class="stack"><span>像铁匠打铁。</span><span>像木匠雕刻。</span><span>像工匠一点一点磨出来的刀锋。</span></div>
+    </div>
+    <div class="foot"><span>当技术如水一般廉价</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 04 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">04</span></div>
+    <div class="body">
+      <p>但今天。</p>
+      <div class="stack">
+        <span>claude code 会写 React。</span>
+        <span>Codex 会配 Kubernetes。</span>
+        <span>Cursor 能帮你拉起一整套自洽的分布式系统。</span>
+      </div>
+      <p class="note">（此处为互文）</p>
+      <p class="quote">曾经昂贵的技术能力，正在以惊人的速度变得廉价。</p>
+    </div>
+    <div class="foot"><span>当技术如水一般廉价</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 05 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">05</span></div>
+    <div class="body">
+      <p>突然之间。一种奇怪的现象出现了。<span class="em">语法开始泛滥。</span></p>
+      <p class="lead">这里的语法（<span class="term">Syntax</span>），已经不只是代码语法。而是一切实现能力。</p>
+      <div class="chips">
+        <span>写代码</span><span>画界面</span><span>写文案</span><span>做分析</span><span>搭工作流</span><span>生成视频</span><span>制作 PPT</span>
+      </div>
+      <p class="quote">过去昂贵的东西，正在像自来水一样流入每个人的家里。</p>
+    </div>
+    <div class="foot"><span>当技术如水一般廉价</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 06 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">06</span></div>
+    <div class="body">
+      <p>而这让我开始思考一个问题：</p>
+      <p>如果实现能力正在无限接近于零。那么未来顶级工程师的<span class="em">护城河究竟在哪里？</span></p>
+      <p class="lead">前几天。我参加了 Notion 在新加坡举办的一场分享会。原本以为会听到很多关于 AI、产品设计和组织管理的方法论。但离开会场时。我脑子里只剩下一个问题：</p>
+      <p>当 Cursor 会写代码。GPT 会写文案。gemini 会做研究。<span class="note">（此处为互文）</span></p>
+      <p>当技术能力正在像自来水一样流入每一个人的家里。<span class="em">人与人之间真正的差距，还剩下什么？</span></p>
+      <p class="lead">这个问题。Notion 给出了一个极其反直觉的答案。</p>
+    </div>
+    <div class="foot"><span>当技术如水一般廉价</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 07 章节一 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">07</span></div>
+    <div class="body">
+      <div class="kicker">PART ONE</div>
+      <div class="section-no">一</div>
+      <div class="section-title">Notion 正在寻找<br>什么样的人？</div>
+      <p class="lead" style="margin-top:14px">分享会上。有人问 Notion 设计负责人 Randy Hunt：你们在招聘设计师时最看重什么？</p>
+      <p>我原本以为会听到：</p>
+      <div class="chips"><span>作品集</span><span>项目经验</span><span>设计能力</span><span>视觉审美</span></div>
+    </div>
+    <div class="foot"><span>一 · Notion 在寻找什么样的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 08 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">08</span></div>
+    <div class="body">
+      <p>结果完全不是。Randy 说。他们特别喜欢问一个问题：</p>
+      <p class="quote">“给我看一个最近做的，但你自己并不满意的东西。”</p>
+      <p>然后继续追问：</p>
+      <p class="quote">“如果再给你一次机会，你准备怎么把它做得更好？”</p>
+      <p class="lead">这是一个非常奇怪的问题。因为它考察的根本不是能力。而是一种<span class="em">人格</span>。</p>
+    </div>
+    <div class="foot"><span>一 · Notion 在寻找什么样的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 09 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">09</span></div>
+    <div class="body">
+      <div class="stack">
+        <span>一种永远觉得事情还可以更好的状态。</span>
+        <span>一种看到问题之后，会忍不住想动手修改的状态。</span>
+        <span>一种持续创造、持续优化、持续折腾的状态。</span>
+      </div>
+      <p class="lead">后来 Randy 分享了另一个细节。一个让我印象极其深刻的细节。他说自己每次出差住酒店的时候。都会先把行李全部 <span class="term">unpack</span>。然后开始整理。</p>
+    </div>
+    <div class="foot"><span>一 · Notion 在寻找什么样的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">10</span></div>
+    <div class="body">
+      <p>衣服必须按照特定顺序挂起来。颜色有颜色的顺序。长短有长短的顺序。</p>
+      <p>洗漱用品在台面上的摆放位置也有自己的逻辑。牙刷与牙膏之间的距离。洗面奶与镜子的关系。甚至物品与台面边缘之间的空间比例，都必须符合某种秩序。</p>
+      <p>摆完以后。他会站在那里看一会儿。然后觉得：<span class="em">真舒服。</span></p>
+      <p class="lead">全场都笑了。但我却突然理解了 Notion 为什么会成为今天的 Notion。</p>
+    </div>
+    <div class="foot"><span>一 · Notion 在寻找什么样的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 11 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">11</span></div>
+    <div class="body">
+      <p>很多人以为 <span class="term">Taste</span>（品味）是一种玄学。是一种艺术家才能拥有的东西。</p>
+      <p>但那天之后我意识到。<span class="em">品味或许并不神秘。</span>它是一种对秩序、细节和体验持续保持敏感的能力。</p>
+      <p>别人看到的是：</p>
+      <div class="chips"><span>牙刷</span><span>牙膏</span><span>毛巾</span></div>
+      <p>而 Randy 看到的是：<span class="gold">节奏。结构。关系。呼吸感。</span></p>
+      <p class="lead">更准确地说。他看到的是一个系统。<span class="em">一个自洽的系统。</span></p>
+    </div>
+    <div class="foot"><span>一 · Notion 在寻找什么样的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 12 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">12</span></div>
+    <div class="body">
+      <p>这其实和 Notion 的 <span class="term">Block</span> 哲学高度一致。</p>
+      <p>在 Notion 眼里。一个页面不是页面。而是一组可组合、可重构、可演化的 <span class="term">Block</span>。</p>
+      <p>在 Randy 里。一个酒店洗漱台似乎也不是洗漱台。而是一组需要达到最优状态的空间模块。</p>
+      <p class="lead">AI 可以生成界面、图片、产品原型、设计稿等。</p>
+      <div class="stack">
+        <span>但 AI 不会因为某个按钮偏了两个像素而感到难受。</span>
+        <span>AI 不会因为空间节奏不对而觉得别扭。</span>
+        <span>AI 也不会因为一个系统失去了内在秩序而产生生理性的抗拒。</span>
+      </div>
+      <p>因为 AI 没有偏爱。<span class="em">它只有概率。</span>而 Taste 的本质。<span class="gold">恰恰是偏爱。</span></p>
+    </div>
+    <div class="foot"><span>一 · Notion 在寻找什么样的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 13 章节二 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">13</span></div>
+    <div class="body">
+      <div class="kicker">PART TWO</div>
+      <div class="section-no">二</div>
+      <div class="section-title">文明级跃迁：<br>从“实现层”回归“造物者”</div>
+      <p class="lead" style="margin-top:10px">Randy 的故事让我突然意识到。Notion 真正在寻找的。</p>
+      <p>可能不是设计师。也不是工程师。甚至不是产品经理。<span class="em">他们在寻找一种更古老的人。</span></p>
+    </div>
+    <div class="foot"><span>二 · 从实现层回归造物者</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 14 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">14</span></div>
+    <div class="body">
+      <p>在工业革命之前。世界上有一种人。</p>
+      <div class="stack">
+        <span>他们会为了木头的纹理选择不同的雕刻方式。</span>
+        <span>会为了一个榫卯结构修改十几次设计。</span>
+        <span>会为了一个音符停顿半秒而争论整整一个下午。</span>
+      </div>
+      <p>他们被称为：</p>
+      <div class="chips"><span>工匠</span><span>艺术家</span><span>建筑师</span><span>作曲家</span></div>
+      <p class="lead">而今天。我忽然发现。<span class="em">AI 正在把工程师重新变回这种人。</span></p>
+      <p>当技术能力开始像自来水一样廉价。传统的、流向“实现层”的机械劳动力被彻底解放。技术人的竞争维度，开始被迫向着文明的最深处跨越。</p>
+    </div>
+    <div class="foot"><span>二 · 从实现层回归造物者</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 15 章节三 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">15</span></div>
+    <div class="body">
+      <div class="kicker">PART THREE</div>
+      <div class="section-no">三</div>
+      <div class="section-title">未来的工程师<br>更像爵士乐手</div>
+      <p class="lead" style="margin-top:10px">这让我想起 Randy 在另一个问题中的回答。有人问：Notion 如何保持设计一致性？Randy 的回答很有意思。他说：</p>
+      <p class="quote">Notion 不是 Orchestra（交响乐团）。<br>更像 Jazz Band（爵士乐队）。</p>
+    </div>
+    <div class="foot"><span>三 · 未来的工程师更像爵士乐手</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 16 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">16</span></div>
+    <div class="body">
+      <p>这个比喻让我想了很久。交响乐团是什么？每个人都有自己的谱子。按照既定规则演奏。尽可能减少偏差。追求确定性。</p>
+      <p>而爵士乐不一样。<span class="gold">它有主题。但允许即兴。它有规则。但允许创造。它有结构。但保留灵魂。</span></p>
+      <p class="lead">如果把 AI 放进去。AI 更像是世界上最完美的演奏者。</p>
+      <div class="stack">
+        <span>永远不会弹错。</span><span>永远不会忘谱。</span><span>永远不会疲惫。</span><span>永远不会走音。</span>
+      </div>
+    </div>
+    <div class="foot"><span>三 · 未来的工程师更像爵士乐手</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 17 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">17</span></div>
+    <div class="body">
+      <p>但它不知道。<span class="em">下一段旋律应该往哪里走。</span></p>
+      <div class="stack">
+        <span>它不知道什么时候该停顿。</span>
+        <span>不知道什么时候该突然转调。</span>
+        <span>不知道什么时候应该故意制造张力。</span>
+        <span>更不知道什么样的旋律值得被演奏。</span>
+      </div>
+      <p class="lead">而这些。恰恰是伟大音乐家最重要的能力。</p>
+      <p>未来的工程师也一样。AI 正在接管越来越多的执行工作。</p>
+    </div>
+    <div class="foot"><span>三 · 未来的工程师更像爵士乐手</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 18 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">18</span></div>
+    <div class="body">
+      <div class="stack">
+        <span>代码生成：从逻辑编写到自动化测试的覆盖。</span>
+        <span>工程部署：从 CI/CD 的配置到运维脚本的自动化推演。</span>
+        <span>文档编写：在几秒钟内完成高密度的技术文档。</span>
+        <span>原型拉出：通过基础架构的一键生成，实现像素级初稿。</span>
+      </div>
+      <p class="lead">于是工程师的职责开始发生迁移。从：</p>
+      <p class="quote"><span class="term" style="font-style:normal">How to Build</span><br>变成：<br><span class="term" style="font-style:normal">What to Build</span><br>以及：<br><span class="term" style="font-style:normal">Why Build</span></p>
+      <p>不是如何演奏。<span class="em">而是演奏什么。</span></p>
+    </div>
+    <div class="foot"><span>三 · 未来的工程师更像爵士乐手</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 19 章节四 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">19</span></div>
+    <div class="body">
+      <div class="kicker">PART FOUR</div>
+      <div class="section-no">四</div>
+      <div class="section-title">从写代码的人，<br>到酿酒的人</div>
+      <p class="lead" style="margin-top:10px">几个月前。我写过一句话：</p>
+      <p class="quote">当技术如水一般廉价，<br>只有酿酒的人能活下来。</p>
+      <p>当时我更多是在讨论 AI 产品业务。但今天。我发现它同样适用于工程师个人。</p>
+    </div>
+    <div class="foot"><span>四 · 从写代码的人到酿酒的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 20 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">20</span></div>
+    <div class="body">
+      <p>水是什么：<span class="lead" style="display:inline">代码、框架、模型、Agent、API、Prompt、工作流。</span></p>
+      <p>酒是什么：<span class="gold">Taste（品味）、Agency（自驱）、Narrative（叙事）、Worldview（世界观）。</span></p>
+      <p class="quote">水是原料。<br>酒是创造。</p>
+      <p class="lead">AI 正在把越来越多的东西变成水。而人与人的差距，开始体现在谁能把这些水酿成酒。</p>
+      <p>很多人觉得这句话很浪漫。但其实它非常工程。因为真正的工程从来不是堆砌代码。<span class="em">而是定义世界。</span></p>
+    </div>
+    <div class="foot"><span>四 · 从写代码的人到酿酒的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 21 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">21</span></div>
+    <div class="body">
+      <p>举一个最简单的例子。假设你要设计一个电商系统。AI 的直觉是什么？它会把存商品的地方命名为：</p>
+      <p class="quote">ShoppingCart（购物车）。</p>
+      <p>这个名字没错。甚至非常合理。因为它符合概率。符合互联网上大多数开放代码库的统计规律。</p>
+      <p class="lead">但顶级架构师往往不会这么命名。他们可能会给出一个完全不同的名字：</p>
+      <p class="quote">PendingTransactionContext<br><span style="font-size:32px;color:var(--ink-soft);font-weight:400">待处理交易上下文。</span></p>
+    </div>
+    <div class="foot"><span>四 · 从写代码的人到酿酒的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 22 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">22</span></div>
+    <div class="body">
+      <p>名字一变。<span class="em">世界观就变了。</span></p>
+      <p class="lead">如果它叫 ShoppingCart。它只是一个容器。负责存放商品。但如果它叫 PendingTransactionContext。它就不再只是购物车。它意味着：</p>
+      <div class="stack">
+        <span>这里必须处理库存锁定。</span>
+        <span>必须关联优惠券逻辑。</span>
+        <span>必须管理价格策略。</span>
+        <span>必须维护会话状态。</span>
+        <span>必须处理支付前后的边界问题。</span>
+      </div>
+      <p>AI 只能看到事物的像素（Pixels），而顶级工程师看到的是事物的功能（Function）和未来的意图。</p>
+    </div>
+    <div class="foot"><span>四 · 从写代码的人到酿酒的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 23 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">23</span></div>
+    <div class="body">
+      <p class="quote">AI 可以帮你执法。<br>但只有人类能够立法。</p>
+      <p>同样的 GPT。同样的 Claude。同样的 Gemini。</p>
+      <p>有人在写一个购物车。有人在定义一个交易系统。<span class="em">差距从来不在工具。而在建模。</span></p>
+      <div class="stack">
+        <span>AI 活在概率里。顶级工程师活在时间里。</span>
+        <span>AI 根据过去生成答案。顶级工程师根据未来定义边界。</span>
+      </div>
+      <p class="lead">这就是把自来水酿成顶级好酒的过程。</p>
+    </div>
+    <div class="foot"><span>四 · 从写代码的人到酿酒的人</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 24 章节五 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">24</span></div>
+    <div class="body">
+      <div class="kicker">PART FIVE</div>
+      <div class="section-no">五</div>
+      <div class="section-title">工程师的第二次文艺复兴：<br>重新接过你的权杖</div>
+      <p class="lead" style="margin-top:10px">很多人觉得 AI 会让工程师失业。我反而认为。AI 正在把工程师从“代码工人”重新变成“创造者”。</p>
+      <p>过去。因为实现成本太高。很多伟大的想法死在草稿纸上。死在预算里。死在开发周期里。</p>
+    </div>
+    <div class="foot"><span>五 · 工程师的第二次文艺复兴</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 25 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">25</span></div>
+    <div class="body">
+      <p>今天。实现成本正在快速接近于零。于是问题重新回到了一个非常古老的问题：</p>
+      <div class="stack">
+        <span>你想创造什么？</span>
+        <span>你相信什么？</span>
+        <span>你认为什么是好的？</span>
+        <span>你愿意为什么偏执？</span>
+      </div>
+      <p class="lead">这其实不是工程问题。而是艺术家面对的问题。是建筑师面对的问题。是音乐家面对的问题。也是产品设计师面对的问题。</p>
+    </div>
+    <div class="foot"><span>五 · 工程师的第二次文艺复兴</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 26 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">26</span></div>
+    <div class="body">
+      <p>当钢琴变得廉价之后。伟大的音乐家没有消失。<span class="gold">他们开始创造新的旋律。</span></p>
+      <p>当相机变得廉价之后。伟大的摄影师没有消失。<span class="gold">他们开始创造新的视角。</span></p>
+      <p>当代码变得廉价之后。伟大的工程师也不会消失。<span class="gold">他们开始创造新的世界。</span></p>
+      <p class="lead">未来最顶级的工程师。未必是最会写代码的人。<span class="em">而是最会定义世界的人。</span></p>
+    </div>
+    <div class="foot"><span>五 · 工程师的第二次文艺复兴</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 27 -->
+  <section class="card">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">27</span></div>
+    <div class="body">
+      <p>他们知道：</p>
+      <div class="stack">
+        <span>什么值得被构建。</span>
+        <span>什么值得被坚持。</span>
+        <span>什么值得花十年时间打磨。</span>
+      </div>
+      <p>AI 可以写出每一个函数。但它无法决定哪个系统值得存在。</p>
+      <p>AI 可以生成无限种方案。但它无法决定哪一种未来值得到来。</p>
+      <p class="lead">当技术能力如水一般廉价。工程师终于重新回到了一个更古老的位置。</p>
+    </div>
+    <div class="foot"><span>五 · 工程师的第二次文艺复兴</span><span class="sig">陈小爷</span></div>
+  </section>
+
+  <!-- 28 尾页 -->
+  <section class="card outro">
+    <div class="head"><span class="brand">酿 · BREWING</span><span class="pager">28</span></div>
+    <div class="body">
+      <p>不是程序员。不是代码工人。不是提示词工程师。</p>
+      <p>而是——</p>
+      <div class="stack"><span>建筑师。</span><span>作曲家。</span><span>立法者。</span><span>酿酒师。</span></div>
+      <p>因为未来最稀缺的东西。从来不是能力。<span style="color:var(--amber-soft);font-weight:600">而是判断什么值得创造。</span></p>
+      <p class="quote">AI 可以提供无限的水。<br>但决定酿什么酒的人。<br>仍然是你。</p>
+      <p class="big">保持松弛，保持锋利。</p>
+    </div>
+    <div class="foot"><span style="color:var(--amber-soft)">Keep loose, keep sharp.</span><span class="sig-final">— 我是陈小爷</span></div>
+  </section>
+
+</body>
+</html>
